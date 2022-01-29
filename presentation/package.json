@@ -4,6 +4,13 @@
   "description": "Presentations of Cast projects made with sli.dev",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "slidev --open",
+    "build": "slidev build --base /cast/",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.28.2",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*"
   }
 }

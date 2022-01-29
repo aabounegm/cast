@@ -4,7 +4,9 @@
   "description": "A monorepo for the Cast app",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "build:presentation": "cd presentation && pnpm build",
+    "build:app": "cd app && pnpm build"
   },
   "repository": {
     "type": "git",
