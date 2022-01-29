@@ -1,0 +1,9 @@
+{
+  "name": "cast-presentations",
+  "version": "0.1.0",
+  "description": "Presentations of Cast projects made with sli.dev",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

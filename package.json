@@ -1,0 +1,31 @@
+{
+  "name": "cast-monorepo",
+  "version": "0.1.0",
+  "description": "A monorepo for the Cast app",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aabounegm/cast.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aabounegm/cast/issues"
+  },
+  "homepage": "https://github.com/aabounegm/cast#readme",
+  "contributors": [
+    "Lev Chelyadinov (https://github.com/illright)",
+    "Maxim Korsunov (https://github.com/vanishmax)",
+    "AbdelRahman Abounegm (https://github.com/aabounegm)",
+    "Magomed (https://github.com/alkaitagi)",
+    "Khaled Ismaeel (https://github.com/khaledismaeel)"
+  ],
+  "keywords": [
+    "cast",
+    "podcasts",
+    "pwa",
+    "svelte"
+  ]
+}
