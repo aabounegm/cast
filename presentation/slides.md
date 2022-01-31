@@ -49,7 +49,7 @@ layout: image-right
 Sprint #0: Progress
 
 - 🫂 Team building & setting up collaboration
-- 💻 Initialization of repozitory, environment
+- 💻 Initialization of repository, environment
 - 📦 Basic testing, linting, CI & CD
 - 🗺️ Preliminary development roadmap
 - ⏩ Sprint #1 backlog
@@ -89,7 +89,7 @@ image: "img/mike-hindle-urTBnMtWWYc-unsplash.jpg"
 
 # Course Goals #2
 
-## Opreations
+## Operations
 
 - CI (tests + static analysis)
 - CD (**Cloudflare**, **GitHub Pages**)
