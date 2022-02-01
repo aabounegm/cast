@@ -5,3 +5,6 @@ build
 package
 .env
 pnpm-lock.yaml
+
+# It doesn't work well with YAML frontmatter
+presentation/slides.md
