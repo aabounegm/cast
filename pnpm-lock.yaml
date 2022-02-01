@@ -30,7 +30,7 @@ importers:
       '@babel/core': 7.16.12
       '@babel/preset-env': 7.16.11_@babel+core@7.16.12
       '@sveltejs/adapter-auto': 1.0.0-next.17
-      '@sveltejs/kit': 1.0.0-next.251_svelte@3.46.3
+      '@sveltejs/kit': 1.0.0-next.252_svelte@3.46.3
       '@testing-library/jest-dom': 5.16.1
       '@testing-library/svelte': 3.0.3_svelte@3.46.3
       '@typescript-eslint/eslint-plugin': 5.10.1_bfd9cbbab4c643796c083962b876a1a4
@@ -50,10 +50,12 @@ importers:
   presentation:
     specifiers:
       '@slidev/cli': ^0.28.2
+      '@slidev/theme-apple-basic': ^0.20.0
       '@slidev/theme-default': '*'
       '@slidev/theme-seriph': '*'
     dependencies:
       '@slidev/cli': 0.28.2
+      '@slidev/theme-apple-basic': 0.20.0
       '@slidev/theme-default': 0.21.1
       '@slidev/theme-seriph': 0.21.1
 
@@ -1701,6 +1703,16 @@ packages:
       js-yaml: 4.1.0
     dev: false
 
+  /@slidev/theme-apple-basic/0.20.0:
+    resolution: {integrity: sha512-sjgxAyn63TNHsiwT/Iz2D8IjpuOg/x8l+nG2TTH3zg8XChIo7uYcNNApWH+i5zuBfaNHHUOaGLPaZw5s6fINQg==}
+    engines: {node: '>=14.0.0', slidev: '>=0.19.3'}
+    dependencies:
+      '@slidev/types': 0.22.7
+      codemirror-theme-vars: 0.1.1
+      prism-theme-vars: 0.2.2
+      theme-vitesse: 0.1.14
+    dev: false
+
   /@slidev/theme-default/0.21.1:
     resolution: {integrity: sha512-Hy5MKbkRi5IoKRh4CPjUCdLmjDVubtPfAkKXq6Bvd2VxnYFAbC/82ZY8Jg8NQ7Mkb7p/33POTq0enS0oCmx4lg==}
     engines: {node: '>=14.0.0', slidev: '>=0.19.2'}
@@ -1759,8 +1771,8 @@ packages:
       esbuild: 0.13.15
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.251_svelte@3.46.3:
-    resolution: {integrity: sha512-7GtUrUHqOa7ISo86PlICcMKcfGodOZwP9p7hXnN4t1yMWIQD2eKZlJffvnwx1X+NMcJ8hLChgcjGYjc1xZABhQ==}
+  /@sveltejs/kit/1.0.0-next.252_svelte@3.46.3:
+    resolution: {integrity: sha512-cUreghq9H4WZyqwR/whBP1w+IQbR/VYKCmOduBYykj1lSeVZrUIlX+usxpNTtOCmekP7RPGDhQHfYyb58FbD3g==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
