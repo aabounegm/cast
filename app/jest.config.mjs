@@ -3,16 +3,15 @@
 const config = {
   verbose: true,
   transform: {
-    "^.+\\.ts$": "ts-jest",
-    "^.+\\.svelte$": ["svelte-jester", {
-      preprocess: true,
-    }],
+    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.svelte$': [
+      'svelte-jester',
+      {
+        preprocess: true,
+      },
+    ],
   },
-  moduleFileExtensions: [
-    "js",
-    "ts",
-    "svelte",
-  ],
+  moduleFileExtensions: ['js', 'ts', 'svelte'],
   testEnvironment: 'jsdom',
 };
 
