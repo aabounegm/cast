@@ -4,18 +4,16 @@
   "description": "A podcast listening PWA",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "eslint": "eslint --ignore-path .gitignore .",
-    "fix": "eslint --ignore-path .gitignore . --fix",
-    "fix_": "prettier --write . --plugin-search-dir=.",
+    "eslint": "eslint --ignore-path .gitignore . --cache",
+    "prettier": "prettier --check . --plugin-search-dir=.",
+    "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
     "test:unit": "jest src",
-    "lint": "pnpm eslint && pnpm check",
-    "lint_": "prettier --check . --plugin-search-dir=."
+    "lint": "pnpm eslint; pnpm prettier; svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": {
     "type": "git",
