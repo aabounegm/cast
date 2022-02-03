@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build:presentation": "cd presentation && pnpm build",
     "build:app": "cd app && pnpm build",
     "lint": "prettier --check . --plugin-search-dir=.",
     "fix": "prettier --write . --plugin-search-dir=."
