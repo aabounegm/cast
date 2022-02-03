@@ -2,6 +2,7 @@
   "name": "cast",
   "version": "0.1.0",
   "description": "A podcast listening PWA",
+  "private": true,
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
