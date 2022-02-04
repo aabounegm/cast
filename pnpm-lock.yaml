@@ -12,6 +12,7 @@ specifiers:
   babel-jest: ^27.4.6
   eslint: ^7.32.0
   eslint-plugin-svelte3: ^3.2.1
+  husky: ^7.0.4
   jest: ^27.4.7
   prettier: ^2.5.1
   prettier-plugin-svelte: ^2.6.0
@@ -35,6 +36,7 @@ devDependencies:
   babel-jest: 27.4.6_@babel+core@7.17.0
   eslint: 7.32.0
   eslint-plugin-svelte3: 3.4.0_eslint@7.32.0+svelte@3.46.4
+  husky: 7.0.4
   jest: 27.4.7
   prettier: 2.5.1
   prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.4
@@ -3113,6 +3115,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  /husky/7.0.4:
+    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
+    engines: {node: '>=12'}
+    hasBin: true
     dev: true
 
   /iconv-lite/0.4.24:
