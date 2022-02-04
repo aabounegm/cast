@@ -9,11 +9,9 @@
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
-    "eslint": "eslint --ignore-path .gitignore . --cache",
-    "prettier": "prettier --check . --plugin-search-dir=.",
     "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
     "test:unit": "jest src",
-    "lint": "pnpm eslint; pnpm prettier; svelte-check --tsconfig ./tsconfig.json"
+    "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": {
     "type": "git",
