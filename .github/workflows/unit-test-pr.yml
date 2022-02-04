@@ -16,7 +16,15 @@ jobs:
         with:
           version: 6.28.0
 
+      - name: Cache 📦
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'pnpm'
+
       - name: Install and Build 🔧
         run: |
           pnpm install
+          pnpm run lint
           pnpm run test:unit
+          pnpm run test:e2e
