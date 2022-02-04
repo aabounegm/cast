@@ -19,4 +19,6 @@ jobs:
       - name: Install and Build 🔧
         run: |
           pnpm install
+          pnpm run lint
           pnpm run test:unit
+          pnpm run test:e2e
