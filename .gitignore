@@ -25,3 +25,13 @@ yarn-error.log*
 
 # local env files
 .env
+.env.*
+!.env.example
+
+
+.DS_Store
+/.svelte-kit
+/package
+.vercel
+.output
+.eslintcache

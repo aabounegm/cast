@@ -2,8 +2,7 @@ name: Run unit tests on Pull Requests
 
 on:
   pull_request:
-    paths:
-      - app/**
+    types: [opened, reopened]
 
 jobs:
   build-and-deploy:
@@ -20,4 +19,4 @@ jobs:
       - name: Install and Build 🔧
         run: |
           pnpm install
-          pnpm run --dir app test:unit
+          pnpm run test:unit

@@ -1,14 +1,17 @@
 {
-  "name": "cast-monorepo",
+  "name": "cast",
   "version": "0.1.0",
-  "description": "A monorepo for the Cast app",
+  "description": "A podcast listening PWA",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build:presentation": "cd presentation && pnpm build",
-    "build:app": "cd app && pnpm build",
-    "lint": "prettier --check . --plugin-search-dir=.",
-    "fix": "prettier --write . --plugin-search-dir=."
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "package": "svelte-kit package",
+    "preview": "svelte-kit preview",
+    "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
+    "test:unit": "jest src",
+    "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -32,9 +35,28 @@
     "pwa",
     "svelte"
   ],
+  "type": "module",
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/kit": "next",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/svelte": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "babel-jest": "^27.4.6",
+    "eslint": "^7.32.0",
+    "eslint-plugin-svelte3": "^3.2.1",
+    "jest": "^27.4.7",
+    "svelte": "^3.44.0",
+    "svelte-check": "^2.2.6",
+    "svelte-jester": "^2.1.5",
+    "svelte-preprocess": "^4.10.2",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5",
     "prettier": "^2.5.1",
-    "prettier-plugin-svelte": "^2.6.0",
-    "svelte": "^3.44.0"
+    "prettier-plugin-svelte": "^2.6.0"
   }
 }
