@@ -23,7 +23,6 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
-    "types": ["svelte", "cypress", "@testing-library/cypress"],
     "paths": {
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"]
