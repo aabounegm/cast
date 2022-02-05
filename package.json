@@ -52,6 +52,7 @@
     "eslint-plugin-svelte3": "^3.2.1",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
+    "lint-staged": "^12.3.3",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
     "svelte": "^3.44.0",
