@@ -12,7 +12,8 @@
     "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
     "test:e2e": "echo 'e2e stub'",
     "test:unit": "jest src",
-    "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json"
+    "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -50,7 +51,9 @@
     "babel-jest": "^27.4.6",
     "eslint": "^7.32.0",
     "eslint-plugin-svelte3": "^3.2.1",
+    "husky": "^7.0.4",
     "jest": "^27.4.7",
+    "lint-staged": "^12.3.3",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
