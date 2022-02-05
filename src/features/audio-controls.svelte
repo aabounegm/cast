@@ -1,43 +1,51 @@
 <script lang="ts">
   export let src: string;
 
-  let audio: HTMLAudioElement;
-  let playing = false;
+  let paused = true;
+  let time = 0;
+  let duration = 0;
 
-  function seek(delta: number) {
-    audio.currentTime += delta;
-    togglePlay(true);
+  $: percent = (100 * time) / duration;
+
+  function seekPerc(percent: number) {
+    time = 0.01 * percent * duration;
+    console.log(percent, duration, time);
   }
 
-  function togglePlay(value: boolean) {
-    playing = value;
-    if (playing) audio.play();
-    else audio.pause();
+  function seekSec(delta: number) {
+    time += delta;
+    paused = false;
   }
 </script>
 
 <div class="flex flex-col gap-5">
-  <audio bind:this={audio} {src}>
+  <slot />
+  <audio {src} bind:currentTime={time} bind:duration bind:paused>
     Your browser does not support the
     <code>audio</code> element.
   </audio>
-  {#if audio}
-    <div class="flex flex-row justify-around">
-      <button on:click={() => seek(-10)}>
-        <span class="material-icons-round -scale-x-100"> forward_10 </span>
-      </button>
-      <button on:click={() => togglePlay(!playing)}>
-        {#if playing}
-          <span class="material-icons-round"> pause </span>
-        {:else}
-          <span class="material-icons-round"> play_arrow </span>
-        {/if}
-      </button>
-      <button on:click={() => seek(30)}>
-        <span class="material-icons-round"> forward_30 </span>
-      </button>
-    </div>
-  {/if}
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value={percent}
+    on:input={(e) => seekPerc(parseInt(e.currentTarget.value))}
+  />
+  <div class="flex flex-row justify-around">
+    <button on:click={() => seekSec(-10)}>
+      <span class="material-icons-round -scale-x-100"> forward_10 </span>
+    </button>
+    <button on:click={() => (paused = !paused)}>
+      {#if paused}
+        <span class="material-icons-round"> play_arrow </span>
+      {:else}
+        <span class="material-icons-round"> pause </span>
+      {/if}
+    </button>
+    <button on:click={() => seekSec(30)}>
+      <span class="material-icons-round"> forward_30 </span>
+    </button>
+  </div>
 </div>
 
 <style lang="postcss">
