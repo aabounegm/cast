@@ -22,7 +22,9 @@
 
   <h1 class="text-3xl font-bold underline text-yellow-400">Hello world!</h1>
 
-  <AudioControls />
+  <AudioControls
+    src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
+  />
 </section>
 
 <style>
