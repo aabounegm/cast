@@ -1,11 +1,4 @@
 <script lang="ts">
-  export let name: string;
-
-  let buttonText = 'Button';
-
-  function handleClick() {
-    buttonText = 'Button Clicked';
-  }
 </script>
 
 <div>
