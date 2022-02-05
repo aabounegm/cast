@@ -18,6 +18,8 @@
     </div>
   </h1>
 
+  <span class="material-icons-round"> favorite_border </span>
+
   <h1 class="text-3xl font-bold underline text-yellow-400">Hello world!</h1>
 
   <AudioControls />
