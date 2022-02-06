@@ -34,5 +34,8 @@ jobs:
       - name: Run Cypress E2E tests 🧪
         uses: cypress-io/github-action@v2
         with:
-          start: npm run dev
+          start: pnpm run dev
           wait-on: 'http://localhost:3000'
+          # we have already installed all dependencies above
+          install: false
+          cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
