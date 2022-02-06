@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('App', function () {
   it('renders App with correct footer', () => {
     cy.visit('/');
