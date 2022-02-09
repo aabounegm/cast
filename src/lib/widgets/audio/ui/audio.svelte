@@ -2,7 +2,7 @@
   import { audioStore } from '$lib/features/fetch-audio';
   import ScrubbingBar from './scrubbing-bar.svelte';
 
-  let audioEl = null as HTMLAudioElement;
+  let audioEl = null as HTMLAudioElement | null;
   audioStore.subscribe((val) => {
     if (!audioEl) return;
     audioEl.pause();
