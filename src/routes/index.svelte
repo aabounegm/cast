@@ -4,7 +4,7 @@
   export const prerender = true;
 </script>
 
-<script>
+<script lang="ts">
   import { HomePage } from '$lib/pages/home';
 </script>
 
