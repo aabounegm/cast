@@ -1,7 +1,10 @@
 <script lang="ts">
-  import { DefaultLayout } from 'src/lib/processes/layout';
+  import { GlobalAudio } from '$lib/widgets/audio';
+  import '$lib/app.css';
 </script>
 
-<DefaultLayout>
+<main>
   <slot />
-</DefaultLayout>
+</main>
+
+<GlobalAudio />
