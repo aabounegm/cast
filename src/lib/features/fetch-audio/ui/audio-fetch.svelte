@@ -12,7 +12,11 @@
   };
 </script>
 
-<form on:submit|preventDefault={submit} class="w-full py-8 px-10 flex bg-slate-800">
+<form
+  on:submit|preventDefault={submit}
+  class="w-full py-8 px-10 flex bg-slate-800"
+  data-cy="audio-fetch-form"
+>
   <input
     bind:value={url}
     class="py-2 px-2 grow rounded-md bg-gray-100"

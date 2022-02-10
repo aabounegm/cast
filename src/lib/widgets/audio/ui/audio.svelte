@@ -20,6 +20,7 @@
   audioStore.subscribe((val) => {
     if (!audioEl) return;
     audioEl.pause();
+    console.log('here', val);
     audioEl.src = val;
     audioEl.currentTime = 0;
     audioEl.addEventListener('timeupdate', timeUpdate);
