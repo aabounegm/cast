@@ -9,19 +9,6 @@
 </svelte:head>
 
 <section>
-  <h1>
-    <div class="welcome">
-      <picture>
-        <source srcset="svelte-welcome.webp" type="image/webp" />
-        <img src="svelte-welcome.png" alt="Welcome" />
-      </picture>
-    </div>
-  </h1>
-
-  <span class="material-icons-round"> favorite_border </span>
-
-  <h1 class="text-3xl font-bold underline text-yellow-400">Hello world!</h1>
-
   <AudioControls
     src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
   />
