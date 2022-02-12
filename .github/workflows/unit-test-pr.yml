@@ -1,11 +1,11 @@
-name: Run unit tests on Pull Requests
+name: Run tests on Pull Requests
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -19,12 +19,24 @@ jobs:
       - name: Cache 📦
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'pnpm'
 
-      - name: Install and Build 🔧
-        run: |
-          pnpm install
-          pnpm run lint
-          pnpm run test:unit
-          pnpm run test:e2e
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Check style and formatting 🧹
+        run: pnpm run lint
+
+      - name: Run unit tests 🧪
+        run: pnpm run test:unit
+
+      - name: Run Cypress E2E tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          build: pnpm run build
+          start: pnpm run preview
+          wait-on: 'http://localhost:3000'
+          # we have already installed all dependencies above
+          install: false
+          cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
