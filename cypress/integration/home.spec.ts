@@ -3,7 +3,7 @@ import { constants } from '../fixtures';
 describe('Home page', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.get('[data-cy="hydrated"]');
+    cy.waitForHydration();
   });
 
   it('plays audio music by typing the link to an audio file', () => {
