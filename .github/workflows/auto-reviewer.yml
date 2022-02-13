@@ -1,13 +1,14 @@
 name: 'Reviewer lottery'
 on:
   pull_request:
-    types: [opened, ready_for_review, reopened]
-    tags-ignore:
-      - pair-programmed
+    types: [opened, unlabeled, ready_for_review]
 
 jobs:
-  test:
+  assign-reviewer:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'pair-programmed') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: uesteibar/reviewer-lottery@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

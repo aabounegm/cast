@@ -1,6 +1,4 @@
 <script context="module" lang="ts">
-  import AudioControls from 'src/features/audio-controls.svelte';
-
   export const prerender = true;
 </script>
 
@@ -18,6 +16,4 @@
   <span class="material-icons-round"> favorite_border </span>
 
   <h1 class="text-3xl font-bold underline text-yellow-400">Hello world!</h1>
-
-  <AudioControls />
 </section>
