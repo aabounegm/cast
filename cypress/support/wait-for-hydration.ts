@@ -1,11 +1,17 @@
-const waitForHydration = () => {
+const visitAndWaitForHydration = (
+  url: string,
+  options?: Partial<Omit<Cypress.VisitOptions, 'onBeforeLoad'>>
+) => {
   return cy.wrap<Promise<void>>(
     new Promise<void>((resolve) => {
-      cy.window().then((win) => {
-        win.addEventListener('sveltekit:start' as keyof WindowEventMap, () => resolve());
+      cy.visit(url, {
+        ...options,
+        onBeforeLoad(win) {
+          win.addEventListener('sveltekit:start', () => resolve());
+        },
       });
     })
   );
 };
 
-export default waitForHydration;
+export default visitAndWaitForHydration;

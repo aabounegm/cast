@@ -2,8 +2,7 @@ import { constants } from '../fixtures';
 
 describe('Home page', () => {
   beforeEach(() => {
-    cy.visit('/');
-    cy.waitForHydration();
+    cy.visitAndWaitForHydration('/');
   });
 
   it('plays audio music by typing the link to an audio file', () => {
