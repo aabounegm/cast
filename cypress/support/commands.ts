@@ -6,16 +6,12 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
     interface Chainable {
-      expectPlayingAudio(): Chainable<Element>;
-      waitForHydration(): Chainable<Promise<void>>;
+      expectPlayingAudio: typeof expectPlayingAudio;
+      visitAndWaitForHydration: typeof waitForHydration;
     }
   }
 }
 
-Cypress.Commands.add('expectPlayingAudio', () => {
-  expectPlayingAudio();
-});
+Cypress.Commands.add('expectPlayingAudio', expectPlayingAudio);
 
-Cypress.Commands.add('waitForHydration', () => {
-  return waitForHydration();
-});
+Cypress.Commands.add('visitAndWaitForHydration', waitForHydration);
