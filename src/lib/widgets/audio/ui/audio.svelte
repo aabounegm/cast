@@ -2,7 +2,7 @@
   import { audioStore } from '$lib/features/fetch-audio';
   import ScrubbingBar from './scrubbing-bar.svelte';
 
-  let audioEl = null as HTMLAudioElement | null;
+  let audioEl: HTMLAudioElement;
   
   let duration = 0;
   let currentTime = 0;
@@ -20,16 +20,14 @@
   audioStore.subscribe((val) => {
     if (!audioEl) return;
     audioEl.pause();
-    console.log('here', val);
     audioEl.src = val;
     audioEl.currentTime = 0;
-    audioEl.addEventListener('timeupdate', timeUpdate);
     audioEl.play();
   });
 </script>
 
 <div class="fixed bottom-0 left-0 right-0 py-8 px-10 bg-slate-800">
-  <audio bind:this={audioEl} />
+  <audio bind:this={audioEl} on:timeupdate={timeUpdate} />
 
   <ScrubbingBar
     bufferPercent={((bufferTime / duration) || 0) * 100}

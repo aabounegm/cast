@@ -1,4 +1,4 @@
-import { constants } from '../support';
+import { constants } from '../fixtures';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Home page', () => {
   });
 
   it('plays audio music by playing default sound', () => {
-    cy.get('[data-cy="audio-fetch-form"]').as('form').get('button[type=button]').click();
+    cy.get('[data-cy="audio-fetch-form"]').get('button[type=button]').click();
     cy.expectPlayingAudio();
   });
 });
