@@ -7,6 +7,8 @@ node_modules
 
 # testing
 coverage
+cypress/videos
+cypress/screenshots
 
 # next.js
 .next/
@@ -35,3 +37,5 @@ yarn-error.log*
 .vercel
 .output
 .eslintcache
+
+.idea
