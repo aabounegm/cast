@@ -16,7 +16,7 @@
     src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
   />
   {#if audio}
-    <AudioControls {audio} />
+    <AudioControls showSeeker={true} {audio} />
   {/if}
 </section>
 
