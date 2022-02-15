@@ -20,6 +20,23 @@ a:hover,
   @apply text-blue-300;
 }
 
+.material-icons-round {
+  @apply text-3xl;
+}
+.icon-button {
+  @apply rounded-full w-10 h-10;
+}
+
+button {
+  @apply flex items-center justify-center;
+}
+button:hover {
+  @apply bg-slate-600;
+}
+button:active {
+  @apply bg-slate-500;
+}
+
 body,
 #svelte {
   height: 100vh;
