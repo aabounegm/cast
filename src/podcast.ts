@@ -8,6 +8,6 @@ export interface PodcastSeries {
 }
 export interface PodcastEpisode {
   title: string;
-  decscription: string;
-  duration: string;
+  description: string;
+  duration: number;
 }
