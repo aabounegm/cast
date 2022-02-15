@@ -25,9 +25,9 @@
   <div class="flex flex-row justify-around">
     <button on:click={() => move(-10)} class="material-icons-round"> forward_10 </button>
     {#if audio.paused}
-      <button class="material-icons-round" on:click={audio.play}> play_arrow </button>
+      <button class="material-icons-round" on:click={() => audio.play()}> play_arrow </button>
     {:else}
-      <button class="material-icons-round" on:click={audio.pause}> pause </button>
+      <button class="material-icons-round" on:click={() => audio.pause()}> pause </button>
     {/if}
     <button class="material-icons-round" on:click={() => move(30)}> forward_30 </button>
   </div>
