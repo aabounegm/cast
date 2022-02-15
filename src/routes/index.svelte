@@ -3,7 +3,9 @@
 
   export const prerender = true;
 
-  let audio: HTMLAudioElement | undefined;
+  import { audio } from 'src/audio-service';
+  audio.src =
+    'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3';
 </script>
 
 <svelte:head>
@@ -11,10 +13,6 @@
 </svelte:head>
 
 <section>
-  <audio
-    bind:this={audio}
-    src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
-  />
   {#if audio}
     <AudioControls showSeeker={true} {audio} />
   {/if}
