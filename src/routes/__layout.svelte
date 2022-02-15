@@ -9,7 +9,7 @@
 
   <div class="fixed bottom-0 shadow-lg bg">
     {#if audio}
-      <AudioControls {audio} />
+      <AudioControls />
     {/if}
   </div>
 </main>
