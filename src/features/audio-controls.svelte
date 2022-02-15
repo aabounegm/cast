@@ -1,26 +1,9 @@
 <script lang="ts">
+  import { play, pause, seek, move } from 'src/audio-service';
   export let audio: HTMLAudioElement;
   export let showSeeker = false;
 
   $: percent = (100 * audio.currentTime) / audio.duration;
-
-  function play() {
-    // need this because `audio.paused` wasn't reactive otherwise
-    audio.currentTime = audio.currentTime;
-    audio.play();
-  }
-  function pause() {
-    // need this because `audio.paused` wasn't reactive otherwise
-    audio.currentTime = audio.currentTime;
-    audio.pause();
-  }
-  function seek(percent: number) {
-    audio.currentTime = 0.01 * percent * audio.duration;
-  }
-  function move(delta: number) {
-    audio.currentTime += delta;
-    play();
-  }
 </script>
 
 <div class="flex flex-col gap-5">
