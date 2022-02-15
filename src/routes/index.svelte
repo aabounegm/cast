@@ -1,11 +1,14 @@
 <script lang="ts">
   import AudioControls from 'src/features/audio-controls.svelte';
+  import { audio } from 'src/audio-service';
 
   export const prerender = true;
 
-  import { audio } from 'src/audio-service';
-  audio.src =
-    'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3';
+  $: {
+    if (audio)
+      audio.src =
+        'http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3';
+  }
 </script>
 
 <svelte:head>
