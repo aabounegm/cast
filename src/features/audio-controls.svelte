@@ -32,19 +32,11 @@
     on:input={(e) => seekPerc(parseInt(e.currentTarget.value))}
   />
   <div class="flex flex-row justify-around">
-    <button on:click={() => seekSec(-10)}>
-      <span class="material-icons-round -scale-x-100"> forward_10 </span>
+    <button on:click={() => seekSec(-10)} class="material-icons-round"> forward_10 </button>
+    <button class="material-icons-round" on:click={() => (paused = !paused)}>
+      {paused ? 'play_arrow' : 'pause'}
     </button>
-    <button on:click={() => (paused = !paused)}>
-      {#if paused}
-        <span class="material-icons-round"> play_arrow </span>
-      {:else}
-        <span class="material-icons-round"> pause </span>
-      {/if}
-    </button>
-    <button on:click={() => seekSec(30)}>
-      <span class="material-icons-round"> forward_30 </span>
-    </button>
+    <button class="material-icons-round" on:click={() => seekSec(30)}> forward_30 </button>
   </div>
 </div>
 
