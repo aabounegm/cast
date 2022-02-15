@@ -1,9 +1,9 @@
-<script context="module" lang="ts">
+<script lang="ts">
   import AudioControls from 'src/features/audio-controls.svelte';
 
   export const prerender = true;
 
-  let audio: HTMLAudioElement;
+  let audio: HTMLAudioElement | undefined;
 </script>
 
 <svelte:head>
