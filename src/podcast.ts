@@ -7,6 +7,7 @@ export interface PodcastSeries {
   episodesNumber: number;
 }
 export interface PodcastEpisode {
+  src: string;
   title: string;
   description: string;
   duration: number;
