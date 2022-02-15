@@ -15,11 +15,7 @@
   <title>Home | Cast</title>
 </svelte:head>
 
-<section>
-  {#if audio}
-    <AudioControls showSeeker={true} {audio} />
-  {/if}
-</section>
+<section />
 
 <style>
   section {
