@@ -1,42 +1,35 @@
 <script lang="ts">
-  export let src: string;
+  export let audio: HTMLAudioElement;
 
-  let paused = true;
-  let time = 0;
-  let duration = 0;
+  $: percent = (100 * audio.currentTime) / audio.duration;
 
-  $: percent = (100 * time) / duration;
-
-  function seekPerc(percent: number) {
-    time = 0.01 * percent * duration;
-    console.log(percent, duration, time);
+  function seek(percent: number) {
+    audio.currentTime = 0.01 * percent * audio.duration;
   }
 
-  function seekSec(delta: number) {
-    time += delta;
-    paused = false;
+  function move(delta: number) {
+    audio.currentTime += delta;
+    audio.play();
   }
 </script>
 
 <div class="flex flex-col gap-5">
   <slot />
-  <audio {src} bind:currentTime={time} bind:duration bind:paused>
-    Your browser does not support the
-    <code>audio</code> element.
-  </audio>
   <input
     type="range"
     min="0"
     max="100"
     value={percent}
-    on:input={(e) => seekPerc(parseInt(e.currentTarget.value))}
+    on:input={(e) => seek(parseInt(e.currentTarget.value))}
   />
   <div class="flex flex-row justify-around">
-    <button on:click={() => seekSec(-10)} class="material-icons-round"> forward_10 </button>
-    <button class="material-icons-round" on:click={() => (paused = !paused)}>
-      {paused ? 'play_arrow' : 'pause'}
-    </button>
-    <button class="material-icons-round" on:click={() => seekSec(30)}> forward_30 </button>
+    <button on:click={() => move(-10)} class="material-icons-round"> forward_10 </button>
+    {#if audio.paused}
+      <button class="material-icons-round" on:click={audio.play}> play_arrow </button>
+    {:else}
+      <button class="material-icons-round" on:click={audio.pause}> pause </button>
+    {/if}
+    <button class="material-icons-round" on:click={() => move(30)}> forward_30 </button>
   </div>
 </div>
 
