@@ -2,19 +2,6 @@
   import '../app.css';
 </script>
 
-<main>
+<main class="margin-auto h-full w-full max-w-md p-4 bg-slate-900 text-white">
   <slot />
 </main>
-
-<style>
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-</style>
