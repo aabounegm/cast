@@ -2,6 +2,8 @@
   import AudioControls from 'src/features/audio-controls.svelte';
 
   export const prerender = true;
+
+  let audio: HTMLAudioElement;
 </script>
 
 <svelte:head>
@@ -9,9 +11,13 @@
 </svelte:head>
 
 <section>
-  <AudioControls
+  <audio
+    bind:this={audio}
     src="http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"
   />
+  {#if audio}
+    <AudioControls {audio} />
+  {/if}
 </section>
 
 <style>
