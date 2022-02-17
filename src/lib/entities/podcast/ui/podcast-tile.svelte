@@ -1,5 +1,5 @@
 <script lang="ts">
-  import clsx from 'clsx';
+  import cx from 'classnames';
   import type { Podcast } from '$lib/shared/api';
 
   let _class = '';
@@ -9,7 +9,7 @@
 </script>
 
 <a
-  class={clsx('grid', 'gap-x-4', 'text-slate-100', _class, large && 'large p-2')}
+  class={cx('grid', 'gap-x-4', 'text-slate-100', _class, large && 'large p-2')}
   href="/podcasts/{podcast.id}"
 >
   <img class="rounded-lg aspect-square" class:row-span-2={!large} src={podcast.coverUrl} alt="" />
