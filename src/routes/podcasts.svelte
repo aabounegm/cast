@@ -1,15 +1,14 @@
 <script lang="ts">
-  import DownloadLink from 'src/features/download-link.svelte';
-  import EpisodeCard from 'src/features/episode-card.svelte';
+  import DownloadLink from 'src/features/episode-presentation/ui/download-link.svelte';
+  import EpisodeCard from 'src/features/episode-presentation/ui/episode-card.svelte';
   import { getEpisodes, getPodcast } from 'src/loader-service';
   import type { PodcastEpisode, PodcastSeries } from 'src/podcast';
 
-  import { getAudio, play } from 'src/entities/audio/model/audio-instance';
+  import { getAudioSrc, play } from 'src/entities/audio/model/audio-instance';
 
   let podcast: PodcastSeries | undefined;
   let episodes: PodcastEpisode[] | undefined;
 
-  const audio = getAudio();
   $: {
     let id = '23424';
     getPodcast(id).then((r) => (podcast = r));
@@ -17,7 +16,7 @@
   }
 </script>
 
-{#if podcast && episodes && audio}
+{#if podcast && episodes}
   <div class="flex flex-row gap-4 p-4">
     <img class="w-24 h-24 rounded-xl" src={podcast.coverUrl} alt="cover" />
     <div class="flex flex-col gap-2 text-sm">
@@ -34,7 +33,7 @@
     {#each episodes as episode}
       <EpisodeCard
         {episode}
-        selected={audio.src == episode.src}
+        selected={getAudioSrc() == episode.src}
         onClickPlay={() => play(episode.src)}
       />
     {/each}

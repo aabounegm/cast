@@ -1,29 +1,32 @@
-let _audio: HTMLAudioElement | undefined;
+import { Howl } from 'howler';
 
-export function getAudio() {
-  _audio ??= new Audio();
-  return _audio;
+let howl = new Howl({ src: [''], html5: true });
+let src = '';
+
+export function getAudioSrc() {
+  console.log('src', src);
+  return src;
 }
 
-export function play(src?: string) {
-  const audio = getAudio();
-  if (src) audio.src = src;
-  // need this because `audio.paused` wasn't reactive otherwise
-  audio.currentTime = audio.currentTime + 0;
-  audio.play();
+export function percent() {
+  return (100 * howl.seek()) / howl.duration();
+}
+
+export function play(_src?: string) {
+  if (_src) {
+    src = _src;
+    howl.unload();
+    howl = new Howl({ src: [src], html5: true });
+  }
+  howl.play();
 }
 export function pause() {
-  // need this because `audio.paused` wasn't reactive otherwise
-  const audio = getAudio();
-  audio.currentTime = audio.currentTime + 0;
-  audio.pause();
+  howl.pause();
 }
 export function seek(percent: number) {
-  const audio = getAudio();
-  audio.currentTime = 0.01 * percent * audio.duration;
+  const pos = 0.01 * percent * howl.duration();
+  howl.seek(pos);
 }
 export function move(delta: number) {
-  const audio = getAudio();
-  audio.currentTime += delta;
-  play();
+  howl.seek(howl.seek() + delta);
 }
