@@ -36,7 +36,7 @@
   ];
 </script>
 
-<!-- <AudioFetch /> -->
+<AudioFetch />
 
 <div class="bg-slate-800">
   <PodcastShelf title="Trending Now" {podcasts} />
