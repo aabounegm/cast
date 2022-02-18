@@ -1,27 +1,29 @@
-import { writable } from 'svelte/store';
+let _audio: HTMLAudioElement | undefined;
 
-const _audio = new Audio();
-
-export const audio = writable<HTMLAudioElement>(_audio);
+export function getAudio() {
+  _audio ??= new Audio();
+  return _audio;
+}
 
 export function play(src?: string) {
-  if (src) _audio.src = src;
+  const audio = getAudio();
+  if (src) audio.src = src;
   // need this because `audio.paused` wasn't reactive otherwise
-  _audio.currentTime = _audio.currentTime + 0;
-  _audio.play();
-  audio.set(_audio);
+  audio.currentTime = audio.currentTime + 0;
+  audio.play();
 }
 export function pause() {
   // need this because `audio.paused` wasn't reactive otherwise
-  _audio.currentTime = _audio.currentTime + 0;
-  _audio.pause();
-  audio.set(_audio);
+  const audio = getAudio();
+  audio.currentTime = audio.currentTime + 0;
+  audio.pause();
 }
 export function seek(percent: number) {
-  _audio.currentTime = 0.01 * percent * _audio.duration;
-  audio.set(_audio);
+  const audio = getAudio();
+  audio.currentTime = 0.01 * percent * audio.duration;
 }
 export function move(delta: number) {
-  _audio.currentTime += delta;
+  const audio = getAudio();
+  audio.currentTime += delta;
   play();
 }
