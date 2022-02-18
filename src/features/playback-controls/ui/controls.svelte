@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { audio, play, pause, seek, move } from 'src/audio-service';
+  import { getAudio, play, pause, seek, move } from 'src/entities/audio/model/audio-instance';
   export let showSeeker = false;
 
-  $: percent = (100 * $audio.currentTime) / $audio.duration;
+  const audio = getAudio();
+  $: percent = (100 * audio.currentTime) / audio.duration;
 </script>
 
 <div class="flex flex-col gap-5">
@@ -19,7 +20,7 @@
     <button class="material-icons-round icon-button" on:click={() => move(-10)}>
       forward_10
     </button>
-    {#if $audio.paused}
+    {#if audio.paused}
       <button class="material-icons-round icon-button" on:click={() => play()}> play_arrow </button>
     {:else}
       <button class="material-icons-round icon-button" on:click={pause}> pause </button>

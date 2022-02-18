@@ -1,12 +1,3 @@
-<script lang="ts">
-  import AudioControls from 'src/features/audio-controls.svelte';
-  import { play } from 'src/audio-service';
-
-  export const prerender = true;
-
-  play('http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3');
-</script>
-
 <svelte:head>
   <title>Home | Cast</title>
 </svelte:head>
