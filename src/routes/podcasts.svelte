@@ -4,7 +4,7 @@
   import { getEpisodes, getPodcast } from 'src/loader-service';
   import type { PodcastEpisode, PodcastSeries } from 'src/podcast';
 
-  import { getAudioSrc, play } from 'src/entities/audio/model/audio-instance';
+  import { audio, play } from 'src/entities/audio/model/audio-instance';
 
   let podcast: PodcastSeries | undefined;
   let episodes: PodcastEpisode[] | undefined;
@@ -33,7 +33,7 @@
     {#each episodes as episode}
       <EpisodeCard
         {episode}
-        selected={getAudioSrc() == episode.src}
+        selected={$audio.src == episode.src}
         onClickPlay={() => play(episode.src)}
       />
     {/each}

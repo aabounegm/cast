@@ -1,32 +1,29 @@
-import { Howl } from 'howler';
+import { writable, get } from 'svelte/store';
 
-let howl = new Howl({ src: [''], html5: true });
-let src = '';
+export const audio = writable<HTMLAudioElement>();
 
-export function getAudioSrc() {
-  console.log('src', src);
-  return src;
+export function initAudio(_audio: HTMLAudioElement) {
+  audio.set(_audio);
 }
 
-export function percent() {
-  return (100 * howl.seek()) / howl.duration();
-}
-
-export function play(_src?: string) {
-  if (_src) {
-    src = _src;
-    howl.unload();
-    howl = new Howl({ src: [src], html5: true });
-  }
-  howl.play();
+export function play(src?: string) {
+  const _audio = get(audio);
+  if (src) _audio.src = src;
+  _audio.play();
+  audio.set(_audio);
 }
 export function pause() {
-  howl.pause();
+  const _audio = get(audio);
+  _audio.pause();
+  audio.set(_audio);
 }
 export function seek(percent: number) {
-  const pos = 0.01 * percent * howl.duration();
-  howl.seek(pos);
+  const _audio = get(audio);
+  _audio.currentTime = 0.01 * percent * _audio.duration;
+  audio.set(_audio);
 }
 export function move(delta: number) {
-  howl.seek(howl.seek() + delta);
+  const _audio = get(audio);
+  _audio.currentTime += delta;
+  play();
 }

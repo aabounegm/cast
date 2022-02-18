@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { play, pause, seek, move, percent } from 'src/entities/audio/model/audio-instance';
+  import { play, pause, seek, move, audio } from 'src/entities/audio/model/audio-instance';
   export let showSeeker = false;
+  $: percent = (100 * $audio.currentTime) / $audio.duration;
 </script>
 
 <div class="flex flex-col gap-5">
@@ -9,7 +10,7 @@
       type="range"
       min="0"
       max="100"
-      value={percent()}
+      value={percent}
       on:input={(e) => seek(parseInt(e.currentTarget.value))}
     />
   {/if}
@@ -17,7 +18,7 @@
     <button class="material-icons-round icon-button" on:click={() => move(-10)}>
       forward_10
     </button>
-    {#if true}
+    {#if $audio.paused}
       <button class="material-icons-round icon-button" on:click={() => play()}> play_arrow </button>
     {:else}
       <button class="material-icons-round icon-button" on:click={pause}> pause </button>
