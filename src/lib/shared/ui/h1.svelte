@@ -1,5 +1,5 @@
 <script lang="ts">
-  import cx from 'classnames';
+  import cx from 'clsx';
 
   let _class = '';
   export { _class as class };

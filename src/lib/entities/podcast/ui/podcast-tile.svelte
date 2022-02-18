@@ -1,5 +1,5 @@
 <script lang="ts">
-  import cx from 'classnames';
+  import cx from 'clsx';
   import type { Podcast } from '$lib/shared/api';
 
   let _class = '';

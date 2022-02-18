@@ -22,11 +22,14 @@ const config: Config.InitialOptions = {
 
   transform: {
     [extensions.jsAndTs]: 'babel-jest',
-    [extensions.svelte]: ['svelte-jester', { preprocess: true }],
+    [extensions.svelte]: ['svelte-jester/dist/transformer.cjs', { preprocess: true }],
   },
-  moduleNameMapper: mapDirectories({
-    $lib: './src/lib',
-  }),
+  moduleNameMapper: {
+    ...mapDirectories({
+      $lib: './src/lib',
+    }),
+    '^clsx$': '<rootDir>/src/lib/shared/lib/jest-hacks/clsx.jest.js',
+  },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testEnvironment: 'jsdom',
