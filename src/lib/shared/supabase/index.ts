@@ -1,2 +1,2 @@
 export { default as supabaseClient } from './client';
-export { podcastsRead, podcastsGet } from './podcasts';
+export { podcastRead, podcastGet, episodeGet, episodeRead } from './podcasts';
