@@ -1,5 +1,5 @@
 import type { SBEpisode, Episode } from './types';
-import { transformEpisodeRequest } from './proxies';
+import { transformEpisodeRequest } from './adapters';
 import supabaseClient from './supabase';
 
 export const episodeRead = async (): Promise<Episode[]> => {
@@ -8,7 +8,7 @@ export const episodeRead = async (): Promise<Episode[]> => {
     return [];
   }
 
-  return res.data.map((podcast) => transformEpisodeRequest(podcast));
+  return res.data.map(transformEpisodeRequest);
 };
 
 export const episodeGet = async (id: number): Promise<null | Episode> => {

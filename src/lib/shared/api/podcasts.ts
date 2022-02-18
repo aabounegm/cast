@@ -1,5 +1,5 @@
 import type { SBPodcast, Podcast } from './types';
-import { transformPodcastRequest } from './proxies';
+import { transformPodcastRequest } from './adapters';
 import supabaseClient from './supabase';
 
 export const podcastRead = async (): Promise<Podcast[]> => {
@@ -8,7 +8,7 @@ export const podcastRead = async (): Promise<Podcast[]> => {
     return [];
   }
 
-  return res.data.map((podcast) => transformPodcastRequest(podcast));
+  return res.data.map(transformPodcastRequest);
 };
 
 export const podcastGet = async (id: number): Promise<null | Podcast> => {
