@@ -1,11 +1,11 @@
 <script lang="ts">
   import '../app.css';
   import AudioControls from 'src/features/playback-controls/ui/controls.svelte';
-  import { audio, initAudio } from 'src/entities/audio/model/audio-instance';
+  import { audio, setAudio } from 'src/entities/audio/model/audio-instance';
   import { onMount } from 'svelte';
 
   onMount(() => {
-    if (!$audio) initAudio(new Audio());
+    if (!$audio) setAudio(new Audio());
   });
 </script>
 
