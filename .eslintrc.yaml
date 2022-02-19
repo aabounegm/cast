@@ -1,0 +1,59 @@
+root: true
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+  sourceType: module
+  ecmaVersion: latest
+
+env:
+  browser: true
+  node: true
+  es2021: true
+
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - prettier
+
+plugins:
+  - svelte3
+  - '@typescript-eslint'
+
+overrides:
+  - files:
+      - '*.svelte'
+    processor: svelte3/svelte3
+
+settings:
+  svelte3/typescript: true
+
+rules:
+  no-unused-vars: off
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: ^_
+      varsIgnorePattern: ^_
+
+  no-console:
+    - error
+    - allow:
+        - warn
+        - error
+
+  no-multiple-empty-lines:
+    - error
+    - max: 2
+      maxEOF: 0
+
+  operator-assignment:
+    - error
+    - always
+
+  camelcase: error
+
+  no-var: error
+
+  prefer-const:
+    - error
+    - destructuring: all
