@@ -1,6 +1,6 @@
 <!--<img align="right" alt="Uptime" src="./.github/assets/uptime.svg" />--><a href="https://cast-iu.pages.dev"><img align="right" alt="Live demo" src="./.github/assets/live-demo.svg" /></a>
-![Cast, a podcast listening progressive web app](./.github/assets/banner-light.svg#gh-light-mode-only)
-![Cast, a podcast listening progressive web app](./.github/assets/banner-dark.svg#gh-dark-mode-only)
+<img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-light.svg#gh-light-mode-only" />
+<img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
 [![Run tests on Pull Requests](https://github.com/aabounegm/cast/actions/workflows/unit-test-pr.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-pr.yml)
 

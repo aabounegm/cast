@@ -8,30 +8,35 @@
       title: 'hey',
       author: 'hi',
       coverUrl: 'https://placekitten.com/108/108',
+      episodes: [],
     },
     {
       id: 2,
       title: 'this is a much longer title can you imagine it bruh',
       author: 'me, mak from flushvalve',
       coverUrl: 'https://placekitten.com/108/108',
+      episodes: [],
     },
     {
       id: 3,
       title: 'this is a longwordhavinghardtoread title',
       author: 'same person',
       coverUrl: 'https://placekitten.com/108/108',
+      episodes: [],
     },
     {
       id: 4,
       title: 'this is a longwordhavinghardtoread title',
       author: 'same person',
       coverUrl: 'https://placekitten.com/108/108',
+      episodes: [],
     },
     {
       id: 5,
       title: 'this is a longwordhavinghardtoread title',
       author: 'same person',
       coverUrl: 'https://placekitten.com/108/108',
+      episodes: [],
     },
   ];
 </script>

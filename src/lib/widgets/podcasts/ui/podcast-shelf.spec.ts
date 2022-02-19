@@ -11,12 +11,14 @@ const podcasts: Podcast[] = [
     title: 'sample title',
     author: 'sample author',
     coverUrl: 'https://placekitten.com/128/128',
+    episodes: [],
   },
   {
     id: 2,
     title: 'another title',
     author: 'another author',
     coverUrl: 'https://placekitten.com/256/256',
+    episodes: [],
   },
 ];
 
