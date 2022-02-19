@@ -14,5 +14,5 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast => ({
   coverUrl: podcast.cover_url,
   title: podcast.title,
   author: podcast.author,
-  episodes: podcast.episodes.map((episode) => transformEpisodeRequest(episode)),
+  episodes: podcast.episodes.map(transformEpisodeRequest),
 });
