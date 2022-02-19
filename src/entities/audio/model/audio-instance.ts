@@ -12,23 +12,20 @@ export function initAudio(_audio: HTMLAudioElement) {
   audio.set(_audio);
 }
 
-export function play(src?: string) {
+export const play = (src?: string) =>
   updateAudio((audio) => {
     if (src) audio.src = src;
     audio.play();
   });
-}
 
-export function pause() {
-  updateAudio((audio) => audio.pause());
-}
-export function seek(percent: number) {
+export const pause = () => updateAudio((audio) => audio.pause());
+
+export const seek = (percent: number) =>
   updateAudio((audio) => {
     audio.currentTime = 0.01 * percent * audio.duration;
   });
-}
-export function move(delta: number) {
+
+export const move = (delta: number) =>
   updateAudio((audio) => {
     audio.currentTime += delta;
   });
-}
