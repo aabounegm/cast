@@ -3,9 +3,9 @@ import { writable, get } from 'svelte/store';
 export const audio = writable<HTMLAudioElement>();
 
 function updateAudio(action: (a: HTMLAudioElement) => void) {
-  const a = get(audio);
-  action(a);
-  setAudio(a);
+  const el = get(audio);
+  action(el);
+  setAudio(el);
 }
 
 export function setAudio(_audio: HTMLAudioElement) {
