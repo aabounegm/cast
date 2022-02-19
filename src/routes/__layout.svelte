@@ -1,18 +1,14 @@
 <script lang="ts">
   import '../app.css';
   import AudioControls from 'src/features/playback-controls/ui/controls.svelte';
-  import { audio as player, initAudio, play } from 'src/entities/audio/model/audio-instance';
-  import { onMount, tick } from 'svelte';
+  import { audio as player, initAudio } from 'src/entities/audio/model/audio-instance';
+  import { onMount } from 'svelte';
 
   let audio: HTMLAudioElement;
-  onMount(async () => {
-    initAudio(audio);
-    await tick();
-    play('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-  });
+  onMount(() => initAudio(audio));
 </script>
 
-<audio autoplay muted bind:this={audio} />
+<audio bind:this={audio} />
 
 {#if $player}
   <main class="relative margin-auto h-full w-full max-w-md p-4 bg-slate-900 text-white">
