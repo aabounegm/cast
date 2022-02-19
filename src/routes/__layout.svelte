@@ -1,16 +1,15 @@
 <script lang="ts">
   import '../app.css';
   import AudioControls from 'src/features/playback-controls/ui/controls.svelte';
-  import { audio as player, initAudio } from 'src/entities/audio/model/audio-instance';
+  import { audio, initAudio } from 'src/entities/audio/model/audio-instance';
   import { onMount } from 'svelte';
 
-  let audio: HTMLAudioElement;
-  onMount(() => initAudio(audio));
+  onMount(() => {
+    if (!$audio) initAudio(new Audio());
+  });
 </script>
 
-<audio bind:this={audio} />
-
-{#if $player}
+{#if $audio}
   <main class="relative margin-auto h-full w-full max-w-md p-4 bg-slate-900 text-white">
     <slot />
 
@@ -20,7 +19,7 @@
       <button class="material-icons-round icon-button">
         <span class="material-icons-round"> video_library </span>
       </button>
-      {#if $player.src}
+      {#if $audio.src}
         <AudioControls />
       {/if}
       <button class="material-icons-round icon-button">
