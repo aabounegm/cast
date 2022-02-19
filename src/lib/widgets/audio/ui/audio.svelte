@@ -3,11 +3,11 @@
   import ScrubbingBar from './scrubbing-bar.svelte';
 
   let audioEl: HTMLAudioElement;
-  
+
   let duration = 0;
   let currentTime = 0;
   let bufferTime = 0;
-  
+
   const timeUpdate = () => {
     if (!audioEl) return;
     duration = audioEl.duration;
@@ -16,7 +16,7 @@
       bufferTime = audioEl.buffered.end(audioEl.buffered.length - 1) || 0;
     }
   };
-  
+
   audioStore.subscribe((val) => {
     if (!audioEl) return;
     audioEl.pause();
@@ -30,8 +30,8 @@
   <audio bind:this={audioEl} on:timeupdate={timeUpdate} />
 
   <ScrubbingBar
-    bufferPercent={((bufferTime / duration) || 0) * 100}
-    percent={((currentTime / duration) || 0) * 100}
+    bufferPercent={(bufferTime / duration || 0) * 100}
+    percent={(currentTime / duration || 0) * 100}
   />
   <div class="flex justify-between">
     <span class="text-gray-100 leading-6">{currentTime}</span>

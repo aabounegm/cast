@@ -6,7 +6,7 @@ describe('Home page', () => {
   });
 
   it('plays audio music by typing the link to an audio file', () => {
-    cy.get('[data-cy="audio-fetch-form"]').as('form').get('input').type(constants.audio_example);
+    cy.get('[data-cy="audio-fetch-form"]').as('form').get('input').type(constants.audioExample);
     cy.get('@form').get('button[type=submit]').click();
     cy.expectPlayingAudio();
   });
