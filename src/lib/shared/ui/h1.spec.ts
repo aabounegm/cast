@@ -1,5 +1,3 @@
-import '@testing-library/jest-dom';
-
 import svelte from 'svelte-inline-compile';
 import { render } from '@testing-library/svelte';
 
