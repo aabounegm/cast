@@ -1,4 +1,4 @@
-<img align="right" alt="Uptime" src="./.github/assets/uptime.svg" /><a href="https://cast-iu.pages.dev"><img align="right" alt="Live demo" src="./.github/assets/live-demo.svg" /></a>
+<!--<img align="right" alt="Uptime" src="./.github/assets/uptime.svg" />--><a href="https://cast-iu.pages.dev"><img align="right" alt="Live demo" src="./.github/assets/live-demo.svg" /></a>
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-light.svg#gh-light-mode-only" />
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
@@ -65,14 +65,14 @@ pnpm dev
     <td><img alt="GitHub user illright" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/15035286?s=64&mask=circle&mbg=transparent&output=png" /></td>
     <td><img alt="GitHub user khaledismaeel" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/62155849?s=64&mask=circle&mbg=transparent&output=png" /></td>
     <td><img alt="GitHub user VanishMax" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/29180358?s=64&mask=circle&mbg=transparent&output=png" /></td>
-  </tr>
+  </tr><!--
   <tr>
     <td>CI / CD</td>
     <td>Podcast player</td>
     <td>Design</td>
     <td>Backend</td>
     <td>Podcast player</td>
-  </tr></tbody>
+  </tr>--></tbody>
 </table>
 
 ## License

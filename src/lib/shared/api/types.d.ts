@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export interface SBPodcast {
   id: number;
   title: string;
@@ -19,6 +20,7 @@ export interface SBEpisode {
   inserted_at: Date;
   updated_at: Date;
 }
+/* eslint-enable camelcase */
 
 export interface Episode {
   id: number;
