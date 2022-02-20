@@ -75,6 +75,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.30.3",
     "clsx": "^1.1.1"
   }
 }

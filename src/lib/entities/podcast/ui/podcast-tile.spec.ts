@@ -10,6 +10,7 @@ const podcast: Podcast = {
   title: 'sample title',
   author: 'sample author',
   coverUrl: 'https://placekitten.com/128/128',
+  episodes: [],
 };
 
 const components = {
