@@ -2,7 +2,7 @@ import type { SBPodcast, Podcast } from './types';
 import { transformPodcastRequest } from './adapters';
 import supabaseClient from './supabase';
 
-export const podcastRead = async (): Promise<Podcast[]> => {
+export const podcastList = async (): Promise<Podcast[]> => {
   const res = await supabaseClient.from<SBPodcast>('podcasts').select('*, episodes (*)');
   if (res.error) {
     return [];
