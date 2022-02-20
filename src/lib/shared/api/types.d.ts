@@ -14,7 +14,7 @@ export interface SBEpisode {
   description: string;
   guests: string[];
   duration: number;
-  recording_object_id: string;
+  audio_url: string;
   published_at: Date;
   inserted_at: Date;
   updated_at: Date;

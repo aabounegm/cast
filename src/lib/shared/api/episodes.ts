@@ -3,7 +3,7 @@ import { transformEpisodeRequest } from './adapters';
 import supabaseClient from './supabase';
 
 export const episodeRead = async (): Promise<Episode[]> => {
-  const res = await supabaseClient.from<SBEpisode>('episodes').select();
+  const res = await supabaseClient.from<SBEpisode>('episodes').select('*');
   if (res.error) {
     return [];
   }
