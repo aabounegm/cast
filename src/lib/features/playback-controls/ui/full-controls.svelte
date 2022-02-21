@@ -1,6 +1,6 @@
 <script lang="ts">
-  import IconReplay10 from '~icons/ic/round-replay-10'
-  import IconForward30 from '~icons/ic/round-forward-30'
+  import IconReplay10 from '~icons/ic/round-replay-10';
+  import IconForward30 from '~icons/ic/round-forward-30';
   import { seek, move, audio } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';

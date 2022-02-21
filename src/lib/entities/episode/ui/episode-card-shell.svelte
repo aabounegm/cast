@@ -7,7 +7,10 @@
 </script>
 
 <div
-  class={clsx('flex flex-col rounded-2xl bg-slate-700 text-white py-3 px-4', episode.favorite && 'border-b-8 border-pink-500 box-border')}
+  class={clsx(
+    'flex flex-col rounded-2xl bg-slate-700 text-white py-3 px-4',
+    episode.favorite && 'border-b-8 border-pink-500 box-border'
+  )}
 >
   <div class="flex items-center pb-1">
     <p class="font-medium text-sm flex-1">{episode.title}</p>
