@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { formatDuration } from '$lib/shared/ui';
   import type { PodcastEpisode } from 'src/podcast';
   import DownloadLink from './download-link.svelte';
 
@@ -9,7 +10,7 @@
   export let onClickDownload: (() => void) | undefined = undefined;
   export let onClickPlay: (() => void) | undefined = undefined;
 
-  $: time = new Date(episode.duration * 1000).toISOString().substring(11, 19);
+  $: time = formatDuration(episode.duration);
 
   function toggleLike() {
     liked = !liked;
