@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CardPlaybackButton } from '$lib/features/playback-controls';
+  import { PlaybackButton } from '$lib/features/playback-controls';
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLink } from '$lib/features/download-episode';
   import { EpisodeCardShell } from '$lib/entities/episode';
@@ -11,7 +11,7 @@
 
 <EpisodeCardShell {episode}>
   <svelte:fragment slot="play">
-    <CardPlaybackButton {playing} />
+    <PlaybackButton {playing} />
   </svelte:fragment>
 
   <svelte:fragment slot="download">

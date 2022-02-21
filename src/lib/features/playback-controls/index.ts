@@ -1,1 +1,1 @@
-export { default as CardPlaybackButton } from './ui/card-playback-button.svelte';
+export { default as PlaybackButton } from './ui/playback-button.svelte';
