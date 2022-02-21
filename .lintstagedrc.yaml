@@ -1,0 +1,4 @@
+'**/*.{js,ts,svelte}':
+  - eslint --ext ".svelte,.ts,.js" --cache --fix --max-warnings 0
+'**/*':
+  - prettier --plugin-search-dir=. --write --loglevel warn --ignore-unknown

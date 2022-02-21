@@ -1,8 +1,9 @@
 <script lang="ts">
-  import '../app.css';
+  import { onMount } from 'svelte';
+  import { GlobalAudio } from '$lib/widgets/audio';
   import AudioControls from 'src/features/playback-controls/ui/controls.svelte';
   import { audio, setAudio } from 'src/entities/audio/model/audio-instance';
-  import { onMount } from 'svelte';
+  import '$lib/app.css';
 
   onMount(() => {
     if (!$audio) setAudio(new Audio());
@@ -28,3 +29,4 @@
     </div>
   </main>
 {/if}
+<GlobalAudio />
