@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { GlobalAudio } from '$lib/widgets/audio';
-  import AudioControls from 'src/features/playback-controls/ui/controls.svelte';
-  import { audio, setAudio } from 'src/entities/audio/model/audio-instance';
+  import AudioControls from '$lib/features/playback-controls/ui/controls.svelte';
+  import { audio, setAudio } from '$lib/entities/audio/model/audio-instance';
   import '$lib/app.css';
 
   onMount(() => {

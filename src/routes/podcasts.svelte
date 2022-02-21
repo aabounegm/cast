@@ -1,10 +1,10 @@
 <script lang="ts">
-  import DownloadLink from 'src/features/episode-presentation/ui/download-link.svelte';
-  import EpisodeCard from 'src/features/episode-presentation/ui/episode-card.svelte';
+  import DownloadLink from '$lib/features/episode-presentation/ui/download-link.svelte';
+  import EpisodeCard from '$lib/features/episode-presentation/ui/episode-card.svelte';
   import { getEpisodes, getPodcast } from 'src/loader-service';
   import type { PodcastEpisode, PodcastSeries } from 'src/podcast';
 
-  import { audio, play } from 'src/entities/audio/model/audio-instance';
+  import { audio, play } from '$lib/entities/audio/model/audio-instance';
 
   let podcast: PodcastSeries | undefined;
   let episodes: PodcastEpisode[] | undefined;

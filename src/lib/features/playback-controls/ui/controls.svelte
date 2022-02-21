@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { play, pause, seek, move, audio } from 'src/entities/audio/model/audio-instance';
+  import { play, pause, seek, move, audio } from '$lib/entities/audio/model/audio-instance';
   export let showSeeker = false;
   $: percent = (100 * $audio.currentTime) / $audio.duration;
 </script>
