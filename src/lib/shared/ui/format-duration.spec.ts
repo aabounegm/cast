@@ -8,9 +8,9 @@ it('formats the duration as HH:MM:SS', () => {
 });
 
 it('reports an error on negative durations', () => {
-  expect(formatDuration(-1)).toThrowErrorMatchingInlineSnapshot();
+  expect(() => formatDuration(-1)).toThrowError(/Negative/);
 });
 
 it('reports an error on durations that are 24 hours long or longer', () => {
-  expect(formatDuration(24 * 60 * 60)).toThrowErrorMatchingInlineSnapshot();
+  expect(() => formatDuration(24 * 60 * 60)).toThrowError(/24 hours/);
 });
