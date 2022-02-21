@@ -2,11 +2,11 @@
   import { onMount } from 'svelte';
   import { GlobalAudio } from '$lib/widgets/audio';
   import AudioControls from '$lib/features/playback-controls/ui/controls.svelte';
-  import { audio, setAudio } from '$lib/entities/audio/model/audio-instance';
+  import { audio } from '$lib/entities/audio/model/audio-instance';
   import '$lib/app.css';
 
   onMount(() => {
-    if (!$audio) setAudio(new Audio());
+    if (!$audio) audio.set(new Audio());
   });
 </script>
 
