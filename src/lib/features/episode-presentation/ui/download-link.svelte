@@ -1,13 +1,12 @@
 <script lang="ts">
+  import { DownloadLink } from '$lib/features/download-podcast';
   export let percentage: number | undefined = undefined;
   export let onClickDownload: (() => void) | undefined = undefined;
 </script>
 
 <span class="text-sm {$$props.class}">
   {#if !percentage}
-    <span class="a" on:click={onClickDownload}>
-      <slot>Download</slot>
-    </span>
+    <DownloadLink on:click={onClickDownload} />
   {:else if percentage < 100}
     Downloading, {percentage}%
   {:else}
