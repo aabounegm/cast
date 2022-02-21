@@ -1,1 +1,1 @@
-export { LikeButton } from './ui/like-episode';
+export { default as LikeButton } from './ui/like-button.svelte';

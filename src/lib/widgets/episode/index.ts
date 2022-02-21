@@ -1,1 +1,1 @@
-export { EpisodeCard } from './ui/episode-card.svelte';
+export { default as EpisodeCard } from './ui/episode-card.svelte';
