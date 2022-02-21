@@ -7,14 +7,14 @@
 </script>
 
 <div
-  class={clsx('flex flex-col rounded-2xl bg-slate-700 text-white p-3', episode.favorite && 'border-b-8 border-pink-500 box-border')}
+  class={clsx('flex flex-col rounded-2xl bg-slate-700 text-white py-3 px-4', episode.favorite && 'border-b-8 border-pink-500 box-border')}
 >
-  <div class="flex flex-row items-center">
-    <p class="flex-1">{episode.title}</p>
+  <div class="flex items-center pb-1">
+    <p class="font-medium text-sm flex-1">{episode.title}</p>
     <slot name="play" />
   </div>
-  <div class="flex flex-row items-center">
-    <p class="text-sm flex-1">
+  <div class="flex items-center">
+    <p class="text-xs flex-1">
       {formatDuration(episode.duration)} / <slot name="download" />
     </p>
     <slot name="like" />

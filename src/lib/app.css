@@ -3,36 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: Roboto, sans-serif;
+  @apply font-lato;
 }
 
 * {
   @apply duration-150;
-}
-a,
-.a {
-  @apply text-blue-400 underline underline-offset-2 cursor-pointer;
-}
-a:hover,
-.a:hover {
-  @apply text-blue-300;
-}
-
-.material-icons-round {
-  @apply text-3xl;
-}
-.icon-button {
-  @apply rounded-full w-10 h-10;
-}
-
-button {
-  @apply flex items-center justify-center;
-}
-button:hover {
-  @apply bg-slate-600;
-}
-button:active {
-  @apply bg-slate-500;
 }
 
 body,
