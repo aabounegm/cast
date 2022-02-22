@@ -19,6 +19,6 @@
   </svelte:fragment>
 
   <svelte:fragment slot="like">
-    <LikeButton episodeId={episode.id} />
+    <LikeButton {episode} />
   </svelte:fragment>
 </EpisodeCardShell>
