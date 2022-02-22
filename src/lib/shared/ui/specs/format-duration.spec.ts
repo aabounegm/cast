@@ -1,10 +1,11 @@
-import { formatDuration } from '.';
+import { formatDuration } from '..';
 
-it('formats the duration as HH:MM:SS', () => {
-  expect(formatDuration(0)).toBe('00:00:00');
-  expect(formatDuration(5)).toBe('00:00:05');
-  expect(formatDuration(65)).toBe('00:01:05');
-  expect(formatDuration(3665)).toBe('01:01:05');
+it('formats the duration as H:MM:SS, omitting the hours if not needed', () => {
+  expect(formatDuration(0)).toBe('00:00');
+  expect(formatDuration(5)).toBe('00:05');
+  expect(formatDuration(65)).toBe('01:05');
+  expect(formatDuration(3665)).toBe('1:01:05');
+  expect(formatDuration(36065)).toBe('10:01:05');
 });
 
 it('reports an error on negative durations', () => {
