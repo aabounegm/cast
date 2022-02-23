@@ -8,8 +8,8 @@
 
 <div
   class={clsx(
-    'flex flex-col rounded-2xl bg-slate-700 text-white py-3 px-4',
-    episode.favorite && 'border-b-8 border-pink-500 box-border'
+    'flex flex-col rounded-xl bg-background-slightly-higher text-white py-3 px-4',
+    episode.favorite && 'border-b-4 border-pink-500 box-border'
   )}
 >
   <div class="flex items-center pb-1">
