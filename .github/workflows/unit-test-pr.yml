@@ -29,7 +29,7 @@ jobs:
         run: pnpm run lint
 
       - name: Run unit tests 🧪
-        run: pnpm run test:unit
+        run: pnpm run test:unit -- --ci
 
       - name: Run Cypress E2E tests 🧪
         uses: cypress-io/github-action@v2
