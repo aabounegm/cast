@@ -23,11 +23,11 @@ export const audioDuration = derived<typeof audio, number>(
 );
 
 /** Tracks the playback position in the audio stream that is currently loaded in the `audio` store. */
-export const audioPosition = derived<typeof audio, number | undefined>(
+export const audioPosition = derived<typeof audio, number>(
   audio,
   ($audio, set) => {
     if ($audio === undefined) {
-      set(undefined);
+      set(0);
       return;
     }
 
@@ -39,7 +39,7 @@ export const audioPosition = derived<typeof audio, number | undefined>(
 
     return () => $audio?.removeEventListener('timeupdate', watchProgress);
   },
-  undefined
+  0
 );
 
 export const play = (src?: string) => {
