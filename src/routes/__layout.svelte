@@ -21,11 +21,11 @@
     <div
       class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
     >
-      <IconButton icon={IconVideoLibrary} />
+      <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
       {#if $audio.src}
         <FullControls />
       {/if}
-      <IconButton icon={IconFolderShared} />
+      <IconButton name="Your Library" icon={IconFolderShared} />
     </div>
   </main>
 {/if}

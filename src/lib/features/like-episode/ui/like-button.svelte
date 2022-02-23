@@ -7,6 +7,7 @@
 </script>
 
 <IconButton
+  name={liked ? 'Remove the like' : 'Like this episode'}
   class={liked ? 'text-pink-500' : ''}
   icon={liked ? IconFavorite : IconTwoToneFavorite}
   on:click

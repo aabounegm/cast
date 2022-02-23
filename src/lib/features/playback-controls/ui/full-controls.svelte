@@ -18,8 +18,8 @@
     on:input={(e) => seek(parseInt(e.currentTarget.value))}
   />
   <div class="flex flex-row justify-around">
-    <IconButton icon={IconReplay10} on:click={() => move(-10)} />
+    <IconButton name="Replay the last 10 seconds" icon={IconReplay10} on:click={() => move(-10)} />
     <PlaybackButton playing={!$audio.paused} on:click={toggleGlobalPlayback} />
-    <IconButton icon={IconForward30} on:click={() => move(30)} />
+    <IconButton name="Skip forward 30 seconds" icon={IconForward30} on:click={() => move(30)} />
   </div>
 </div>

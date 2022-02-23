@@ -6,4 +6,4 @@
   export let playing = false;
 </script>
 
-<IconButton icon={playing ? IconPause : IconPlayArrow} on:click />
+<IconButton name={playing ? 'Pause' : 'Play'} icon={playing ? IconPause : IconPlayArrow} on:click />
