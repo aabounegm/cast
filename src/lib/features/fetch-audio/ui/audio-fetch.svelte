@@ -1,5 +1,6 @@
 <script lang="ts">
   import audioStore from '../model/audio';
+  import { audio } from '$lib/entities/audio';
 
   let url = '';
   const submit = () => {
@@ -8,7 +9,16 @@
   };
 
   const playDefaultMusic = () => {
-    audioStore.set('http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg');
+    audio.update($audio => {
+      if ($audio === undefined) {
+        return;
+      }
+
+      $audio.src = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
+      $audio.play();
+
+      return $audio;
+    })
   };
 </script>
 

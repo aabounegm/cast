@@ -5,15 +5,14 @@
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import { toggleGlobalPlayback } from '../model/toggle-global-playback';
+  import ScrubbingBar from './scrubbing-bar.svelte';
 </script>
 
 <div class="flex flex-col gap-5">
-  <input
-    type="range"
-    min={0}
-    max={$audioDuration}
-    value={$audioPosition}
-    on:input={(e) => seek(parseInt(e.currentTarget.value))}
+  <ScrubbingBar
+    duration={$audioDuration}
+    position={$audioPosition}
+    on:scrub={(e) => seek(e.detail.position)}
   />
   <div class="flex flex-row justify-around">
     <IconButton name="Replay the last 10 seconds" icon={IconReplay10} on:click={() => move(-10)} />
