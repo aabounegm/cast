@@ -19,7 +19,7 @@
   />
   <div class="flex flex-row justify-around">
     <IconButton name="Replay the last 10 seconds" icon={IconReplay10} on:click={() => move(-10)} />
-    <PlaybackButton playing={!$audio.paused} on:click={toggleGlobalPlayback} />
+    <PlaybackButton playing={!($audio?.paused ?? false)} on:click={toggleGlobalPlayback} />
     <IconButton name="Skip forward 30 seconds" icon={IconForward30} on:click={() => move(30)} />
   </div>
 </div>

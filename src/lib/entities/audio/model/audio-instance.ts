@@ -1,9 +1,13 @@
 import { writable } from 'svelte/store';
 
-export const audio = writable<HTMLAudioElement>();
+export const audio = writable<HTMLAudioElement | undefined>(undefined);
 
 export const play = (src?: string) => {
   audio.update(($audio) => {
+    if ($audio === undefined) {
+      return;
+    }
+
     if (src) {
       $audio.src = src;
     }
@@ -15,22 +19,34 @@ export const play = (src?: string) => {
 
 export const pause = () => {
   audio.update(($audio) => {
+    if ($audio === undefined) {
+      return;
+    }
+
     $audio.pause();
     return $audio;
   });
 };
 
-export const seek = (percent: number) => {
+export const seek = (timeInSeconds: number) => {
   audio.update(($audio) => {
-    $audio.currentTime = 0.01 * percent * $audio.duration;
+    if ($audio === undefined) {
+      return;
+    }
+
+    $audio.currentTime = timeInSeconds;
     $audio.play();
     return $audio;
   });
 };
 
-export const move = (delta: number) => {
+export const move = (deltaInSeconds: number) => {
   audio.update(($audio) => {
-    $audio.currentTime += delta;
+    if ($audio === undefined) {
+      return;
+    }
+
+    $audio.currentTime += deltaInSeconds;
     $audio.play();
     return $audio;
   });
