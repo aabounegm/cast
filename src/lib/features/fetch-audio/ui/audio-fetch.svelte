@@ -9,7 +9,7 @@
   };
 
   const playDefaultMusic = () => {
-    audio.update($audio => {
+    audio.update(($audio) => {
       if ($audio === undefined) {
         return;
       }
@@ -18,7 +18,7 @@
       $audio.play();
 
       return $audio;
-    })
+    });
   };
 </script>
 
