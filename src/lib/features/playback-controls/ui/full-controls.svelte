@@ -8,15 +8,27 @@
   import ScrubbingBar from './scrubbing-bar.svelte';
 </script>
 
-<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-4">
   <ScrubbingBar
     duration={$audioDuration}
     position={$audioPosition}
     on:scrub={(e) => seek(e.detail.position)}
   />
-  <div class="flex flex-row justify-around">
-    <IconButton name="Replay the last 10 seconds" icon={IconReplay10} on:click={() => move(-10)} />
+  <div class="flex flex-row items-center justify-between">
+    <IconButton
+      name="Replay the last 10 seconds"
+      icon={IconReplay10}
+      class="w-9 h-9"
+      iconClass="w-7 h-7"
+      on:click={() => move(-10)}
+    />
     <PlaybackButton playing={!($audio?.paused ?? false)} on:click={toggleGlobalPlayback} />
-    <IconButton name="Skip forward 30 seconds" icon={IconForward30} on:click={() => move(30)} />
+    <IconButton
+      name="Skip forward 30 seconds"
+      icon={IconForward30}
+      class="w-9 h-9"
+      iconClass="w-7 h-7"
+      on:click={() => move(30)}
+    />
   </div>
 </div>

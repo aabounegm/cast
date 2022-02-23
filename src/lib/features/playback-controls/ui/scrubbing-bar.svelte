@@ -24,7 +24,7 @@ import { formatDuration } from '$lib/shared/ui';
     step={0.01}
     value={position}
     on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
-    class="scrubbing-bar slider-progress"
+    class="scrubbing-bar slider-progress w-full"
     style="--value: {position}; --min: {0}; --max: {duration};"
   />
   <div class="flex justify-between px-2 mt-2 font-medium">
