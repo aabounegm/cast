@@ -2,7 +2,7 @@
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-light.svg#gh-light-mode-only" />
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
-[![Run tests on Pull Requests](https://github.com/aabounegm/cast/actions/workflows/unit-test-pr.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-pr.yml)
+[![Run tests on `main` push](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml)
 
 ## Features
 
