@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapterStatic from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 import icons from 'unplugin-icons/vite';
 
@@ -7,7 +7,7 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapter(),
+    adapter: adapterStatic(),
     vite: {
       plugins: [icons({ compiler: 'svelte' })],
     },

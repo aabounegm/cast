@@ -44,7 +44,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "@iconify-json/ic": "^1.1.1",
-    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.28",
     "@sveltejs/kit": "next",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/dom": "^8.11.3",
