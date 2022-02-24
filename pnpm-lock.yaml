@@ -6,7 +6,7 @@ specifiers:
   '@babel/preset-typescript': ^7.16.7
   '@iconify-json/ic': ^1.1.1
   '@supabase/supabase-js': ^1.30.3
-  '@sveltejs/adapter-static': ^1.0.0-next.28
+  '@sveltejs/adapter-cloudflare': ^1.0.0-next.14
   '@sveltejs/kit': next
   '@testing-library/cypress': ^8.0.2
   '@testing-library/dom': ^8.11.3
@@ -50,7 +50,7 @@ devDependencies:
   '@babel/preset-env': 7.16.11_@babel+core@7.17.5
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@iconify-json/ic': 1.1.1
-  '@sveltejs/adapter-static': 1.0.0-next.28
+  '@sveltejs/adapter-cloudflare': 1.0.0-next.14
   '@sveltejs/kit': 1.0.0-next.285_svelte@3.46.4
   '@testing-library/cypress': 8.0.2_cypress@9.5.0
   '@testing-library/dom': 8.11.3
@@ -1724,10 +1724,10 @@ packages:
       - encoding
     dev: false
 
-  /@sveltejs/adapter-static/1.0.0-next.28:
-    resolution: {integrity: sha512-c4xLyeSwnbGQxe4f1SLpHTbxZDm3TEr43scR3tOlVgQN+mnAL9aDdl3nTtdzWmrUDmDEmY4GriAwLyFLZuINLw==}
+  /@sveltejs/adapter-cloudflare/1.0.0-next.14:
+    resolution: {integrity: sha512-vD0+LdVIZO5/758KZuWzM58JIAeY+r/YKgoRkMjP9IUx+w+MJ869EyzOT81u/xN7x6cX2Ilu+/M60BwjqSDA7g==}
     dependencies:
-      tiny-glob: 0.2.9
+      esbuild: 0.14.22
     dev: true
 
   /@sveltejs/kit/1.0.0-next.285_svelte@3.46.4:
@@ -3893,10 +3893,6 @@ packages:
       type-fest: 0.20.2
     dev: true
 
-  /globalyzer/0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: true
-
   /globby/11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -3907,10 +3903,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /globrex/0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /graceful-fs/4.2.9:
@@ -6103,13 +6095,6 @@ packages:
 
   /through/2.3.8:
     resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}
-    dev: true
-
-  /tiny-glob/0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
     dev: true
 
   /tmp/0.2.1:
