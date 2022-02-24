@@ -1,2 +1,2 @@
 export { default as LikeButton } from './ui/like-button.svelte';
-export * from './model/like';
+export { likesStore, addLike, removeLike, toggleLike } from './model/like';
