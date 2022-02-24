@@ -8,4 +8,4 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/unit-tests
+      - uses: ./.github/unit-tests.yml
