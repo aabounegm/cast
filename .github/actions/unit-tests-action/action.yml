@@ -1,7 +1,7 @@
 name: Run unit tests
 
 runs:
-  using: 'node12'
+  using: 'composite'
   steps:
     - name: Use pnpm
       uses: pnpm/action-setup@v2.0.1
@@ -15,12 +15,15 @@ runs:
         cache: 'pnpm'
 
     - name: Install dependencies 🔧
+      shell: bash
       run: pnpm install
 
     - name: Check style and formatting 🧹
+      shell: bash
       run: pnpm run lint
 
     - name: Run unit tests 🧪
+      shell: bash
       run: pnpm run test:unit -- --ci
 
     - name: Run Cypress E2E tests 🧪
