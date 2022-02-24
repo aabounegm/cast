@@ -1,6 +1,7 @@
 name: Run unit tests
 
 runs:
+  using: 'composite'
   steps:
     - name: Use pnpm
       uses: pnpm/action-setup@v2.0.1
