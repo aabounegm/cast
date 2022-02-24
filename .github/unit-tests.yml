@@ -1,0 +1,36 @@
+name: Run unit tests
+
+runs:
+  steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2.3.1
+
+    - name: Use pnpm
+      uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 6.28.0
+
+    - name: Cache 📦
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'pnpm'
+
+    - name: Install dependencies 🔧
+      run: pnpm install
+
+    - name: Check style and formatting 🧹
+      run: pnpm run lint
+
+    - name: Run unit tests 🧪
+      run: pnpm run test:unit -- --ci
+
+    - name: Run Cypress E2E tests 🧪
+      uses: cypress-io/github-action@v2
+      with:
+        build: pnpm run build
+        start: pnpm run preview
+        wait-on: 'http://localhost:3000'
+        # we have already installed all dependencies above
+        install: false
+        cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
