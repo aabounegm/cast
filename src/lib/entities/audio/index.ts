@@ -1,1 +1,9 @@
-export { audio, move, pause, play, seek } from './model/audio-instance';
+export {
+  audio,
+  audioPosition,
+  audioDuration,
+  move,
+  pause,
+  play,
+  seek,
+} from './model/audio-instance';

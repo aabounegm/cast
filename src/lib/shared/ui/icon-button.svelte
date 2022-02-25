@@ -4,7 +4,9 @@
 
   let _class = '';
   export { _class as class };
+  export let iconClass = '';
   export let icon: typeof SvelteComponent;
+  export let name: string;
 </script>
 
 <button
@@ -13,5 +15,6 @@
     _class
   )}
 >
-  <svelte:component this={icon} />
+  <svelte:component this={icon} class={iconClass} />
+  <span class="sr-only">{name}</span>
 </button>

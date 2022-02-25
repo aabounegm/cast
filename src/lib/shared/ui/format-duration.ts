@@ -3,8 +3,9 @@
  *
  * Example:
  * ```ts
- * formatDuration(5);  // '00:00:05'
- * formatDuration(65);  // '00:01:05'
+ * formatDuration(5);  // '00:05'
+ * formatDuration(3665);  // '1:01:05'
+ * formatDuration(36065);  // '10:01:05'
  * ```
  */
 export function formatDuration(durationInSeconds: number) {
@@ -14,5 +15,15 @@ export function formatDuration(durationInSeconds: number) {
   if (durationInSeconds >= 24 * 60 * 60) {
     throw Error('Durations longer or equal to 24 hours are not supported');
   }
-  return new Date(durationInSeconds * 1000).toISOString().substring(11, 19);
+
+  let sliceStart = 11;
+  if (durationInSeconds < 10 * 60 * 60) {
+    sliceStart++;
+
+    if (durationInSeconds < 1 * 60 * 60) {
+      sliceStart += 2;
+    }
+  }
+
+  return new Date(durationInSeconds * 1000).toISOString().substring(sliceStart, 19);
 }
