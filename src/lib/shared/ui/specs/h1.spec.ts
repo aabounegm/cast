@@ -1,8 +1,8 @@
 import svelte from 'svelte-inline-compile';
 import { render } from '@testing-library/svelte';
 
-import { H1 } from '.';
-import { useLocalVars } from '../lib/jest-hacks';
+import { H1 } from '..';
+import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 
 it('renders the text that was passed to it', () => {
   const sampleContent = 'sample content';

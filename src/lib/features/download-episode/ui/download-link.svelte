@@ -2,7 +2,7 @@
   export let downloadAll = false;
 </script>
 
-<span
+<button
   class="text-indigo-300 hover:text-indigo-200 underline underline-offset-2 cursor-pointer"
   on:click
 >
@@ -10,4 +10,4 @@
   {#if downloadAll}
     all
   {/if}
-</span>
+</button>

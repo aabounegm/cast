@@ -1,7 +1,7 @@
 import svelte from 'svelte-inline-compile';
 import { render } from '@testing-library/svelte';
 
-import { PodcastTile } from '..';
+import { PodcastTile } from '../..';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import type { Podcast } from '$lib/shared/api';
 
