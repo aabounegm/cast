@@ -22,7 +22,7 @@
     >
       <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
       <FullControls />
-      <IconButton name="Your Library" icon={IconFolderShared} />
+      <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
     </div>
   </main>
 {/if}
