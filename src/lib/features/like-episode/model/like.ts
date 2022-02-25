@@ -30,7 +30,10 @@ export function addLike(episode: Episode) {
  * @param episode The id of the episode whose like is to be removed.
  */
 export function removeLike(episode: Episode) {
-  likesStore.update((likes) => (likes.delete(episode.id), likes));
+  likesStore.update((likes) => {
+    likes.delete(episode.id);
+    return likes;
+  });
 }
 
 /**
