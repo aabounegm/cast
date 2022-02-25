@@ -9,7 +9,7 @@
 <!-- Sign in card -->
 
 <!-- Favorites -->
-<section class="flex flex-col p-4 gap-4 items-stretch">
+<section class="flex flex-col p-4 gap-4 items-stretch" data-cy="favorites-section">
   <H1>Favorites</H1>
   {#each episodes as episode (episode.id)}
     <EpisodeCard {episode} playing={false} />

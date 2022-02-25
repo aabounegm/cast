@@ -16,12 +16,12 @@
 </script>
 
 {#if href}
-  <a {href} class={classes}>
+  <a {href} class={classes} {...$$restProps}>
     <svelte:component this={icon} class={iconClass} />
     <span class="sr-only">{name}</span>
   </a>
 {:else}
-  <button class={classes} on:click>
+  <button class={classes} on:click {...$$restProps}>
     <svelte:component this={icon} class={iconClass} />
     <span class="sr-only">{name}</span>
   </button>
