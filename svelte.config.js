@@ -1,4 +1,4 @@
-import adapterCloudflare from '@sveltejs/adapter-cloudflare';
+import auto from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 import icons from 'unplugin-icons/vite';
 
@@ -7,7 +7,7 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapterCloudflare(),
+    adapter: auto(),
     vite: {
       plugins: [icons({ compiler: 'svelte' })],
     },
