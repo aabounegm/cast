@@ -16,4 +16,4 @@
   {/each}
 </section>
 
-<!-- Offline -->
+<!-- Available offline -->
