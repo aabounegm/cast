@@ -17,7 +17,7 @@ describe('Episodes like feature', () => {
     expect(get(likesStore)).toEqual(expectedLikes);
   });
 
-  it('remove the registered like', () => {
+  it('removes the registered like', () => {
     removeLike(exampleEpisode);
     expect(get(likesStore)).toEqual(new Map());
   });
