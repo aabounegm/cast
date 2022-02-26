@@ -3,6 +3,7 @@
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
 [![Run tests on `main` push](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml)
+[![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m790750732-019a64d92e80fde508817b7c)](https://stats.uptimerobot.com/NnXDYFZ5zq)
 
 ## Features
 
@@ -38,6 +39,7 @@ The quality of this application and its codebase is secured with these awesome t
 - [ ] [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) continously measures application performance
 - [x] [GitHub Actions](https://github.com/features/actions) run each pull request against a CI pipeline
 - [x] [Cloudflare Pages](https://pages.cloudflare.com/) automatically deploy code for `main` and pull requests
+- [x] [UptimeRobot](https://uptimerobot.com/) ensures the app is up and running
 - [ ] OWASP Web Security Checklist ensures the application's security
 
 ## Running locally
