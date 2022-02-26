@@ -3,7 +3,7 @@ import { transformPodcastRequest } from './adapters';
 import supabaseClient from './supabase';
 
 export const podcastList = async (): Promise<Podcast[]> => {
-  const res = await supabaseClient.from<SBPodcast>('podcasts').select();
+  const res = await supabaseClient.from<SBPodcast>('podcasts').select('*, episodes (*)');
   if (res.error) {
     return [];
   }
