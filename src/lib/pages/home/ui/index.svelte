@@ -20,27 +20,6 @@
         coverUrl: 'https://placekitten.com/108/108',
         episodes: [],
       },
-      {
-        id: 3,
-        title: 'this is a longwordhavinghardtoread title',
-        author: 'same person',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
-      {
-        id: 4,
-        title: 'this is a longwordhavinghardtoread title',
-        author: 'same person',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
-      {
-        id: 5,
-        title: 'this is a longwordhavinghardtoread title',
-        author: 'same person',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
     ];
   }
 
