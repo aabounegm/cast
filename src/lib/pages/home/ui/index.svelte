@@ -1,6 +1,8 @@
 <script lang="ts">
   import { AudioFetch } from '$lib/features/fetch-audio';
+  import { Podcast, podcastList } from '$lib/shared/api';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
+  import { onMount } from 'svelte';
 
   function getRecentPodcasts() {
     return [
@@ -42,23 +44,22 @@
     ];
   }
 
-  function getPodcasts() {
-    return [
-      {
-        id: 1,
-        title: 'hey',
-        author: 'hi',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
-    ];
-  }
+  let podcasts: Podcast[];
+  let recentPodcasts: Podcast[];
+  onMount(async () => {
+    podcasts = await podcastList();
+    recentPodcasts = getRecentPodcasts();
+  });
 </script>
 
 <AudioFetch />
 
 <div class="bg-slate-800">
-  <PodcastShelf title="Recently listened" podcasts={getRecentPodcasts()} />
+  {#if recentPodcasts}
+    <PodcastShelf title="Recently listened" podcasts={recentPodcasts} />
+  {/if}
   <!-- <PodcastShelf title="Trending now" {podcasts} /> -->
-  <PodcastList podcasts={getPodcasts()} />
+  {#if podcasts}
+    <PodcastList {podcasts} />
+  {/if}
 </div>
