@@ -5,7 +5,7 @@
   import type { Podcast } from '$lib/shared/api';
 
   export let podcastID: number;
-  let podcast: Podcast;
+  let podcast: Podcast | null;
 
   $: {
     getPodcast(podcastID).then((r) => (podcast = r));
