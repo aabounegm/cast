@@ -17,7 +17,7 @@ export const audioDuration = derived<typeof audio, number>(
 
     $audio.addEventListener('durationchange', watchDuration);
 
-    return () => $audio?.removeEventListener('durationchange', watchDuration);
+    return () => $audio.removeEventListener('durationchange', watchDuration);
   },
   NaN
 );
@@ -37,7 +37,7 @@ export const audioPosition = derived<typeof audio, number>(
 
     $audio.addEventListener('timeupdate', watchProgress);
 
-    return () => $audio?.removeEventListener('timeupdate', watchProgress);
+    return () => $audio.removeEventListener('timeupdate', watchProgress);
   },
   0
 );

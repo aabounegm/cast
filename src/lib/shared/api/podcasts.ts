@@ -18,7 +18,7 @@ export const podcastGet = async (id: number): Promise<null | Podcast> => {
     .eq('id', id)
     .single();
 
-  if (res.error || !res.data) {
+  if (res.error) {
     return null;
   }
 

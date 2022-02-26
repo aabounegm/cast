@@ -61,3 +61,6 @@ rules:
   prefer-const:
     - error
     - destructuring: all
+
+  '@typescript-eslint/no-unnecessary-condition':
+    - error
