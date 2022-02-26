@@ -15,7 +15,7 @@
   name={liked ? 'Remove the like' : 'Like this episode'}
   class={clsx('w-6 h-6', liked && 'text-pink-500')}
   icon={liked ? IconFavorite : IconTwoToneFavorite}
-  data-cy="like-button"
+  aria-pressed={liked}
   on:click={() => toggleLike(episode)}
   iconClass="w-4 h-4"
 />
