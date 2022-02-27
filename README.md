@@ -1,4 +1,4 @@
-<!--<img align="right" alt="Uptime" src="./.github/assets/uptime.svg" />--><a href="https://cast-iu.pages.dev"><img align="right" alt="Live demo" src="./.github/assets/live-demo.svg" /></a>
+<a href="https://stats.uptimerobot.com/NnXDYFZ5zq"><img align="right" alt="Uptime" src="./.github/assets/uptime.svg" /></a><a href="https://cast-iu.pages.dev"><img align="right" alt="Live demo" src="./.github/assets/live-demo.svg" /></a>
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-light.svg#gh-light-mode-only" />
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
