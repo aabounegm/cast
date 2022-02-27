@@ -9,8 +9,8 @@
 <!-- Sign in card -->
 
 <!-- Favorites -->
-<section class="flex flex-col p-4 gap-4 items-stretch" aria-label="favorites">
-  <H1>Favorites</H1>
+<section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
+  <H1 id="favorites-header">Favorites</H1>
   {#each episodes as episode (episode.id)}
     <EpisodeCard {episode} playing={false} />
   {/each}
