@@ -5,7 +5,6 @@ import supabaseClient from './supabase';
 export const podcastList = async (): Promise<Podcast[]> => {
   const res = await supabaseClient.from<SBPodcast>('podcasts').select('*, episodes (*)');
   if (res.error) {
-    alert(res);
     return [];
   }
 
@@ -20,7 +19,6 @@ export const podcastGet = async (id: number): Promise<null | Podcast> => {
     .single();
 
   if (res.error || !res.data) {
-    alert(res);
     return null;
   }
 
