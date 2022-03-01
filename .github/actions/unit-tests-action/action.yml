@@ -28,6 +28,9 @@ runs:
 
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2
+      env:
+        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
       with:
         build: pnpm run build
         start: pnpm run preview
