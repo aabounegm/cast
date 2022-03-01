@@ -5,6 +5,10 @@ parser: '@typescript-eslint/parser'
 parserOptions:
   sourceType: module
   ecmaVersion: latest
+  project:
+    - './tsconfig.json'
+    - './tsconfig.eslint.json'
+    - './cypress/tsconfig.json'
 
 env:
   browser: true
@@ -57,3 +61,6 @@ rules:
   prefer-const:
     - error
     - destructuring: all
+
+  '@typescript-eslint/no-unnecessary-condition':
+    - error

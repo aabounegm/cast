@@ -14,7 +14,7 @@ export const episodeList = async (): Promise<Episode[]> => {
 export const episodeGet = async (id: number): Promise<null | Episode> => {
   const res = await supabaseClient.from<SBEpisode>('episodes').select().eq('id', id).single();
 
-  if (res.error || !res.data) {
+  if (res.error) {
     return null;
   }
 

@@ -1,0 +1,5 @@
+{
+  // As recommended in https://www.npmjs.com/package/@typescript-eslint/parser#user-content-parseroptionsproject
+  "extends": "./tsconfig.json",
+  "include": ["./*.js", "./*.ts"]
+}

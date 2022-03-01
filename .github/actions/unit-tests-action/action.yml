@@ -1,4 +1,4 @@
-name: Ensure code quality (testsing, linting)
+name: Ensure code quality (testing, linting)
 
 inputs:
   supabaseUrl:

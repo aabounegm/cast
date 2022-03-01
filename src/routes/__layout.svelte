@@ -20,7 +20,7 @@
       class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
     >
       <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
-      <IconButton name="Your Library" icon={IconFolderShared} />
+      <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
     </div>
   </main>
 {/if}

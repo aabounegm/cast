@@ -80,6 +80,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.30.7",
-    "clsx": "^1.1.1"
+    "clsx": "^1.1.1",
+    "svelte-persistent-writable": "^1.1.6"
   }
 }

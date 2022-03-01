@@ -34,6 +34,7 @@ specifiers:
   svelte-check: ^2.4.5
   svelte-inline-compile: ^0.1.0
   svelte-jester: ^2.3.2
+  svelte-persistent-writable: ^1.1.6
   svelte-preprocess: ^4.10.4
   tailwindcss: ^3.0.23
   ts-node: ^10.5.0
@@ -44,6 +45,7 @@ specifiers:
 dependencies:
   '@supabase/supabase-js': 1.30.7
   clsx: 1.1.1
+  svelte-persistent-writable: 1.1.6_svelte@3.46.4
 
 devDependencies:
   '@babel/core': 7.17.5
@@ -5960,6 +5962,14 @@ packages:
       jest: 27.5.1_ts-node@10.5.0
       svelte: 3.46.4
     dev: true
+
+  /svelte-persistent-writable/1.1.6_svelte@3.46.4:
+    resolution: {integrity: sha512-AQC+e9v2edmqz/MCVRK+ZNdEDg8ifeeYZAuqdZk7DEnRpPQ3gByEQlEQl4LryyXCoa+lx2USXM3wg7NP8JcJ+A==}
+    peerDependencies:
+      svelte: ^3.0.0
+    dependencies:
+      svelte: 3.46.4
+    dev: false
 
   /svelte-preprocess/4.10.4_324bbe58211f4c5383e9bb83d8e30ad3:
     resolution: {integrity: sha512-fuwol0N4UoHsNQolLFbMqWivqcJ9N0vfWO9IuPAiX/5okfoGXURyJ6nECbuEIv0nU3M8Xe2I1ONNje2buk7l6A==}
