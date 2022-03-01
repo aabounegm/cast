@@ -1,6 +1,6 @@
 <script lang="ts">
   import { AudioFetch } from '$lib/features/fetch-audio';
-  import { Podcast, podcastList } from '$lib/shared/api';
+  import { type Podcast, podcastList } from '$lib/shared/api';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
   import { onMount } from 'svelte';
 
