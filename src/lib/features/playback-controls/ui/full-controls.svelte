@@ -6,9 +6,13 @@
   import PlaybackButton from './playback-button.svelte';
   import { toggleGlobalPlayback } from '../model/toggle-global-playback';
   import ScrubbingBar from './scrubbing-bar.svelte';
+  import clsx from 'clsx';
+
+  let _class = '';
+  export {_class as class};
 </script>
 
-<div class="flex flex-col gap-4">
+<div class={clsx("flex flex-col gap-4", _class)}>
   <ScrubbingBar
     duration={$audioDuration}
     position={$audioPosition}
