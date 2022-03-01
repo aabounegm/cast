@@ -1,14 +1,14 @@
 <script lang="ts">
   import { EpisodeCard } from '$lib/widgets/episode';
   import { DownloadLink } from '$lib/features/download-episode';
-  import { PodcastDisplay, getPodcast } from '$lib/entities/podcast';
-  import type { Podcast } from '$lib/shared/api';
+  import { PodcastDisplay } from '$lib/entities/podcast';
+  import { Podcast, podcastGet } from '$lib/shared/api';
 
   export let podcastID: number;
-  let podcast: Podcast;
+  let podcast: Podcast | null;
 
   $: {
-    getPodcast(podcastID).then((r) => (podcast = r));
+    podcastGet(podcastID).then((r) => (podcast = r));
   }
 </script>
 
