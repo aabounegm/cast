@@ -1,5 +1,13 @@
 name: Ensure code quality (testsing, linting)
 
+inputs:
+  supabaseUrl:
+    description: 'Supabase Base URL'
+    required: true
+  supabaseKey:
+    description: 'Supabase access key'
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -28,6 +36,9 @@ runs:
 
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2
+      env:
+        VITE_SUPABASE_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_KEY: ${{ inputs.supabaseKey }}
       with:
         build: pnpm run build
         start: pnpm run preview
