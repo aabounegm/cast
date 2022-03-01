@@ -14,7 +14,7 @@
   data-testid="episode-card"
 >
   <div class="flex items-center pb-1">
-    <h2 class="font-medium text-sm flex-1">{episode.title}</h2>
+    <p class="font-medium text-sm flex-1">{episode.title}</p>
     <slot name="play" />
   </div>
   <div class="flex items-center">
