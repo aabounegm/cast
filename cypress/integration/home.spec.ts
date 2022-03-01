@@ -1,4 +1,4 @@
-import { constants } from '../fixtures';
+import exampleAudioURL from '../fixtures/example-audio-url.json';
 
 describe('Home page', () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe('Home page', () => {
     cy.get('[data-cy="audio-fetch-form"]')
       .as('form')
       .get('[data-cy="audio-fetch-form"] input')
-      .type(constants.audioExample);
+      .type(exampleAudioURL);
     cy.get('@form').get('button[type=submit]').click();
     // cy.expectPlayingAudio();
   });
