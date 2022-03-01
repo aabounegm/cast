@@ -1,21 +1,32 @@
+import supabaseHostname from '../fixtures/supabase-hostname.json';
+import samplePodcastJson from '../fixtures/sample-podcasts.json';
+import type { Podcast } from '../../src/lib/shared/api/types';
+
+const samplePodcast = samplePodcastJson as Podcast;
+
+const podcastID = 1;
+const titles = samplePodcast.episodes.map(({ title }) => title);
+
 it('likes an episode then finds it in the library', () => {
-  cy.visitAndWaitForHydration('/podcasts/1');
+  cy.intercept({ hostname: supabaseHostname, path: '/rest/v1/podcasts' }, [samplePodcast]);
+  cy.visitAndWaitForHydration(`/podcasts/${podcastID}`);
 
-  // Find a card and give it a name
-  cy.findAllByTestId('episode-card').first().as('episodeCard');
+  // Like all the episodes
+  cy.findAllByTestId('episode-card').each((card, index) => {
+    const episode = samplePodcast.episodes[index];
 
-  // Grab the episode title
-  cy.get('@episodeCard')
-    .findByRole('heading', { level: 2 })
-    .invoke('text')
-    .then((title) => {
-      // Click the like button
-      cy.get('@episodeCard').findByTitle('like', { exact: false }).click();
-
-      // Go to the library
-      cy.visitAndWaitForHydration('/library');
-
-      // Expect the episode title to be in the library
-      cy.findByLabelText('favorites').contains(title);
+    cy.wrap(card).within(() => {
+      cy.findByText(episode.title).should('exist');
+      cy.findByRole('button', {
+        name: 'Like this episode',
+      }).click();
     });
+  });
+
+  cy.visitAndWaitForHydration('/library');
+
+  // Expect all episode titles to be in the library
+  titles.forEach((title) => {
+    cy.findByLabelText(/favorites/i).contains(title);
+  });
 });
