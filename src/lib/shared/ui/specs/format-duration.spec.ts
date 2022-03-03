@@ -22,3 +22,7 @@ it('supports large durations', () => {
 it('reports an error on negative durations', () => {
   expect(() => formatDuration(-1)).toThrowError(/Negative/i);
 });
+
+it('rounds time to the previous second', () => {
+  expect(formatDuration(0.5)).toBe('0:00');
+});
