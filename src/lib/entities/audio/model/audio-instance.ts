@@ -19,6 +19,5 @@ export const pause = () => paused.set(true);
 
 export const seek = (timeInSeconds: number) => currentTime.set(timeInSeconds);
 
-export const move = (deltaInSeconds: number) => {
-  if (audio) currentTime.set(audio.currentTime + deltaInSeconds);
-};
+export const move = (deltaInSeconds: number) =>
+  currentTime.update(($currentTime) => $currentTime + deltaInSeconds);
