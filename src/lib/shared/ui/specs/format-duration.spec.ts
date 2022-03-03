@@ -1,17 +1,24 @@
 import { formatDuration } from '..';
 
-it('formats the duration as H:MM:SS, omitting the hours if not needed', () => {
-  expect(formatDuration(0)).toBe('00:00');
-  expect(formatDuration(5)).toBe('00:05');
-  expect(formatDuration(65)).toBe('01:05');
-  expect(formatDuration(3665)).toBe('1:01:05');
-  expect(formatDuration(36065)).toBe('10:01:05');
+it('formats the duration as H:MM:SS', () => {
+  expect(formatDuration(1 * 60 * 60 + 1 * 60 + 5)).toBe('1:01:05');
+  expect(formatDuration(10 * 60 * 60 + 1 * 60 + 5)).toBe('10:01:05');
+});
+
+it('omits the hours if not needed', () => {
+  expect(formatDuration(10 * 60 + 5)).toBe('10:05');
+});
+
+it('omits the leading digit of minutes if not needed', () => {
+  expect(formatDuration(0)).toBe('0:00');
+  expect(formatDuration(5)).toBe('0:05');
+  expect(formatDuration(65)).toBe('1:05');
+});
+
+it('supports large durations', () => {
+  expect(formatDuration(100 * 60 * 60)).toBe('100:00:00');
 });
 
 it('reports an error on negative durations', () => {
-  expect(() => formatDuration(-1)).toThrowError(/Negative/);
-});
-
-it('reports an error on durations that are 24 hours long or longer', () => {
-  expect(() => formatDuration(24 * 60 * 60)).toThrowError(/24 hours/);
+  expect(() => formatDuration(-1)).toThrowError(/Negative/i);
 });
