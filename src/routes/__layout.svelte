@@ -2,26 +2,30 @@
   import { onMount } from 'svelte';
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
-  import { audio as audioManager } from '$lib/entities/audio';
+  import { setAudio, duration, currentTime, paused, playbackRate } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui';
 
   import '$lib/app.css';
 
   let audioNode: HTMLAudioElement;
   onMount(() => {
-    audioManager.set(audioNode);
+    setAudio(audioNode);
   });
 </script>
 
-{#if $audioManager}
-  <audio bind:this={audioNode} />
-  <main class="relative margin-auto h-full w-full max-w-md bg-slate-800 text-white">
-    <slot />
-    <div
-      class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
-    >
-      <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
-      <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
-    </div>
-  </main>
-{/if}
+<audio
+  bind:this={audioNode}
+  bind:duration={$duration}
+  bind:currentTime={$currentTime}
+  bind:paused={$paused}
+  bind:playbackRate={$playbackRate}
+/>
+<main class="relative margin-auto h-full w-full max-w-md bg-slate-800 text-white">
+  <slot />
+  <div
+    class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
+  >
+    <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
+    <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
+  </div>
+</main>
