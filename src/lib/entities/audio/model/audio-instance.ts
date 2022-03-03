@@ -1,17 +1,13 @@
 import { writable } from 'svelte/store';
 
-let audio: HTMLAudioElement | undefined;
+export const src = writable('');
 export const currentTime = writable(0);
 export const duration = writable(NaN);
 export const playbackRate = writable(1);
 export const paused = writable(false);
 
-export const setAudio = (value: HTMLAudioElement) => {
-  audio = value;
-};
-
-export const play = (src?: string) => {
-  if (audio && src) audio.src = src;
+export const play = (_src?: string) => {
+  if (_src) src.set(_src);
   paused.set(false);
 };
 

@@ -2,19 +2,14 @@
   import { onMount } from 'svelte';
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
-  import { setAudio, duration, currentTime, paused, playbackRate } from '$lib/entities/audio';
+  import { src, duration, currentTime, paused, playbackRate } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui';
 
   import '$lib/app.css';
-
-  let audioNode: HTMLAudioElement;
-  onMount(() => {
-    setAudio(audioNode);
-  });
 </script>
 
 <audio
-  bind:this={audioNode}
+  src={$src}
   bind:duration={$duration}
   bind:currentTime={$currentTime}
   bind:paused={$paused}

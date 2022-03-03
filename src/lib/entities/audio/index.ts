@@ -1,5 +1,5 @@
 export {
-  setAudio,
+  src,
   currentTime,
   duration,
   playbackRate,
