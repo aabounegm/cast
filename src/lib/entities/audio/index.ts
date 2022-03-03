@@ -1,7 +1,9 @@
 export {
-  audio,
-  audioPosition,
-  audioDuration,
+  setAudio,
+  currentTime,
+  duration,
+  playbackRate,
+  paused,
   move,
   pause,
   play,
