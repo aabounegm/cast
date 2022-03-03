@@ -13,7 +13,7 @@ export function formatDuration(durationInSeconds: number) {
     throw Error('Negative durations are not supported');
   }
 
-  const leftoverSeconds = durationInSeconds % 60;
+  const leftoverSeconds = Math.floor(durationInSeconds) % 60;
   const durationInWholeMinutes = Math.floor(durationInSeconds / 60);
   const leftoverMinutes = durationInWholeMinutes % 60;
   const durationInWholeHours = Math.floor(durationInWholeMinutes / 60);
