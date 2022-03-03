@@ -1,7 +1,14 @@
 <script lang="ts">
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
-  import { seek, move, audio, audioPosition, audioDuration } from '$lib/entities/audio';
+  import {
+    seek,
+    move,
+    audio,
+    audioPosition,
+    audioDuration,
+    audioBufferedRanges,
+  } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import { toggleGlobalPlayback } from '../model/toggle-global-playback';
@@ -9,13 +16,14 @@
   import clsx from 'clsx';
 
   let _class = '';
-  export {_class as class};
+  export { _class as class };
 </script>
 
-<div class={clsx("flex flex-col gap-4", _class)}>
+<div class={clsx('flex flex-col gap-4', _class)}>
   <ScrubbingBar
     duration={$audioDuration}
     position={$audioPosition}
+    buffered={$audioBufferedRanges}
     on:scrub={(e) => seek(e.detail.position)}
   />
   <div class="flex flex-row items-center justify-between">

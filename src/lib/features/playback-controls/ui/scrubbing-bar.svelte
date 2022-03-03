@@ -1,11 +1,12 @@
 <script lang="ts">
   import { formatDuration } from '$lib/shared/ui';
+  import { renderTimeRanges } from '../lib/render-time-ranges';
 
   import { createEventDispatcher } from 'svelte';
 
   export let duration: number;
   export let position: number;
-  // export let buffered: TimeRanges;
+  export let buffered: TimeRanges | undefined;
 
   $: remaining = duration - position;
 
@@ -25,7 +26,10 @@
     value={position}
     on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
     class="scrubbing-bar slider-progress w-full"
-    style="--value: {position}; --min: {0}; --max: {duration};"
+    style:--value={position}
+    style:--min={0}
+    style:--max={duration}
+    style:--buffered-regions={renderTimeRanges(buffered, duration, '#CBD5E1')}
   />
   <div class="flex justify-between px-2 mt-2 font-medium">
     <span>{isNaN(position) ? 'N/A' : formatDuration(position)}</span>
@@ -37,6 +41,9 @@
   /**
    * Generated with Input range slider CSS style generator (version 20211225)
    *   https://toughengineer.github.io/demo/slider-styler
+   *
+   * Altered to include a CSS variable for the background
+   *   that represents buffered regions, `--buffered-regions`.
    */
   input[type='range'].scrubbing-bar {
     height: 5px;
@@ -48,6 +55,11 @@
     --range: calc(var(--max) - var(--min));
     --ratio: calc((var(--value) - var(--min)) / var(--range));
     --sx: calc(0.5 * 18px + var(--ratio) * (100% - 18px));
+    --played-part: linear-gradient(#818cf8, #818cf8) 0 / var(--sx) 100% no-repeat;
+    --underlying-layer: #64748b;
+    --background: var(--played-part), var(--buffered-regions), var(--underlying-layer);
+    background: var(--underlying-layer);
+    border-radius: 3px;
   }
 
   input[type='range'].scrubbing-bar:focus {
@@ -69,6 +81,7 @@
   input[type='range'].scrubbing-bar::-webkit-slider-runnable-track {
     height: 5px;
     background: #64748b;
+    border-radius: 3px;
     box-shadow: none;
   }
 
@@ -81,7 +94,7 @@
   }
 
   input[type='range'].scrubbing-bar.slider-progress::-webkit-slider-runnable-track {
-    background: linear-gradient(#818cf8, #818cf8) 0 / var(--sx) 100% no-repeat, #64748b;
+    background: var(--background, #64748b);
   }
 
   /*mozilla*/
@@ -96,7 +109,7 @@
 
   input[type='range'].scrubbing-bar::-moz-range-track {
     height: max(calc(5px - 1px - 1px), 0px);
-    border-radius: 0.5em;
+    border-radius: 3px;
     background: #64748b;
     box-shadow: none;
   }
@@ -110,7 +123,7 @@
   }
 
   input[type='range'].scrubbing-bar.slider-progress::-moz-range-track {
-    background: linear-gradient(#818cf8, #818cf8) 0 / var(--sx) 100% no-repeat, #64748b;
+    background: var(--background, #64748b);
   }
 
   /*ms*/
@@ -137,8 +150,8 @@
 
   input[type='range'].scrubbing-bar::-ms-track {
     height: 5px;
-    border-radius: 0.5em;
-    background: #64748b;
+    border-radius: 3px;
+    background: var(--buffered-regions), var(--underlying-layer);
     box-shadow: none;
     box-sizing: border-box;
   }
@@ -153,7 +166,7 @@
 
   input[type='range'].scrubbing-bar.slider-progress::-ms-fill-lower {
     height: max(calc(5px - 1px - 1px), 0px);
-    border-radius: 0.5em 0 0 0.5em;
+    border-radius: 3px 0 0 3px;
     margin: -1px 0 -1px -1px;
     background: #818cf8;
     border-right-width: 0;
