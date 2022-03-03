@@ -2,20 +2,21 @@
   import { onMount } from 'svelte';
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
-  import { audio } from '$lib/entities/audio';
+  import { audio as audioManager } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui';
 
   import '$lib/app.css';
 
+  let audioNode: HTMLAudioElement;
   onMount(() => {
-    audio.set(new Audio());
+    audioManager.set(audioNode);
   });
 </script>
 
-{#if $audio}
+{#if $audioManager}
+  <audio bind:this={audioNode} />
   <main class="relative margin-auto h-full w-full max-w-md bg-slate-800 text-white">
     <slot />
-
     <div
       class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
     >
