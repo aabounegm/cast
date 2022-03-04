@@ -7,7 +7,7 @@ export const src = writable('');
 export const currentTime = writable(0);
 export const duration = writable(NaN);
 export const playbackRate = writable(1);
-export const paused = writable(false);
+export const paused = writable(true);
 export const buffered = writable<SvelteTimeRanges>([]);
 
 export const play = (_src?: string) => {
