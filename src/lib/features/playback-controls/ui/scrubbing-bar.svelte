@@ -6,7 +6,7 @@
 
   export let duration: number;
   export let position: number;
-  export let buffered: TimeRanges | undefined;
+  export let buffered: TimeRanges | undefined = undefined;
 
   $: remaining = duration - position;
 
@@ -24,6 +24,7 @@
     max={duration}
     step={0.01}
     value={position}
+    aria-valuetext={formatDuration(position)}
     on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
     class="scrubbing-bar slider-progress w-full"
     style:--value={position}
