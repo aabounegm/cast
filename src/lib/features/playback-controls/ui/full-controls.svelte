@@ -1,7 +1,7 @@
 <script lang="ts">
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
-  import { seek, move, currentTime, duration, paused } from '$lib/entities/audio';
+  import { seek, move, currentTime, duration, paused, buffered } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import { toggleGlobalPlayback } from '../model/toggle-global-playback';
@@ -16,6 +16,7 @@
   <ScrubbingBar
     duration={$duration}
     position={$currentTime}
+    buffered={$buffered}
     on:scrub={(e) => seek(e.detail.position)}
   />
   <div class="flex flex-row items-center justify-between">
