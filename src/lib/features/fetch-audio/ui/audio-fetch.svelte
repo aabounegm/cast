@@ -1,10 +1,9 @@
 <script lang="ts">
-  import audioStore from '../model/audio';
   import { play } from '$lib/entities/audio';
 
   let url = '';
   const submit = () => {
-    audioStore.set(url);
+    play(url);
     url = '';
   };
 
@@ -22,7 +21,6 @@
     class="py-2 px-2 grow rounded-md bg-gray-100"
     placeholder="https://example.com/podcast.mp4"
   />
-
   <button class="ml-4 px-4 rounded-md bg-gray-100 uppercase" type="submit"> Fetch </button>
   <button
     class="ml-4 px-4 rounded-md bg-gray-100 uppercase"
