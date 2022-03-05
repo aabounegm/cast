@@ -7,7 +7,7 @@
 
   export let duration: number;
   export let position: number;
-  export let buffered: SvelteTimeRanges;
+  export let buffered: SvelteTimeRanges = [];
 
   $: remaining = duration - position;
 
