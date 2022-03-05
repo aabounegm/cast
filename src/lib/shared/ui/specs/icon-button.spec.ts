@@ -7,7 +7,14 @@ import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 it('has an accessible name', () => {
   const sampleName = 'do stuff';
 
-  const sampleIcon = svelte`<div />`;
+  const sampleIcon = svelte`
+    <script>
+      let _class;
+      export { _class as class };
+    </script>
+
+    <div />
+  `;
   const iconButtonWithName = useLocalVars(
     svelte`<IconButton icon={sampleIcon} name={sampleName} />`,
     [IconButton, sampleIcon, sampleName]

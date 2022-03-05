@@ -3,7 +3,7 @@
  *
  * Example:
  * ```ts
- * formatDuration(5);  // '00:05'
+ * formatDuration(5);  // '0:05'
  * formatDuration(3665);  // '1:01:05'
  * formatDuration(36065);  // '10:01:05'
  * ```
@@ -12,18 +12,20 @@ export function formatDuration(durationInSeconds: number) {
   if (durationInSeconds < 0) {
     throw Error('Negative durations are not supported');
   }
-  if (durationInSeconds >= 24 * 60 * 60) {
-    throw Error('Durations longer or equal to 24 hours are not supported');
-  }
 
-  let sliceStart = 11;
-  if (durationInSeconds < 10 * 60 * 60) {
-    sliceStart++;
+  const leftoverSeconds = Math.floor(durationInSeconds) % 60;
+  const durationInWholeMinutes = Math.floor(durationInSeconds / 60);
+  const leftoverMinutes = durationInWholeMinutes % 60;
+  const durationInWholeHours = Math.floor(durationInWholeMinutes / 60);
 
-    if (durationInSeconds < 1 * 60 * 60) {
-      sliceStart += 2;
-    }
-  }
+  const formattedSeconds = leftoverSeconds.toString().padStart(2, '0');
+  const formattedMinutes =
+    durationInWholeHours !== 0
+      ? leftoverMinutes.toString().padStart(2, '0')
+      : leftoverMinutes.toString();
+  const formattedHours = durationInWholeHours !== 0 ? durationInWholeHours.toString() : '';
 
-  return new Date(durationInSeconds * 1000).toISOString().substring(sliceStart, 19);
+  return [formattedHours, formattedMinutes, formattedSeconds]
+    .filter((part) => part !== '')
+    .join(':');
 }
