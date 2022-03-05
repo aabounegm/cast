@@ -1,1 +1,1 @@
-export {default as NowPlaying} from './ui/now-playing.svelte';
+export { default as NowPlaying } from './ui/now-playing.svelte';

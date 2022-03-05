@@ -1,14 +1,7 @@
 <script lang="ts">
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
-  import {
-    seek,
-    move,
-    audio,
-    audioPosition,
-    audioDuration,
-    audioBufferedRanges,
-  } from '$lib/entities/audio';
+  import { seek, move, currentTime, duration, paused, buffered } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import { toggleGlobalPlayback } from '../model/toggle-global-playback';
@@ -21,9 +14,9 @@
 
 <div class={clsx('flex flex-col gap-4', _class)}>
   <ScrubbingBar
-    duration={$audioDuration}
-    position={$audioPosition}
-    buffered={$audioBufferedRanges}
+    duration={$duration}
+    position={$currentTime}
+    buffered={$buffered}
     on:scrub={(e) => seek(e.detail.position)}
   />
   <div class="flex flex-row items-center justify-between">
@@ -34,11 +27,7 @@
       iconClass="w-7 h-7"
       on:click={() => move(-10)}
     />
-    <PlaybackButton
-      prominent
-      playing={!($audio?.paused ?? false)}
-      on:click={toggleGlobalPlayback}
-    />
+    <PlaybackButton prominent playing={!$paused} on:click={toggleGlobalPlayback} />
     <IconButton
       name="Skip forward 30 seconds"
       icon={IconForward30}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { SvelteTimeRanges } from '$lib/entities/audio';
   import { formatDuration } from '$lib/shared/ui';
   import { renderTimeRanges } from '../lib/render-time-ranges';
 
@@ -6,7 +7,7 @@
 
   export let duration: number;
   export let position: number;
-  export let buffered: TimeRanges | undefined = undefined;
+  export let buffered: SvelteTimeRanges = [];
 
   $: remaining = duration - position;
 
@@ -30,7 +31,7 @@
     style:--value={position}
     style:--min={0}
     style:--max={duration}
-    style:--buffered-regions={renderTimeRanges(buffered, duration, '#CBD5E1')}
+    style:--buffered-regions={renderTimeRanges(buffered ?? [], duration, '#CBD5E1')}
   />
   <div class="flex justify-between px-2 mt-2 font-medium">
     <span>{isNaN(position) ? 'N/A' : formatDuration(position)}</span>
