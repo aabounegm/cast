@@ -20,12 +20,12 @@
 </script>
 
 <div class={clsx('flex flex-col gap-4', _class)}>
-  <ScrubbingBar
+  <!-- <ScrubbingBar
     duration={$audioDuration}
     position={$audioPosition}
     buffered={$audioBufferedRanges}
     on:scrub={(e) => seek(e.detail.position)}
-  />
+  /> -->
   <div class="flex flex-row items-center justify-between">
     <IconButton
       name="Replay the last 10 seconds"

@@ -18,11 +18,25 @@
     <slot />
 
     <div
-      class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
+      class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-xl bg-slate-700 w-full h-16"
     >
-      <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
-      <FullControls />
-      <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
+      <IconButton
+        name="Gallery"
+        icon={IconVideoLibrary}
+        href="/"
+        showLabel={$audio.readyState === $audio.HAVE_NOTHING}
+        class="grow py-5"
+      />
+      {#if $audio.readyState > $audio.HAVE_NOTHING}
+        <FullControls />
+      {/if}
+      <IconButton
+        name="Your Library"
+        icon={IconFolderShared}
+        href="/library"
+        showLabel={$audio.readyState === $audio.HAVE_NOTHING}
+        class="grow py-5"
+      />
     </div>
   </main>
 {/if}
