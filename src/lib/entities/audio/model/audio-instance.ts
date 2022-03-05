@@ -42,6 +42,28 @@ export const audioPosition = derived<typeof audio, number>(
   0
 );
 
+/** Tracks the buffered (loaded) ranges in the audio stream that is currently loaded in the `audio` store. */
+export const audioBufferedRanges = derived<typeof audio, TimeRanges | undefined>(
+  audio,
+  ($audio, set) => {
+    if ($audio === undefined) {
+      set(undefined);
+      return;
+    }
+
+    function watchBufferedData(event: Event) {
+      set((event.target as HTMLAudioElement).buffered);
+    }
+
+    // It's supposed to be attached to the 'progress' event
+    //   but these fire way too unreliably, so this is our best bet
+    $audio.addEventListener('timeupdate', watchBufferedData);
+
+    return () => $audio.removeEventListener('timeupdate', watchBufferedData);
+  },
+  undefined
+);
+
 export const play = (src?: string) => {
   audio.update(($audio) => {
     if ($audio === undefined) {
