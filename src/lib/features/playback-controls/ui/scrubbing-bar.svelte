@@ -25,6 +25,7 @@
     max={duration}
     step={0.01}
     value={position}
+    aria-valuetext={formatDuration(position)}
     on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
     class="scrubbing-bar slider-progress w-full"
     style:--value={position}
