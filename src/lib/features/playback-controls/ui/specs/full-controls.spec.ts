@@ -22,7 +22,7 @@ jest.mock('$lib/entities/audio', () => ({
   pause: jest.fn().mockName('pause() from $lib/entities/audio'),
 }));
 
-import { move, seek, play, pause, audio, audioDuration, audioPosition } from '$lib/entities/audio';
+import { move, seek, play, pause, paused, currentTime, duration } from '$lib/entities/audio';
 import { FullControls } from '../..';
 
 it('nudges the global playback position back 10 seconds upon pressing "replay 10s"', async () => {
@@ -44,8 +44,8 @@ it('nudges the global playback position forward 30 seconds upon pressing "forwar
 });
 
 it('listens to the global playback state to determine the Play button action', async () => {
-  jest.mocked(audio.subscribe).mockImplementation((subscriber) => {
-    subscriber({ paused: true } as HTMLAudioElement);
+  jest.mocked(paused.subscribe).mockImplementation((subscriber) => {
+    subscriber(true);
     return jest.fn();
   });
   const user = userEvent.setup();
@@ -55,8 +55,8 @@ it('listens to the global playback state to determine the Play button action', a
   expect(play).toHaveBeenCalled();
   expect(pause).not.toHaveBeenCalled();
 
-  jest.mocked(audio.subscribe).mockImplementation((subscriber) => {
-    subscriber({ paused: false } as HTMLAudioElement);
+  jest.mocked(paused.subscribe).mockImplementation((subscriber) => {
+    subscriber(false);
     return jest.fn();
   });
   rerender({});
@@ -69,11 +69,11 @@ it('listens to the global playback position and audio duration', () => {
   const samplePosition = 13 * 60 + 37; // 13:37
   const sampleDuration = 20 * 60; // 20:00
 
-  jest.mocked(audioPosition.subscribe).mockImplementation((subscriber) => {
+  jest.mocked(currentTime.subscribe).mockImplementation((subscriber) => {
     subscriber(samplePosition);
     return jest.fn();
   });
-  jest.mocked(audioDuration.subscribe).mockImplementation((subscriber) => {
+  jest.mocked(duration.subscribe).mockImplementation((subscriber) => {
     subscriber(sampleDuration);
     return jest.fn();
   });
@@ -88,11 +88,11 @@ it('seeks the global audio on scrubbing', async () => {
   const samplePosition = 13 * 60 + 37; // 13:37
   const sampleDuration = 20 * 60; // 20:00
 
-  jest.mocked(audioPosition.subscribe).mockImplementation((subscriber) => {
+  jest.mocked(currentTime.subscribe).mockImplementation((subscriber) => {
     subscriber(samplePosition);
     return jest.fn();
   });
-  jest.mocked(audioDuration.subscribe).mockImplementation((subscriber) => {
+  jest.mocked(duration.subscribe).mockImplementation((subscriber) => {
     subscriber(sampleDuration);
     return jest.fn();
   });
