@@ -4,27 +4,25 @@
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLink } from '$lib/features/download-episode';
   import { EpisodeCardShell } from '$lib/entities/episode';
-  import { play, pause, audio } from '$lib/entities/audio';
+  import { paused } from '$lib/entities/audio';
   import { addToListeningHistory } from '$lib/entities/audio/model/listening-history';
+  import { toggleGlobalPlayback } from '$lib/features/playback-controls';
 
   export let episode: Episode;
   export let podcastId: number | null = null;
 
-  $: playing = $audio?.src === episode.audioUrl && !$audio?.paused && !$audio?.ended;
-
-  const playAudio = () => {
-    if (playing) {
-      pause();
-    } else {
-      play(episode.audioUrl);
-      if (podcastId) addToListeningHistory(podcastId);
+  const togglePlaying = () => {
+    if ($paused && podcastId) {
+      addToListeningHistory(podcastId);
     }
+
+    toggleGlobalPlayback();
   };
 </script>
 
 <EpisodeCardShell {episode}>
   <svelte:fragment slot="play">
-    <PlaybackButton {playing} on:click={playAudio} />
+    <PlaybackButton playing={!$paused} on:click={togglePlaying} />
   </svelte:fragment>
 
   <svelte:fragment slot="download">

@@ -15,6 +15,6 @@ export const listeningHistory = persistentWritable<number[]>([], {
  */
 export const addToListeningHistory = (podcastId: number) => {
   listeningHistory.update((history) => {
-    return [podcastId, ...history.filter((id) => id === podcastId)].slice(0, 6);
+    return [podcastId, ...history.filter((id) => id !== podcastId)].slice(0, 6);
   });
 };
