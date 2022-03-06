@@ -1,13 +1,8 @@
 import { get } from 'svelte/store';
-import { play, pause, audio } from '$lib/entities/audio';
+import { play, pause, paused } from '$lib/entities/audio';
 
 export function toggleGlobalPlayback() {
-  const $audio = get(audio);
-  if ($audio === undefined) {
-    return;
-  }
-
-  if ($audio.paused) {
+  if (get(paused)) {
     play();
   } else {
     pause();
