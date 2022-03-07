@@ -11,7 +11,7 @@
     "preview": "svelte-kit preview",
     "test:e2e": "cypress run",
     "test:e2e-open": "cypress open",
-    "test:unit": "jest src",
+    "test:unit": "jest src --coverage",
     "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json --fail-on-warnings --use-new-transformation",
     "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
     "prepare": "husky install"
