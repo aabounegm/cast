@@ -3,8 +3,21 @@ import { transformPodcastRequest } from './adapters';
 import supabaseClient from './supabase';
 import { notNull } from './not-null';
 
+const allFieldsWithEpisodes = `
+  id,
+  title,
+  author,
+  episodes (
+    id,
+    title,
+    duration,
+    audio: files!audio (name)
+  ),
+  coverArt: files!cover_art (name)
+`;
+
 export const podcastList = async (): Promise<Podcast[]> => {
-  const res = await supabaseClient.from<SBPodcast>('podcasts').select('*, episodes (*)');
+  const res = await supabaseClient.from<SBPodcast>('podcasts').select(allFieldsWithEpisodes);
 
   if (res.error !== null) {
     throw res.error;
@@ -16,7 +29,7 @@ export const podcastList = async (): Promise<Podcast[]> => {
 export const podcastGet = async (id: number): Promise<null | Podcast> => {
   const res = await supabaseClient
     .from<SBPodcast>('podcasts')
-    .select('*, episodes (*)')
+    .select(allFieldsWithEpisodes)
     .eq('id', id)
     .single();
 
