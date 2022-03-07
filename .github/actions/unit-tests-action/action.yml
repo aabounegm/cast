@@ -34,6 +34,11 @@ runs:
       shell: bash
       run: pnpm run test:unit -- --ci
 
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v2.1.0
+      with:
+        fail_ci_if_error: true
+
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2
       env:
