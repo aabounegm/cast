@@ -1,4 +1,4 @@
-import { likesStore, addLike, removeLike, toggleLike } from '../model/like';
+import { likesStore, addLike, removeLike, toggleLike } from '../like';
 import { get } from 'svelte/store';
 import type { Episode } from '$lib/shared/api';
 
