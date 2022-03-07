@@ -12,7 +12,7 @@
   $: remaining = duration - position;
 
   interface ScrubbingBarEvents {
-    scrub: { position: number };
+    scrub: { dragging: boolean; position: number };
   }
 
   const dispatch = createEventDispatcher<ScrubbingBarEvents>();
@@ -23,10 +23,12 @@
     type="range"
     min={0}
     max={duration}
-    step={0.01}
+    step={0.001}
     value={position}
     aria-valuetext={formatDuration(position)}
-    on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
+    on:pointerup={() => dispatch('scrub', { dragging: false, position })}
+    on:input={(e) =>
+      dispatch('scrub', { dragging: true, position: parseInt(e.currentTarget.value) })}
     class="scrubbing-bar slider-progress w-full"
     style:--value={position}
     style:--min={0}
