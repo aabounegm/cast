@@ -2,7 +2,7 @@
 export interface SBPodcast {
   id: number;
   title: string;
-  cover_url: string;
+  cover_art_name: string;
   author: string;
   inserted_at: Date;
   updated_at: Date;
@@ -15,7 +15,7 @@ export interface SBEpisode {
   description: string;
   guests: string[];
   duration: number;
-  audio_url: string;
+  audio_name: string;
   published_at: Date;
   inserted_at: Date;
   updated_at: Date;

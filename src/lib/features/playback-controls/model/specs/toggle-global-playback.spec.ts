@@ -15,14 +15,14 @@ jest.mock('$lib/entities/audio', () => ({
 }));
 
 it('calls `play()` when the audio is paused', () => {
-  jest.mocked(get).mockImplementation(() => ({ paused: true } as HTMLMediaElement));
+  jest.mocked(get).mockImplementation(() => true);
   toggleGlobalPlayback();
 
   expect(play).toBeCalled();
 });
 
 it('calls `pause()` when the audio is playing', () => {
-  jest.mocked(get).mockImplementation(() => ({ paused: false } as HTMLMediaElement));
+  jest.mocked(get).mockImplementation(() => false);
   toggleGlobalPlayback();
 
   expect(pause).toBeCalled();

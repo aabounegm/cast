@@ -7,13 +7,13 @@ jest.mock('~icons/ic/round-replay-10', () => ({ default: null }), { virtual: tru
 jest.mock('~icons/ic/round-forward-30', () => ({ default: null }), { virtual: true });
 jest.mock('$lib/entities/audio', () => ({
   ...jest.requireActual('$lib/entities/audio'),
-  audio: {
+  duration: {
     subscribe: jest.fn(() => jest.fn()),
   },
-  audioDuration: {
+  currentTime: {
     subscribe: jest.fn(() => jest.fn()),
   },
-  audioPosition: {
+  paused: {
     subscribe: jest.fn(() => jest.fn()),
   },
   move: jest.fn().mockName('move() from $lib/entities/audio'),
