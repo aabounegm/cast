@@ -14,7 +14,7 @@
     "test:unit": "jest src",
     "lint": "eslint --ignore-path .gitignore . --cache; prettier --check . --plugin-search-dir=.; svelte-check --tsconfig ./tsconfig.json --fail-on-warnings --use-new-transformation",
     "fix": "eslint --ignore-path .gitignore . --fix --cache; prettier --write . --plugin-search-dir=.",
-    "prepare": "husky install"
+    "prepare": "husky install; svelte-kit sync"
   },
   "repository": {
     "type": "git",
