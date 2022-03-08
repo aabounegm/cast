@@ -35,6 +35,6 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
     coverUrl: coverUrlData.publicURL,
     title: podcast.title,
     author: podcast.author,
-    episodes: podcast.episodes.map(transformEpisodeRequest).filter(notNull) as Episode[],
+    episodes: podcast.episodes.map(transformEpisodeRequest).filter(notNull),
   };
 };
