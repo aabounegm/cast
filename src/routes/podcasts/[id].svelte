@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import type { Load } from '@sveltejs/kit';
-  import { podcastGet } from '$lib/shared/api';
+  import { podcastGet } from '$lib/entities/podcast';
 
   export const load: Load = async ({ params }) => {
     try {
@@ -15,7 +15,7 @@
 
 <script lang="ts">
   import { PodcastEpisodesPage } from '$lib/pages/podcast-episodes';
-  import type { Podcast } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
 
   export let podcast: Podcast | undefined;
 </script>

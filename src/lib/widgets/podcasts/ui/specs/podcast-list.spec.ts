@@ -3,7 +3,7 @@ import { render } from '@testing-library/svelte';
 
 import { PodcastList } from '../..';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
-import type { Podcast } from '$lib/shared/api';
+import type { Podcast } from '$lib/shared/types';
 
 const podcasts: Podcast[] = [
   {

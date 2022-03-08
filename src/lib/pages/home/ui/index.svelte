@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { type Podcast, podcastList } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
+  import { podcastList } from '$lib/entities/podcast';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
   import { listeningHistory } from '$lib/entities/audio/model/listening-history';
   import { AudioFetch } from '$lib/features/fetch-audio';

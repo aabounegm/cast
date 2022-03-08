@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Episode, Podcast } from '$lib/shared/api';
+  import type { Episode, Podcast } from '$lib/shared/types';
   export let episode: Episode;
   export let podcast: Podcast;
 </script>

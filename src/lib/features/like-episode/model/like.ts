@@ -1,4 +1,4 @@
-import type { Episode } from '$lib/shared/api';
+import type { Episode } from '$lib/shared/types';
 import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
 
 /**

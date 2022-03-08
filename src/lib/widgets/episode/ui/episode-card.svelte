@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Episode } from '$lib/shared/api';
+  import type { Episode } from '$lib/shared/types';
   import { PlaybackButton } from '$lib/features/playback-controls';
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLink } from '$lib/features/download-episode';

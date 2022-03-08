@@ -1,6 +1,6 @@
 <script lang="ts">
   import { H1, s } from '$lib/shared/ui';
-  import type { Podcast } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
 
   export let podcast: Podcast;
 </script>

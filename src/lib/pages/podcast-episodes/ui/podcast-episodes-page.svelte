@@ -2,7 +2,7 @@
   import { EpisodeCard } from '$lib/widgets/episode';
   import { DownloadLink } from '$lib/features/download-episode';
   import { PodcastDisplay } from '$lib/entities/podcast';
-  import type { Podcast } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
 
   export let podcast: Podcast;
 </script>

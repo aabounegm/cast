@@ -4,7 +4,7 @@
   import { IconButton } from '$lib/shared/ui';
   import EpisodeDisplay from './episode-display.svelte';
   import { ToggleTranscript } from '$lib/features/read-transcript';
-  import type { Episode, Podcast } from '$lib/shared/api';
+  import type { Episode, Podcast } from '$lib/shared/types';
   import Transcript from './transcript.svelte';
 
   const podcast: Podcast = {

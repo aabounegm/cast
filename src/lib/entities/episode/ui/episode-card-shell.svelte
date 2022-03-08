@@ -1,7 +1,7 @@
 <script lang="ts">
   import clsx from 'clsx';
   import { formatDuration } from '$lib/shared/ui';
-  import type { Episode } from '$lib/shared/api';
+  import type { Episode } from '$lib/shared/types';
 
   export let episode: Episode;
 </script>

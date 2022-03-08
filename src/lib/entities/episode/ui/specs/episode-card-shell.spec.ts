@@ -2,7 +2,7 @@ import svelte from 'svelte-inline-compile';
 import { render } from '@testing-library/svelte';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
-import type { Episode } from '$lib/shared/api';
+import type { Episode } from '$lib/shared/types';
 import { EpisodeCardShell } from '../..';
 
 const sampleEpisode: Episode = {
