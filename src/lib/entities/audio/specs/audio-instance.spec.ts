@@ -28,4 +28,14 @@ describe('Audio playback API', () => {
     expect(get(currentTime)).toEqual(2.5);
     pause();
   });
+
+  it('controls playback current time', () => {
+    playDefault();
+    seek(-1);
+    expect(get(currentTime)).toEqual(0);
+    seek(0.5);
+    move(2);
+    expect(get(currentTime)).toEqual(2.5);
+    pause();
+  });
 });
