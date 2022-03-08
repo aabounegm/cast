@@ -16,7 +16,7 @@
       addToListeningHistory(podcastId);
     }
 
-    toggleGlobalPlayback();
+    toggleGlobalPlayback(episode.audioUrl);
   };
 </script>
 
