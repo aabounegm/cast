@@ -7,7 +7,7 @@ const samplePodcast = samplePodcastJson as Podcast;
 const podcastID = 1;
 const titles = samplePodcast.episodes.map(({ title }) => title);
 
-it('likes an episode then finds it in the library', () => {
+it.skip('likes an episode then finds it in the library', () => {
   cy.intercept({ hostname: supabaseHostname, path: '/rest/v1/podcasts*' }, samplePodcast);
   cy.visitAndWaitForHydration(`/podcasts/${podcastID}`);
 
