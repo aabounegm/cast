@@ -15,6 +15,6 @@
 
 <div class="flex flex-col px-2 py-4 gap-3">
   {#each podcast.episodes as episode}
-    <EpisodeCard {episode} playing={false} />
+    <EpisodeCard {episode} podcastId={podcast.id} />
   {/each}
 </div>

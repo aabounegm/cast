@@ -40,7 +40,7 @@
       iconClass="w-7 h-7"
       on:click={() => move(-10)}
     />
-    <PlaybackButton prominent playing={!$paused} on:click={toggleGlobalPlayback} />
+    <PlaybackButton prominent playing={!$paused} on:click={() => toggleGlobalPlayback()} />
     <IconButton
       name="Skip forward 30 seconds"
       icon={IconForward30}

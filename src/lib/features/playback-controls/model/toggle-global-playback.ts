@@ -1,9 +1,9 @@
 import { get } from 'svelte/store';
 import { play, pause, paused } from '$lib/entities/audio';
 
-export function toggleGlobalPlayback() {
+export function toggleGlobalPlayback(src?: string) {
   if (get(paused)) {
-    play();
+    play(src);
   } else {
     pause();
   }
