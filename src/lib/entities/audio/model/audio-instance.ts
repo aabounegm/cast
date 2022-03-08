@@ -23,5 +23,6 @@ export const move = (deltaInSeconds: number) =>
   currentTime.update(($currentTime) => clampTime($currentTime + deltaInSeconds));
 
 function clampTime(time: number) {
-  return Math.max(0, Math.min(time, get(duration)));
+  const d = get(duration);
+  return Math.max(0, Math.min(time, isNaN(d) ? 0 : d));
 }
