@@ -30,14 +30,6 @@ describe('Audio playback API', () => {
     pause();
   });
 
-  it('controls playback current time', () => {
-    playDefault();
-    seek(0.5);
-    move(2);
-    expect(get(currentTime)).toEqual(2.5);
-    pause();
-  });
-
   it('sets invalid playback time', () => {
     playDefault();
     seek(-1);
