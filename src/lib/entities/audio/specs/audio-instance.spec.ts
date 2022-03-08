@@ -22,18 +22,21 @@ describe('Audio playback API', () => {
     expect(get(paused)).toBeTruthy();
   });
 
-  it('controls playback current time', () => {
+  it('controls playback current time', async () => {
     playDefault();
+    await new Promise((r) => setTimeout(r, 1000));
     seek(0.5);
     move(2);
     expect(get(currentTime)).toEqual(2.5);
     pause();
   });
 
-  it('sets invalid playback time', () => {
+  it('sets invalid playback time', async () => {
     playDefault();
+    await new Promise((r) => setTimeout(r, 1000));
     seek(-1);
     expect(get(currentTime)).toEqual(0);
+    await new Promise((r) => setTimeout(r, 1000));
     move(100);
     expect(get(currentTime)).toEqual(get(duration));
     pause();
