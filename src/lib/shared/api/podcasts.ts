@@ -23,7 +23,7 @@ export const podcastList = async (): Promise<Podcast[]> => {
     throw res.error;
   }
 
-  return res.data.map(transformPodcastRequest).filter(notNull) as Podcast[];
+  return res.data.map(transformPodcastRequest).filter(notNull);
 };
 
 export const podcastGet = async (id: number): Promise<null | Podcast> => {
