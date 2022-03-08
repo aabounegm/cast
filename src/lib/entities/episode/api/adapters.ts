@@ -1,5 +1,5 @@
 import type { Episode, SBEpisode } from '$lib/shared/types';
-import supabaseClient from '$lib/shared/api/supabase';
+import { supabaseClient } from '$lib/shared/api';
 
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
   const { data: audioUrlData } = supabaseClient.storage

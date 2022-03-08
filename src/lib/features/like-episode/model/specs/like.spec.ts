@@ -1,6 +1,6 @@
 import { likesStore, addLike, removeLike, toggleLike } from '../like';
 import { get } from 'svelte/store';
-import type { Episode } from '$lib/shared/api';
+import type { Episode } from '$lib/shared/types';
 
 const exampleEpisode: Episode = {
   id: 1,

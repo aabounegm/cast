@@ -1,7 +1,7 @@
 <script lang="ts">
   import { PodcastTile } from '$lib/entities/podcast';
   import { H1 } from '$lib/shared/ui';
-  import type { Podcast } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
 
   export let title: string | undefined = undefined;
   export let podcasts: Podcast[];

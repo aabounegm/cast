@@ -1,6 +1,6 @@
 <script lang="ts">
   import cx from 'clsx';
-  import type { Podcast } from '$lib/shared/api';
+  import type { Podcast } from '$lib/shared/types';
 
   let _class = '';
   export { _class as class };

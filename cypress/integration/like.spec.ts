@@ -1,6 +1,6 @@
 import supabaseHostname from '../fixtures/supabase-hostname.json';
 import samplePodcastJson from '../fixtures/sample-podcasts.json';
-import type { Podcast } from '../../src/lib/shared/api/types';
+import type { Podcast } from '../../src/lib/shared/types';
 
 const samplePodcast = samplePodcastJson as Podcast;
 
