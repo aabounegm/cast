@@ -36,7 +36,6 @@ describe('Audio playback API', () => {
     await new Promise((r) => setTimeout(r, 1000));
     seek(-1);
     expect(get(currentTime)).toEqual(0);
-    await new Promise((r) => setTimeout(r, 1000));
     move(100);
     expect(get(currentTime)).toEqual(get(duration));
     pause();
