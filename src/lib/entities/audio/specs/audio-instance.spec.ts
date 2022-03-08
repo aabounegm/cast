@@ -38,7 +38,7 @@ describe('Audio playback API', () => {
     pause();
   });
 
-  it('sets invalud playback time', () => {
+  it('sets invalid playback time', () => {
     playDefault();
     seek(-1);
     expect(get(currentTime)).toEqual(0);
