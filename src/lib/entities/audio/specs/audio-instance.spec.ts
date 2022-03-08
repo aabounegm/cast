@@ -12,7 +12,7 @@ describe('Audio playback API', () => {
     pause();
   });
 
-  it('pause playback', () => {
+  it('pauses playback', () => {
     playDefault();
     pause();
     play();
@@ -21,7 +21,7 @@ describe('Audio playback API', () => {
     expect(get(paused)).toBeTruthy();
   });
 
-  it('control playback current time', () => {
+  it('controls playback current time', () => {
     playDefault();
     seek(0.5);
     move(2);
