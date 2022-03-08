@@ -4,8 +4,7 @@
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLink } from '$lib/features/download-episode';
   import { EpisodeCardShell } from '$lib/entities/episode';
-  import { paused } from '$lib/entities/audio';
-  import { addToListeningHistory } from '$lib/entities/audio/model/listening-history';
+  import { paused, addToListeningHistory } from '$lib/entities/audio';
   import { toggleGlobalPlayback } from '$lib/features/playback-controls';
 
   export let episode: Episode;
