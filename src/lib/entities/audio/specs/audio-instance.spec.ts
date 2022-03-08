@@ -5,7 +5,7 @@ describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
   const playDefault = () => play(defaultSrc);
 
-  it('load audio', () => {
+  it('loads audio', () => {
     playDefault();
     expect(get(src)).toEqual(defaultSrc);
     expect(get(paused)).toBeFalsy();
