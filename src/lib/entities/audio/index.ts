@@ -11,3 +11,4 @@ export {
   seek,
   type SvelteTimeRanges,
 } from './model/audio-instance';
+export { listeningHistory, addToListeningHistory } from './model/listening-history';

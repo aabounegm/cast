@@ -1,33 +1,22 @@
 <script lang="ts">
-  import { AudioFetch } from '$lib/features/fetch-audio';
+  import { onMount } from 'svelte';
   import { type Podcast, podcastList } from '$lib/shared/api';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
-  import { onMount } from 'svelte';
+  import { listeningHistory } from '$lib/entities/audio/model/listening-history';
+  import { AudioFetch } from '$lib/features/fetch-audio';
+  import { notNull } from '$lib/shared/api/not-null';
 
-  function getRecentPodcasts() {
-    return [
-      {
-        id: 1,
-        title: 'hey',
-        author: 'hi',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
-      {
-        id: 2,
-        title: 'this is a much longer title can you imagine it bruh',
-        author: 'me, mak from flushvalve',
-        coverUrl: 'https://placekitten.com/108/108',
-        episodes: [],
-      },
-    ];
+  function getRecentPodcasts(podcasts: Podcast[]) {
+    return $listeningHistory
+      .map((podcastId) => podcasts.find((podcast) => podcast.id === podcastId) || null)
+      .filter(notNull) as Podcast[];
   }
 
   let podcasts: Podcast[];
   let recentPodcasts: Podcast[];
   onMount(async () => {
     podcasts = await podcastList();
-    recentPodcasts = getRecentPodcasts();
+    recentPodcasts = getRecentPodcasts(podcasts);
   });
 </script>
 
