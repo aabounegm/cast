@@ -1,26 +1,21 @@
-/* eslint-disable camelcase */
+export interface SBFile {
+  name: string;
+}
+
 export interface SBPodcast {
   id: number;
   title: string;
-  cover_art_name: string;
   author: string;
-  inserted_at: Date;
-  updated_at: Date;
   episodes: SBEpisode[];
+  coverArt: SBFile;
 }
 
 export interface SBEpisode {
   id: number;
   title: string;
-  description: string;
-  guests: string[];
   duration: number;
-  audio_name: string;
-  published_at: Date;
-  inserted_at: Date;
-  updated_at: Date;
+  audio: SBFile;
 }
-/* eslint-enable camelcase */
 
 export interface Episode {
   id: number;
