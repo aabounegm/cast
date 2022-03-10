@@ -4,6 +4,7 @@
   import { FullControls } from '$lib/features/playback-controls';
   import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
   import { src } from '$lib/entities/audio';
+  import MiniPlayer from './mini-player.svelte';
 
   $: hasAudio = $src !== '';
 </script>
@@ -19,7 +20,7 @@
     class="grow py-5"
   />
   {#if hasAudio}
-    <FullControls />
+    <MiniPlayer />
   {/if}
   <BottomBarNavItem
     name="Your Library"
