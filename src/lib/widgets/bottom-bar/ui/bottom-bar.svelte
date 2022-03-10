@@ -2,10 +2,10 @@
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
   import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
-  import { src } from '$lib/entities/audio';
+  import { currentlyPlayingEpisode } from '$lib/entities/episode';
   import MiniPlayer from './mini-player.svelte';
 
-  $: hasAudio = $src !== '';
+  $: hasAudio = $currentlyPlayingEpisode !== null;
 </script>
 
 <div
