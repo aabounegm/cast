@@ -1,0 +1,31 @@
+<script lang="ts">
+  import IconVideoLibrary from '~icons/ic/twotone-video-library';
+  import IconFolderShared from '~icons/ic/twotone-folder-shared';
+  import { FullControls } from '$lib/features/playback-controls';
+  import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
+  import { src } from '$lib/entities/audio';
+
+  $: hasAudio = $src !== '';
+</script>
+
+<div
+  class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-xl bg-slate-700 w-full h-16 px-3"
+>
+  <BottomBarNavItem
+    name="Gallery"
+    icon={IconVideoLibrary}
+    href="/"
+    showLabel={!hasAudio}
+    class="grow py-5"
+  />
+  {#if hasAudio}
+    <FullControls />
+  {/if}
+  <BottomBarNavItem
+    name="Your Library"
+    icon={IconFolderShared}
+    href="/library"
+    showLabel={!hasAudio}
+    class="grow py-5"
+  />
+</div>
