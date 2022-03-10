@@ -13,7 +13,7 @@
   let transcriptShown = false;
 </script>
 
-<div class="bg-black bg-opacity-20 pt-4 h-full flex flex-col justify-end">
+<div class="bg-black bg-opacity-20 pt-4 flex flex-col justify-end absolute bottom-0">
   <div class="bg-slate-800 flex flex-col rounded-t-2xl py-10 px-8 items-center">
     <div class="flex flex-col items-center relative">
       {#if transcriptShown}
