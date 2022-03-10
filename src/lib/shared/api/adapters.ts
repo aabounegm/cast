@@ -1,6 +1,25 @@
 import supabaseClient from './supabase';
 import { notNull } from './not-null';
-import type { SBEpisode, Episode, SBPodcast, Podcast } from './types';
+import type { Episode, Podcast } from './types';
+
+export interface SBFile {
+  name: string;
+}
+
+export interface SBPodcast {
+  id: number;
+  title: string;
+  author: string;
+  episodes: SBEpisode[];
+  coverArt: SBFile;
+}
+
+export interface SBEpisode {
+  id: number;
+  title: string;
+  duration: number;
+  audio: SBFile;
+}
 
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
   const { data: audioUrlData } = supabaseClient.storage

@@ -1,7 +1,10 @@
-import type { SBPodcast, Podcast } from './types';
-import { transformPodcastRequest } from './adapters';
-import supabaseClient from './supabase';
-import { notNull } from './not-null';
+import {
+  type Podcast,
+  type SBPodcast,
+  transformPodcastRequest,
+  supabaseClient,
+  notNull,
+} from '$lib/shared/api';
 
 const allFieldsWithEpisodes = `
   id,
