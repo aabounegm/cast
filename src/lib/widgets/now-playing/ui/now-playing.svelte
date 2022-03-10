@@ -7,21 +7,8 @@
   import type { Episode, Podcast } from '$lib/shared/api';
   import Transcript from './transcript.svelte';
 
-  const podcast: Podcast = {
-    id: 1,
-    title: 'sample title',
-    author: 'sample author',
-    coverUrl: 'https://placekitten.com/1024/1024',
-    episodes: [],
-  };
-
-  const episode: Episode = {
-    id: 1,
-    podcastID: 1,
-    title: 'sample title',
-    audioUrl: 'sample URL',
-    duration: 3600,
-  };
+  export let podcast: Podcast;
+  export let episode: Episode;
 
   let transcriptShown = false;
 </script>
