@@ -4,12 +4,14 @@
   import { PlaybackButton, toggleGlobalPlayback } from '$lib/features/playback-controls';
   import { IconButton } from '$lib/shared/ui';
   import { move, paused } from '$lib/entities/audio';
+  import { currentlyPlayingEpisode } from '$lib/entities/episode';
+  import { getPodcastByID } from '$lib/entities/podcast';
 
-  export let coverArt: string = '';
+  $: podcast = getPodcastByID($currentlyPlayingEpisode!.podcastID);
 </script>
 
 <div class="flex justify-between">
-  <img src={coverArt} alt="" />
+  <img src={podcast?.coverUrl} width="40" alt="" />
   <div class="flex justify-between">
     <IconButton
       name="Replay the last 10 seconds"
