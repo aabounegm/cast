@@ -10,7 +10,7 @@
   $: podcast = getPodcastByID($currentlyPlayingEpisode!.podcastID);
 </script>
 
-<div class="flex justify-between">
+<div class="flex justify-evenly grow-[0.5] cursor-pointer rounded-lg bg-slate-800 py-2">
   <img src={podcast?.coverUrl} width="40" alt="" />
   <div class="flex justify-between">
     <IconButton

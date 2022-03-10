@@ -9,7 +9,7 @@
 </script>
 
 <div
-  class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-xl bg-slate-700 w-full h-16 px-3"
+  class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-2xl bg-slate-700 w-full h-16 px-3"
 >
   <BottomBarNavItem
     name="Gallery"
