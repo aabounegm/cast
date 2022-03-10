@@ -5,6 +5,7 @@ import {
   supabaseClient,
   notNull,
 } from '$lib/shared/api';
+import { getPodcastByID } from '../model/store';
 
 const allFieldsWithEpisodes = `
   id,
@@ -31,6 +32,11 @@ export const podcastList = async (): Promise<Podcast[]> => {
 };
 
 export const podcastGet = async (id: number): Promise<null | Podcast> => {
+  const cachedPodcast = getPodcastByID(id);
+  if (cachedPodcast !== undefined) {
+    return cachedPodcast;
+  }
+
   const res = await supabaseClient
     .from<SBPodcast>('podcasts')
     .select(allFieldsWithEpisodes)
