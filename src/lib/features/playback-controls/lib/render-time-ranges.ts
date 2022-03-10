@@ -1,3 +1,5 @@
+import type { SvelteTimeRanges } from '$lib/entities/audio';
+
 // Hacky, but you cannot have a color as a layer, only a background image, which
 //   the `linear-gradient()` is.
 const emptyLayer = 'linear-gradient(transparent, transparent)';
@@ -12,22 +14,12 @@ const emptyLayer = 'linear-gradient(transparent, transparent)';
  * By leveraging the layering functionality of CSS `background`, we're able
  * to display multiple segments of buffered audio.
  */
-export function renderTimeRanges(
-  timeRanges: TimeRanges | undefined,
-  duration: number,
-  color: string
-) {
-  if (timeRanges === undefined) {
-    return emptyLayer;
-  }
-
+export function renderTimeRanges(timeRanges: SvelteTimeRanges, duration: number, color: string) {
   const backgroundColor = `linear-gradient(${color}, ${color})`;
   const backgroundHeight = '100%';
 
   const layers = [];
-  for (let rangeIndex = 0; rangeIndex < timeRanges.length; ++rangeIndex) {
-    const start = timeRanges.start(rangeIndex);
-    const end = timeRanges.end(rangeIndex);
+  for (const { start, end } of timeRanges) {
     const backgroundPositionX = `${(start / duration) * 100}%`;
     const backgroundWidth = `${((end - start) / duration) * 100}%`;
 

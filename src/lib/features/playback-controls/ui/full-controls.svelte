@@ -4,10 +4,12 @@
   import {
     seek,
     move,
-    audio,
-    audioPosition,
-    audioDuration,
-    audioBufferedRanges,
+    currentTime,
+    duration,
+    paused,
+    buffered,
+    pause,
+    play,
   } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
@@ -20,12 +22,16 @@
 </script>
 
 <div class={clsx('flex flex-col gap-4', _class)}>
-  <!-- <ScrubbingBar
-    duration={$audioDuration}
-    position={$audioPosition}
-    buffered={$audioBufferedRanges}
-    on:scrub={(e) => seek(e.detail.position)}
-  /> -->
+  <ScrubbingBar
+    duration={$duration}
+    position={$currentTime}
+    buffered={$buffered}
+    on:scrub={(e) => {
+      if (e.detail.dragging) pause();
+      else play();
+      seek(e.detail.position);
+    }}
+  />
   <div class="flex flex-row items-center justify-between">
     <IconButton
       name="Replay the last 10 seconds"
@@ -34,7 +40,7 @@
       iconClass="w-7 h-7"
       on:click={() => move(-10)}
     />
-    <PlaybackButton playing={!($audio?.paused ?? false)} on:click={toggleGlobalPlayback} />
+    <PlaybackButton prominent playing={!$paused} on:click={() => toggleGlobalPlayback()} />
     <IconButton
       name="Skip forward 30 seconds"
       icon={IconForward30}

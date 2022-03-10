@@ -1,25 +1,14 @@
 <script lang="ts">
-  import audioStore from '../model/audio';
-  import { audio } from '$lib/entities/audio';
+  import { play } from '$lib/entities/audio';
 
   let url = '';
   const submit = () => {
-    audioStore.set(url);
+    play(url);
     url = '';
   };
 
-  const playDefaultMusic = () => {
-    audio.update(($audio) => {
-      if ($audio === undefined) {
-        return;
-      }
-
-      $audio.src = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
-      $audio.play();
-
-      return $audio;
-    });
-  };
+  const playDefaultMusic = () =>
+    play('http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg');
 </script>
 
 <form
@@ -32,7 +21,6 @@
     class="py-2 px-2 grow rounded-md bg-gray-100"
     placeholder="https://example.com/podcast.mp4"
   />
-
   <button class="ml-4 px-4 rounded-md bg-gray-100 uppercase" type="submit"> Fetch </button>
   <button
     class="ml-4 px-4 rounded-md bg-gray-100 uppercase"

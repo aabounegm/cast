@@ -11,11 +11,11 @@ describe('Home page', () => {
       .get('[data-cy="audio-fetch-form"] input')
       .type(exampleAudioURL);
     cy.get('@form').get('button[type=submit]').click();
-    // cy.expectPlayingAudio();
+    cy.expectPlayingAudio();
   });
 
   it('plays audio music by playing default sound', () => {
     cy.get('[data-cy="audio-fetch-form"]').get('button[type=button]').click();
-    // cy.expectPlayingAudio();
+    cy.expectPlayingAudio();
   });
 });

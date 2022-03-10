@@ -18,6 +18,7 @@ env:
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
+  - plugin:cypress/recommended
   - prettier
 
 plugins:

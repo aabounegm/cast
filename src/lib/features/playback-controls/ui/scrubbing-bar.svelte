@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { SvelteTimeRanges } from '$lib/entities/audio';
   import { formatDuration } from '$lib/shared/ui';
   import { renderTimeRanges } from '../lib/render-time-ranges';
 
@@ -6,12 +7,12 @@
 
   export let duration: number;
   export let position: number;
-  export let buffered: TimeRanges | undefined;
+  export let buffered: SvelteTimeRanges = [];
 
   $: remaining = duration - position;
 
   interface ScrubbingBarEvents {
-    scrub: { position: number };
+    scrub: { dragging: boolean; position: number };
   }
 
   const dispatch = createEventDispatcher<ScrubbingBarEvents>();
@@ -22,14 +23,17 @@
     type="range"
     min={0}
     max={duration}
-    step={0.01}
+    step={0.001}
     value={position}
-    on:input={(e) => dispatch('scrub', { position: parseInt(e.currentTarget.value) })}
+    aria-valuetext={formatDuration(position)}
+    on:pointerup={() => dispatch('scrub', { dragging: false, position })}
+    on:input={(e) =>
+      dispatch('scrub', { dragging: true, position: parseInt(e.currentTarget.value) })}
     class="scrubbing-bar slider-progress w-full"
     style:--value={position}
     style:--min={0}
     style:--max={duration}
-    style:--buffered-regions={renderTimeRanges(buffered, duration, '#CBD5E1')}
+    style:--buffered-regions={renderTimeRanges(buffered ?? [], duration, '#CBD5E1')}
   />
   <div class="flex justify-between px-2 mt-2 font-medium">
     <span>{isNaN(position) ? 'N/A' : formatDuration(position)}</span>

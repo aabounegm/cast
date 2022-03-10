@@ -1,18 +1,59 @@
-import type { SBEpisode, Episode, SBPodcast, Podcast } from './types';
+import supabaseClient from './supabase';
+import { notNull } from './not-null';
+import type { Episode, Podcast } from './types';
 
-export const transformEpisodeRequest = (episode: SBEpisode): Episode => ({
-  id: episode.id,
-  title: episode.title,
-  duration: episode.duration,
-  audioUrl: episode.audio_url,
-  // TODO: implement favorites
-  favorite: false,
-});
+export interface SBFile {
+  name: string;
+}
 
-export const transformPodcastRequest = (podcast: SBPodcast): Podcast => ({
-  id: podcast.id,
-  coverUrl: podcast.cover_url,
-  title: podcast.title,
-  author: podcast.author,
-  episodes: podcast.episodes.map(transformEpisodeRequest),
-});
+export interface SBPodcast {
+  id: number;
+  title: string;
+  author: string;
+  episodes: SBEpisode[];
+  coverArt: SBFile;
+}
+
+export interface SBEpisode {
+  id: number;
+  title: string;
+  duration: number;
+  audio: SBFile;
+}
+
+export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
+  const { data: audioUrlData } = supabaseClient.storage
+    .from('podcast-audio-files')
+    .getPublicUrl(episode.audio.name);
+
+  if (audioUrlData === null) {
+    return null;
+  }
+
+  return {
+    id: episode.id,
+    title: episode.title,
+    duration: episode.duration,
+    audioUrl: audioUrlData.publicURL,
+    // TODO: implement favorites
+    favorite: false,
+  };
+};
+
+export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
+  const { data: coverUrlData } = supabaseClient.storage
+    .from('podcast-cover-arts')
+    .getPublicUrl(podcast.coverArt.name);
+
+  if (coverUrlData === null) {
+    return null;
+  }
+
+  return {
+    id: podcast.id,
+    coverUrl: coverUrlData.publicURL,
+    title: podcast.title,
+    author: podcast.author,
+    episodes: podcast.episodes.map(transformEpisodeRequest).filter(notNull),
+  };
+};
