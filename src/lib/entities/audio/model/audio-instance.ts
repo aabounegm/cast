@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 
 // Because apparently Svelte thinks it knows better how the Web APIs should be.
 export type SvelteTimeRanges = Array<{ start: number; end: number }>;
@@ -17,7 +17,12 @@ export const play = (_src?: string) => {
 
 export const pause = () => paused.set(true);
 
-export const seek = (timeInSeconds: number) => currentTime.set(timeInSeconds);
+export const seek = (timeInSeconds: number) => currentTime.set(clampTime(timeInSeconds));
 
 export const move = (deltaInSeconds: number) =>
-  currentTime.update(($currentTime) => $currentTime + deltaInSeconds);
+  currentTime.update(($currentTime) => clampTime($currentTime + deltaInSeconds));
+
+function clampTime(time: number) {
+  const d = get(duration);
+  return Math.max(0, Math.min(time, isNaN(d) ? 0 : d));
+}
