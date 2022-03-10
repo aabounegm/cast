@@ -1,3 +1,4 @@
+import 'isomorphic-fetch';
 import { createClient } from '@supabase/supabase-js';
 import constants from './credentials';
 
