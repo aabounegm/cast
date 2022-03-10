@@ -50,7 +50,6 @@ specifiers:
 dependencies:
   '@supabase/supabase-js': 1.30.7
   clsx: 1.1.1
-  isomorphic-fetch: 3.0.0
   svelte-persistent-writable: 1.1.6_svelte@3.46.4
 
 devDependencies:
@@ -79,6 +78,7 @@ devDependencies:
   eslint-plugin-cypress: 2.12.1_eslint@8.10.0
   eslint-plugin-svelte3: 3.4.1_eslint@8.10.0+svelte@3.46.4
   husky: 7.0.4
+  isomorphic-fetch: 3.0.0
   jest: 27.5.1_ts-node@10.5.0
   lint-staged: 12.3.4
   npm-run-all: 4.1.5
@@ -4327,7 +4327,7 @@ packages:
       whatwg-fetch: 3.6.2
     transitivePeerDependencies:
       - encoding
-    dev: false
+    dev: true
 
   /isstream/0.1.2:
     resolution: {integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=}
@@ -5286,7 +5286,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
 
   /node-gyp-build/4.3.0:
     resolution: {integrity: sha512-iWjXZvmboq0ja1pUGULQBexmxq8CV4xBhX7VDOTbL7ZR4FOowwY/VOtRxBN/yKxmdGoIp4j5ysNT4u3S2pDQ3Q==}
@@ -6479,7 +6478,6 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
-    dev: false
 
   /tr46/2.1.0:
     resolution: {integrity: sha512-15Ih7phfcdP5YxqiB+iDtLoaTz4Nd35+IiAv0kQ5FNKHzXgdWqPoTIqEDDJmXceQt4JZk6lVPT8lnDlPpGDppw==}
@@ -6795,7 +6793,6 @@ packages:
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
-    dev: false
 
   /webidl-conversions/5.0.0:
     resolution: {integrity: sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==}
@@ -6831,7 +6828,7 @@ packages:
 
   /whatwg-fetch/3.6.2:
     resolution: {integrity: sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==}
-    dev: false
+    dev: true
 
   /whatwg-mimetype/2.3.0:
     resolution: {integrity: sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==}
@@ -6842,7 +6839,6 @@ packages:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
-    dev: false
 
   /whatwg-url/8.7.0:
     resolution: {integrity: sha512-gAojqb/m9Q8a5IV96E3fHJM70AzCkgt4uXYX2O7EmuyOnLrViCQlsEBmF9UQIu3/aeAIp2U17rtbpZWNntQqdg==}
