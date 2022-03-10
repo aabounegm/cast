@@ -17,6 +17,7 @@
 
   const episode: Episode = {
     id: 1,
+    podcastID: 1,
     title: 'sample title',
     audioUrl: 'sample URL',
     duration: 3600,
