@@ -1,4 +1,5 @@
 name: Ensure code quality (testing, linting)
+description: Performs linting with ESLint, unit testing with Jest and E2E testing with Cypress
 
 inputs:
   supabaseUrl:
@@ -33,6 +34,9 @@ runs:
     - name: Run unit tests 🧪
       shell: bash
       run: pnpm run test:unit -- --ci
+      env:
+        VITE_SUPABASE_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_KEY: ${{ inputs.supabaseKey }}
 
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2

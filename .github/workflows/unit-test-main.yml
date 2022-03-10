@@ -13,6 +13,6 @@ jobs:
 
       - name: Run tests 🧪
         uses: ./.github/actions/unit-tests-action
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_KEY: ${{ secrets.VITE_SUPABASE_KEY }}
+        with:
+          supabaseUrl: ${{ secrets.VITE_SUPABASE_URL }}
+          supabaseKey: ${{ secrets.VITE_SUPABASE_KEY }}
