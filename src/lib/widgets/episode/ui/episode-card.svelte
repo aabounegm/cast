@@ -3,18 +3,14 @@
   import { PlaybackButton } from '$lib/features/playback-controls';
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLink } from '$lib/features/download-episode';
-  import { EpisodeCardShell } from '$lib/entities/episode';
-  import { paused, addToListeningHistory } from '$lib/entities/audio';
+  import { EpisodeCardShell, currentlyPlayingEpisode } from '$lib/entities/episode';
+  import { paused } from '$lib/entities/audio';
   import { toggleGlobalPlayback } from '$lib/features/playback-controls';
 
   export let episode: Episode;
-  export let podcastId: number | null = null;
 
   const togglePlaying = () => {
-    if ($paused && podcastId) {
-      addToListeningHistory(podcastId);
-    }
-
+    currentlyPlayingEpisode.set(episode);
     toggleGlobalPlayback(episode.audioUrl);
   };
 </script>
