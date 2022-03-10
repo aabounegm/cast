@@ -12,6 +12,7 @@ const allFieldsWithEpisodes = `
   author,
   episodes (
     id,
+    podcast_id,
     title,
     duration,
     audio: files!audio (name)
