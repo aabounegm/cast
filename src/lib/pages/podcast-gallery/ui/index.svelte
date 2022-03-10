@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { Podcast } from '$lib/shared/api';
-  import { podcastList } from '$lib/entities/podcast';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
   import { listeningHistory } from '$lib/entities/audio/model/listening-history';
   import { AudioFetch } from '$lib/features/fetch-audio';
@@ -13,10 +12,9 @@
       .filter(notNull) as Podcast[];
   }
 
-  let podcasts: Podcast[];
+  export let podcasts: Podcast[];
   let recentPodcasts: Podcast[];
   onMount(async () => {
-    podcasts = await podcastList();
     recentPodcasts = getRecentPodcasts(podcasts);
   });
 </script>
