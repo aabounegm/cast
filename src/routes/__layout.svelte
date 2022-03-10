@@ -4,7 +4,7 @@
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
   import { FullControls } from '$lib/features/playback-controls';
-  import { IconButton } from '$lib/shared/ui';
+  import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
 
   // Svelte can't handle its own type conversion with TypeScript
   const bufferedNative = buffered as unknown as Writable<TimeRanges>;
@@ -28,7 +28,7 @@
   <div
     class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-xl bg-slate-700 w-full h-16 px-3"
   >
-    <IconButton
+    <BottomBarNavItem
       name="Gallery"
       icon={IconVideoLibrary}
       href="/"
@@ -38,7 +38,7 @@
     {#if hasAudio}
       <FullControls />
     {/if}
-    <IconButton
+    <BottomBarNavItem
       name="Your Library"
       icon={IconFolderShared}
       href="/library"
