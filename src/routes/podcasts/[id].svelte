@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import type { Load } from '@sveltejs/kit';
-  import { podcastGet } from '$lib/shared/api';
+  import { podcastGet } from '$lib/entities/podcast';
 
   export const load: Load = async ({ params }) => {
     try {

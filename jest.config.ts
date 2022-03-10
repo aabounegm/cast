@@ -31,6 +31,7 @@ const config: Config.InitialOptions = {
     '^clsx$': '<rootDir>/src/lib/shared/lib/jest-hacks/clsx.jest.js',
   },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
+  setupFiles: ['dotenv/config', 'isomorphic-fetch/fetch-npm-node'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testEnvironment: 'jsdom',
 };
