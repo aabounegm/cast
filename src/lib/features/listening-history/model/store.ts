@@ -1,3 +1,4 @@
+import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writable';
 
 /**
@@ -5,6 +6,12 @@ import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writa
  */
 export const listeningHistory = persistentWritable<number[]>([], {
   storage: localStorageAdapter('listening-history'),
+});
+
+currentlyPlayingEpisode.subscribe(($episode) => {
+  if ($episode !== null) {
+    addToListeningHistory($episode.podcastID);
+  }
 });
 
 /**
