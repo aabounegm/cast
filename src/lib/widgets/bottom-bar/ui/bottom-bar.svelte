@@ -1,7 +1,6 @@
 <script lang="ts">
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
-  import { FullControls } from '$lib/features/playback-controls';
   import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
   import { src } from '$lib/entities/audio';
   import MiniPlayer from './mini-player.svelte';
