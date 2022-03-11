@@ -3,13 +3,21 @@
   import { likesStore } from '$lib/features/like-episode';
   import { EpisodeCard } from '$lib/widgets/episode';
   import { LoginContainer } from '$lib/widgets/user';
+  import { LoginButton, LogoutButton } from '$lib/features/auth';
   import type { Episode } from '$lib/shared/api';
 
   $: episodes = Array.from<Episode>($likesStore.values());
 </script>
 
 <!-- Sign in card -->
-<LoginContainer />
+<LoginContainer>
+  <svelte:fragment slot="login">
+    <LoginButton />
+  </svelte:fragment>
+  <svelte:fragment slot="logout">
+    <LogoutButton />
+  </svelte:fragment>
+</LoginContainer>
 
 <!-- Favorites -->
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
