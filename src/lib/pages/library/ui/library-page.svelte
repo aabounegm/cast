@@ -2,12 +2,14 @@
   import { H1 } from '$lib/shared/ui';
   import { likesStore } from '$lib/features/like-episode';
   import { EpisodeCard } from '$lib/widgets/episode';
+  import { LoginContainer } from '$lib/widgets/user';
   import type { Episode } from '$lib/shared/api';
 
   $: episodes = Array.from<Episode>($likesStore.values());
 </script>
 
 <!-- Sign in card -->
+<LoginContainer />
 
 <!-- Favorites -->
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
