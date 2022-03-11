@@ -1,8 +1,8 @@
 <script lang="ts">
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
-  import { BottomBarNavItem } from '$lib/widgets/bottom-bar';
   import { currentlyPlayingEpisode } from '$lib/entities/episode';
+  import BottomBarNavItem from './bottom-bar-nav-item.svelte';
   import MiniPlayer from './mini-player.svelte';
 
   $: hasAudio = $currentlyPlayingEpisode !== null;
