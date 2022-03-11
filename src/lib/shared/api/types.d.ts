@@ -1,5 +1,6 @@
 export interface Episode {
   id: number;
+  podcastID: number;
   title: string;
   duration: number;
   audioUrl: string;

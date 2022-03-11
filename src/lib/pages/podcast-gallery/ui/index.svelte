@@ -1,11 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import type { Podcast } from '$lib/shared/api';
-  import { podcastList } from '$lib/entities/podcast';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
-  import { listeningHistory } from '$lib/entities/audio/model/listening-history';
-  import { AudioFetch } from '$lib/features/fetch-audio';
-  import { notNull } from '$lib/shared/api/not-null';
+  import { listeningHistory } from '$lib/features/listening-history';
+  import { podcasts } from '$lib/entities/podcast';
+  import { notNull, type Podcast } from '$lib/shared/api';
 
   function getRecentPodcasts(podcasts: Podcast[]) {
     return $listeningHistory
@@ -13,22 +11,18 @@
       .filter(notNull) as Podcast[];
   }
 
-  let podcasts: Podcast[];
   let recentPodcasts: Podcast[];
   onMount(async () => {
-    podcasts = await podcastList();
-    recentPodcasts = getRecentPodcasts(podcasts);
+    recentPodcasts = getRecentPodcasts($podcasts);
   });
 </script>
-
-<AudioFetch />
 
 <div class="bg-slate-800">
   {#if recentPodcasts}
     <PodcastShelf title="Recently listened" podcasts={recentPodcasts} />
   {/if}
   <!-- <PodcastShelf title="Trending now" {podcasts} /> -->
-  {#if podcasts}
-    <PodcastList {podcasts} />
+  {#if $podcasts}
+    <PodcastList podcasts={$podcasts} />
   {/if}
 </div>

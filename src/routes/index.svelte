@@ -1,9 +1,11 @@
-<script lang="ts">
-  import { HomePage } from '$lib/pages/home';
+<script lang="ts" context="module">
+  import { PodcastGalleryPage, loadPodcasts } from '$lib/pages/podcast-gallery';
+
+  export const load = loadPodcasts;
 </script>
 
 <svelte:head>
-  <title>Home | Cast</title>
+  <title>Podcast Gallery | Cast</title>
 </svelte:head>
 
-<HomePage />
+<PodcastGalleryPage />
