@@ -8,12 +8,6 @@ export const listeningHistory = persistentWritable<number[]>([], {
   storage: localStorageAdapter('listening-history'),
 });
 
-currentlyPlayingEpisode.subscribe(($episode) => {
-  if ($episode !== null) {
-    addToListeningHistory($episode.podcastID);
-  }
-});
-
 /**
  * Function that adds a podcast id to the beginning of listening history.
  * It removes any previous occurrences of the same podcast.
@@ -25,3 +19,9 @@ export const addToListeningHistory = (podcastId: number) => {
     return [podcastId, ...history.filter((id) => id !== podcastId)].slice(0, 6);
   });
 };
+
+currentlyPlayingEpisode.subscribe(($episode) => {
+  if ($episode !== null) {
+    addToListeningHistory($episode.podcastID);
+  }
+});
