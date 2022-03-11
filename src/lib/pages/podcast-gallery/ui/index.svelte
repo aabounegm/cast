@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
-  import { AudioFetch } from '$lib/features/fetch-audio';
   import { listeningHistory } from '$lib/features/listening-history';
   import { podcasts } from '$lib/entities/podcast';
   import { notNull, type Podcast } from '$lib/shared/api';
@@ -17,8 +16,6 @@
     recentPodcasts = getRecentPodcasts($podcasts);
   });
 </script>
-
-<AudioFetch />
 
 <div class="bg-slate-800">
   {#if recentPodcasts}
