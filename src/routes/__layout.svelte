@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { BottomBar } from '$lib/widgets/bottom-bar';
+  import { SnackbarQueue } from '$lib/features/snackbar';
   import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
   import '$lib/app.css';
@@ -24,3 +25,5 @@
   <slot />
   <BottomBar />
 </main>
+
+<SnackbarQueue />
