@@ -13,6 +13,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.2
   '@testing-library/svelte': ^3.0.3
   '@testing-library/user-event': ^14.0.0-beta.11
+  '@types/lodash.noop': ^3.0.6
   '@types/node': ^17.0.21
   '@typescript-eslint/eslint-plugin': ^5.12.1
   '@typescript-eslint/parser': ^5.12.1
@@ -31,6 +32,7 @@ specifiers:
   isomorphic-fetch: ^3.0.0
   jest: ^27.5.1
   lint-staged: ^12.3.4
+  lodash.noop: ^3.0.1
   npm-run-all: ^4.1.5
   postcss: ^8.4.7
   prettier: ^2.5.1
@@ -50,6 +52,7 @@ specifiers:
 dependencies:
   '@supabase/supabase-js': 1.30.7
   clsx: 1.1.1
+  lodash.noop: 3.0.1
   svelte-persistent-writable: 1.1.6_svelte@3.46.4
 
 devDependencies:
@@ -64,6 +67,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/svelte': 3.0.3_svelte@3.46.4
   '@testing-library/user-event': 14.0.0-beta.11_@testing-library+dom@8.11.3
+  '@types/lodash.noop': 3.0.6
   '@types/node': 17.0.21
   '@typescript-eslint/eslint-plugin': 5.12.1_27a0c788acac7d65514027b167e3b3f6
   '@typescript-eslint/parser': 5.12.1_eslint@8.10.0+typescript@4.5.5
@@ -1936,6 +1940,16 @@ packages:
 
   /@types/json-schema/7.0.9:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
+    dev: true
+
+  /@types/lodash.noop/3.0.6:
+    resolution: {integrity: sha512-cleVuzJRs1YQXkxgnFzo/GlSlXOiD83VZW9oibsm1+gKXF3ioXFzBDZPpwTJCxh9lB/D+zodEvZtqeolhuPKZg==}
+    dependencies:
+      '@types/lodash': 4.14.179
+    dev: true
+
+  /@types/lodash/4.14.179:
+    resolution: {integrity: sha512-uwc1x90yCKqGcIOAT6DwOSuxnrAbpkdPsUOZtwrXb4D/6wZs+6qG7QnIawDuZWg0sWpxl+ltIKCaLoMlna678w==}
     dev: true
 
   /@types/node/14.18.12:
@@ -5118,6 +5132,10 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash.noop/3.0.1:
+    resolution: {integrity: sha1-OBiPTWUKOkdCWEObluxFsyYXEzw=}
+    dev: false
 
   /lodash.once/4.1.1:
     resolution: {integrity: sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=}
