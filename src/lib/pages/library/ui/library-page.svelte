@@ -2,22 +2,22 @@
   import { H1 } from '$lib/shared/ui';
   import { likesStore } from '$lib/features/like-episode';
   import { EpisodeCard } from '$lib/widgets/episode';
-  import { LoginContainer } from '$lib/widgets/user';
-  import { LoginButton, LogoutButton } from '$lib/features/auth';
+  import { UserContainer } from '$lib/entities/user';
+  import { SignInButton, SignOutButton } from '$lib/features/authenticate';
   import type { Episode } from '$lib/shared/api';
 
   $: episodes = Array.from<Episode>($likesStore.values());
 </script>
 
 <!-- Sign in card -->
-<LoginContainer>
+<UserContainer>
   <svelte:fragment slot="login">
-    <LoginButton />
+    <SignInButton />
   </svelte:fragment>
   <svelte:fragment slot="logout">
-    <LogoutButton />
+    <SignOutButton />
   </svelte:fragment>
-</LoginContainer>
+</UserContainer>
 
 <!-- Favorites -->
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">

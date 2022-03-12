@@ -1,6 +1,6 @@
 import svelte from 'svelte-inline-compile';
-import { LogoutButton } from '..';
-import { useLocalVars } from '$lib/shared/lib/jest-hacks';
+import { LogoutButton } from '../../../auth';
+import { useLocalVars } from '../../../../shared/lib/jest-hacks';
 import { render } from '@testing-library/svelte';
 
 it('renders the button', async () => {
