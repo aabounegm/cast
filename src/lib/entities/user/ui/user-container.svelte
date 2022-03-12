@@ -8,7 +8,7 @@
     <span class="inline-block grow">Not synced</span>
     <slot name="login" />
   {:else}
-    <Avatar image={$user.user_metadata.avatar_url} alt={$user.user_metadata.preferred_username} />
+    <Avatar image={$user.user_metadata.avatar_url} />
     <span class="inline-block mx-4 grow">Signed in as {$user.user_metadata.preferred_username}</span
     >
     <slot name="logout" />
