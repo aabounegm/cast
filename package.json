@@ -9,7 +9,7 @@
     "preview": "svelte-kit preview",
     "test:e2e": "cypress run",
     "test:e2e-open": "cypress open",
-    "test:unit": "jest src --coverage",
+    "test:unit": "jest src",
     "lint": "run-p lint:* --aggregate-output --continue-on-error --silent",
     "fix": "run-s fix:* --continue-on-error --silent",
     "lint:eslint": "eslint . --cache",
