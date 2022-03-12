@@ -4,6 +4,7 @@
 
 [![Run tests on `main` push](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml)
 [![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m790750732-019a64d92e80fde508817b7c)](https://stats.uptimerobot.com/NnXDYFZ5zq)
+[![codecov](https://codecov.io/gh/aabounegm/cast/branch/main/graph/badge.svg?token=W8C03FREO5)](https://codecov.io/gh/aabounegm/cast)
 
 ## Features
 

@@ -19,7 +19,7 @@ function mapDirectories(dirMapping: Record<string, string>) {
 
 const config: Config.InitialOptions = {
   verbose: true,
-
+  collectCoverageFrom: ['src/**/*.{ts,svelte}', '!**.d.ts'],
   transform: {
     [extensions.jsAndTs]: 'babel-jest',
     [extensions.svelte]: ['svelte-jester/dist/transformer.cjs', { preprocess: true }],

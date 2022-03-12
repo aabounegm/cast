@@ -16,3 +16,4 @@ jobs:
         with:
           supabaseUrl: ${{ secrets.VITE_SUPABASE_URL }}
           supabaseKey: ${{ secrets.VITE_SUPABASE_KEY }}
+          codecovToken: ${{ secrets.CODECOV_TOKEN }}
