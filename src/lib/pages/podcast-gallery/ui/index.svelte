@@ -4,7 +4,7 @@
   import { listeningHistory } from '$lib/features/listening-history';
   import { podcasts } from '$lib/entities/podcast';
   import { notNull, type Podcast } from '$lib/shared/api';
-  import { snackbar } from '$lib/features/snackbar';
+  import { snackbar } from '$lib/shared/ui/snackbar';
 
   function getRecentPodcasts(podcasts: Podcast[]) {
     return $listeningHistory

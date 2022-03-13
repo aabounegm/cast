@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { SnackbarOptions } from '../model/types';
-  import { filterQueueByText } from '../model/store';
+  import type { SnackbarOptions } from './types';
+  import { filterQueueByText } from './store';
 
   export let options: SnackbarOptions;
 
