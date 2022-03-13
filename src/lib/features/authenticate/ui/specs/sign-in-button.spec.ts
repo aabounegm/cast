@@ -8,9 +8,9 @@ jest.mock('../../model/sign-in', () => ({
 
 import { signIn } from '../../model/sign-in';
 
-it('renders and clicks the sign in button', async () => {
+it('calls the signIn function on click', async () => {
   const user = userEvent.setup();
   const { getByRole } = render(SignInButton);
   await user.click(getByRole('button', { name: 'Sign in with GitHub' }));
-  expect(signIn).toHaveBeenCalledTimes(1);
+  expect(signIn).toHaveBeenCalled();
 });

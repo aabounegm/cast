@@ -8,9 +8,9 @@ jest.mock('../../model/sign-out', () => ({
 
 import { signOut } from '../../model/sign-out';
 
-it('renders and clicks the sign out button', async () => {
+it('calls the signOut function on click', async () => {
   const user = userEvent.setup();
   const { getByRole } = render(SignOutButton);
   await user.click(getByRole('button', { name: 'Sign out' }));
-  expect(signOut).toHaveBeenCalledTimes(1);
+  expect(signOut).toHaveBeenCalled();
 });
