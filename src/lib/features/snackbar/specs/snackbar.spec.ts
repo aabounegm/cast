@@ -40,12 +40,14 @@ it('removes snackbar from the queue after pressing the button and fires the call
   expect(firstSnackbar.callback).toHaveBeenCalled();
 });
 
-jest.useFakeTimers();
-jest.spyOn(global, 'setTimeout');
-
 it('disappears after 4 seconds of being on the screen', () => {
+  jest.useFakeTimers();
+  jest.spyOn(global, 'setTimeout');
+
   snackbar(firstSnackbar);
   jest.advanceTimersByTime(4000);
   const { queryByText } = render(SnackbarQueue);
   expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
+
+  jest.useRealTimers();
 });
