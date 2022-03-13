@@ -28,12 +28,24 @@ it('adds two snackbars to the queue, but only one is displayed', () => {
   expect(queryByText(secondSnackbar.text)).not.toBeInTheDocument();
 });
 
-it('removes snackbar from the queue after pressing the button', async () => {
+it('removes snackbar from the queue after pressing the button and fires the callback', async () => {
   const user = userEvent.setup();
   snackbar(firstSnackbar);
   const { getByRole, queryByText } = render(SnackbarQueue);
 
   expect(queryByText(firstSnackbar.text)).toBeInTheDocument();
   await user.click(getByRole('button', { name: firstSnackbar.buttonText }));
+  expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
+
+  expect(firstSnackbar.callback).toHaveBeenCalled();
+});
+
+jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
+
+it('disappears after 4 seconds of being on the screen', () => {
+  snackbar(firstSnackbar);
+  jest.advanceTimersByTime(4000);
+  const { queryByText } = render(SnackbarQueue);
   expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
 });

@@ -6,5 +6,5 @@
 </script>
 
 {#if activeSnackbar}
-  <Snackbar snackbar={activeSnackbar} />
+  <Snackbar options={activeSnackbar} />
 {/if}
