@@ -8,6 +8,9 @@ inputs:
   supabaseKey:
     description: 'Supabase access key'
     required: true
+  codecovToken:
+    description: 'Codecov access key'
+    required: true
 
 runs:
   using: 'composite'
@@ -33,10 +36,16 @@ runs:
 
     - name: Run unit tests 🧪
       shell: bash
-      run: pnpm run test:unit -- --ci
+      run: pnpm run test:unit -- --ci --coverage
       env:
         VITE_SUPABASE_URL: ${{ inputs.supabaseUrl }}
         VITE_SUPABASE_KEY: ${{ inputs.supabaseKey }}
+
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v2.1.0
+      with:
+        token: ${{ inputs.codecovToken }}
+        fail_ci_if_error: true
 
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2
