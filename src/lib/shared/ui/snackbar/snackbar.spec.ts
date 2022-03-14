@@ -14,6 +14,9 @@ const secondSnackbar: SnackbarOptions = {
   callback: jest.fn(),
 };
 
+jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
+
 it('adds a snackbar to the queue and displays it', () => {
   snackbar(firstSnackbar);
   const { getByText } = render(SnackbarQueue);
@@ -29,7 +32,7 @@ it('adds two snackbars to the queue, but only one is displayed', () => {
 });
 
 it('removes snackbar from the queue after pressing the button and fires the callback', async () => {
-  const user = userEvent.setup();
+  const user = userEvent.setup({ delay: null });
   snackbar(firstSnackbar);
   const { getByRole, queryByText } = render(SnackbarQueue);
 
@@ -41,13 +44,8 @@ it('removes snackbar from the queue after pressing the button and fires the call
 });
 
 it('disappears after 4 seconds of being on the screen', () => {
-  jest.useFakeTimers();
-  jest.spyOn(global, 'setTimeout');
-
   snackbar(firstSnackbar);
   jest.advanceTimersByTime(4000);
   const { queryByText } = render(SnackbarQueue);
   expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
-
-  jest.useRealTimers();
 });
