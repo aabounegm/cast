@@ -41,6 +41,7 @@ The quality of this application and its codebase is secured with these awesome t
 - [x] [GitHub Actions](https://github.com/features/actions) run each pull request against a CI pipeline
 - [x] [Cloudflare Pages](https://pages.cloudflare.com/) automatically deploy code for `main` and pull requests
 - [x] [UptimeRobot](https://uptimerobot.com/) ensures the app is up and running
+- [x] [Codecov](https://codecov.io/) sets a reliable baseline for code coverage
 - [ ] OWASP Web Security Checklist ensures the application's security
 
 ## Running locally
