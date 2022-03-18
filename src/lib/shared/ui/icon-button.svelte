@@ -9,7 +9,7 @@
   export let name: string;
 
   $: classes = clsx(
-    'text-s flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-600 active:bg-slate-500',
+    'flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-600 active:bg-slate-500',
     _class
   );
 </script>
