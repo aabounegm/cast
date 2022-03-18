@@ -32,7 +32,10 @@ const config: Config.InitialOptions = {
   },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
   setupFiles: ['dotenv/config', 'isomorphic-fetch/fetch-npm-node'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-dom/extend-expect',
+    '<rootDir>/src/lib/shared/lib/jest-hacks/icon-mocks.ts',
+  ],
   testEnvironment: 'jsdom',
 };
 

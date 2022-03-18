@@ -2,11 +2,6 @@ import svelte from 'svelte-inline-compile';
 import { render } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('~icons/ic/round-play-arrow', () => ({ default: null }), { virtual: true });
-jest.mock('~icons/ic/round-pause', () => ({ default: null }), { virtual: true });
-jest.mock('~icons/ic/round-replay-10', () => ({ default: null }), { virtual: true });
-jest.mock('~icons/ic/round-forward-30', () => ({ default: null }), { virtual: true });
-
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import { PlaybackButton } from '../..';
 
