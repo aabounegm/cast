@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest.json",
+  "name": "Cast",
+  "short_name": "Cast",
+  "start_url": "/",
+  "background_color": "#1E293B",
+  "theme_color": "#6366F1",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}
