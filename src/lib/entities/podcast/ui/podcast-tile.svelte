@@ -1,6 +1,7 @@
 <script lang="ts">
   import cx from 'clsx';
   import type { Podcast } from '$lib/shared/api';
+  import { send, receive } from '$lib/shared/ui/animation';
 
   let _class = '';
   export { _class as class };
@@ -12,7 +13,15 @@
   class={cx('grid', 'gap-x-4', 'text-slate-100', _class, large && 'large p-2')}
   href="/podcasts/{podcast.id}"
 >
-  <img class="rounded-lg aspect-square" class:row-span-2={!large} src={podcast.coverUrl} alt="" />
+  <img
+    class="rounded-lg aspect-square"
+    class:row-span-2={!large}
+    src={podcast.coverUrl}
+    alt=""
+    in:receive={{ key: podcast.id }}
+    out:send={{ key: podcast.id }}
+  />
+
   <span class="author font-lato text-xs" class:mt-1={large}>
     {podcast.author}
   </span>

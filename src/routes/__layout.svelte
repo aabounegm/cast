@@ -6,6 +6,7 @@
   import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
   import '$lib/app.css';
+  import { page } from '$app/stores';
 
   // Svelte can't handle its own type conversion with TypeScript
   const bufferedNative = buffered as unknown as Writable<TimeRanges>;
@@ -13,17 +14,31 @@
   onMount(trackAuthStatus);
 </script>
 
-<audio
-  src={$src}
-  bind:duration={$duration}
-  bind:currentTime={$currentTime}
-  bind:paused={$paused}
-  bind:playbackRate={$playbackRate}
-  bind:buffered={$bufferedNative}
-/>
-<main class="relative margin-auto h-full w-full max-w-md bg-slate-800 text-white">
-  <slot />
-  <BottomBar />
-</main>
+{#key $page}
+  <div class="layout relative min-h-screen w-full">
+    <audio
+      src={$src}
+      bind:duration={$duration}
+      bind:currentTime={$currentTime}
+      bind:paused={$paused}
+      bind:playbackRate={$playbackRate}
+      bind:buffered={$bufferedNative}
+    />
+    <main class="relative mx-auto h-full w-full max-w-md bg-slate-800 text-white">
+      <slot />
+      <BottomBar />
+    </main>
 
-<SnackbarQueue />
+    <SnackbarQueue />
+  </div>
+{/key}
+
+<style>
+  :global(#svelte) {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+</style>
