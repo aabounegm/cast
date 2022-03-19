@@ -24,9 +24,7 @@ worker.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then(async (keys) => {
       // delete old caches
-      for (const key of keys) {
-        if (key !== cacheName) await caches.delete(key);
-      }
+      await Promise.all(keys.filter((key) => key !== cacheName).map((key) => caches.delete(key)));
 
       worker.clients.claim();
     })
