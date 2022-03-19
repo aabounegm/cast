@@ -6,6 +6,7 @@
 
   let _class = '';
   export { _class as class };
+  export let prominent = false;
 </script>
 
 <div class={clsx('flex flex-col gap-4', _class)}>
@@ -19,5 +20,5 @@
       seek(e.detail.position);
     }}
   />
-  <PlaybackControlButtons />
+  <PlaybackControlButtons {prominent} />
 </div>

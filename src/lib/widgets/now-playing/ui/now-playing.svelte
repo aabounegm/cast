@@ -30,7 +30,7 @@
         <EpisodeDisplay {episode} {podcast} />
       </div>
     </div>
-    <FullControls class="w-full mt-5" />
+    <FullControls prominent class="w-full mt-5" />
     <div class="w-full mt-4 flex items-center justify-between">
       <ToggleTranscript {transcriptShown} on:click={() => (transcriptShown = !transcriptShown)} />
       <IconButton
