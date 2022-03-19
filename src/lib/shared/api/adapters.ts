@@ -22,6 +22,11 @@ export interface SBEpisode {
   audio: SBFile;
 }
 
+export interface SBTranscript {
+  episode_id: SBEpisode['id'];
+  content: string;
+}
+
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
   const { data: audioUrlData } = supabaseClient.storage
     .from('podcast-audio-files')
