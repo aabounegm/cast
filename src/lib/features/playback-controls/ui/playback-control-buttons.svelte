@@ -32,5 +32,5 @@
       move(30);
     }}
   />
-  <slot name="post" />
+  <slot />
 </div>
