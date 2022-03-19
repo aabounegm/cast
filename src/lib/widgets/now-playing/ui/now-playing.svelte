@@ -4,9 +4,8 @@
   import IconArrowDown from '~icons/ic/round-keyboard-arrow-down';
   import { IconButton } from '$lib/shared/ui';
   import EpisodeDisplay from './episode-display.svelte';
-  import { ToggleTranscript } from '$lib/features/read-transcript';
+  import { ToggleTranscript, Transcript } from '$lib/features/read-transcript';
   import type { Episode, Podcast } from '$lib/shared/api';
-  import Transcript from './transcript.svelte';
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher<{ minimize: void }>();
