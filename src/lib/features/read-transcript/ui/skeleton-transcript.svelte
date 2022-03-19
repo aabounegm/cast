@@ -4,7 +4,7 @@
   export let lines: number;
 </script>
 
-<div class="animate-pulse flex flex-col gap-2">
+<div class="animate-pulse flex flex-col gap-2" role="presentation">
   {#each range(lines) as _lineIndex}
     <div class="h-4 bg-slate-400 rounded" style:width={`${random(50, 100)}%`} />
   {/each}
