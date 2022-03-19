@@ -23,7 +23,7 @@
   <div class="bg-slate-800 flex flex-col rounded-t-2xl py-10 px-8 items-center">
     <div class="flex flex-col items-center relative">
       {#if transcriptShown}
-        <Transcript class="absolute bg-slate-800 px-0.5" />
+        <Transcript {episode} class="absolute top-0 left-0 w-full h-full bg-slate-800 px-0.5" />
       {/if}
       <div class="flex flex-col items-center" class:invisible={transcriptShown}>
         <EpisodeDisplay {episode} {podcast} />
