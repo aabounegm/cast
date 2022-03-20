@@ -5,7 +5,7 @@ const transcripts = new Map<Episode['id'], string>();
 
 export async function getTranscript(id: Episode['id']) {
   if (transcripts.has(id)) {
-    return transcripts.get(id);
+    return transcripts.get(id) as string;
   }
 
   const transcript = await fetchTranscript(id);
