@@ -29,6 +29,7 @@ const config: Config.InitialOptions = {
       $lib: './src/lib',
     }),
     '^clsx$': '<rootDir>/src/lib/shared/lib/jest-hacks/clsx.jest.js',
+    'lodash-es': 'lodash',
   },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
   setupFiles: ['dotenv/config', 'isomorphic-fetch/fetch-npm-node'],
