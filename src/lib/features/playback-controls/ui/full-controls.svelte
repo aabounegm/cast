@@ -49,7 +49,7 @@
       {$speed.toFixed(1)}x
     </button>
     {#if episode}
-      <LikeButton size={10} iconSize={6} {episode} />
+      <LikeButton class="w-10 h-10" iconClass="w-6 h-6" {episode} />
     {/if}
   </PlaybackControlButtons>
 </div>
