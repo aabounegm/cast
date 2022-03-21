@@ -41,10 +41,7 @@
       slot="pre"
       name="Toggle playback speed"
       class="flex items-center justify-center w-10 h-10 font-semibold text-sm rounded-full hover:bg-slate-600 active:bg-slate-500"
-      on:click={(e) => {
-        e.stopPropagation();
-        nextSpeed();
-      }}
+      on:click={nextSpeed}
     >
       {$speed.toFixed(1)}x
     </button>
