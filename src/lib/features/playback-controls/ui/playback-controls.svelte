@@ -10,7 +10,6 @@
 </script>
 
 <div class="flex flex-row items-center justify-between">
-  <slot name="pre" />
   <IconButton
     name="Replay the last 10 seconds"
     icon={IconReplay10}
@@ -32,5 +31,4 @@
       move(30);
     }}
   />
-  <slot />
 </div>
