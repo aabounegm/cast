@@ -13,11 +13,11 @@ jest.mock('$lib/entities/audio', () => ({
 }));
 
 import { move, play, pause, paused } from '$lib/entities/audio';
-import { FullControls } from '../..';
+import { PlaybackControls } from '../..';
 
 it('nudges the global playback position back 10 seconds upon pressing "replay 10s"', async () => {
   const user = userEvent.setup();
-  const { getByRole } = render(FullControls);
+  const { getByRole } = render(PlaybackControls);
 
   await user.click(getByRole('button', { name: /Replay/i }));
 
@@ -26,7 +26,7 @@ it('nudges the global playback position back 10 seconds upon pressing "replay 10
 
 it('nudges the global playback position forward 30 seconds upon pressing "forward 30s"', async () => {
   const user = userEvent.setup();
-  const { getByRole } = render(FullControls);
+  const { getByRole } = render(PlaybackControls);
 
   await user.click(getByRole('button', { name: /Forward/i }));
 
@@ -39,7 +39,7 @@ it('listens to the global playback state to determine the Play button action', a
     return jest.fn();
   });
   const user = userEvent.setup();
-  const { getByRole, rerender } = render(FullControls);
+  const { getByRole, rerender } = render(PlaybackControls);
 
   await user.click(getByRole('button', { name: 'Play' }));
   expect(play).toHaveBeenCalled();
