@@ -14,6 +14,6 @@ jobs:
       - name: Run tests 🧪
         uses: ./.github/actions/unit-tests-action
         with:
-          supabaseUrl: ${{ secrets.VITE_SUPABASE_URL }}
-          supabaseKey: ${{ secrets.VITE_SUPABASE_KEY }}
+          supabaseUrl: ${{ secrets.VITE_SUPABASE_APP_URL }}
+          supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
           codecovToken: ${{ secrets.CODECOV_TOKEN }}
