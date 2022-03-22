@@ -37,10 +37,20 @@ worker.addEventListener('activate', (event) => {
  */
 async function fetchAndCache(request: Request) {
   const cache = await caches.open(`offline-${version}`);
+  const isAudio = request.url.endsWith('.mp3');
+  if (isAudio) {
+    const cached = await cache.match(request);
+    if (cached) {
+      return cached;
+    }
+  }
+  const shouldCache = new URL(request.url).searchParams.get('download') === 'true';
 
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (!isAudio || shouldCache) {
+      cache.put(request, response.clone());
+    }
     return response;
   } catch (err) {
     const response = await cache.match(request);
