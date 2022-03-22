@@ -26,7 +26,7 @@ worker.addEventListener('activate', (event) => {
       // delete old caches
       await Promise.all(keys.filter((key) => key !== cacheName).map((key) => caches.delete(key)));
 
-      worker.clients.claim();
+      await worker.clients.claim();
     })
   );
 });
