@@ -1,7 +1,7 @@
 <script lang="ts">
   import IconArrowBack from '~icons/ic/round-arrow-back';
   import { EpisodeCard } from '$lib/widgets/episode';
-  import { DownloadLink } from '$lib/features/download-episode';
+  import { DownloadLinkWithProgress } from '$lib/features/download-episode';
   import { PodcastDisplay } from '$lib/entities/podcast';
   import type { Podcast } from '$lib/shared/api';
 
@@ -20,7 +20,7 @@
 
 <PodcastDisplay {podcast}>
   <svelte:fragment slot="download-all">
-    <DownloadLink downloadAll />
+    <DownloadLinkWithProgress urls={podcast.episodes.map((e) => e.audioUrl)} />
   </svelte:fragment>
 </PodcastDisplay>
 
