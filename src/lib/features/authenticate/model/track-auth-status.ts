@@ -1,4 +1,4 @@
-import noop from 'lodash.noop';
+import { noop } from 'lodash-es';
 import { user, type User } from '$lib/entities/user';
 import { supabaseClient } from '$lib/shared/api';
 
