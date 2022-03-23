@@ -4,6 +4,6 @@
  * VITE_SUPABASE_KEY – Private key to Supabase connection with the API
  */
 export default {
-  SUPABASE_URL: (import.meta.env.VITE_SUPABASE_URL as string) || '',
-  SUPABASE_USER_KEY: (import.meta.env.VITE_SUPABASE_KEY as string) || '',
+  VITE_SUPABASE_APP_URL: (import.meta.env.VITE_SUPABASE_APP_URL as string) || '',
+  VITE_SUPABASE_PUBLIC_ANON_KEY: (import.meta.env.VITE_SUPABASE_PUBLIC_ANON_KEY as string) || '',
 };
