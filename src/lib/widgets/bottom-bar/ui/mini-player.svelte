@@ -11,7 +11,7 @@
   $: episode = $currentlyPlayingEpisode!;
   $: podcast = getPodcastByID(episode.podcastID)!;
 
-  let nowPlayingActive = true;
+  let nowPlayingActive = false;
 </script>
 
 {#if nowPlayingActive}
