@@ -4,7 +4,10 @@
   export let podcast: Podcast;
 </script>
 
-<img class="flex rounded-2xl" src={podcast.coverUrl} alt="" />
+<div
+  class="flex flex-grow overflow-hidden w-full bg-contain bg-no-repeat bg-center rounded"
+  style:background-image={`url('${podcast.coverUrl}')`}
+/>
 
 <div class="flex pt-6 font-raleway text-lg text-center leading-6 font-extrabold text-slate-100">
   {episode.title}
