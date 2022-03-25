@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
   import { BottomBar } from '$lib/widgets/bottom-bar';
+  import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
   import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
@@ -21,10 +22,16 @@
   bind:playbackRate={$playbackRate}
   bind:buffered={$bufferedNative}
 />
-<main class="flex-1 relative margin-auto min-h-full w-full bg-slate-800 text-white">
+
+<main class="flex-1 relative margin-auto min-h-full w-full bg-slate-800 text-slate-100">
   <slot />
 </main>
-<BottomBar />
+
+{#if $nowPlayingActive}
+  <NowPlaying />
+{:else}
+  <BottomBar on:miniplayer-click={() => nowPlayingActive.set(true)} />
+{/if}
 
 <SnackbarQueue />
 

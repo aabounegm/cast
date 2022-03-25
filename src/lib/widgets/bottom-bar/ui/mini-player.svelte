@@ -6,24 +6,12 @@
   import { move, paused } from '$lib/entities/audio';
   import { currentlyPlayingEpisode } from '$lib/entities/episode';
   import { getPodcastByID } from '$lib/entities/podcast';
-  import { NowPlaying } from '$lib/widgets/now-playing';
 
   $: episode = $currentlyPlayingEpisode!;
   $: podcast = getPodcastByID(episode.podcastID)!;
-
-  let nowPlayingActive = false;
 </script>
 
-{#if nowPlayingActive}
-  <NowPlaying {podcast} {episode} on:minimize={() => (nowPlayingActive = false)} />
-{/if}
-
-<div
-  class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800"
-  on:click={() => {
-    nowPlayingActive = true;
-  }}
->
+<div class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800" on:click>
   <img class="w-10 h-10 rounded" src={podcast?.coverUrl} width="40" alt="" />
   <div class="flex justify-between px-3 gap-2">
     <IconButton

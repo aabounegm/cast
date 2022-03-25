@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import IconVideoLibrary from '~icons/ic/twotone-video-library';
   import IconFolderShared from '~icons/ic/twotone-folder-shared';
   import { currentlyPlayingEpisode } from '$lib/entities/episode';
@@ -6,6 +7,12 @@
   import MiniPlayer from './mini-player.svelte';
 
   $: hasAudio = $currentlyPlayingEpisode !== null;
+
+  interface BottomBarEvents {
+    'miniplayer-click': void;
+  }
+
+  const dispatch = createEventDispatcher<BottomBarEvents>();
 </script>
 
 <nav
@@ -22,7 +29,7 @@
 >
   <BottomBarNavItem name="Gallery" icon={IconVideoLibrary} href="/" showLabel={!hasAudio} />
   {#if hasAudio}
-    <MiniPlayer />
+    <MiniPlayer on:click={() => dispatch('miniplayer-click')} />
   {/if}
   <BottomBarNavItem
     name="Your Library"
