@@ -8,10 +8,10 @@ import { PlaybackButton } from '../..';
 it('dispatches a `click` event upon clicking', async () => {
   const user = userEvent.setup();
   const clickHandler = jest.fn().mockName('on:click event handler');
-  const playbackButtonWithClickHandler = useLocalVars(svelte`<button on:click={clickHandler} />`, [
-    PlaybackButton,
-    clickHandler,
-  ]);
+  const playbackButtonWithClickHandler = useLocalVars(
+    svelte`<PlaybackButton on:click={clickHandler} />`,
+    [PlaybackButton, clickHandler]
+  );
 
   const { getByRole } = render(playbackButtonWithClickHandler);
   await user.click(getByRole('button'));
