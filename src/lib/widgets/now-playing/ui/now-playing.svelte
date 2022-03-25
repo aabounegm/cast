@@ -5,7 +5,6 @@
   import EpisodeDisplay from './episode-display.svelte';
   import { ToggleTranscript, Transcript } from '$lib/features/read-transcript';
   import type { Episode, Podcast } from '$lib/shared/api';
-  import Transcript from './transcript.svelte';
   import {
     seek,
     currentTime,
