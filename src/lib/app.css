@@ -10,14 +10,12 @@
   @apply duration-150;
 }
 
-html {
-  height: -webkit-fill-available;
+html,
+body {
+  min-height: 100vh;
 }
 
 body {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
   margin: 0;
 
   @apply flex flex-col;
