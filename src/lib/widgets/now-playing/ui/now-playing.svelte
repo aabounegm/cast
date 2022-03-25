@@ -1,12 +1,22 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
-  import { FullControls } from '$lib/features/playback-controls';
   import IconArrowDown from '~icons/ic/round-keyboard-arrow-down';
   import { IconButton } from '$lib/shared/ui';
   import EpisodeDisplay from './episode-display.svelte';
   import { ToggleTranscript, Transcript } from '$lib/features/read-transcript';
   import type { Episode, Podcast } from '$lib/shared/api';
+  import {
+    seek,
+    currentTime,
+    duration,
+    buffered,
+    pause,
+    play,
+    playbackRate as speed,
+  } from '$lib/entities/audio';
   import { createEventDispatcher } from 'svelte';
+  import { LikeButton } from '$lib/features/like-episode';
+  import { PlaybackControls, ScrubbingBar } from '$lib/features/playback-controls';
 
   const dispatch = createEventDispatcher<{ minimize: void }>();
 
@@ -14,6 +24,12 @@
   export let episode: Episode;
 
   let transcriptShown = false;
+
+  const speedValues = [0.5, 1, 1.5, 2];
+  function cyclePlaybackSpeed() {
+    const i = speedValues.indexOf($speed);
+    $speed = speedValues[(i + 1) % speedValues.length];
+  }
 </script>
 
 <div
@@ -29,7 +45,27 @@
         <EpisodeDisplay {episode} {podcast} />
       </div>
     </div>
-    <FullControls class="w-full mt-5" />
+    <ScrubbingBar
+      duration={$duration}
+      position={$currentTime}
+      buffered={$buffered}
+      on:scrub={(e) => {
+        if (e.detail.dragging) pause();
+        else play();
+        seek(e.detail.position);
+      }}
+    />
+    <div class="w-full mt-5 flex justify-around">
+      <button
+        name="Cycle playback speed"
+        class="flex items-center justify-center w-10 h-10 font-semibold text-sm rounded-full hover:bg-slate-600 active:bg-slate-500"
+        on:click={cyclePlaybackSpeed}
+      >
+        {$speed.toFixed(1)}x
+      </button>
+      <PlaybackControls />
+      <LikeButton class="w-10 h-10" iconClass="w-6 h-6" {episode} />
+    </div>
     <div class="w-full mt-4 flex items-center justify-between">
       <ToggleTranscript {transcriptShown} on:click={() => (transcriptShown = !transcriptShown)} />
       <IconButton
