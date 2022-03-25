@@ -8,8 +8,17 @@
   $: hasAudio = $currentlyPlayingEpisode !== null;
 </script>
 
-<div
-  class="absolute bottom-0 flex flex-row items-center justify-around shadow-lg rounded-t-2xl bg-slate-700 w-full h-16 px-3"
+<nav
+  class="
+    fixed left-0 bottom-0
+    flex flex-row items-center justify-around
+    shadow-lg
+    rounded-t-2xl
+    bg-slate-700
+    text-slate-100
+    w-full h-16
+    px-3
+  "
 >
   <BottomBarNavItem
     name="Gallery"
@@ -28,4 +37,18 @@
     showLabel={!hasAudio}
     class="grow py-5"
   />
-</div>
+</nav>
+
+<style>
+  nav {
+    padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Reference: https://webkit.org/blog/7929/designing-websites-for-iphone-x/ */
+  @supports (padding: max(0px)) {
+    nav {
+      padding-left: max(env(safe-area-inset-left), 0.75rem);
+      padding-right: max(env(safe-area-inset-right), 0.75rem);
+    }
+  }
+</style>
