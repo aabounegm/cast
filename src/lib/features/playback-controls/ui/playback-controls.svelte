@@ -7,11 +7,11 @@
   import IconForward30 from '~icons/ic/round-forward-30';
 </script>
 
-<div class="flex flex-row items-center justify-between">
+<div class="flex items-center w-1/2 justify-between">
   <IconButton
     name="Replay the last 10 seconds"
     icon={IconReplay10}
-    class="w-9 h-9"
+    class="w-10 h-10"
     iconClass="w-7 h-7"
     on:click={(e) => {
       e.stopPropagation();
@@ -22,7 +22,7 @@
   <IconButton
     name="Skip forward 30 seconds"
     icon={IconForward30}
-    class="w-9 h-9"
+    class="w-10 h-10"
     iconClass="w-7 h-7"
     on:click={(e) => {
       e.stopPropagation();
