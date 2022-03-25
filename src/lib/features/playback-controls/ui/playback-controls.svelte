@@ -1,6 +1,6 @@
 <script>
   import { paused, move } from '$lib/entities/audio';
-  import { toggleGlobalPlayback } from '..';
+  import { toggleGlobalPlayback } from '../model/toggle-global-playback';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import IconReplay10 from '~icons/ic/round-replay-10';
