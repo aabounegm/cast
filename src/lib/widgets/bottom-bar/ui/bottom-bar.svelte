@@ -11,22 +11,16 @@
 <nav
   class="
     fixed left-0 bottom-0
-    flex flex-row items-center justify-around
+    flex items-center justify-between
     shadow-lg
     rounded-t-2xl
     bg-slate-700
     text-slate-100
     w-full h-16
-    px-3
   "
+  class:has-audio={hasAudio}
 >
-  <BottomBarNavItem
-    name="Gallery"
-    icon={IconVideoLibrary}
-    href="/"
-    showLabel={!hasAudio}
-    class="grow py-5"
-  />
+  <BottomBarNavItem name="Gallery" icon={IconVideoLibrary} href="/" showLabel={!hasAudio} />
   {#if hasAudio}
     <MiniPlayer />
   {/if}
@@ -35,20 +29,24 @@
     icon={IconFolderShared}
     href="/library"
     showLabel={!hasAudio}
-    class="grow py-5"
   />
 </nav>
 
 <style>
   nav {
     padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    --preferred-padding: 1.5rem;
+  }
+
+  nav.has-audio {
+    --preferred-padding: 1.5rem;
   }
 
   /* Reference: https://webkit.org/blog/7929/designing-websites-for-iphone-x/ */
   @supports (padding: max(0px)) {
     nav {
-      padding-left: max(env(safe-area-inset-left), 0.75rem);
-      padding-right: max(env(safe-area-inset-right), 0.75rem);
+      padding-left: max(env(safe-area-inset-left), var(--preferred-padding));
+      padding-right: max(env(safe-area-inset-right), var(--preferred-padding));
     }
   }
 </style>
