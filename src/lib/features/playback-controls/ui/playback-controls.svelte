@@ -5,8 +5,6 @@
   import PlaybackButton from './playback-button.svelte';
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
-
-  export let prominent = false;
 </script>
 
 <div class="flex flex-row items-center justify-between">
@@ -20,7 +18,7 @@
       move(-10);
     }}
   />
-  <PlaybackButton {prominent} playing={!$paused} on:click={() => toggleGlobalPlayback()} />
+  <PlaybackButton prominent playing={!$paused} on:click={() => toggleGlobalPlayback()} />
   <IconButton
     name="Skip forward 30 seconds"
     icon={IconForward30}

@@ -58,13 +58,13 @@
     />
     <div class="w-full mt-5 flex justify-around">
       <button
-        name="Toggle playback speed"
+        name="Cycle playback speed"
         class="flex items-center justify-center w-10 h-10 font-semibold text-sm rounded-full hover:bg-slate-600 active:bg-slate-500"
         on:click={cyclePlaybackSpeed}
       >
         {$speed.toFixed(1)}x
       </button>
-      <PlaybackControls prominent />
+      <PlaybackControls />
       <LikeButton class="w-10 h-10" iconClass="w-6 h-6" {episode} />
     </div>
     <div class="w-full mt-4 flex items-center justify-between">
