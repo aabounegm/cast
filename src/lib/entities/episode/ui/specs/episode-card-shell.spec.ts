@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import type { Episode } from '$lib/shared/api';
@@ -18,13 +18,13 @@ const episodeCardWithContent = useLocalVars(svelte`<EpisodeCardShell episode={sa
 ]);
 
 it('displays the title of the episode', () => {
-  const { getByText } = render(episodeCardWithContent);
+  render(episodeCardWithContent);
 
-  expect(getByText(sampleEpisode.title)).toBeInTheDocument();
+  expect(screen.getByText(sampleEpisode.title)).toBeInTheDocument();
 });
 
 it('displays the duration of the episode', () => {
-  const { getByText } = render(episodeCardWithContent);
+  render(episodeCardWithContent);
 
-  expect(getByText('1:00:00', { exact: false })).toBeInTheDocument();
+  expect(screen.getByText('1:00:00', { exact: false })).toBeInTheDocument();
 });
