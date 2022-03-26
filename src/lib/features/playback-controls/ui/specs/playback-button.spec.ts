@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
@@ -13,17 +13,17 @@ it('dispatches a `click` event upon clicking', async () => {
     [PlaybackButton, clickHandler]
   );
 
-  const { getByRole } = render(playbackButtonWithClickHandler);
-  await user.click(getByRole('button'));
+  render(playbackButtonWithClickHandler);
+  await user.click(screen.getByRole('button'));
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
 
 it('has an accessible name that reflects the playing state', () => {
-  const { getByRole } = render(PlaybackButton, { playing: true });
-  expect(getByRole('button', { name: 'Pause' })).toBeInTheDocument();
+  render(PlaybackButton, { playing: true });
+  expect(screen.getByRole('button', { name: 'Pause' })).toBeInTheDocument();
 });
 
 it('has an accessible name that reflects the paused state', () => {
-  const { getByRole } = render(PlaybackButton, { playing: false });
-  expect(getByRole('button', { name: 'Play' })).toBeInTheDocument();
+  render(PlaybackButton, { playing: false });
+  expect(screen.getByRole('button', { name: 'Play' })).toBeInTheDocument();
 });

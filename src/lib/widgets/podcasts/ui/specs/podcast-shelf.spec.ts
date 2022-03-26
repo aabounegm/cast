@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 
 import { PodcastShelf } from '../..';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
@@ -23,11 +23,9 @@ const podcasts: Podcast[] = [
 ];
 
 it('renders all podcasts', () => {
-  const { getByText } = render(
-    useLocalVars(svelte`<PodcastShelf {podcasts} />`, [PodcastShelf, podcasts])
-  );
+  render(useLocalVars(svelte`<PodcastShelf {podcasts} />`, [PodcastShelf, podcasts]));
 
   for (const podcast of podcasts) {
-    expect(getByText(podcast.title)).toBeInTheDocument();
+    expect(screen.getByText(podcast.title)).toBeInTheDocument();
   }
 });

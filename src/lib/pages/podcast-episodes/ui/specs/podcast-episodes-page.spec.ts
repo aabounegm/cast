@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import type { Podcast } from '$lib/shared/api';
 import { PodcastEpisodesPage } from '../..';
 
@@ -11,7 +11,7 @@ const samplePodcast: Podcast = {
 };
 
 it('contains a link to go back to Podcast Gallery', () => {
-  const { getByRole } = render(PodcastEpisodesPage, { podcast: samplePodcast });
-  const linkBack = getByRole('link', { name: /All podcasts/i });
+  render(PodcastEpisodesPage, { podcast: samplePodcast });
+  const linkBack = screen.getByRole('link', { name: /All podcasts/i });
   expect(linkBack).toHaveAttribute('href', '/');
 });

@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import { getTranscript } from '$lib/entities/episode';
 import type { Episode } from '$lib/shared/api';
 import { Transcript } from '../..';
@@ -22,14 +22,14 @@ it('fetches the transcript on mount', () => {
 
 it('parses the transcript content as Markdown', async () => {
   jest.mocked(getTranscript).mockImplementation(async () => `# ${sampleTranscript}`);
-  const { getByRole } = render(Transcript, { episode: sampleEpisode });
-  await waitFor(() => expect(getByRole('heading', { name: sampleTranscript })).toBeInTheDocument());
+  render(Transcript, { episode: sampleEpisode });
+  await screen.findByRole('heading', { name: sampleTranscript });
 });
 
 it('gracefully handles transcript fetch errors', async () => {
   jest.mocked(getTranscript).mockImplementation(async () => {
     throw new Error();
   });
-  const { getByText } = render(Transcript, { episode: sampleEpisode });
-  await waitFor(() => expect(getByText(/try refreshing/i)).toBeInTheDocument());
+  render(Transcript, { episode: sampleEpisode });
+  await screen.findByText(/try refreshing/i);
 });
