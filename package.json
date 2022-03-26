@@ -55,6 +55,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/svelte": "^3.0.3",
     "@testing-library/user-event": "^14.0.0-beta.11",
+    "@types/dompurify": "^2.3.3",
     "@types/lodash-es": "^4.17.6",
     "@types/marked": "^4.0.2",
     "@types/node": "^17.0.21",
@@ -93,6 +94,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^1.30.7",
     "clsx": "^1.1.1",
+    "dompurify": "^2.3.6",
     "marked": "^4.0.12",
     "svelte-persistent-writable": "^1.1.6"
   }

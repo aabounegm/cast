@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import type { Episode } from '$lib/shared/api';
 import { fetchTranscript } from '../api/fetch-transcript';
 
@@ -8,7 +9,8 @@ export async function getTranscript(id: Episode['id']) {
     return transcripts.get(id) as string;
   }
 
-  const transcript = await fetchTranscript(id);
-  transcripts.set(id, transcript);
-  return transcript;
+  const rawTranscript = await fetchTranscript(id);
+  const sanitizedTranscript = DOMPurify.sanitize(rawTranscript);
+  transcripts.set(id, sanitizedTranscript);
+  return sanitizedTranscript;
 }
