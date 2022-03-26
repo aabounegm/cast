@@ -13,6 +13,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.2
   '@testing-library/svelte': ^3.0.3
   '@testing-library/user-event': ^14.0.0-beta.11
+  '@types/dompurify': ^2.3.3
   '@types/lodash-es': ^4.17.6
   '@types/marked': ^4.0.2
   '@types/node': ^17.0.21
@@ -24,6 +25,7 @@ specifiers:
   babel-preset-vite: ^1.0.4
   clsx: ^1.1.1
   cypress: ^9.5.0
+  dompurify: ^2.3.6
   dotenv: ^16.0.0
   eslint: ^8.10.0
   eslint-config-prettier: ^8.4.0
@@ -54,6 +56,7 @@ specifiers:
 dependencies:
   '@supabase/supabase-js': 1.30.7
   clsx: 1.1.1
+  dompurify: 2.3.6
   marked: 4.0.12
   svelte-persistent-writable: 1.1.6_svelte@3.46.4
 
@@ -63,12 +66,13 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@iconify-json/ic': 1.1.1
   '@sveltejs/adapter-cloudflare': 1.0.0-next.15
-  '@sveltejs/kit': 1.0.0-next.301_svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.303_svelte@3.46.4
   '@testing-library/cypress': 8.0.2_cypress@9.5.0
   '@testing-library/dom': 8.11.3
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/svelte': 3.0.3_svelte@3.46.4
   '@testing-library/user-event': 14.0.0-beta.11_@testing-library+dom@8.11.3
+  '@types/dompurify': 2.3.3
   '@types/lodash-es': 4.17.6
   '@types/marked': 4.0.2
   '@types/node': 17.0.21
@@ -1744,8 +1748,8 @@ packages:
       esbuild: 0.14.23
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.301_svelte@3.46.4:
-    resolution: {integrity: sha512-F/XP1VEu+fpvgY04JekNxAFupccNMKOyXtbox0LwNJvBulL15/Tzy6tf4g+9t2Jy7mprwI3h0ZC9G/nVujRFnQ==}
+  /@sveltejs/kit/1.0.0-next.303_svelte@3.46.4:
+    resolution: {integrity: sha512-WdxDc8OiF1WEd/bEza7CBdzA+3qIcCi1GKBj/gieKX9I3N8iDJt/Cg2POrLo9wQoJ47nZcAd1eOhfr7XEX1aIQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1913,6 +1917,12 @@ packages:
       '@babel/types': 7.17.0
     dev: true
 
+  /@types/dompurify/2.3.3:
+    resolution: {integrity: sha512-nnVQSgRVuZ/843oAfhA25eRSNzUFcBPk/LOiw5gm8mD9/X7CNcbRkQu/OsjCewO8+VIYfPxUnXvPEVGenw14+w==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+    dev: true
+
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
@@ -2005,6 +2015,10 @@ packages:
 
   /@types/throttle-debounce/2.1.0:
     resolution: {integrity: sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==}
+    dev: true
+
+  /@types/trusted-types/2.0.2:
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
   /@types/websocket/1.0.5:
@@ -3166,6 +3180,10 @@ packages:
     dependencies:
       webidl-conversions: 5.0.0
     dev: true
+
+  /dompurify/2.3.6:
+    resolution: {integrity: sha512-OFP2u/3T1R5CEgWCEONuJ1a5+MFKnOYpkywpUSxv/dj1LeBT1erK+JwM7zK0ROy2BRhqVCf0LRw/kHqKuMkVGg==}
+    dev: false
 
   /dotenv/16.0.0:
     resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
