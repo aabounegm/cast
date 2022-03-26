@@ -17,6 +17,12 @@ jest.mock('~icons/ic/round-replay-10', () => ({ default: MockComponent }), { vir
 jest.mock('~icons/ic/round-forward-30', () => ({ default: MockComponent }), { virtual: true });
 jest.mock('~icons/ic/sharp-favorite', () => ({ default: MockComponent }), { virtual: true });
 jest.mock('~icons/ic/twotone-favorite', () => ({ default: MockComponent }), { virtual: true });
+jest.mock('~icons/ic/twotone-subtitles', () => ({ default: MockComponent }), {
+  virtual: true,
+});
+jest.mock('~icons/ic/twotone-subtitles-off', () => ({ default: MockComponent }), {
+  virtual: true,
+});
 jest.mock('~icons/ic/twotone-file-download-done', () => ({ default: MockComponent }), {
   virtual: true,
 });

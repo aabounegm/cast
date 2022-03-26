@@ -13,7 +13,9 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.2
   '@testing-library/svelte': ^3.0.3
   '@testing-library/user-event': ^14.0.0-beta.11
-  '@types/lodash.noop': ^3.0.6
+  '@types/dompurify': ^2.3.3
+  '@types/lodash-es': ^4.17.6
+  '@types/marked': ^4.0.2
   '@types/node': ^17.0.21
   '@typescript-eslint/eslint-plugin': ^5.12.1
   '@typescript-eslint/parser': ^5.12.1
@@ -23,6 +25,7 @@ specifiers:
   babel-preset-vite: ^1.0.4
   clsx: ^1.1.1
   cypress: ^9.5.0
+  dompurify: ^2.3.6
   dotenv: ^16.0.0
   eslint: ^8.10.0
   eslint-config-prettier: ^8.4.0
@@ -32,7 +35,8 @@ specifiers:
   isomorphic-fetch: ^3.0.0
   jest: ^27.5.1
   lint-staged: ^12.3.4
-  lodash.noop: ^3.0.1
+  lodash-es: ^4.17.21
+  marked: ^4.0.12
   npm-run-all: ^4.1.5
   postcss: ^8.4.7
   prettier: ^2.5.1
@@ -52,7 +56,8 @@ specifiers:
 dependencies:
   '@supabase/supabase-js': 1.30.7
   clsx: 1.1.1
-  lodash.noop: 3.0.1
+  dompurify: 2.3.6
+  marked: 4.0.12
   svelte-persistent-writable: 1.1.6_svelte@3.46.4
 
 devDependencies:
@@ -61,13 +66,15 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@iconify-json/ic': 1.1.1
   '@sveltejs/adapter-cloudflare': 1.0.0-next.15
-  '@sveltejs/kit': 1.0.0-next.295_svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.303_svelte@3.46.4
   '@testing-library/cypress': 8.0.2_cypress@9.5.0
   '@testing-library/dom': 8.11.3
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/svelte': 3.0.3_svelte@3.46.4
   '@testing-library/user-event': 14.0.0-beta.11_@testing-library+dom@8.11.3
-  '@types/lodash.noop': 3.0.6
+  '@types/dompurify': 2.3.3
+  '@types/lodash-es': 4.17.6
+  '@types/marked': 4.0.2
   '@types/node': 17.0.21
   '@typescript-eslint/eslint-plugin': 5.12.1_27a0c788acac7d65514027b167e3b3f6
   '@typescript-eslint/parser': 5.12.1_eslint@8.10.0+typescript@4.5.5
@@ -85,6 +92,7 @@ devDependencies:
   isomorphic-fetch: 3.0.0
   jest: 27.5.1_ts-node@10.5.0
   lint-staged: 12.3.4
+  lodash-es: 4.17.21
   npm-run-all: 4.1.5
   postcss: 8.4.7
   prettier: 2.5.1
@@ -1740,8 +1748,8 @@ packages:
       esbuild: 0.14.23
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.295_svelte@3.46.4:
-    resolution: {integrity: sha512-4pO/swXByhU+7bhNikTjh1d4QxAMP9TZ74p7sdPuyJf5cg7Zrfk1nBtaMt0R+8+5j1xfC/XWRcxa3WnhT9bQMA==}
+  /@sveltejs/kit/1.0.0-next.303_svelte@3.46.4:
+    resolution: {integrity: sha512-WdxDc8OiF1WEd/bEza7CBdzA+3qIcCi1GKBj/gieKX9I3N8iDJt/Cg2POrLo9wQoJ47nZcAd1eOhfr7XEX1aIQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1909,6 +1917,12 @@ packages:
       '@babel/types': 7.17.0
     dev: true
 
+  /@types/dompurify/2.3.3:
+    resolution: {integrity: sha512-nnVQSgRVuZ/843oAfhA25eRSNzUFcBPk/LOiw5gm8mD9/X7CNcbRkQu/OsjCewO8+VIYfPxUnXvPEVGenw14+w==}
+    dependencies:
+      '@types/trusted-types': 2.0.2
+    dev: true
+
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
@@ -1942,14 +1956,18 @@ packages:
     resolution: {integrity: sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==}
     dev: true
 
-  /@types/lodash.noop/3.0.6:
-    resolution: {integrity: sha512-cleVuzJRs1YQXkxgnFzo/GlSlXOiD83VZW9oibsm1+gKXF3ioXFzBDZPpwTJCxh9lB/D+zodEvZtqeolhuPKZg==}
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
     dependencies:
-      '@types/lodash': 4.14.179
+      '@types/lodash': 4.14.180
     dev: true
 
-  /@types/lodash/4.14.179:
-    resolution: {integrity: sha512-uwc1x90yCKqGcIOAT6DwOSuxnrAbpkdPsUOZtwrXb4D/6wZs+6qG7QnIawDuZWg0sWpxl+ltIKCaLoMlna678w==}
+  /@types/lodash/4.14.180:
+    resolution: {integrity: sha512-XOKXa1KIxtNXgASAnwj7cnttJxS4fksBRywK/9LzRV5YxrF80BXZIGeQSuoESQ/VkUj30Ae0+YcuHc15wJCB2g==}
+    dev: true
+
+  /@types/marked/4.0.2:
+    resolution: {integrity: sha512-auNrZ/c0w6wsM9DccwVxWHssrMDezHUAXNesdp2RQrCVCyrQbOiSq7yqdJKrUQQpw9VTm7CGYJH2A/YG7jjrjQ==}
     dev: true
 
   /@types/node/14.18.12:
@@ -1997,6 +2015,10 @@ packages:
 
   /@types/throttle-debounce/2.1.0:
     resolution: {integrity: sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==}
+    dev: true
+
+  /@types/trusted-types/2.0.2:
+    resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
     dev: true
 
   /@types/websocket/1.0.5:
@@ -3158,6 +3180,10 @@ packages:
     dependencies:
       webidl-conversions: 5.0.0
     dev: true
+
+  /dompurify/2.3.6:
+    resolution: {integrity: sha512-OFP2u/3T1R5CEgWCEONuJ1a5+MFKnOYpkywpUSxv/dj1LeBT1erK+JwM7zK0ROy2BRhqVCf0LRw/kHqKuMkVGg==}
+    dev: false
 
   /dotenv/16.0.0:
     resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
@@ -5125,6 +5151,10 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
     dev: true
@@ -5132,10 +5162,6 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
-
-  /lodash.noop/3.0.1:
-    resolution: {integrity: sha1-OBiPTWUKOkdCWEObluxFsyYXEzw=}
-    dev: false
 
   /lodash.once/4.1.1:
     resolution: {integrity: sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=}
@@ -5197,6 +5223,12 @@ packages:
     dependencies:
       tmpl: 1.0.5
     dev: true
+
+  /marked/4.0.12:
+    resolution: {integrity: sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: false
 
   /memorystream/0.3.1:
     resolution: {integrity: sha1-htcJCzDORV1j+64S3aUaR93K+bI=}

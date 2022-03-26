@@ -10,14 +10,17 @@
   export let episode: Episode;
 
   const togglePlaying = () => {
-    currentlyPlayingEpisode.set(episode);
     toggleGlobalPlayback(episode.audioUrl);
+    currentlyPlayingEpisode.set(episode);
   };
 </script>
 
 <EpisodeCardShell {episode}>
   <svelte:fragment slot="play">
-    <PlaybackButton playing={!$paused} on:click={togglePlaying} />
+    <PlaybackButton
+      playing={!$paused && $currentlyPlayingEpisode === episode}
+      on:click={togglePlaying}
+    />
   </svelte:fragment>
 
   <svelte:fragment slot="download">

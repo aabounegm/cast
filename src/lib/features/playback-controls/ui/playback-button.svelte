@@ -12,7 +12,7 @@
   icon={playing ? IconPause : IconPlayArrow}
   class={prominent
     ? 'w-14 h-14 bg-gradient-to-br from-violet-500 to-blue-600 hover:from-violet-400 hover:to-blue-500'
-    : 'w-9 h-9'}
-  iconClass={prominent ? 'w-7 h-7' : 'w-7 h-7'}
+    : 'w-8 h-8'}
+  iconClass={prominent ? 'w-7 h-7' : 'w-6 h-6'}
   on:click
 />
