@@ -7,6 +7,7 @@ jest.mock('../../api/fetch-transcript', () => ({
 
 const sampleEpisodeIDforCache = 1;
 const sampleEpisodeIDforError = 2;
+const sampleEpisodeIDforSanitization = 3;
 const sampleTranscript = 'sample text';
 const maliciousTranscript = 'Hello <script>alert("xss")</script>world';
 const sanitizedTranscript = 'Hello world';
@@ -29,7 +30,7 @@ it('rethrows fetching errors', async () => {
 });
 
 it('removes malicious code from transcripts', () => {
-  jest.mocked(fetchTranscript).mockImplementation(async () => maliciousTranscript);
+  jest.mocked(fetchTranscript).mockResolvedValue(maliciousTranscript);
 
-  expect(getTranscript(sampleEpisodeIDforCache)).resolves.toBe(sanitizedTranscript);
+  expect(getTranscript(sampleEpisodeIDforSanitization)).resolves.toBe(sanitizedTranscript);
 });
