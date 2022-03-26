@@ -10,8 +10,8 @@
   export let episode: Episode;
 
   const togglePlaying = () => {
-    currentlyPlayingEpisode.set(episode);
     toggleGlobalPlayback(episode.audioUrl);
+    currentlyPlayingEpisode.set(episode);
   };
 </script>
 
