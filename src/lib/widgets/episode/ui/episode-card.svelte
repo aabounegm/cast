@@ -17,7 +17,10 @@
 
 <EpisodeCardShell {episode}>
   <svelte:fragment slot="play">
-    <PlaybackButton playing={!$paused} on:click={togglePlaying} />
+    <PlaybackButton
+      playing={!$paused && $currentlyPlayingEpisode === episode}
+      on:click={togglePlaying}
+    />
   </svelte:fragment>
 
   <svelte:fragment slot="download">
