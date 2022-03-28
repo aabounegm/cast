@@ -10,12 +10,13 @@
   @apply duration-150;
 }
 
-body,
-#svelte {
-  height: 100vh;
-  width: 100vw;
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  @apply flex flex-col;
 }

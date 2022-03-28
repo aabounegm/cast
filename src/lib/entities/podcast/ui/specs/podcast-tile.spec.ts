@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 
 import { PodcastTile } from '../..';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
@@ -21,16 +21,16 @@ const components = {
 for (const [name, component] of Object.entries(components)) {
   describe(name, () => {
     it('renders the title and the author', () => {
-      const { getByText } = render(component);
+      render(component);
 
-      expect(getByText(podcast.title)).toBeInTheDocument();
-      expect(getByText(podcast.author)).toBeInTheDocument();
+      expect(screen.getByText(podcast.title)).toBeInTheDocument();
+      expect(screen.getByText(podcast.author)).toBeInTheDocument();
     });
 
     it('links to the full page of podcast', () => {
-      const { getByRole } = render(component);
+      render(component);
 
-      expect(getByRole('link').getAttribute('href')).toBe(`/podcasts/${podcast.id}`);
+      expect(screen.getByRole('link')).toHaveAttribute('href', `/podcasts/${podcast.id}`);
     });
   });
 }

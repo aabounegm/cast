@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/await-async-query, testing-library/prefer-screen-queries */
 import supabaseHostname from '../fixtures/supabase-hostname.json';
 import samplePodcastJson from '../fixtures/sample-podcasts.json';
 import type { Podcast } from '../../src/lib/shared/api/types';

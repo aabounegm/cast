@@ -6,13 +6,32 @@
   export { _class as class };
   export let large = false;
   export let podcast: Podcast;
+
+  $: imageSize = large ? 108 : 32;
 </script>
 
 <a
-  class={cx('grid', 'gap-x-4', 'text-slate-100', _class, large && 'large p-2')}
+  class={cx(
+    'grid',
+    'gap-x-4',
+    'rounded-2xl',
+    'items-center',
+    'text-slate-100',
+    'hover:bg-slate-700',
+    'p-2',
+    _class,
+    large && 'large pb-3'
+  )}
   href="/podcasts/{podcast.id}"
 >
-  <img class="rounded-lg aspect-square" class:row-span-2={!large} src={podcast.coverUrl} alt="" />
+  <img
+    class="rounded-lg aspect-square"
+    width={imageSize}
+    height={imageSize}
+    class:row-span-2={!large}
+    src={podcast.coverUrl}
+    alt=""
+  />
   <span class="author font-lato text-xs" class:mt-1={large}>
     {podcast.author}
   </span>
@@ -27,7 +46,7 @@
   }
 
   .large {
-    grid-template: 6.75rem auto 1fr / auto;
+    grid-template: 6.75rem auto 1fr / 6.75rem;
   }
 
   span {
@@ -39,6 +58,10 @@
 
   .large span {
     width: 6.75rem;
+  }
+
+  .large .author {
+    margin-top: 0.5rem;
   }
 
   .large .title {

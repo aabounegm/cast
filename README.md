@@ -82,3 +82,10 @@ pnpm dev
 ## License
 
 The source code of this project is distributed under the terms of the MIT license. [Click here](https://choosealicense.com/licenses/mit/) to learn what that means.
+
+The podcasts are used in the application with kind permission of copyright holders:
+
+- "План Б" by Т—Ж
+- "CaucasTalk" by Andrew & Eli
+
+All rights to these podcasts belong to the owners.

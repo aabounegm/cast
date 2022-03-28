@@ -23,6 +23,6 @@
   {/if}
   <!-- <PodcastShelf title="Trending now" {podcasts} /> -->
   {#if $podcasts}
-    <PodcastList podcasts={$podcasts} />
+    <PodcastList title="All podcasts" podcasts={$podcasts} />
   {/if}
 </div>

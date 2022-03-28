@@ -7,11 +7,13 @@
   export let podcasts: Podcast[];
 </script>
 
-<section class="pl-8 pr-2 pt-8 grid grid-cols-1 gap-4">
+<section>
   {#if title !== undefined}
     <H1 class="pl-8 pt-8">{title}</H1>
   {/if}
-  {#each podcasts as podcast (podcast.id)}
-    <PodcastTile {podcast} />
-  {/each}
+  <div class="pl-6 pr-2 grid grid-cols-1">
+    {#each podcasts as podcast (podcast.id)}
+      <PodcastTile {podcast} />
+    {/each}
+  </div>
 </section>
