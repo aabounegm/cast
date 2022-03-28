@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
-import { SnackbarQueue, snackbar, type SnackbarOptions } from '.';
+import { SnackbarQueue, snackbar, type SnackbarOptions } from '../snackbar';
 
 const firstSnackbar: SnackbarOptions = {
   text: 'Hello',

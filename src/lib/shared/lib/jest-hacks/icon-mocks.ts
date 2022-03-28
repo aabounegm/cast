@@ -26,3 +26,6 @@ jest.mock('~icons/ic/twotone-subtitles-off', () => ({ default: MockComponent }),
 jest.mock('~icons/ic/twotone-file-download-done', () => ({ default: MockComponent }), {
   virtual: true,
 });
+jest.mock('~icons/ic/round-keyboard-arrow-down', () => ({ default: MockComponent }), {
+  virtual: true,
+});

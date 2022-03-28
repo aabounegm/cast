@@ -1,5 +1,4 @@
 import { get } from 'svelte/store';
-
 import { src, duration, currentTime, seek, move, play, pause, paused } from '$lib/entities/audio';
 
 describe('Audio playback API', () => {
