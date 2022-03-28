@@ -1,9 +1,13 @@
 import { get } from 'svelte/store';
-import { src, paused, pause, play } from '../..';
+import { src, duration, currentTime, seek, move, play, pause, paused } from '$lib/entities/audio';
 
 describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
-  const playDefault = () => play(defaultSrc);
+  const defaultDuration = 6.452245;
+  const playDefault = () => {
+    play(defaultSrc);
+    duration.set(defaultDuration);
+  };
 
   it('loads audio', () => {
     playDefault();
@@ -22,21 +26,19 @@ describe('Audio playback API', () => {
   });
 
   it('controls playback current time', () => {
-    // playDefault();
-    // await new Promise((r) => setTimeout(r, 1000));
-    // seek(0.5);
-    // move(2);
-    // expect(get(currentTime)).toEqual(2.5);
-    // pause();
+    playDefault();
+    seek(0.5);
+    move(2);
+    expect(get(currentTime)).toEqual(2.5);
+    pause();
   });
 
   it('sets invalid playback time', () => {
-    // playDefault();
-    // await new Promise((r) => setTimeout(r, 1000));
-    // seek(-1);
-    // expect(get(currentTime)).toEqual(0);
-    // move(100);
-    // expect(get(currentTime)).toEqual(get(duration));
-    // pause();
+    playDefault();
+    seek(-1);
+    expect(get(currentTime)).toEqual(0);
+    move(100);
+    expect(get(currentTime)).toEqual(get(duration));
+    pause();
   });
 });
