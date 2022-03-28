@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { fireEvent, render } from '@testing-library/svelte';
+import { fireEvent, render, screen } from '@testing-library/svelte';
 import { createEvent } from '@testing-library/dom';
 import { noop } from 'lodash-es';
 
@@ -13,7 +13,7 @@ it('closes on the swipe', async () => {
     SwipeDownBar,
     mockCloseHandler,
   ]);
-  const { getByRole } = render(swipeDownBar);
+  render(swipeDownBar);
 
   /**
    * This logic is a mix of Testing Library `createEvent` function and an article
@@ -24,9 +24,9 @@ it('closes on the swipe', async () => {
    * Library's `createEvent` cannot assign the properties to Event entity. That's why the `Object.assign` is used.
    */
   fireEvent(
-    getByRole('button'),
+    screen.getByRole('button'),
     Object.assign(
-      createEvent('pointerdown', getByRole('button'), {
+      createEvent('pointerdown', screen.getByRole('button'), {
         target: {
           setPointerCapture: noop,
         },
@@ -40,29 +40,29 @@ it('closes on the swipe', async () => {
   );
 
   fireEvent(
-    getByRole('button'),
-    Object.assign(createEvent('pointermove', getByRole('button')), {
+    screen.getByRole('button'),
+    Object.assign(createEvent('pointermove', screen.getByRole('button')), {
       clientX: 1,
-      clientY: 102,
+      clientY: 62,
     })
   );
 
   expect(mockCloseHandler).toHaveBeenCalled();
 });
 
-it("doesn't close on small (<100px) swipe", async () => {
+it("doesn't close on small (<60px) swipe", async () => {
   const mockCloseHandler = jest.fn();
 
   const swipeDownBar = useLocalVars(svelte`<SwipeDownBar on:minimize={mockCloseHandler} />`, [
     SwipeDownBar,
     mockCloseHandler,
   ]);
-  const { getByRole } = render(swipeDownBar);
+  render(swipeDownBar);
 
   fireEvent(
-    getByRole('button'),
+    screen.getByRole('button'),
     Object.assign(
-      createEvent('pointerdown', getByRole('button'), {
+      createEvent('pointerdown', screen.getByRole('button'), {
         target: {
           setPointerCapture: noop,
         },
@@ -76,8 +76,8 @@ it("doesn't close on small (<100px) swipe", async () => {
   );
 
   fireEvent(
-    getByRole('button'),
-    Object.assign(createEvent('pointermove', getByRole('button')), {
+    screen.getByRole('button'),
+    Object.assign(createEvent('pointermove', screen.getByRole('button')), {
       clientX: 1,
       clientY: 52,
     })

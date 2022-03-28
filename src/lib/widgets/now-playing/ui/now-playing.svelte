@@ -19,6 +19,7 @@
   import EpisodeDisplay from './episode-display.svelte';
   import { nowPlayingActive } from '../model/now-playing-active';
   import { lockScrollWhileMounted } from '../lib/lock-scroll-while-mounted';
+  import SwipeDownBar from './swipe-down-bar.svelte';
 
   let transcriptShown = false;
 
@@ -54,6 +55,7 @@
           />
         {/if}
         <div class="flex flex-col items-center" class:invisible={transcriptShown}>
+          <SwipeDownBar on:minimize={() => nowPlayingActive.set(false)} />
           <EpisodeDisplay episode={$currentlyPlayingEpisode} />
         </div>
       </div>

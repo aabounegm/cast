@@ -1,4 +1,4 @@
-const PIXEL_THRESHOLD = 100;
+const PIXEL_THRESHOLD = 60;
 
 type SwipeCallbacks = Partial<Record<'left' | 'right' | 'up' | 'down', () => void>>;
 
