@@ -1,9 +1,28 @@
+jest.mock('svelte/store', () => ({
+  ...jest.requireActual('svelte/store'),
+}));
+
 import { get } from 'svelte/store';
-import { src, paused, pause, play } from '..';
+
+jest.mock('$lib/entities/audio', () => ({
+  ...jest.requireActual('$lib/entities/audio'),
+  duration: {
+    subscribe: jest.fn(() => jest.fn()),
+  },
+}));
+
+import { src, duration, currentTime, seek, move, play, pause, paused } from '$lib/entities/audio';
 
 describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
-  const playDefault = () => play(defaultSrc);
+  const defaultDuration = 6.452245;
+  const playDefault = () => {
+    play(defaultSrc);
+    jest.mocked(duration.subscribe).mockImplementation((subscriber) => {
+      subscriber(defaultDuration);
+      return jest.fn();
+    });
+  };
 
   it('loads audio', () => {
     playDefault();
@@ -22,12 +41,13 @@ describe('Audio playback API', () => {
   });
 
   it('controls playback current time', () => {
-    // playDefault();
-    // await new Promise((r) => setTimeout(r, 1000));
-    // seek(0.5);
-    // move(2);
-    // expect(get(currentTime)).toEqual(2.5);
-    // pause();
+    playDefault();
+    // console.log('DD', get(duration));
+    seek(0.5);
+    move(2);
+    // console.log('CT', get(currentTime));
+    expect(get(currentTime)).toEqual(2.5);
+    pause();
   });
 
   it('sets invalid playback time', () => {
