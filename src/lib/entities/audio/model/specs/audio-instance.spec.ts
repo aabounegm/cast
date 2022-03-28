@@ -1,5 +1,5 @@
 import { get } from 'svelte/store';
-import { src, paused, pause, play } from '..';
+import { src, paused, pause, play } from '../..';
 
 describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
