@@ -7,7 +7,7 @@
   import { FullControls } from '$lib/features/playback-controls';
   import { IconButton } from '$lib/shared/ui';
   import EpisodeDisplay from './episode-display.svelte';
-  import { detectSwipe } from '../lib/detect-swipe';
+  import SwipeDownBar from './swipe-down-bar.svelte';
 
   const dispatch = createEventDispatcher<{ minimize: void }>();
 
@@ -17,24 +17,6 @@
   let transcriptShown = false;
 
   let yDiff = 0;
-  const { handlePointerMove, handlePointerStart, handlePointerUp } = detectSwipe({
-    down: () => {
-      dispatch('minimize');
-      setTimeout(() => {
-        yDiff = 0;
-      }, 100);
-    },
-  });
-
-  const handleMove = (e: PointerEvent) => {
-    const difference = handlePointerMove(e);
-    if (!difference || difference.yDiff > 0) return;
-    yDiff = difference.yDiff * -1;
-  };
-  const handleUp = (e: PointerEvent) => {
-    handlePointerUp(e);
-    yDiff = 0;
-  };
 </script>
 
 <div
@@ -45,14 +27,7 @@
     class="relative h-full bg-slate-800 flex flex-col rounded-t-2xl py-10 px-8 items-center"
     style:transform={`translateY(${yDiff}px)`}
   >
-    <div
-      class="absolute top-0 w-full py-3 flex justify-center touch-none"
-      on:pointerdown={handlePointerStart}
-      on:pointermove={handleMove}
-      on:pointerup={handleUp}
-    >
-      <div class="w-14 h-1 rounded-full bg-slate-500 cursor-pointer" />
-    </div>
+    <SwipeDownBar {yDiff} on:minimize={() => dispatch('minimize')} />
 
     <div class="w-full flex flex-col flex-grow items-center relative">
       {#if transcriptShown}
