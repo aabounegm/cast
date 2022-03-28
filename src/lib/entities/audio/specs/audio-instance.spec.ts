@@ -16,13 +16,7 @@ import { src, duration, currentTime, seek, move, play, pause, paused } from '$li
 describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
   const defaultDuration = 6.452245;
-  const playDefault = () => {
-    play(defaultSrc);
-    jest.mocked(duration.subscribe).mockImplementation((subscriber) => {
-      subscriber(defaultDuration);
-      return jest.fn();
-    });
-  };
+  const playDefault = () => play(defaultSrc);
 
   it('loads audio', () => {
     playDefault();
@@ -42,6 +36,10 @@ describe('Audio playback API', () => {
 
   it('controls playback current time', () => {
     playDefault();
+    jest.mocked(duration.subscribe).mockImplementation((subscriber) => {
+      subscriber(defaultDuration);
+      return jest.fn();
+    });
     // console.log('DD', get(duration));
     seek(0.5);
     move(2);
