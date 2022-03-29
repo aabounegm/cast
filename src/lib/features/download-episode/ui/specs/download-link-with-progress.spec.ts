@@ -3,7 +3,7 @@ import { render } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
-import DownloadLink from '../download-link.svelte';
+import DownloadLink from '../download-link-with-progress.svelte';
 
 it('forwards the click event on clicks', async () => {
   const mockClickHandler = jest.fn();
