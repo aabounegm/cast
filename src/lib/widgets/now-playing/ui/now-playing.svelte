@@ -39,6 +39,7 @@
   >
     <div
       class="
+        relative
         panel
         bg-slate-800 text-slate-100
         flex flex-col
@@ -47,6 +48,7 @@
       "
       transition:fly={{ y: 100 }}
     >
+      <SwipeDownBar on:minimize={() => nowPlayingActive.set(false)} />
       <div class="flex flex-col items-center relative mb-5">
         {#if transcriptShown}
           <Transcript
@@ -55,7 +57,6 @@
           />
         {/if}
         <div class="flex flex-col items-center" class:invisible={transcriptShown}>
-          <SwipeDownBar on:minimize={() => nowPlayingActive.set(false)} />
           <EpisodeDisplay episode={$currentlyPlayingEpisode} />
         </div>
       </div>
