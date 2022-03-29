@@ -17,3 +17,4 @@ jobs:
           supabaseUrl: ${{ secrets.VITE_SUPABASE_APP_URL }}
           supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
           codecovToken: ${{ secrets.CODECOV_TOKEN }}
+          lighthouseToken: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

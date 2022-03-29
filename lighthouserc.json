@@ -1,0 +1,18 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "pnpm preview",
+      "startServerReadyPattern": "SvelteKit",
+      "url": ["http://localhost:3000"]
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.5 }]
+      }
+    }
+  }
+}
