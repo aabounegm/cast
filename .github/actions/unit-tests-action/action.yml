@@ -59,9 +59,3 @@ runs:
         # we have already installed all dependencies above
         install: false
         cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-
-    - name: Performance test with Lighthouse 🧪
-      shell: bash
-      run: pnpm test:performance
-      env:
-        LHCI_GITHUB_APP_TOKEN: ${{ inputs.lighthouseToken }}
