@@ -11,9 +11,6 @@ inputs:
   codecovToken:
     description: 'Codecov access key'
     required: true
-  lighthouseToken:
-    description: 'Token for Lighthouse integration with GitHub'
-    required: true
 
 runs:
   using: 'composite'

@@ -1,0 +1,34 @@
+name: Performance testing with Lighthouse
+description: Runs Lighthouse CI and assesses the performance, accessibility, and SEO metrics
+
+inputs:
+  lighthouseToken:
+    description: 'Token for Lighthouse integration with GitHub'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Use pnpm
+      uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 6.28.0
+
+    - name: Cache 📦
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'pnpm'
+
+    - name: Install dependencies, build and start the app 🔧
+      shell: bash
+      run: |
+        pnpm install
+        pnpm build
+        pnpm preview
+
+    - name: Performance test with Lighthouse 🧪
+      shell: bash
+      run: pnpm test:performance
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ inputs.lighthouseToken }}
