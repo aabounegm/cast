@@ -19,5 +19,5 @@ jobs:
       - name: Performance testing with Lighthouse 🧪
         uses: treosh/lighthouse-ci-action@v9
         with:
-          urls: 'https://cast-ui.pages.dev/'
+          urls: 'https://cast-iu.pages.dev/'
           configPath: './lighthouserc.json'
