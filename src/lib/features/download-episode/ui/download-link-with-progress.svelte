@@ -20,7 +20,7 @@
       urls.map(startEpisodeDownload),
       (downloads) => {
         const sum = downloads.reduce((partialSum, a) => partialSum + a, 0);
-        return sum / downloads.length;
+        return Math.floor(sum / downloads.length);
       },
       0
     );
