@@ -19,6 +19,8 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:cypress/recommended
+  - plugin:jest-dom/recommended
+  - plugin:testing-library/dom
   - prettier
 
 plugins:

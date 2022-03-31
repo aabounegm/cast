@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import type { Podcast } from '$lib/shared/api';
@@ -18,14 +18,14 @@ const podcastDisplayWithContent = useLocalVars(svelte`<PodcastDisplay podcast={s
 ]);
 
 it('displays the title and author of the podcast', () => {
-  const { getByText } = render(podcastDisplayWithContent);
+  render(podcastDisplayWithContent);
 
-  expect(getByText(samplePodcast.title)).toBeInTheDocument();
-  expect(getByText(samplePodcast.author)).toBeInTheDocument();
+  expect(screen.getByText(samplePodcast.title)).toBeInTheDocument();
+  expect(screen.getByText(samplePodcast.author)).toBeInTheDocument();
 });
 
 it('displays the amount of episodes', () => {
-  const { getByText } = render(podcastDisplayWithContent);
+  render(podcastDisplayWithContent);
 
-  expect(getByText('0 episodes', { exact: false })).toBeInTheDocument();
+  expect(screen.getByText('0 episodes', { exact: false })).toBeInTheDocument();
 });

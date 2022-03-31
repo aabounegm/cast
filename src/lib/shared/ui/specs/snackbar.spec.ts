@@ -1,6 +1,6 @@
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
-import { SnackbarQueue, snackbar, type SnackbarOptions } from '.';
+import { SnackbarQueue, snackbar, type SnackbarOptions } from '../snackbar';
 
 const firstSnackbar: SnackbarOptions = {
   text: 'Hello',
@@ -19,26 +19,26 @@ jest.spyOn(global, 'setTimeout');
 
 it('adds a snackbar to the queue and displays it', () => {
   snackbar(firstSnackbar);
-  const { getByText } = render(SnackbarQueue);
-  expect(getByText(firstSnackbar.text)).toBeInTheDocument();
+  render(SnackbarQueue);
+  expect(screen.getByText(firstSnackbar.text)).toBeInTheDocument();
 });
 
 it('adds two snackbars to the queue, but only one is displayed', () => {
   snackbar(firstSnackbar);
   snackbar(secondSnackbar);
-  const { queryByText } = render(SnackbarQueue);
-  expect(queryByText(firstSnackbar.text)).toBeInTheDocument();
-  expect(queryByText(secondSnackbar.text)).not.toBeInTheDocument();
+  render(SnackbarQueue);
+  expect(screen.getByText(firstSnackbar.text)).toBeInTheDocument();
+  expect(screen.queryByText(secondSnackbar.text)).not.toBeInTheDocument();
 });
 
 it('removes snackbar from the queue after pressing the button and fires the callback', async () => {
   const user = userEvent.setup({ delay: null });
   snackbar(firstSnackbar);
-  const { getByRole, queryByText } = render(SnackbarQueue);
+  render(SnackbarQueue);
 
-  expect(queryByText(firstSnackbar.text)).toBeInTheDocument();
-  await user.click(getByRole('button', { name: firstSnackbar.buttonText }));
-  expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
+  expect(screen.getByText(firstSnackbar.text)).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: firstSnackbar.buttonText }));
+  expect(screen.queryByText(firstSnackbar.text)).not.toBeInTheDocument();
 
   expect(firstSnackbar.callback).toHaveBeenCalled();
 });
@@ -46,6 +46,6 @@ it('removes snackbar from the queue after pressing the button and fires the call
 it('disappears after 4 seconds of being on the screen', () => {
   snackbar(firstSnackbar);
   jest.advanceTimersByTime(4000);
-  const { queryByText } = render(SnackbarQueue);
-  expect(queryByText(firstSnackbar.text)).not.toBeInTheDocument();
+  render(SnackbarQueue);
+  expect(screen.queryByText(firstSnackbar.text)).not.toBeInTheDocument();
 });

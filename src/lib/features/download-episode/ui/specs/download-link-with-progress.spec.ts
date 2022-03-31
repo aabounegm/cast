@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
@@ -13,8 +13,8 @@ it.skip('forwards the click event on clicks', async () => {
     DownloadLink,
     mockClickHandler,
   ]);
-  const { getByRole } = render(downloadLink);
-  await user.click(getByRole('button'));
+  render(downloadLink);
+  await user.click(screen.getByRole('button'));
 
   expect(mockClickHandler).toHaveBeenCalledTimes(1);
 });

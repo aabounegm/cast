@@ -1,4 +1,4 @@
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('$lib/entities/audio', () => ({
@@ -16,18 +16,18 @@ import { PlaybackControls } from '../..';
 
 it('nudges the global playback position back 10 seconds upon pressing "replay 10s"', async () => {
   const user = userEvent.setup();
-  const { getByRole } = render(PlaybackControls);
+  render(PlaybackControls);
 
-  await user.click(getByRole('button', { name: /Replay/i }));
+  await user.click(screen.getByRole('button', { name: /Replay/i }));
 
   expect(move).toHaveBeenCalledWith(-10);
 });
 
 it('nudges the global playback position forward 30 seconds upon pressing "forward 30s"', async () => {
   const user = userEvent.setup();
-  const { getByRole } = render(PlaybackControls);
+  render(PlaybackControls);
 
-  await user.click(getByRole('button', { name: /Forward/i }));
+  await user.click(screen.getByRole('button', { name: /Forward/i }));
 
   expect(move).toHaveBeenCalledWith(30);
 });
@@ -38,9 +38,9 @@ it('listens to the global playback state to determine the Play button action', a
     return jest.fn();
   });
   const user = userEvent.setup();
-  const { getByRole, rerender } = render(PlaybackControls);
+  const { rerender } = render(PlaybackControls);
 
-  await user.click(getByRole('button', { name: 'Play' }));
+  await user.click(screen.getByRole('button', { name: 'Play' }));
   expect(play).toHaveBeenCalled();
   expect(pause).not.toHaveBeenCalled();
 
@@ -50,6 +50,6 @@ it('listens to the global playback state to determine the Play button action', a
   });
   rerender({});
 
-  await user.click(getByRole('button', { name: 'Pause' }));
+  await user.click(screen.getByRole('button', { name: 'Pause' }));
   expect(pause).toHaveBeenCalled();
 });
