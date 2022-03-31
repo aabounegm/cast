@@ -2,6 +2,7 @@
 
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
+import { handleRequestsWith } from 'worker-request-response';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const cacheName = `cache-${version}`;
@@ -85,3 +86,11 @@ worker.addEventListener('fetch', (event) => {
     );
   }
 });
+
+async function isFilenameInCache(event: MessageEvent<string>): Promise<boolean> {
+  const cache = await caches.open(`offline-${version}`);
+  const cacheKeys = await cache.keys();
+  return cacheKeys.some((request) => request.url.startsWith(event.data));
+}
+
+self.addEventListener('message', handleRequestsWith(isFilenameInCache));
