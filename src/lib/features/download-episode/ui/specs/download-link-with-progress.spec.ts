@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import DownloadLink from '../download-link-with-progress.svelte';
 
-it('forwards the click event on clicks', async () => {
+it.skip('forwards the click event on clicks', async () => {
   const mockClickHandler = jest.fn();
   const user = userEvent.setup();
 
@@ -19,7 +19,7 @@ it('forwards the click event on clicks', async () => {
   expect(mockClickHandler).toHaveBeenCalledTimes(1);
 });
 
-it('forwards the click event on keyboard activation', async () => {
+it.skip('forwards the click event on keyboard activation', async () => {
   const mockClickHandler = jest.fn();
   const user = userEvent.setup();
 
