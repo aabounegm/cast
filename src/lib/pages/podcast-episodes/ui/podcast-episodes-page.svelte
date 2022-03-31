@@ -21,7 +21,7 @@
 <main class="px-6">
   <PodcastDisplay {podcast}>
     <svelte:fragment slot="download-all">
-      <DownloadLinkWithProgress urls={podcast.episodes.map((e) => e.audioUrl)} />
+      <DownloadLinkWithProgress urls={podcast.episodes.map((e) => e.audioUrl)} downloadAll />
     </svelte:fragment>
   </PodcastDisplay>
 
