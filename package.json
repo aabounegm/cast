@@ -98,6 +98,7 @@
     "clsx": "^1.1.1",
     "dompurify": "^2.3.6",
     "marked": "^4.0.12",
-    "svelte-persistent-writable": "^1.1.6"
+    "svelte-persistent-writable": "^1.1.6",
+    "worker-request-response": "^1.0.1"
   }
 }
