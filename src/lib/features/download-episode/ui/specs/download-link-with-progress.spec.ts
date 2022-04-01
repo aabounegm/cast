@@ -1,9 +1,7 @@
-import svelte from 'svelte-inline-compile';
 import { render, screen, act } from '@testing-library/svelte';
 import userEvent from '@testing-library/user-event';
 
 import { writable } from 'svelte/store';
-import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import DownloadLinkWithProgress from '../download-link-with-progress.svelte';
 import { startEpisodeDownload } from '../../lib/download';
 
@@ -24,10 +22,11 @@ it('renders the appropriate component depending on progress', async () => {
   const user = userEvent.setup();
   jest.mocked(startEpisodeDownload).mockReturnValue(progress);
 
-  const downloadLink = useLocalVars(svelte`<DownloadLinkWithProgress urls={['']} />`, [
-    DownloadLinkWithProgress,
-  ]);
-  render(downloadLink);
+  render(DownloadLinkWithProgress, {
+    props: {
+      urls: [''],
+    },
+  });
 
   // For some reason, it needs to be called 4 times to wait for the onMount to complete to work.
   await act();
