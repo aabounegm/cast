@@ -28,13 +28,7 @@ it('renders the appropriate component depending on progress', async () => {
     },
   });
 
-  // For some reason, it needs to be called 4 times to wait for the onMount to complete to work.
-  await act();
-  await act();
-  await act();
-  await act();
-  screen.getByText('Download');
-  await user.click(screen.getByRole('button'));
+  await user.click(await screen.findByRole('button', { name: 'Download' }));
   screen.getByText('Downloading, 0%');
   await act(() => progress.set(99));
   screen.getByText('Downloading, 99%');
