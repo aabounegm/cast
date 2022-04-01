@@ -12,6 +12,12 @@ jest.mock('../../lib/download', () => ({
     .fn()
     .mockName('startEpisodeDownload() from $lib/features/download-episode/lib'),
 }));
+jest.mock('../../lib/check-download-status', () => ({
+  checkDownloadStatus: jest
+    .fn()
+    .mockName('checkDownloadStatus() from $lib/features/download-episode/lib')
+    .mockResolvedValue(false),
+}));
 
 it('renders the appropriate component depending on progress', async () => {
   const progress = writable(0);
@@ -23,6 +29,11 @@ it('renders the appropriate component depending on progress', async () => {
   ]);
   render(downloadLink);
 
+  // For some reason, it needs to be called 4 times to wait for the onMount to complete to work.
+  await act();
+  await act();
+  await act();
+  await act();
   screen.getByText('Download');
   await user.click(screen.getByRole('button'));
   screen.getByText('Downloading, 0%');

@@ -29,6 +29,8 @@ const config: Config.InitialOptions = {
       $lib: './src/lib',
     }),
     '^clsx$': '<rootDir>/src/lib/shared/lib/jest-hacks/clsx.jest.js',
+    '^worker-request-response$':
+      '<rootDir>/src/lib/shared/lib/jest-hacks/worker-request-response.jest.js',
     'lodash-es': 'lodash',
   },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
