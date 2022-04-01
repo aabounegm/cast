@@ -4,23 +4,12 @@
 
 <script lang="ts">
   import { PodcastEpisodesPage } from '$lib/pages/podcast-episodes';
+  import { addPodcastToStore } from '$lib/entities/podcast';
   import type { Podcast } from '$lib/shared/api';
-  import { podcasts as podcastStore } from '$lib/entities/podcast';
 
-  export let podcast: Podcast | undefined;
+  export let podcast: Podcast;
 
-  if (podcast) {
-    podcastStore.update((podcasts) => {
-      if (!podcasts.some((p) => p.id === podcast!.id)) {
-        podcasts.push(podcast!);
-      }
-      return podcasts;
-    });
-  }
+  addPodcastToStore(podcast);
 </script>
 
-{#if podcast !== undefined}
-  <PodcastEpisodesPage {podcast} />
-{:else}
-  Invalid URL parameter
-{/if}
+<PodcastEpisodesPage {podcast} />
