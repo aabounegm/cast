@@ -12,7 +12,7 @@ specifiers:
   '@testing-library/dom': ^8.12.0
   '@testing-library/jest-dom': ^5.16.3
   '@testing-library/svelte': ^3.1.0
-  '@testing-library/user-event': ^14.0.3
+  '@testing-library/user-event': ^14.0.4
   '@types/dompurify': ^2.3.3
   '@types/lodash-es': ^4.17.6
   '@types/marked': ^4.0.3
@@ -54,7 +54,7 @@ specifiers:
   tslib: ^2.3.1
   typescript: ^4.6.3
   unplugin-icons: ^0.13.4
-  worker-request-response: ^1.0.1
+  worker-request-response: ^1.0.3
 
 dependencies:
   '@supabase/supabase-js': 1.33.2
@@ -62,7 +62,7 @@ dependencies:
   dompurify: 2.3.6
   marked: 4.0.12
   svelte-persistent-writable: 1.1.6_svelte@3.46.6
-  worker-request-response: 1.0.1
+  worker-request-response: 1.0.3
 
 devDependencies:
   '@babel/core': 7.17.8
@@ -75,7 +75,7 @@ devDependencies:
   '@testing-library/dom': 8.12.0
   '@testing-library/jest-dom': 5.16.3
   '@testing-library/svelte': 3.1.0_svelte@3.46.6
-  '@testing-library/user-event': 14.0.3_@testing-library+dom@8.12.0
+  '@testing-library/user-event': 14.0.4_@testing-library+dom@8.12.0
   '@types/dompurify': 2.3.3
   '@types/lodash-es': 4.17.6
   '@types/marked': 4.0.3
@@ -1865,8 +1865,8 @@ packages:
       svelte: 3.46.6
     dev: true
 
-  /@testing-library/user-event/14.0.3_@testing-library+dom@8.12.0:
-    resolution: {integrity: sha512-zIgBG5CxfXbMsm4wBS6iQC3TBNMZk16O25i4shS9MM+eSG7PZHrsBF6LFIesUkepkZ3QKKgstB2/Nola6nvy4A==}
+  /@testing-library/user-event/14.0.4_@testing-library+dom@8.12.0:
+    resolution: {integrity: sha512-VBZe5lcUsmrQyOwIFvqOxLBoaTw1/Qy4Ek+VgmFYs719bs2SxUp42vbsb7ATlQDkHdj4OIQlucfpwxe5WoG1jA==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
@@ -2643,7 +2643,7 @@ packages:
     engines: {node: '>=6.14.2'}
     requiresBuild: true
     dependencies:
-      node-gyp-build: 4.3.0
+      node-gyp-build: 4.4.0
     dev: false
 
   /cachedir/2.3.0:
@@ -5399,8 +5399,8 @@ packages:
     dependencies:
       whatwg-url: 5.0.0
 
-  /node-gyp-build/4.3.0:
-    resolution: {integrity: sha512-iWjXZvmboq0ja1pUGULQBexmxq8CV4xBhX7VDOTbL7ZR4FOowwY/VOtRxBN/yKxmdGoIp4j5ysNT4u3S2pDQ3Q==}
+  /node-gyp-build/4.4.0:
+    resolution: {integrity: sha512-amJnQCcgtRVw9SvoebO3BKGESClrfXGCUTX9hSn1OuGQTQBOZmVd0Z0OlecpuRksKvbsUqALE8jls/ErClAPuQ==}
     hasBin: true
     dev: false
 
@@ -6837,7 +6837,7 @@ packages:
     engines: {node: '>=6.14.2'}
     requiresBuild: true
     dependencies:
-      node-gyp-build: 4.3.0
+      node-gyp-build: 4.4.0
     dev: false
 
   /util-deprecate/1.0.2:
@@ -7013,8 +7013,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /worker-request-response/1.0.1:
-    resolution: {integrity: sha512-xOG/0I+ypEnOc0IuPvEOfRXENR+9u2nXov3t9HcyKq2yEuveKOZdEk5jV4MVsyOZ8SwSlUtJKfU/Ybz+jLIwXw==}
+  /worker-request-response/1.0.3:
+    resolution: {integrity: sha512-aT4zFx6R/Iw37J6GandUUQkdNxd+695rRcSoe3hYN7clkIfmjIV220fl8i3Fn7Y/hwx6IE2k9I/2tOAg/5yZ9A==}
     dev: false
 
   /worktop/0.8.0-next.12:
