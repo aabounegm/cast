@@ -31,7 +31,7 @@
 
   onMount(async () => {
     const statuses = await Promise.all(urls.map(checkDownloadStatus));
-    isDownloaded = statuses.reduce((a, b) => a && b, true);
+    isDownloaded = statuses.every((downloaded) => downloaded);
   });
 </script>
 
