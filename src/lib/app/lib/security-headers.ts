@@ -6,7 +6,6 @@ const securityHeaders = new Map([
   ['X-Frame-Options', 'SAMEORIGIN'],
   ['X-Content-Type-Options', 'nosniff'],
   ['Referrer-Policy', 'no-referrer'],
-  ['Content-Security-Policy', "script-src 'self'; frame-ancestors 'none';"],
   ['Strict-Transport-Security', 'max-age=31536000; includeSubDomains'],
 ]);
 
