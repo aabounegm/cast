@@ -36,6 +36,7 @@ specifiers:
   husky: ^7.0.4
   isomorphic-fetch: ^3.0.0
   jest: ^27.5.1
+  jest-mock-fetch: ^2.0.5
   lint-staged: ^12.3.7
   lodash-es: ^4.17.21
   marked: ^4.0.12
@@ -54,6 +55,7 @@ specifiers:
   tslib: ^2.3.1
   typescript: ^4.6.3
   unplugin-icons: ^0.13.4
+  web-streams-polyfill: ^3.2.0
   worker-request-response: ^1.0.3
 
 dependencies:
@@ -97,6 +99,7 @@ devDependencies:
   husky: 7.0.4
   isomorphic-fetch: 3.0.0
   jest: 27.5.1_ts-node@10.7.0
+  jest-mock-fetch: 2.0.5
   lint-staged: 12.3.7
   lodash-es: 4.17.21
   npm-run-all: 4.1.5
@@ -113,6 +116,7 @@ devDependencies:
   tslib: 2.3.1
   typescript: 4.6.3
   unplugin-icons: 0.13.4
+  web-streams-polyfill: 3.2.0
 
 packages:
 
@@ -4705,6 +4709,16 @@ packages:
       stack-utils: 2.0.5
     dev: true
 
+  /jest-mock-fetch/2.0.5:
+    resolution: {integrity: sha512-SqjzvjLgehVvrhweq9r2pLxlz3ZwPC2p14yTZFxy+bejE+jDgpV+0aw/oysP088wlFbzEl3TRy0gWIYY25vVEA==}
+    dependencies:
+      jest-mock-promise: 2.0.2
+    dev: true
+
+  /jest-mock-promise/2.0.2:
+    resolution: {integrity: sha512-JD5zcuoagmSJ+Gb05iD8o+Ze/viWLzI7QnrVY3Q8FyDVGUH5aXxZON+u7S9ouAt59sLNR97dSMWGezfTkkb5hg==}
+    dev: true
+
   /jest-mock/27.5.1:
     resolution: {integrity: sha512-K4jKbY1d4ENhbrG2zuPWaQBvDly+iZ2yAW+T1fATN78hc0sInwn7wZB8XtlNnvHug5RMwV897Xm4LqmPM4e2Og==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -6923,6 +6937,11 @@ packages:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
     dependencies:
       makeerror: 1.0.12
+    dev: true
+
+  /web-streams-polyfill/3.2.0:
+    resolution: {integrity: sha512-EqPmREeOzttaLRm5HS7io98goBgZ7IVz79aDvqjD0kYXLtFZTc0T/U6wHTPKyIjb+MdN7DFIIX6hgdBEpWmfPA==}
+    engines: {node: '>= 8'}
     dev: true
 
   /webidl-conversions/3.0.1:

@@ -1,28 +1,35 @@
+import fetch from 'jest-mock-fetch';
 import { get } from 'svelte/store';
+import { waitFor } from '@testing-library/svelte';
+import { ReadableStream } from 'web-streams-polyfill/ponyfill';
 import { startEpisodeDownload } from '../download';
 
-jest.useFakeTimers();
-jest.spyOn(global, 'setTimeout');
+afterEach(fetch.reset);
+const exampleUrl = 'https://example.com/';
 
-const mockFetchAndWatchProgress = jest
-  .fn()
-  .mockName('fetchAndWatchProgress() from $lib/features/download-episode/lib')
-  .mockImplementation(async (url, store) => {
-    store.set(0);
-    jest.advanceTimersByTime(1000);
-    store.set(100);
+it('constructs the correct URL (appends ?download=true)', () => {
+  startEpisodeDownload(exampleUrl);
+  expect(fetch).toHaveBeenCalledWith(`${exampleUrl}?download=true`);
+});
+
+it('watches the download progress', async () => {
+  const sampleResponseBytes = [1, 2, 3];
+  const store = startEpisodeDownload(exampleUrl);
+  let streamController!: ReadableStreamDefaultController<Uint8Array>;
+
+  fetch.mockResponse({
+    body: new ReadableStream<Uint8Array>({
+      start(controller) {
+        streamController = controller;
+      },
+    }),
+    headers: new Headers({
+      'Content-Length': sampleResponseBytes.length.toString(),
+    }),
   });
 
-jest.mock('../download', () => ({
-  ...jest.requireActual('../download'),
-  fetchAndWatchProgress: () => mockFetchAndWatchProgress,
-}));
-
-it.skip('starts downloading episodes and watches progress', async () => {
-  const exampleUrl = 'https://example.com';
-  const store = startEpisodeDownload(exampleUrl);
-  expect(mockFetchAndWatchProgress).toHaveBeenCalledWith(`${exampleUrl}?download=true`, store);
   expect(get(store)).toBe(0);
-  jest.advanceTimersByTime(1200);
-  expect(get(store)).toBe(1000);
+  streamController.enqueue(new Uint8Array(sampleResponseBytes));
+  streamController.close();
+  await waitFor(() => expect(get(store)).toBe(100));
 });

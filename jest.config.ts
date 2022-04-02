@@ -38,6 +38,7 @@ const config: Config.InitialOptions = {
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect',
     '<rootDir>/src/lib/shared/lib/jest-hacks/icon-mocks.ts',
+    '<rootDir>/src/lib/shared/lib/jest-hacks/fetch-mock.ts',
   ],
   testEnvironment: 'jsdom',
 };
