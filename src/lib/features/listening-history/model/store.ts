@@ -1,5 +1,5 @@
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
-import { supabaseClient } from '$lib/shared/api';
+import { supabaseClient, type Episode } from '$lib/shared/api';
 import { user } from '$lib/entities/user';
 import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writable';
 import { get } from 'svelte/store';
@@ -28,7 +28,7 @@ export const listeningHistory = persistentWritable<number[]>([], {
  *
  * @param podcastId {string} – an id to add to history
  */
-export const addToLocalListeningHistory = (podcastId: number) => {
+const addToLocalListeningHistory = (podcastId: number) => {
   listeningHistory.update((history) => {
     return [podcastId, ...history.filter((id) => id !== podcastId)].slice(0, 6);
   });
@@ -37,7 +37,7 @@ export const addToLocalListeningHistory = (podcastId: number) => {
 /**
  * Function that adds a podcast id into `history` SB table.
  */
-export const addToCloudListeningHistory = async (podcastId: number) => {
+const addToCloudListeningHistory = async (podcastId: number) => {
   if (!get(user)) return;
   await supabaseClient.from('history').insert([
     {
@@ -47,10 +47,12 @@ export const addToCloudListeningHistory = async (podcastId: number) => {
   ]);
 };
 
-currentlyPlayingEpisode.subscribe(async ($episode) => {
-  if ($episode !== null) {
-    const id = $episode.podcastID;
-    addToLocalListeningHistory(id);
-    addToCloudListeningHistory(id);
-  }
+export const addToListeningHistory = (episode: Episode) => {
+  const id = episode.podcastID;
+  addToLocalListeningHistory(id);
+  addToCloudListeningHistory(id);
+};
+
+currentlyPlayingEpisode.subscribe(($episode) => {
+  if ($episode !== null) addToListeningHistory($episode);
 });
