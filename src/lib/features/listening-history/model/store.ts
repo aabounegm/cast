@@ -6,7 +6,11 @@ import { get } from 'svelte/store';
 
 user.subscribe(async ($user) => {
   if (!$user) return;
-  const hist = await supabaseClient.from('history').select('podcast_id').eq('user_id', $user.id);
+  const hist = await supabaseClient
+    .from('history')
+    .select('podcast_id')
+    .order('created_at', { ascending: false })
+    .eq('user_id', $user.id);
   const ids = hist.data?.map((e) => e.podcast_id);
   listeningHistory.set(ids ?? []);
 });
