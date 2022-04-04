@@ -1,4 +1,5 @@
 export {
-  addToLocalListeningHistory as addToListeningHistory,
+  addToLocalListeningHistory,
+  addToCloudListeningHistory,
   listeningHistory,
 } from './model/store';
