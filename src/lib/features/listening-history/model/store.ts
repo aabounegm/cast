@@ -35,19 +35,14 @@ export const addToLocalListeningHistory = (podcastId: number) => {
 };
 
 /**
- * Function that add a row into history SB table.
- *
- * @param podcastId {string} – an id to add to history
+ * Function that adds a podcast id into `history` SB table.
  */
 export const addToCloudListeningHistory = async (podcastId: number) => {
-  const u = get(user);
-  if (!u) return;
+  if (!get(user)) return;
   await supabaseClient.from('history').insert([
     {
       // eslint-disable-next-line camelcase
       podcast_id: podcastId,
-      // eslint-disable-next-line camelcase
-      user_id: u.id,
     },
   ]);
 };
