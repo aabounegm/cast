@@ -30,6 +30,8 @@
   }
 
   onMount(lockScrollWhileMounted);
+
+  let yDiff = 0;
 </script>
 
 {#if $currentlyPlayingEpisode !== null}
@@ -47,8 +49,15 @@
         py-6 px-8
       "
       transition:fly={{ y: 100 }}
+      style:transform={`translateY(${yDiff}px)`}
     >
-      <SwipeDownBar on:minimize={() => nowPlayingActive.set(false)} />
+      <SwipeDownBar
+        on:minimize={() => nowPlayingActive.set(false)}
+        on:move={(e) => {
+          yDiff = e.detail;
+        }}
+      />
+
       <div class="flex flex-col items-center relative mb-5">
         {#if transcriptShown}
           <Transcript
