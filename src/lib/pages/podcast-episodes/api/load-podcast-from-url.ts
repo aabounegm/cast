@@ -3,7 +3,12 @@ import { podcastGet } from '$lib/entities/podcast';
 
 export const loadPodcastFromURL: Load = async ({ params }) => {
   try {
-    const podcast = await podcastGet(parseInt(params.id, 10));
+    const integerID = parseInt(params.id, 10);
+    if (isNaN(integerID)) {
+      throw integerID;
+    }
+
+    const podcast = await podcastGet(integerID);
     if (podcast === null) {
       return {
         status: 500,
