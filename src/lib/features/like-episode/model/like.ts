@@ -1,39 +1,48 @@
-import type { Episode } from '$lib/shared/api';
+import { supabaseClient, type Episode } from '$lib/shared/api';
 import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
+import { user } from '$lib/entities/user';
+import { get } from 'svelte/store';
+
+user.subscribe(async ($user) => {
+  if (!$user) return;
+  const hist = await supabaseClient
+    .from('favourites')
+    .select('episode_id')
+    .order('created_at', { ascending: false })
+    .eq('user_id', $user.id);
+  const ids = hist.data?.map((e) => e.episode_id);
+  likesStore.set(new Set(ids ?? []));
+});
 
 /**
  * The store containing set of episodes liked by the current user.
  */
-export const likesStore = persistentWritable(new Map<Episode['id'], Episode>(), {
+export const likesStore = persistentWritable(new Set<number>(), {
   storage: localStorageAdapter('likes', {
-    serialize(likes: Map<Episode['id'], Episode>) {
-      const episodes: Episode[] = Array.from(likes.values());
-      return JSON.stringify(episodes);
+    serialize(likes: Set<number>) {
+      return JSON.stringify([...likes]);
     },
     deserialize(serialized: string) {
-      const episodes: Episode[] = JSON.parse(serialized);
-      return new Map(episodes.map((episode) => [episode.id, episode]));
+      const ids: number[] = JSON.parse(serialized);
+      return new Set(ids);
     },
   }),
 });
 
-/**
- * Register that the user liked the given episode.
- * @param episode The id of the episode to be liked.
- */
-export function addLike(episode: Episode) {
-  likesStore.update((likes) => likes.set(episode.id, episode));
+async function addCloudLike(episodeId: number) {
+  if (!get(user)) return;
+  await supabaseClient.from('favourites').insert([
+    {
+      // eslint-disable-next-line camelcase
+      episode_id: episodeId,
+    },
+  ]);
 }
 
-/**
- * Remove the like for the given episode.
- * @param episode The id of the episode whose like is to be removed.
- */
-export function removeLike(episode: Episode) {
-  likesStore.update((likes) => {
-    likes.delete(episode.id);
-    return likes;
-  });
+async function deleteCloudLike(episodeId: number) {
+  const u = get(user);
+  if (!u) return;
+  await supabaseClient.from('favourites').delete().eq('user_id', u.id).eq('episode_id', episodeId);
 }
 
 /**
@@ -46,8 +55,10 @@ export function toggleLike(like: Episode) {
   likesStore.update((likes) => {
     if (likes.has(id)) {
       likes.delete(id);
+      deleteCloudLike(id);
     } else {
-      likes.set(id, like);
+      likes.add(id);
+      addCloudLike(id);
     }
     return likes;
   });
