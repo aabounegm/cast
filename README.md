@@ -37,12 +37,12 @@ The quality of this application and its codebase is secured with these awesome t
 - [x] [Husky](https://typicode.github.io/husky) installs Git hooks to run static checkers before each commit
 - [x] [Jest](https://jestjs.io/) helps to test each unit in isolation
 - [x] [Cypress](https://www.cypress.io/) helps to test the application end-to-end
-- [ ] [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) continously measures application performance
+- [x] [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) continously measures application performance
 - [x] [GitHub Actions](https://github.com/features/actions) run each pull request against a CI pipeline
 - [x] [Cloudflare Pages](https://pages.cloudflare.com/) automatically deploy code for `main` and pull requests
 - [x] [UptimeRobot](https://uptimerobot.com/) ensures the app is up and running
 - [x] [Codecov](https://codecov.io/) sets a reliable baseline for code coverage
-- [ ] OWASP Web Security Checklist ensures the application's security
+- [x] [OWASP Top Ten](https://owasp.org/www-project-top-ten/) provides a security baseline that we follow
 
 ## Running locally
 
@@ -85,7 +85,7 @@ The source code of this project is distributed under the terms of the MIT licens
 
 The podcasts are used in the application with kind permission of copyright holders:
 
-- "План Б" by Т—Ж
-- "CaucasTalk" by Andrew & Eli
+- ["План Б"](https://journal.tinkoff.ru/podcast-plan-b/) by Т—Ж
+- ["CaucasTalk"](http://caucastalk.com/) by Andrew & Eli
 
 All rights to these podcasts belong to the owners.
