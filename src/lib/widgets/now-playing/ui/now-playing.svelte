@@ -19,6 +19,7 @@
   import EpisodeDisplay from './episode-display.svelte';
   import { nowPlayingActive } from '../model/now-playing-active';
   import { lockScrollWhileMounted } from '../lib/lock-scroll-while-mounted';
+  import SwipeDownBar from './swipe-down-bar.svelte';
 
   let transcriptShown = false;
 
@@ -29,6 +30,8 @@
   }
 
   onMount(lockScrollWhileMounted);
+
+  let yDiff = 0;
 </script>
 
 {#if $currentlyPlayingEpisode !== null}
@@ -38,6 +41,7 @@
   >
     <div
       class="
+        relative
         panel
         bg-slate-800 text-slate-100
         flex flex-col
@@ -45,7 +49,15 @@
         py-6 px-8
       "
       transition:fly={{ y: 100 }}
+      style:transform={`translateY(${yDiff}px)`}
     >
+      <SwipeDownBar
+        on:minimize={() => nowPlayingActive.set(false)}
+        on:move={(e) => {
+          yDiff = e.detail;
+        }}
+      />
+
       <div class="flex flex-col items-center relative mb-5">
         {#if transcriptShown}
           <Transcript
