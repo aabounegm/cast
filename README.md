@@ -4,6 +4,7 @@
 
 [![Run tests on `main` push](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml)
 [![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m790750732-019a64d92e80fde508817b7c)](https://stats.uptimerobot.com/NnXDYFZ5zq)
+[![codecov](https://codecov.io/gh/aabounegm/cast/branch/main/graph/badge.svg?token=W8C03FREO5)](https://codecov.io/gh/aabounegm/cast)
 
 ## Features
 
@@ -36,11 +37,12 @@ The quality of this application and its codebase is secured with these awesome t
 - [x] [Husky](https://typicode.github.io/husky) installs Git hooks to run static checkers before each commit
 - [x] [Jest](https://jestjs.io/) helps to test each unit in isolation
 - [x] [Cypress](https://www.cypress.io/) helps to test the application end-to-end
-- [ ] [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) continously measures application performance
+- [x] [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) continously measures application performance
 - [x] [GitHub Actions](https://github.com/features/actions) run each pull request against a CI pipeline
 - [x] [Cloudflare Pages](https://pages.cloudflare.com/) automatically deploy code for `main` and pull requests
 - [x] [UptimeRobot](https://uptimerobot.com/) ensures the app is up and running
-- [ ] OWASP Web Security Checklist ensures the application's security
+- [x] [Codecov](https://codecov.io/) sets a reliable baseline for code coverage
+- [x] [OWASP Top Ten](https://owasp.org/www-project-top-ten/) provides a security baseline that we follow
 
 ## Running locally
 
@@ -80,3 +82,10 @@ pnpm dev
 ## License
 
 The source code of this project is distributed under the terms of the MIT license. [Click here](https://choosealicense.com/licenses/mit/) to learn what that means.
+
+The podcasts are used in the application with kind permission of copyright holders:
+
+- ["План Б"](https://journal.tinkoff.ru/podcast-plan-b/) by Т—Ж
+- ["CaucasTalk"](http://caucastalk.com/) by Andrew & Eli
+
+All rights to these podcasts belong to the owners.

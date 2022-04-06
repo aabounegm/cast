@@ -1,5 +1,5 @@
 import svelte from 'svelte-inline-compile';
-import { render } from '@testing-library/svelte';
+import { render, screen } from '@testing-library/svelte';
 
 import { IconButton } from '..';
 import { useLocalVars } from '$lib/shared/lib/jest-hacks';
@@ -19,7 +19,7 @@ it('has an accessible name', () => {
     svelte`<IconButton icon={sampleIcon} name={sampleName} />`,
     [IconButton, sampleIcon, sampleName]
   );
-  const { getByRole } = render(iconButtonWithName);
+  render(iconButtonWithName);
 
-  expect(getByRole('button', { name: sampleName })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: sampleName })).toBeInTheDocument();
 });

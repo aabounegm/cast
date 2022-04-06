@@ -19,7 +19,7 @@ function mapDirectories(dirMapping: Record<string, string>) {
 
 const config: Config.InitialOptions = {
   verbose: true,
-
+  collectCoverageFrom: ['src/**/*.{ts,svelte}', '!**.d.ts'],
   transform: {
     [extensions.jsAndTs]: 'babel-jest',
     [extensions.svelte]: ['svelte-jester/dist/transformer.cjs', { preprocess: true }],
@@ -29,9 +29,15 @@ const config: Config.InitialOptions = {
       $lib: './src/lib',
     }),
     '^clsx$': '<rootDir>/src/lib/shared/lib/jest-hacks/clsx.jest.js',
+    'lodash-es': 'lodash',
   },
   moduleFileExtensions: ['js', 'ts', 'svelte'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  setupFiles: ['dotenv/config', 'isomorphic-fetch/fetch-npm-node'],
+  setupFilesAfterEnv: [
+    'jest-extended/all',
+    '@testing-library/jest-dom/extend-expect',
+    '<rootDir>/src/lib/shared/lib/jest-hacks/icon-mocks.ts',
+  ],
   testEnvironment: 'jsdom',
 };
 

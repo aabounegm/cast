@@ -7,15 +7,18 @@
   import { toggleLike, likesStore } from '../model/like';
 
   export let episode: Episode;
+  let _class = 'w-6 h-6';
+  export { _class as class };
+  export let iconClass = 'w-4 h-4';
 
   $: liked = $likesStore.has(episode.id);
 </script>
 
 <IconButton
   name={liked ? 'Remove the like' : 'Like this episode'}
-  class={clsx('w-6 h-6', liked && 'text-pink-500')}
+  class={clsx(_class, liked && 'text-pink-500')}
   icon={liked ? IconFavorite : IconTwoToneFavorite}
   aria-pressed={liked}
   on:click={() => toggleLike(episode)}
-  iconClass="w-4 h-4"
+  {iconClass}
 />

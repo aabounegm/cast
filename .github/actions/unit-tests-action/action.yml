@@ -1,4 +1,5 @@
 name: Ensure code quality (testing, linting)
+description: Performs linting with ESLint, unit testing with Jest and E2E testing with Cypress
 
 inputs:
   supabaseUrl:
@@ -6,6 +7,9 @@ inputs:
     required: true
   supabaseKey:
     description: 'Supabase access key'
+    required: true
+  codecovToken:
+    description: 'Codecov access key'
     required: true
 
 runs:
@@ -32,13 +36,22 @@ runs:
 
     - name: Run unit tests 🧪
       shell: bash
-      run: pnpm run test:unit -- --ci
+      run: pnpm run test:unit -- --ci --coverage
+      env:
+        VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}
+
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@v2.1.0
+      with:
+        token: ${{ inputs.codecovToken }}
+        fail_ci_if_error: true
 
     - name: Run Cypress E2E tests 🧪
       uses: cypress-io/github-action@v2
       env:
-        VITE_SUPABASE_URL: ${{ inputs.supabaseUrl }}
-        VITE_SUPABASE_KEY: ${{ inputs.supabaseKey }}
+        VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}
       with:
         build: pnpm run build
         start: pnpm run preview

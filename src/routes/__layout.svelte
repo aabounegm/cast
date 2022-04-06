@@ -1,15 +1,17 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
-  import IconVideoLibrary from '~icons/ic/twotone-video-library';
-  import IconFolderShared from '~icons/ic/twotone-folder-shared';
+  import { BottomBar } from '$lib/widgets/bottom-bar';
+  import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
+  import { SnackbarQueue } from '$lib/shared/ui/snackbar';
+  import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
-  import { FullControls } from '$lib/features/playback-controls';
-  import { IconButton } from '$lib/shared/ui';
+  import '$lib/app/global-styles.css';
 
   // Svelte can't handle its own type conversion with TypeScript
   const bufferedNative = buffered as unknown as Writable<TimeRanges>;
 
-  import '$lib/app.css';
+  onMount(trackAuthStatus);
 </script>
 
 <audio
@@ -20,13 +22,24 @@
   bind:playbackRate={$playbackRate}
   bind:buffered={$bufferedNative}
 />
-<main class="relative margin-auto h-full w-full max-w-md bg-slate-800 text-white">
+
+<main class="flex-1 relative margin-auto min-h-full w-full bg-slate-800 text-slate-100">
   <slot />
-  <div
-    class="absolute bottom-0 flex flex-row items-center shadow-lg rounded-t-xl bg-slate-700 w-max max-w-md"
-  >
-    <IconButton name="Podcast Gallery" icon={IconVideoLibrary} />
-    <FullControls />
-    <IconButton name="Your Library" icon={IconFolderShared} href="/library" />
-  </div>
 </main>
+
+{#if $nowPlayingActive}
+  <NowPlaying />
+{:else}
+  <BottomBar on:miniplayer-click={() => nowPlayingActive.set(true)} />
+{/if}
+
+<SnackbarQueue />
+
+<style>
+  main {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: 5rem;
+  }
+</style>
