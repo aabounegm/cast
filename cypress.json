@@ -1,7 +1,7 @@
 {
   "$schema": "https://on.cypress.io/cypress.schema.json",
   "baseUrl": "http://localhost:3000/",
-  "pluginsFile": false,
+  "pluginsFile": "cypress/plugins/index.ts",
   "viewportHeight": 720,
   "viewportWidth": 360
 }
