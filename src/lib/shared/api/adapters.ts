@@ -63,6 +63,9 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
     coverUrl: coverUrlData.publicURL,
     title: podcast.title,
     author: podcast.author,
-    episodes: podcast.episodes.map(transformEpisodeRequest).filter(notNull),
+    episodes: podcast.episodes
+      .map(transformEpisodeRequest)
+      .filter(notNull)
+      .sort((e1, e2) => e1.episodeNumber - e2.episodeNumber),
   };
 };
