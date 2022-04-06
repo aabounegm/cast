@@ -17,6 +17,7 @@ export interface SBPodcast {
 export interface SBEpisode {
   id: number;
   podcast_id: number;
+  episode_number: number;
   title: string;
   duration: number;
   audio: SBFile;
@@ -42,6 +43,7 @@ export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
     title: episode.title,
     duration: episode.duration,
     audioUrl: audioUrlData.publicURL,
+    episodeNumber: episode.episode_number,
     // TODO: implement favorites
     favorite: false,
   };
@@ -61,6 +63,9 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
     coverUrl: coverUrlData.publicURL,
     title: podcast.title,
     author: podcast.author,
-    episodes: podcast.episodes.map(transformEpisodeRequest).filter(notNull),
+    episodes: podcast.episodes
+      .map(transformEpisodeRequest)
+      .filter(notNull)
+      .sort((e1, e2) => e1.episodeNumber - e2.episodeNumber),
   };
 };
