@@ -7,6 +7,7 @@ import { EpisodeCardShell } from '../..';
 
 const sampleEpisode: Episode = {
   id: 1,
+  episodeNumber: 1,
   podcastID: 1,
   title: 'sample title',
   audioUrl: 'sample URL',

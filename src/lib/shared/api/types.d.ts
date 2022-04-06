@@ -4,6 +4,7 @@ export interface Episode {
   title: string;
   duration: number;
   audioUrl: string;
+  episodeNumber: number;
   favorite?: boolean;
 }
 
