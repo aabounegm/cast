@@ -4,6 +4,7 @@ import type { Episode } from '$lib/shared/api';
 
 const exampleEpisode: Episode = {
   id: 1,
+  episodeNumber: 1,
   podcastID: 1,
   title: 'Episode 1',
   audioUrl: 'http://example.com',

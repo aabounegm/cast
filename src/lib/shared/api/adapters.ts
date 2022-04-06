@@ -17,6 +17,7 @@ export interface SBPodcast {
 export interface SBEpisode {
   id: number;
   podcast_id: number;
+  episode_number: number;
   title: string;
   duration: number;
   audio: SBFile;
@@ -42,6 +43,7 @@ export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
     title: episode.title,
     duration: episode.duration,
     audioUrl: audioUrlData.publicURL,
+    episodeNumber: episode.episode_number,
     // TODO: implement favorites
     favorite: false,
   };
