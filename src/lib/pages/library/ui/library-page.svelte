@@ -23,7 +23,7 @@
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
   <H1 id="favorites-header">Favorites</H1>
 
-  {#each liked as id (id)}
+  {#each liked as id}
     {#await getEpisode(id)}
       <p>Loading...</p>
     {:then episode}
