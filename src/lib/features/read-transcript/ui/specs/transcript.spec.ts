@@ -7,6 +7,7 @@ jest.mock('$lib/entities/episode');
 
 const sampleEpisode: Episode = {
   id: 1,
+  episodeNumber: 1,
   title: 'test',
   podcastID: 2,
   audioUrl: 'test',
