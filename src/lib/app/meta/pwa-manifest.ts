@@ -1,4 +1,7 @@
-import { base } from '$app/paths';
+// For some reason, for now, SvelteKit doesn't include the slash in the base path
+//   like its typings promise.
+//   Track the issue here: https://github.com/sveltejs/kit/issues/4561
+// import { base } from '$app/paths';
 import appIconSvg from './app-icon.svg';
 import appIconPng192 from './app-icon.svg?width=192&png';
 import appIconPng512 from './app-icon.svg?width=512&png';
@@ -10,7 +13,7 @@ const manifest: WebAppManifest = {
   name: 'Cast',
   short_name: 'Cast',
   description: 'Listen to podcasts on the web, wherever!',
-  start_url: base,
+  start_url: '/',
   background_color: '#1E293B',
   theme_color: '#6366F1',
   display: 'standalone',
@@ -20,19 +23,19 @@ const manifest: WebAppManifest = {
     {
       src: appIconSvg,
       type: 'image/svg+xml',
-      purpose: 'any maskable',
+      purpose: 'maskable',
       sizes: '512x512',
     },
     {
       src: appIconPng192,
       type: 'image/png',
-      purpose: 'any maskable',
+      purpose: 'any',
       sizes: '192x192',
     },
     {
       src: appIconPng512,
       type: 'image/png',
-      purpose: 'any maskable',
+      purpose: 'maskable',
       sizes: '512x512',
     },
   ],
