@@ -6,7 +6,7 @@
   import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
-  import '$lib/app.css';
+  import '$lib/app/global-styles.css';
 
   // Svelte can't handle its own type conversion with TypeScript
   const bufferedNative = buffered as unknown as Writable<TimeRanges>;

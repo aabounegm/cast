@@ -8,6 +8,12 @@ const config = {
 
   kit: {
     adapter: cloudflare(),
+    csp: {
+      directives: {
+        'script-src': ['self'],
+        'frame-ancestors': ['none'],
+      },
+    },
     vite: {
       plugins: [icons({ compiler: 'svelte' })],
     },
