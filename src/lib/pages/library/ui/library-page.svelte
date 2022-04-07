@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition';
-  import { flip } from 'svelte/animate';
-
   import { H1 } from '$lib/shared/ui';
   import { likesStore } from '$lib/features/like-episode';
   import { EpisodeCard } from '$lib/widgets/episode';
