@@ -1,10 +1,15 @@
 <script lang="ts">
+  import { fade, fly } from 'svelte/transition';
+  import { flip } from 'svelte/animate';
+
   import { H1 } from '$lib/shared/ui';
   import { likesStore } from '$lib/features/like-episode';
   import { EpisodeCard } from '$lib/widgets/episode';
   import { UserContainer } from '$lib/entities/user';
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
   import { getEpisode } from '../lib/get-episode';
+
+  const liked = [...$likesStore];
 </script>
 
 <!-- Sign in card -->
@@ -21,14 +26,14 @@
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
   <H1 id="favorites-header">Favorites</H1>
 
-  {#each [...$likesStore] as id}
+  {#each liked as id (id)}
     {#await getEpisode(id)}
       <p>Loading...</p>
     {:then episode}
       {#if episode}
         <EpisodeCard {episode} />
       {:else}
-        <p>Error</p>
+        <p>Error, id: {id}</p>
       {/if}
     {/await}
   {/each}
