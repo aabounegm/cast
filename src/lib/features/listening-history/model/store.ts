@@ -11,8 +11,6 @@ export const listeningHistory = persistentWritable<number[]>([], {
 /**
  * Function that adds a podcast id to the beginning of listening history.
  * It removes any previous occurrences of the same podcast.
- *
- * @param podcastId {string} – an URl to add to history
  */
 export const addToListeningHistory = (podcastId: number) => {
   listeningHistory.update((history) => {
