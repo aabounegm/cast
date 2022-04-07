@@ -20,16 +20,19 @@ const manifest: WebAppManifest = {
     {
       src: appIconSvg,
       type: 'image/svg+xml',
+      purpose: 'any maskable',
       sizes: '512x512',
     },
     {
       src: appIconPng192,
       type: 'image/png',
+      purpose: 'any maskable',
       sizes: '192x192',
     },
     {
       src: appIconPng512,
       type: 'image/png',
+      purpose: 'any maskable',
       sizes: '512x512',
     },
   ],
