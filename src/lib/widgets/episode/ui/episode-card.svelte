@@ -2,7 +2,7 @@
   import type { Episode } from '$lib/shared/api';
   import { PlaybackButton } from '$lib/features/playback-controls';
   import { LikeButton } from '$lib/features/like-episode';
-  import { DownloadLink } from '$lib/features/download-episode';
+  import { DownloadLinkWithProgress } from '$lib/features/download-episode';
   import { EpisodeCardShell, currentlyPlayingEpisode } from '$lib/entities/episode';
   import { paused } from '$lib/entities/audio';
   import { toggleGlobalPlayback } from '$lib/features/playback-controls';
@@ -24,7 +24,7 @@
   </svelte:fragment>
 
   <svelte:fragment slot="download">
-    <DownloadLink />
+    <DownloadLinkWithProgress urls={[episode.audioUrl]} />
   </svelte:fragment>
 
   <svelte:fragment slot="like">
