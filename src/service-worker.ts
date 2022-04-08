@@ -2,6 +2,7 @@
 
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
+import { handleRequestsWith } from 'worker-request-response';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const cacheName = `cache-${version}`;
@@ -26,7 +27,7 @@ worker.addEventListener('activate', (event) => {
       // delete old caches
       await Promise.all(keys.filter((key) => key !== cacheName).map((key) => caches.delete(key)));
 
-      worker.clients.claim();
+      await worker.clients.claim();
     })
   );
 });
@@ -37,10 +38,20 @@ worker.addEventListener('activate', (event) => {
  */
 async function fetchAndCache(request: Request) {
   const cache = await caches.open(`offline-${version}`);
+  const isAudio = request.url.endsWith('.mp3');
+  if (isAudio) {
+    const cached = await cache.match(request);
+    if (cached) {
+      return cached;
+    }
+  }
+  const shouldCache = new URL(request.url).searchParams.get('download') === 'true';
 
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (!isAudio || shouldCache) {
+      cache.put(request, response.clone());
+    }
     return response;
   } catch (err) {
     const response = await cache.match(request);
@@ -75,3 +86,11 @@ worker.addEventListener('fetch', (event) => {
     );
   }
 });
+
+async function isFilenameInCache(event: MessageEvent<string>): Promise<boolean> {
+  const cache = await caches.open(`offline-${version}`);
+  const cacheKeys = await cache.keys();
+  return cacheKeys.some((request) => request.url.startsWith(event.data));
+}
+
+self.addEventListener('message', handleRequestsWith(isFilenameInCache));
