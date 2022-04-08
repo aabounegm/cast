@@ -9,10 +9,12 @@ it('extracts width and height from Tailwind classes and sets them as HTML proper
   render(Image, {
     src: sampleSource,
     alt: sampleAltText,
-    class: 'w-5',
+    class: 'w-5 h-6',
   });
 
-  expect(screen.getByRole('img')).toHaveAttribute('width', '20');
+  const imgNode = screen.getByRole('img');
+  expect(imgNode).toHaveAttribute('width', '20');
+  expect(imgNode).toHaveAttribute('height', '24');
 });
 
 it('renders a WebP source from images.weserv.nl with pixel densities 1 and 2', () => {
