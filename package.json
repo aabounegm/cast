@@ -100,6 +100,8 @@
     "web-streams-polyfill": "^3.2.0"
   },
   "dependencies": {
+    "@fontsource/lato": "^4.5.5",
+    "@fontsource/raleway": "^4.5.5",
     "@supabase/supabase-js": "^1.33.2",
     "clsx": "^1.1.1",
     "dompurify": "^2.3.6",
