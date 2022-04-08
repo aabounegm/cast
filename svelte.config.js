@@ -9,14 +9,14 @@ const config = {
 
   kit: {
     adapter: cloudflare(),
-    csp: {
-      directives: {
-        'script-src': ['https:', 'strict-dynamic', 'unsafe-inline'],
-        'object-src': ['none'],
-        'base-uri': ['none'],
-        'frame-ancestors': ['none'],
-      },
-    },
+    // csp: {
+    //   directives: {
+    //     'script-src': ['https:', 'strict-dynamic', 'unsafe-inline'],
+    //     'object-src': ['none'],
+    //     'base-uri': ['none'],
+    //     'frame-ancestors': ['none'],
+    //   },
+    // },
     vite: {
       plugins: [icons({ compiler: 'svelte' }), imagetools({ include: '**/*.svg?*' })],
     },
