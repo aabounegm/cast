@@ -1,15 +1,16 @@
-const width = /\bw-([0-9]+)\b/;
-const height = /\bh-([0-9]+)\b/;
+const widthPattern = /\bw-([0-9]+)\b/;
+const heightPattern = /\bh-([0-9]+)\b/;
 
 interface ImageDimensions {
   width: number | undefined;
   height: number | undefined;
 }
 
+/** Extract `'w-*'` and `'h-*'` Tailwind classes from a class string and convert to pixels. */
 export function parseTailwindSize(classes: string) {
   const dimensions: ImageDimensions = { width: undefined, height: undefined };
-  const tailwindWidth = width.exec(classes)?.at(1);
-  const tailwindHeight = height.exec(classes)?.at(1);
+  const tailwindWidth = widthPattern.exec(classes)?.at(1);
+  const tailwindHeight = heightPattern.exec(classes)?.at(1);
 
   if (tailwindWidth !== undefined) {
     dimensions.width = parseInt(tailwindWidth, 10) * 4;
@@ -21,6 +22,11 @@ export function parseTailwindSize(classes: string) {
   return dimensions;
 }
 
+/**
+ * Construct an image URL proxied through `images.weserv.nl`
+ *
+ * See https://images.weserv.nl for documentation.
+ */
 export function getWeservUrl(url: string, dimensions: ImageDimensions, format?: string) {
   const weservUrl = new URL('https://images.weserv.nl');
   weservUrl.searchParams.set('url', url);
@@ -45,6 +51,16 @@ function scale(dimensions: ImageDimensions, factor: number) {
   };
 }
 
+/**
+ * Create a `srcset`-suitable string by generating URLs to images for multiple pixel densities.
+ *
+ * For example, for densities `[1, 2]` it will generate the following string:
+ * ```
+ * '<original-img> 1x, <double-res-img> 2x'
+ * ```
+ *
+ * Image scaling is done through https://images.weserv.nl.
+ */
 export function serveAtPixelDensities(
   src: string,
   dimensions: ImageDimensions,
