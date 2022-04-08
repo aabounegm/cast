@@ -15,7 +15,7 @@ const manifest: WebAppManifest = {
   description: 'Listen to podcasts on the web, wherever!',
   start_url: '/',
   background_color: '#1E293B',
-  theme_color: '#6366F1',
+  theme_color: '#334155',
   display: 'standalone',
   orientation: 'portrait',
   lang: 'en',
