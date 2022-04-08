@@ -5,7 +5,7 @@ export default function login() {
   const publicAnonKey: string = Cypress.env('supabasePublicAnonKey');
   const supabase = createClient(appUrl, publicAnonKey);
 
-  const email = 'testing@cast-iu.pages.dev';
+  const email: string = Cypress.env('testingEmail');
   const password: string = Cypress.env('testUserPassword');
   const signInPromise = supabase.auth.signIn({ email, password });
 
