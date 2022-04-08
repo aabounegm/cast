@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
+  import { MetaImages } from '$lib/app';
   import { BottomBar } from '$lib/widgets/bottom-bar';
   import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
-  import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import { trackAuthStatus } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
+  import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import '$lib/app/global-styles.css';
 
   // Svelte can't handle its own type conversion with TypeScript
@@ -34,6 +35,10 @@
 {/if}
 
 <SnackbarQueue />
+
+<svelte:head>
+  <MetaImages />
+</svelte:head>
 
 <style>
   main {
