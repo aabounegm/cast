@@ -11,7 +11,9 @@ const config = {
     adapter: cloudflare(),
     csp: {
       directives: {
-        'script-src': ['self'],
+        'script-src': ['https:', 'strict-dynamic', 'unsafe-inline'],
+        'object-src': ['none'],
+        'base-uri': ['none'],
         'frame-ancestors': ['none'],
       },
     },
