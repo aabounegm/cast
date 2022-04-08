@@ -4,6 +4,8 @@ specifiers:
   '@babel/core': ^7.17.8
   '@babel/preset-env': ^7.16.11
   '@babel/preset-typescript': ^7.16.7
+  '@fontsource/lato': ^4.5.5
+  '@fontsource/raleway': ^4.5.5
   '@iconify-json/ic': ^1.1.2
   '@supabase/supabase-js': ^1.33.2
   '@sveltejs/adapter-cloudflare': ^1.0.0-next.17
@@ -63,6 +65,8 @@ specifiers:
   worker-request-response: ^1.0.3
 
 dependencies:
+  '@fontsource/lato': 4.5.5
+  '@fontsource/raleway': 4.5.5
   '@supabase/supabase-js': 1.33.3
   clsx: 1.1.1
   dompurify: 2.3.6
@@ -1414,6 +1418,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fontsource/lato/4.5.5:
+    resolution: {integrity: sha512-0KVmVCq3wZnriKVdbY+n/ZLf7Vy+dQcqpcm8kaVX4QGd6uBTgH6YWLnM1L051TtjKlal2FiE6xc/BLw116a0gQ==}
+    dev: false
+
+  /@fontsource/raleway/4.5.5:
+    resolution: {integrity: sha512-T2zIJ/6/2x+T9+tLtw/qSiJ68ahcceDMUOU3zrzEyNGYXUvlQyU4Cv9wyTmS+TU9IFHHChjMToV6izRL9mqDqg==}
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
