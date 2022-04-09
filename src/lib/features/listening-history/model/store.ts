@@ -41,8 +41,11 @@ const addToCloudListeningHistory = async (podcastId: number) => {
         podcast_id: podcastId,
       },
     ]);
-  } catch (e) {
-    console.error(e);
+  } catch {
+    return {
+      status: 500,
+      error: 'Server error. Check internet connection and ensure you are signed in.',
+    };
   }
 };
 

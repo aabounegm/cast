@@ -35,16 +35,22 @@ async function addCloudLike(episodeId: number) {
         episode_id: episodeId,
       },
     ]);
-  } catch (e) {
-    console.error(e);
+  } catch {
+    return {
+      status: 500,
+      error: 'Server error. Check internet connection and ensure you are signed in.',
+    };
   }
 }
 
 async function deleteCloudLike(episodeId: number) {
   try {
     await supabaseClient.from('favourites').delete().eq('episode_id', episodeId);
-  } catch (e) {
-    console.error(e);
+  } catch {
+    return {
+      status: 500,
+      error: 'Server error. Check internet connection and ensure you are signed in.',
+    };
   }
 }
 
