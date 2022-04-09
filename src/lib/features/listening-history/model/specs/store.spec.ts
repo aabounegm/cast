@@ -13,7 +13,7 @@ const exampleEpisode: Episode = {
 
 const expectedHistory: number[] = [exampleEpisode.id];
 
-it('listen to an episode', () => {
+it('add episode to the history', () => {
   addToListeningHistory(exampleEpisode);
   expect(get(listeningHistory)).toEqual(expectedHistory);
 });
