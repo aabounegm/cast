@@ -1,6 +1,7 @@
 import cloudflare from '@sveltejs/adapter-cloudflare';
 import preprocess from 'svelte-preprocess';
 import icons from 'unplugin-icons/vite';
+import { imagetools } from 'vite-imagetools';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,14 +9,16 @@ const config = {
 
   kit: {
     adapter: cloudflare(),
-    csp: {
-      directives: {
-        'script-src': ['self'],
-        'frame-ancestors': ['none'],
-      },
-    },
+    // csp: {
+    //   directives: {
+    //     'script-src': ['https:', 'strict-dynamic', 'unsafe-inline'],
+    //     'object-src': ['none'],
+    //     'base-uri': ['none'],
+    //     'frame-ancestors': ['none'],
+    //   },
+    // },
     vite: {
-      plugins: [icons({ compiler: 'svelte' })],
+      plugins: [icons({ compiler: 'svelte' }), imagetools({ include: '**/*.svg?*' })],
     },
   },
 };

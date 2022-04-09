@@ -8,6 +8,10 @@ declare module 'blns' {
   export default naughtyStrings;
 }
 
+// This is a workaround to prevent TS errors from using `vite-imagetools`
+//   Track here: https://github.com/JonasKruckenberg/imagetools/issues/160
+declare module '*&png';
+
 interface ImportMetaEnv {
   readonly VITE_SUPABASE_APP_URL: string;
   readonly VITE_SUPABASE_PUBLIC_ANON_KEY: string;
