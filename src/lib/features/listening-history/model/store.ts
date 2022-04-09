@@ -2,7 +2,6 @@ import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { supabaseClient, type Episode } from '$lib/shared/api';
 import { user } from '$lib/entities/user';
 import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writable';
-import { get } from 'svelte/store';
 
 user.subscribe(async ($user) => {
   if (!$user) return;
@@ -36,13 +35,16 @@ const addToLocalListeningHistory = (podcastId: number) => {
  * Function that adds a podcast id into `history` SB table.
  */
 const addToCloudListeningHistory = async (podcastId: number) => {
-  if (!get(user)) return;
-  await supabaseClient.from('history').insert([
-    {
-      // eslint-disable-next-line camelcase
-      podcast_id: podcastId,
-    },
-  ]);
+  try {
+    await supabaseClient.from('history').insert([
+      {
+        // eslint-disable-next-line camelcase
+        podcast_id: podcastId,
+      },
+    ]);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 export const addToListeningHistory = (episode: Episode) => {

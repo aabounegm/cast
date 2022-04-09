@@ -30,19 +30,28 @@ export const likesStore = persistentWritable(new Set<number>(), {
 });
 
 async function addCloudLike(episodeId: number) {
-  if (!get(user)) return;
-  await supabaseClient.from('favourites').insert([
-    {
-      // eslint-disable-next-line camelcase
-      episode_id: episodeId,
-    },
-  ]);
+  try {
+    await supabaseClient.from('favourites').insert([
+      {
+        // eslint-disable-next-line camelcase
+        episode_id: episodeId,
+      },
+    ]);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 async function deleteCloudLike(episodeId: number) {
-  const u = get(user);
-  if (!u) return;
-  await supabaseClient.from('favourites').delete().eq('user_id', u.id).eq('episode_id', episodeId);
+  try {
+    await supabaseClient
+      .from('favourites')
+      .delete()
+      .eq('user_id', get(user)?.id)
+      .eq('episode_id', episodeId);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 /**
