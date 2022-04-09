@@ -1,7 +1,7 @@
 import { supabaseClient } from '$lib/shared/api';
 import { transformEpisodeRequest, type SBEpisode } from '$lib/shared/api/adapters';
 
-export async function fetchEpisode(id: number) {
+export async function getEpisode(id: number) {
   const { data } = await supabaseClient
     .from<SBEpisode>('episodes')
     .select('*')
