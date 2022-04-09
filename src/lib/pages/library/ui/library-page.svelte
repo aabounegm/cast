@@ -4,7 +4,7 @@
   import { EpisodeCard } from '$lib/widgets/episode';
   import { UserContainer } from '$lib/entities/user';
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
-  import { getEpisode } from '../lib/get-episode';
+  import { fetchEpisode } from '$lib/entities/episode/api/fetch-episode';
 
   $: liked = [...$likesStore];
 </script>
@@ -24,7 +24,7 @@
   <H1 id="favorites-header">Favorites</H1>
 
   {#each liked as id (id)}
-    {#await getEpisode(id)}
+    {#await fetchEpisode(id)}
       <p>Loading...</p>
     {:then episode}
       {#if episode}
