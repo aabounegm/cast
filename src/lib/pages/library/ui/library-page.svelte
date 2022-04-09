@@ -6,7 +6,7 @@
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
   import { fetchEpisode } from '$lib/entities/episode/api/fetch-episode';
 
-  $: liked = [...$likesStore];
+  const liked = [...$likesStore];
 </script>
 
 <!-- Sign in card -->
