@@ -8,8 +8,7 @@ user.subscribe(async ($user) => {
   const hist = await supabaseClient
     .from('history')
     .select('podcast_id')
-    .order('created_at', { ascending: false })
-    .eq('user_id', $user.id);
+    .order('created_at', { ascending: false });
   const ids = hist.data?.map((e) => e.podcast_id);
   listeningHistory.set(ids ?? []);
 });

@@ -1,15 +1,13 @@
 import { supabaseClient, type Episode } from '$lib/shared/api';
 import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
 import { user } from '$lib/entities/user';
-import { get } from 'svelte/store';
 
 user.subscribe(async ($user) => {
   if (!$user) return;
   const likes = await supabaseClient
     .from('favourites')
     .select('episode_id')
-    .order('created_at', { ascending: false })
-    .eq('user_id', $user.id);
+    .order('created_at', { ascending: false });
   const ids = likes.data?.map((e) => e.episode_id);
   likesStore.set(new Set(ids ?? []));
 });
@@ -44,11 +42,7 @@ async function addCloudLike(episodeId: number) {
 
 async function deleteCloudLike(episodeId: number) {
   try {
-    await supabaseClient
-      .from('favourites')
-      .delete()
-      .eq('user_id', get(user)?.id)
-      .eq('episode_id', episodeId);
+    await supabaseClient.from('favourites').delete().eq('episode_id', episodeId);
   } catch (e) {
     console.error(e);
   }
