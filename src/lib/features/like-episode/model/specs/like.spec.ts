@@ -11,7 +11,7 @@ const exampleEpisode: Episode = {
   duration: 5,
 };
 
-const expectedLikes: Map<Episode['id'], Episode> = new Map([[exampleEpisode.id, exampleEpisode]]);
+const expectedLikes: Set<number> = new Set([exampleEpisode.id]);
 
 it('toggles the like', () => {
   toggleLike(exampleEpisode);
