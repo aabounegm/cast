@@ -30,6 +30,12 @@ it('constructs the query correctly', () => {
   expect(single).toHaveBeenCalled();
 });
 
+it('returns undefined when there is no content', () => {
+  single.mockImplementation(() => ({ error: 'message', data: { content: '' }, status: 406 }));
+
+  expect(fetchTranscript(sampleID)).resolves.toBeUndefined();
+});
+
 it('throws on fetching errors', () => {
   const errorObject = 'error';
 
