@@ -8,6 +8,7 @@ jest.mock('../../api/fetch-transcript', () => ({
 const sampleEpisodeIDforCache = 1;
 const sampleEpisodeIDforError = 2;
 const sampleEpisodeIDforSanitization = 3;
+const sampleEpisodeIDforMissingTranscript = 4;
 const sampleTranscript = 'sample text';
 const maliciousTranscript = 'Hello <script>alert("xss")</script>world';
 const sanitizedTranscript = 'Hello world';
@@ -19,6 +20,12 @@ it('fetches the transcript only the first time it is accessed', async () => {
   expect(await getTranscript(sampleEpisodeIDforCache)).toBe(sampleTranscript);
 
   expect(fetchTranscript).toHaveBeenCalledTimes(1);
+});
+
+it('correctly handles missing transcripts', async () => {
+  jest.mocked(fetchTranscript).mockImplementation(async () => undefined);
+
+  expect(await getTranscript(sampleEpisodeIDforMissingTranscript)).toBeUndefined();
 });
 
 it('rethrows fetching errors', async () => {

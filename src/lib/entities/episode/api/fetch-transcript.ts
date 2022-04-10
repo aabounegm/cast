@@ -1,6 +1,6 @@
 import { supabaseClient, type Episode, type SBTranscript } from '$lib/shared/api';
 
-export async function fetchTranscript(id: Episode['id']): Promise<string> {
+export async function fetchTranscript(id: Episode['id']): Promise<string | undefined> {
   const res = await supabaseClient
     .from<SBTranscript>('transcripts')
     .select('content')
@@ -8,7 +8,12 @@ export async function fetchTranscript(id: Episode['id']): Promise<string> {
     .single();
 
   if (res.error !== null) {
-    throw res.error;
+    if (res.status === 406) {
+      // The transcript is not available
+      return undefined;
+    } else {
+      throw res.error;
+    }
   }
 
   return res.data.content;
