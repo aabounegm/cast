@@ -28,6 +28,12 @@ export interface SBTranscript {
   content: string;
 }
 
+export interface SBFavourite {
+  id: number;
+  episode_id: SBEpisode['id'];
+  user_id: string;
+}
+
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
   const { data: audioUrlData } = supabaseClient.storage
     .from('podcast-audio-files')
@@ -68,4 +74,8 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
       .filter(notNull)
       .sort((e1, e2) => e1.episodeNumber - e2.episodeNumber),
   };
+};
+
+export const transformFavourite = (favourite: SBFavourite): Episode['id'] => {
+  return favourite.episode_id;
 };
