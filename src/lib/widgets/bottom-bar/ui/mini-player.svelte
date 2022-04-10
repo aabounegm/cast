@@ -13,7 +13,7 @@
 
 {#if podcast !== undefined}
   <div class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800" on:click>
-    <Image class="w-10 h-10 rounded" src={podcast.coverUrl} alt="" />
+    <Image class="w-10 h-10 rounded overflow-hidden" src={podcast.coverUrl} alt="" />
     <div class="flex justify-between px-3 gap-2">
       <IconButton
         name="Replay the last 10 seconds"
