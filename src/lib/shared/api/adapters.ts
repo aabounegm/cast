@@ -34,6 +34,12 @@ export interface SBFavourite {
   user_id: string;
 }
 
+export interface SBHistoryEntry {
+  id: number;
+  podcast_id: SBPodcast['id'];
+  user_id: string;
+}
+
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
   const { data: audioUrlData } = supabaseClient.storage
     .from('podcast-audio-files')
