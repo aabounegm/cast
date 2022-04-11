@@ -1,5 +1,5 @@
 @import '@fontsource/lato';
-@import '@fontsource/raleway/variable.css';
+@import '@fontsource/raleway/800.css';
 
 @tailwind base;
 @tailwind components;
