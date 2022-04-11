@@ -52,7 +52,9 @@ const addToCloudListeningHistory = async (podcastId: number) => {
 export const addToListeningHistory = (episode: Episode) => {
   const id = episode.podcastID;
   addToLocalListeningHistory(id);
-  addToCloudListeningHistory(id);
+  addToCloudListeningHistory(id).then((e) => {
+    if (e) alert(e.error);
+  });
 };
 
 currentlyPlayingEpisode.subscribe(($episode) => {
