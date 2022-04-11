@@ -1,5 +1,4 @@
-import { supabaseClient } from '$lib/shared/api';
-import { transformEpisodeRequest, type SBEpisode } from '$lib/shared/api/adapters';
+import { supabaseClient, transformEpisodeRequest, type SBEpisode } from '$lib/shared/api';
 
 export async function getEpisode(id: number) {
   const { data } = await supabaseClient
