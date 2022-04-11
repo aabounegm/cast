@@ -8,7 +8,7 @@ jest.mock('$lib/shared/api', () => ({
   supabaseClient: {
     from: jest.fn().mockName('supabaseClient.from()').mockReturnThis(),
     insert: jest.fn().mockName('supabaseClient.from().insert()').mockReturnThis(),
-    $delete: jest.fn().mockName('supabaseClient.from().delete()').mockReturnThis(),
+    delete: jest.fn().mockName('supabaseClient.from().delete()').mockReturnThis(),
     eq: jest.fn().mockName('supabaseClient.from().delete().eq()').mockReturnThis(),
   },
 }));
@@ -17,7 +17,7 @@ jest.mock('$lib/shared/api', () => ({
 //   chain where each method returns an object of a new class. We're truly sorry.
 /* aabounegm-disable */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { from, insert, $delete, eq } = supabaseClient as any;
+const { from, insert, delete: $delete, eq } = supabaseClient as any;
 
 it('adds like to backend', () => {
   addCloudLike(sampleID);
