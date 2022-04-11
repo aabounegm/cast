@@ -1,16 +1,15 @@
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
-import { supabaseClient, type Episode } from '$lib/shared/api';
 import { user } from '$lib/entities/user';
 import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writable';
+import { fetchHistory } from '../api/fetch-history';
+import { addToCloudListeningHistory } from '../api/history-table';
+import type { Episode } from '$lib/shared/api';
 
 user.subscribe(async ($user) => {
-  if (!$user) return;
-  const hist = await supabaseClient
-    .from('history')
-    .select('podcast_id')
-    .order('created_at', { ascending: false });
-  const ids = hist.data?.map((e) => e.podcast_id);
-  listeningHistory.set(ids ?? []);
+  if ($user) {
+    const ids = await fetchHistory();
+    listeningHistory.set(ids ?? []);
+  }
 });
 
 /**
@@ -28,25 +27,6 @@ const addToLocalListeningHistory = (podcastId: number) => {
   listeningHistory.update((history) => {
     return [podcastId, ...history.filter((id) => id !== podcastId)].slice(0, 6);
   });
-};
-
-/**
- * Function that adds a podcast id into `history` SB table.
- */
-const addToCloudListeningHistory = async (podcastId: number) => {
-  try {
-    await supabaseClient.from('history').insert([
-      {
-        // eslint-disable-next-line camelcase
-        podcast_id: podcastId,
-      },
-    ]);
-  } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
-  }
 };
 
 export const addToListeningHistory = (episode: Episode) => {

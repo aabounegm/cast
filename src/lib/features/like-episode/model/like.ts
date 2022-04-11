@@ -1,15 +1,14 @@
-import { supabaseClient, type Episode } from '$lib/shared/api';
+import type { Episode } from '$lib/shared/api';
 import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
 import { user } from '$lib/entities/user';
+import { fetchLikes } from '../api/fetch-likes';
+import { addCloudLike, deleteCloudLike } from '../api/favourites-table';
 
 user.subscribe(async ($user) => {
-  if (!$user) return;
-  const likes = await supabaseClient
-    .from('favourites')
-    .select('episode_id')
-    .order('created_at', { ascending: false });
-  const ids = likes.data?.map((e) => e.episode_id);
-  likesStore.set(new Set(ids ?? []));
+  if ($user) {
+    const ids = await fetchLikes();
+    likesStore.set(new Set(ids ?? []));
+  }
 });
 
 /**
@@ -26,33 +25,6 @@ export const likesStore = persistentWritable(new Set<number>(), {
     },
   }),
 });
-
-async function addCloudLike(episodeId: number) {
-  try {
-    await supabaseClient.from('favourites').insert([
-      {
-        // eslint-disable-next-line camelcase
-        episode_id: episodeId,
-      },
-    ]);
-  } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
-  }
-}
-
-async function deleteCloudLike(episodeId: number) {
-  try {
-    await supabaseClient.from('favourites').delete().eq('episode_id', episodeId);
-  } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
-  }
-}
 
 /**
  * Toggles the like for the given episode. If the episode is liked, it will be
