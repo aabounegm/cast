@@ -24,6 +24,7 @@ export interface SBEpisode {
 }
 
 export interface SBTranscript {
+  id: number;
   episode_id: SBEpisode['id'];
   content: string;
 }
