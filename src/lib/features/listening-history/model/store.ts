@@ -29,12 +29,14 @@ const addToLocalListeningHistory = (podcastId: number) => {
   });
 };
 
-export const addToListeningHistory = (episode: Episode) => {
+export const addToListeningHistory = async (episode: Episode) => {
   const id = episode.podcastID;
   addToLocalListeningHistory(id);
-  addToCloudListeningHistory(id).then((e) => {
-    if (e) alert(e.error);
-  });
+  try {
+    addToCloudListeningHistory(id);
+  } catch (e) {
+    alert((e as Error).message);
+  }
 };
 
 currentlyPlayingEpisode.subscribe(($episode) => {

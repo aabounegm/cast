@@ -12,9 +12,6 @@ export async function addToCloudListeningHistory(podcastId: number) {
       },
     ]);
   } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
+    throw new Error('Server error. Check internet connection and ensure you are signed in.');
   }
 }

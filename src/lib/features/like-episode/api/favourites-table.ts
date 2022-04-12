@@ -9,10 +9,7 @@ export async function addCloudLike(episodeId: number) {
       },
     ]);
   } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
+    throw new Error('Server error. Check internet connection and ensure you are signed in.');
   }
 }
 
@@ -20,9 +17,6 @@ export async function deleteCloudLike(episodeId: number) {
   try {
     await supabaseClient.from('favourites').delete().eq('episode_id', episodeId);
   } catch {
-    return {
-      status: 500,
-      error: 'Server error. Check internet connection and ensure you are signed in.',
-    };
+    throw new Error('Server error. Check internet connection and ensure you are signed in.');
   }
 }

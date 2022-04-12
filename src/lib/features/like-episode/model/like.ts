@@ -36,14 +36,10 @@ export function toggleLike(like: Episode) {
   likesStore.update((likes) => {
     if (likes.has(id)) {
       likes.delete(id);
-      deleteCloudLike(id).then((e) => {
-        if (e) alert(e.error);
-      });
+      deleteCloudLike(id).catch((e) => alert(e.message));
     } else {
       likes.add(id);
-      addCloudLike(id).then((e) => {
-        if (e) alert(e.error);
-      });
+      addCloudLike(id).catch((e) => alert(e.message));
     }
     return likes;
   });
