@@ -17,7 +17,7 @@ jest.mock('$lib/shared/api', () => ({
 //   chain where each method returns an object of a new class. We're truly sorry.
 /* aabounegm-disable */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { from, insert, delete: $delete, eq } = supabaseClient as any;
+const { from, insert, delete: _delete, eq } = supabaseClient as any;
 
 it('adds like to backend', () => {
   addCloudLike(sampleID);
@@ -35,6 +35,6 @@ it('deletes like from backend', () => {
   deleteCloudLike(sampleID);
 
   expect(from).toHaveBeenCalledWith('favourites');
-  expect($delete).toHaveBeenCalled(); // couldn't make this work
+  expect(_delete).toHaveBeenCalled();
   expect(eq).toHaveBeenCalledWith('episode_id', sampleID);
 });

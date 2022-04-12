@@ -1,11 +1,15 @@
 import { supabaseClient, transformEpisodeRequest, type SBEpisode } from '$lib/shared/api';
 
 export async function getEpisode(id: number) {
-  const { data } = await supabaseClient
+  const { data, error } = await supabaseClient
     .from<SBEpisode>('episodes')
     .select('*')
     .eq('id', id)
     .single();
 
-  return data ? transformEpisodeRequest(data) : null;
+  if (error !== null) {
+    throw error;
+  } else {
+    return transformEpisodeRequest(data);
+  }
 }

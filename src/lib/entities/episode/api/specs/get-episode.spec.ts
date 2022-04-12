@@ -1,7 +1,19 @@
-import { supabaseClient } from '$lib/shared/api';
+import { supabaseClient, type SBEpisode } from '$lib/shared/api';
 import { getEpisode } from '../get-episode';
 
+/* eslint-disable camelcase */
 const sampleID = 1;
+const sampleRawEpisode: SBEpisode = {
+  id: sampleID,
+  title: 'sample title',
+  audio: {
+    name: 'sample name',
+  },
+  duration: 1,
+  episode_number: 1,
+  podcast_id: 1,
+};
+/* eslint-enable camelcase */
 
 jest.mock('$lib/shared/api', () => ({
   ...jest.requireActual('$lib/shared/api'),
@@ -20,7 +32,7 @@ jest.mock('$lib/shared/api', () => ({
 const { from, select, eq, single } = supabaseClient as any;
 
 it('constructs the query correctly', () => {
-  single.mockImplementation(() => ({ error: null, data: { content: '' } }));
+  single.mockImplementation(() => ({ error: null, data: sampleRawEpisode }));
 
   getEpisode(sampleID);
 
