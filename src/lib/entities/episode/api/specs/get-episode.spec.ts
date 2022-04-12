@@ -25,9 +25,7 @@ jest.mock('$lib/shared/api', () => ({
   },
 }));
 
-// We hacked our way out of mocking the `supabaseClient.from().select().eq().single()`
-//   chain where each method returns an object of a new class. We're truly sorry.
-/* aabounegm-disable */
+// See src/lib/entities/episode/api/specs/fetch-transcript.spec.ts for origins of this hack
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { from, select, eq, single } = supabaseClient as any;
 
