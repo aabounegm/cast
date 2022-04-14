@@ -24,12 +24,10 @@ describe('For authorized users', () => {
       if (userID !== undefined) {
         const response = await supabase.from<SBHistoryEntry>('history').select('user_id');
         expect(response.status).to.be.gte(200).and.be.lessThan(300);
-        if (response.data !== null) {
-          for (const row of response.data) {
-            expect(row.user_id).to.be.equal(userID);
-          }
-        } else {
-          expect(response.data).not.to.be.null;
+        expect(response.data).not.to.be.null;
+        if (response.data === null) return;
+        for (const row of response.data) {
+          expect(row.user_id).to.be.equal(userID);
         }
       }
     });
