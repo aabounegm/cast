@@ -6,6 +6,7 @@
     "assert": {
       "preset": "lighthouse:recommended",
       "assertions": {
+        "unused-javascript": "off",
         "categories:performance": ["error", { "minScore": 0.5 }]
       }
     }
