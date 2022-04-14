@@ -1,13 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
+import createSupabaseClient from './create-supabase-client';
 
 export default function login() {
-  const appUrl: string = Cypress.env('supabaseAppUrl');
-  const publicAnonKey: string = Cypress.env('supabasePublicAnonKey');
-  const supabase = createClient(appUrl, publicAnonKey);
+  return createSupabaseClient().then((supabase) => {
+    const email: string = Cypress.env('testingEmail');
+    const password: string = Cypress.env('testUserPassword');
+    const signInPromise = supabase.auth.signIn({ email, password });
 
-  const email: string = Cypress.env('testingEmail');
-  const password: string = Cypress.env('testUserPassword');
-  const signInPromise = supabase.auth.signIn({ email, password });
-
-  return cy.wrap<typeof signInPromise>(signInPromise);
+    return cy.wrap([signInPromise, supabase] as const);
+  });
 }

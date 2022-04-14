@@ -24,8 +24,21 @@ export interface SBEpisode {
 }
 
 export interface SBTranscript {
+  id: number;
   episode_id: SBEpisode['id'];
   content: string;
+}
+
+export interface SBFavourite {
+  id: number;
+  episode_id: SBEpisode['id'];
+  user_id: string;
+}
+
+export interface SBHistoryEntry {
+  id: number;
+  podcast_id: SBPodcast['id'];
+  user_id: string;
 }
 
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
