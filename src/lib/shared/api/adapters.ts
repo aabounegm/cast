@@ -82,7 +82,3 @@ export const transformPodcastRequest = (podcast: SBPodcast): Podcast | null => {
       .sort((e1, e2) => e1.episodeNumber - e2.episodeNumber),
   };
 };
-
-export const transformFavourite = (favourite: SBFavourite): Episode['id'] => {
-  return favourite.episode_id;
-};
