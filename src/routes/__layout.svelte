@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
-  import { MetaImages } from '$lib/app';
+  import { MetaImages, PreconnectLink } from '$lib/app';
   import { BottomBar } from '$lib/widgets/bottom-bar';
   import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
   import { trackAuthStatus } from '$lib/features/authenticate';
@@ -38,6 +38,7 @@
 
 <svelte:head>
   <MetaImages />
+  <PreconnectLink />
 </svelte:head>
 
 <style>
