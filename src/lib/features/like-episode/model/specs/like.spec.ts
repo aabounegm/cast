@@ -1,4 +1,4 @@
-import { likesStore, addLike, removeLike, toggleLike } from '../like';
+import { likesStore, toggleLike } from '../like';
 import { get } from 'svelte/store';
 import type { Episode } from '$lib/shared/api';
 
@@ -11,17 +11,7 @@ const exampleEpisode: Episode = {
   duration: 5,
 };
 
-const expectedLikes: Map<Episode['id'], Episode> = new Map([[exampleEpisode.id, exampleEpisode]]);
-
-it('registers a like', () => {
-  addLike(exampleEpisode);
-  expect(get(likesStore)).toEqual(expectedLikes);
-});
-
-it('removes the registered like', () => {
-  removeLike(exampleEpisode);
-  expect(get(likesStore)).toEqual(new Map());
-});
+const expectedLikes: Set<number> = new Set([exampleEpisode.id]);
 
 it('toggles the like', () => {
   toggleLike(exampleEpisode);

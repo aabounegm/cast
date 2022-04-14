@@ -4,9 +4,9 @@
   import { EpisodeCard } from '$lib/widgets/episode';
   import { UserContainer } from '$lib/entities/user';
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
-  import type { Episode } from '$lib/shared/api';
+  import { getEpisode } from '$lib/entities/episode';
 
-  $: episodes = Array.from<Episode>($likesStore.values());
+  const liked = [...$likesStore];
 </script>
 
 <!-- Sign in card -->
@@ -22,8 +22,17 @@
 <!-- Favorites -->
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
   <H1 id="favorites-header">Favorites</H1>
-  {#each episodes as episode (episode.id)}
-    <EpisodeCard {episode} />
+
+  {#each liked as id (id)}
+    {#await getEpisode(id)}
+      <p>Loading...</p>
+    {:then episode}
+      {#if episode}
+        <EpisodeCard {episode} />
+      {:else}
+        <p>Error, id: {id}</p>
+      {/if}
+    {/await}
   {/each}
 </section>
 
