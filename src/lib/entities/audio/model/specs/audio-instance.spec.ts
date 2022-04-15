@@ -41,4 +41,14 @@ describe('Audio playback API', () => {
     expect(get(currentTime)).toEqual(get(duration));
     pause();
   });
+
+  it('plays twice without pause', async () => {
+    playDefault();
+    await new Promise((r) => setTimeout(r, 1000));
+    playDefault();
+    await new Promise((r) => setTimeout(r, 1000));
+    expect(get(paused)).toBeFalsy();
+    expect(get(currentTime)).toBePositive();
+    expect(get(currentTime)).toBeLessThan(1000);
+  });
 });
