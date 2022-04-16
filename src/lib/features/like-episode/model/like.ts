@@ -51,7 +51,9 @@ export function toggleLike(like: Episode) {
       buttonText: 'Sign in',
       callback: () => {
         const credentials = { provider: 'github' } as const;
-        supabaseClient.auth.signIn(credentials, { redirectTo: window.location.href });
+        const url = new URL(window.location.href);
+        url.searchParams.append('snackbar', 'true');
+        supabaseClient.auth.signIn(credentials, { redirectTo: url.toString() });
       },
     });
     hasReceivedSignInSnackbarStore.set(true);
