@@ -10,15 +10,19 @@
   export { _class as class };
   export let episode: Episode;
 
-  let content: Promise<string> | undefined = undefined;
+  let content: Promise<string | undefined> | undefined = undefined;
+
+  async function loadTranscript(episodeID: Episode['id']) {
+    const rawMarkdown = await getTranscript(episodeID);
+    if (rawMarkdown !== undefined) {
+      return marked(rawMarkdown);
+    } else {
+      return undefined;
+    }
+  }
 
   onMount(() => {
-    content = getTranscript(episode.id).then((rawTranscript) => {
-      if (rawTranscript === undefined) {
-        throw Error;
-      }
-      return marked(rawTranscript);
-    });
+    content = loadTranscript(episode.id);
   });
 </script>
 
@@ -30,7 +34,11 @@
       <SkeletonTranscript lines={15} />
     {:then contentHTML}
       <div class={clsx('overflow-y-auto h-full', _class)}>
-        {@html contentHTML}
+        {#if contentHTML !== undefined}
+          {@html contentHTML}
+        {:else}
+          The transcript for this episode is not available yet.
+        {/if}
       </div>
     {:catch}
       <div class={clsx('overflow-y-auto h-full', _class)}>

@@ -34,3 +34,9 @@ it('gracefully handles transcript fetch errors', async () => {
   render(Transcript, { episode: sampleEpisode });
   await screen.findByText(/try refreshing/i);
 });
+
+it('gracefully handles missing transcripts', async () => {
+  jest.mocked(getTranscript).mockImplementation(async () => undefined);
+  render(Transcript, { episode: sampleEpisode });
+  await screen.findByText(/not available/i);
+});

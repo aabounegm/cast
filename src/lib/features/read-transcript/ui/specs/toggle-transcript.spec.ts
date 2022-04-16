@@ -9,7 +9,7 @@ it('dispatches a `click` event upon clicking', async () => {
   const user = userEvent.setup();
   const clickHandler = jest.fn().mockName('on:click event handler');
   const transcriptToggleWithClickHandler = useLocalVars(
-    svelte`<ToggleTranscript on:click={clickHandler} />`,
+    svelte`<ToggleTranscript transcriptShown on:click={clickHandler} />`,
     [ToggleTranscript, clickHandler]
   );
 
