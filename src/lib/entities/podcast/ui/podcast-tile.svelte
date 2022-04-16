@@ -1,13 +1,12 @@
 <script lang="ts">
   import cx from 'clsx';
+  import { Image } from '$lib/shared/ui';
   import type { Podcast } from '$lib/shared/api';
 
   let _class = '';
   export { _class as class };
   export let large = false;
   export let podcast: Podcast;
-
-  $: imageSize = large ? 108 : 32;
 </script>
 
 <a
@@ -24,11 +23,14 @@
   )}
   href="/podcasts/{podcast.id}"
 >
-  <img
-    class="rounded-lg aspect-square"
-    width={imageSize}
-    height={imageSize}
-    class:row-span-2={!large}
+  <Image
+    class={cx(
+      'rounded-lg',
+      'aspect-square',
+      'overflow-hidden',
+      large ? 'w-27 h-27' : 'w-8 h-8',
+      !large && 'row-span-2'
+    )}
     src={podcast.coverUrl}
     alt=""
   />
