@@ -4,7 +4,7 @@
   import { MetaImages, PreconnectLink } from '$lib/app';
   import { BottomBar } from '$lib/widgets/bottom-bar';
   import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
-  import { trackAuthStatus } from '$lib/features/authenticate';
+  import { trackAuthStatus, signInSnackbar } from '$lib/features/authenticate';
   import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
   import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import '$lib/app/global-styles.css';
@@ -13,6 +13,7 @@
   const bufferedNative = buffered as unknown as Writable<TimeRanges>;
 
   onMount(trackAuthStatus);
+  onMount(signInSnackbar);
 </script>
 
 <audio
