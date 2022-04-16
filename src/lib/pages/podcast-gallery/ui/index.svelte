@@ -8,7 +8,7 @@
   function getRecentPodcasts(podcasts: Podcast[]) {
     return $listeningHistory
       .map((podcastId) => podcasts.find((podcast) => podcast.id === podcastId) || null)
-      .filter(notNull) as Podcast[];
+      .filter(notNull);
   }
 
   let recentPodcasts: Podcast[];
