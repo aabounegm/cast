@@ -7,3 +7,5 @@ it.todo('toggles between episode display and transcript');
 it.todo('displays the correct currently playing episode');
 
 it.todo('provides the user with playback controls');
+
+it.todo('allows the user to collapse the widget');
