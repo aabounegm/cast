@@ -2,11 +2,27 @@
   import cx from 'clsx';
   import { Image } from '$lib/shared/ui';
   import type { Podcast } from '$lib/shared/api';
+  import { onMount } from 'svelte';
 
   let _class = '';
   export { _class as class };
   export let large = false;
   export let podcast: Podcast;
+
+  let loading = 'lazy';
+  let aEl: HTMLAnchorElement;
+
+  onMount(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(function (entries) {
+      if (entries.length === 0) return;
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loading = 'eager';
+      }
+      observer.disconnect();
+    });
+    observer.observe(aEl);
+  });
 </script>
 
 <a
@@ -22,6 +38,7 @@
     large && 'large pb-3'
   )}
   href="/podcasts/{podcast.id}"
+  bind:this={aEl}
 >
   <Image
     class={cx(
@@ -33,6 +50,7 @@
     )}
     src={podcast.coverUrl}
     alt=""
+    {loading}
   />
   <span class="author font-lato text-xs" class:mt-1={large}>
     {podcast.author}
