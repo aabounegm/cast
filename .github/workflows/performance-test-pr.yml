@@ -13,6 +13,8 @@ jobs:
 
       - name: Inject slug/short GitHub variables into envs
         uses: rlespinasse/github-slug-action@v3.x
+        with:
+          slug-maxlength: 28
 
       - name: Wait for CloudFlare to build the app
         shell: bash
