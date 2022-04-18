@@ -5,6 +5,7 @@
   import { UserContainer } from '$lib/entities/user';
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
   import { getEpisode } from '$lib/entities/episode';
+  import { getDownloadedEpisodes } from '$lib/features/download-episode';
 
   const liked = [...$likesStore];
 </script>
@@ -37,3 +38,17 @@
 </section>
 
 <!-- Available offline -->
+<section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="available-offline-header">
+  <H1 id="available-offline-header">Available offline</H1>
+  {#await getDownloadedEpisodes()}
+    <p>Loading...</p>
+  {:then episodes}
+    {#if episodes.length > 0}
+      {#each episodes as episode}
+        <EpisodeCard {episode} />
+      {/each}
+    {:else}
+      <p>No episodes available offline</p>
+    {/if}
+  {/await}
+</section>
