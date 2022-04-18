@@ -3,6 +3,10 @@
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
 import { handleRequestsWith } from 'worker-request-response';
+import type {
+  CheckStatusRequest,
+  ServiceWorkerRequest,
+} from '$lib/shared/lib/service-worker/message';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const cacheName = `cache-${version}`;
@@ -87,10 +91,18 @@ worker.addEventListener('fetch', (event) => {
   }
 });
 
-async function isFilenameInCache(event: MessageEvent<string>): Promise<boolean> {
+async function isFilenameInCache(event: MessageEvent<CheckStatusRequest>): Promise<boolean> {
   const cache = await caches.open(`offline-${version}`);
   const cacheKeys = await cache.keys();
-  return cacheKeys.some((request) => request.url.startsWith(event.data));
+  return cacheKeys.some((request) => request.url.startsWith(event.data.payload));
 }
 
-self.addEventListener('message', handleRequestsWith(isFilenameInCache));
+self.addEventListener('message', (e: MessageEvent<{ payload: ServiceWorkerRequest }>) => {
+  // TODO: figure out how to type this properly to use an object mapping instead
+  switch (e.data.payload.type) {
+    case 'check-download-status':
+      return handleRequestsWith(isFilenameInCache)(e);
+    default:
+      console.error('Unrecognized message:', e.data);
+  }
+});
