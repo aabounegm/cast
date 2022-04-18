@@ -1,6 +1,9 @@
 import { get } from 'svelte/store';
 import { src, duration, currentTime, seek, move, play, pause, paused } from '$lib/entities/audio';
 
+jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
+
 describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
   const defaultDuration = 6.452245;
@@ -40,5 +43,15 @@ describe('Audio playback API', () => {
     move(100);
     expect(get(currentTime)).toEqual(get(duration));
     pause();
+  });
+
+  it('plays twice without pause', async () => {
+    playDefault();
+    jest.advanceTimersByTime(1000);
+    playDefault();
+    jest.advanceTimersByTime(1000);
+    expect(get(paused)).toBeFalsy();
+    expect(get(currentTime)).toBePositive();
+    expect(get(currentTime)).toBeLessThan(1000);
   });
 });
