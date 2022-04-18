@@ -5,6 +5,7 @@ import { build, files, version } from '$service-worker';
 import { handleRequestsWith } from 'worker-request-response';
 import type {
   CheckStatusRequest,
+  QueryDownloadsRequest,
   ServiceWorkerRequest,
 } from '$lib/shared/lib/service-worker/message';
 
@@ -97,11 +98,20 @@ async function isFilenameInCache(event: MessageEvent<CheckStatusRequest>): Promi
   return cacheKeys.some((request) => request.url.startsWith(event.data.payload));
 }
 
+async function getCachedEpisodes(_event: MessageEvent<QueryDownloadsRequest>): Promise<string[]> {
+  const cache = await caches.open(`offline-${version}`);
+  const cacheKeys = await cache.keys();
+  const urls = cacheKeys.map((request) => request.url);
+  return urls.filter((url) => new URL(url).pathname.endsWith('.mp3'));
+}
+
 self.addEventListener('message', (e: MessageEvent<{ payload: ServiceWorkerRequest }>) => {
   // TODO: figure out how to type this properly to use an object mapping instead
   switch (e.data.payload.type) {
     case 'check-download-status':
       return handleRequestsWith(isFilenameInCache)(e);
+    case 'query-downloaded-episodes':
+      return handleRequestsWith(getCachedEpisodes)(e);
     default:
       console.error('Unrecognized message:', e.data);
   }
