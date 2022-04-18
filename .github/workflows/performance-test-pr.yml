@@ -23,5 +23,5 @@ jobs:
       - name: Performance testing with Lighthouse 🧪
         uses: treosh/lighthouse-ci-action@v9
         with:
-          urls: 'https://${{ env.GITHUB_HEAD_REF_SLUG }}.cast-iu.pages.dev/'
+          urls: 'https://${{ env.GITHUB_REF_NAME }}.cast-iu.pages.dev/'
           configPath: './lighthouserc.json'
