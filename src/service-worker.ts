@@ -40,7 +40,7 @@ async function fetchAndCache(request: Request) {
   const cache = await caches.open(`offline-${version}`);
   const isAudio = request.url.endsWith('.mp3');
   if (isAudio) {
-    const cached = await cache.match(request);
+    const cached = await cache.match(request.url);
     if (cached) {
       return cached;
     }
@@ -50,7 +50,9 @@ async function fetchAndCache(request: Request) {
   try {
     const response = await fetch(request);
     if (!isAudio || shouldCache) {
-      cache.put(request, response.clone());
+      const url = new URL(request.url);
+      url.searchParams.delete('download');
+      cache.put(url.toString(), response.clone());
     }
     return response;
   } catch (err) {
