@@ -7,7 +7,7 @@ import type {
   CheckStatusRequest,
   QueryDownloadsRequest,
   ServiceWorkerRequest,
-} from '$lib/shared/lib/service-worker/message';
+} from '$lib/shared/lib';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const cacheName = `cache-${version}`;
