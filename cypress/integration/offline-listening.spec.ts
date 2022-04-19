@@ -7,7 +7,7 @@ const podcastID = 1;
 // Inspired by https://www.cypress.io/blog/2020/11/12/testing-application-in-offline-network-mode/
 const goOffline = () => {
   return cy
-    .log('**go online**')
+    .log('**go offline**')
     .then(() =>
       Cypress.automation('remote:debugger:protocol', {
         command: 'Network.enable',
