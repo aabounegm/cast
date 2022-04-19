@@ -4,6 +4,7 @@
     "target": "ES2019", // For some reason, this specific version is needed for `?.`
     "types": ["cypress", "@testing-library/cypress"],
     "preserveValueImports": false,
+    "esModuleInterop": true,
     "isolatedModules": false
   },
   "include": ["./**/*.ts"]
