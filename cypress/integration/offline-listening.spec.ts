@@ -1,8 +1,5 @@
 /* eslint-disable testing-library/await-async-query, testing-library/prefer-screen-queries */
-import supabaseHostname from '../fixtures/supabase-hostname.json';
-import samplePodcast from '../fixtures/sample-podcasts.json';
-
-const podcastID = 1;
+import type { SBPodcast } from '$lib/shared/api';
 
 // Inspired by https://www.cypress.io/blog/2020/11/12/testing-application-in-offline-network-mode/
 const goOffline = () => {
@@ -44,8 +41,17 @@ beforeEach(goOnline);
 afterEach(goOnline);
 
 it('can play a downloaded episode while offline', () => {
-  cy.intercept({ hostname: supabaseHostname, path: '/rest/v1/podcasts*' }, [samplePodcast]);
-  cy.visitAndWaitForHydration(`/podcasts/${podcastID}`);
+  // Find an existing podcast
+  cy.createSupabaseClient().then(async (supabase) => {
+    const { data: podcast } = await supabase
+      .from<SBPodcast>('podcasts')
+      .select('*')
+      .limit(1)
+      .single();
+    expect(podcast).to.be.not.null;
+    if (podcast === null) return;
+    cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
+  });
 
   // Download all the episodes
   cy.findAllByTestId('episode-card').each((card) => {
