@@ -40,7 +40,7 @@ const goOnline = () => {
 beforeEach(goOnline);
 afterEach(goOnline);
 
-it('can play a downloaded episode while offline', () => {
+it.skip('can play a downloaded episode while offline', () => {
   // Find an existing podcast
   cy.createSupabaseClient().then(async (supabase) => {
     const { data: podcast } = await supabase
