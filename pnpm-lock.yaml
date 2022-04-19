@@ -28,7 +28,7 @@ specifiers:
   babel-preset-vite: ^1.0.4
   blns: ^2.0.4
   clsx: ^1.1.1
-  cypress: ^9.5.3
+  cypress: ^9.5.4
   dompurify: ^2.3.6
   dotenv: ^16.0.0
   eslint: ^8.12.0
@@ -80,8 +80,8 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.9
   '@iconify-json/ic': 1.1.2
   '@sveltejs/adapter-cloudflare': 1.0.0-next.17
-  '@sveltejs/kit': 1.0.0-next.308_svelte@3.46.6
-  '@testing-library/cypress': 8.0.2_cypress@9.5.3
+  '@sveltejs/kit': 1.0.0-next.316_svelte@3.46.6
+  '@testing-library/cypress': 8.0.2_cypress@9.5.4
   '@testing-library/dom': 8.13.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/svelte': 3.1.0_svelte@3.46.6
@@ -98,7 +98,7 @@ devDependencies:
   babel-plugin-svelte-inline-compile: 0.1.0_@babel+core@7.17.9+svelte@3.46.6
   babel-preset-vite: 1.0.4
   blns: 2.0.4
-  cypress: 9.5.3
+  cypress: 9.5.4
   dotenv: 16.0.0
   eslint: 8.12.0
   eslint-config-prettier: 8.5.0_eslint@8.12.0
@@ -1798,8 +1798,8 @@ packages:
       worktop: 0.8.0-next.12
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.308_svelte@3.46.6:
-    resolution: {integrity: sha512-/ORLef5kZEMTUgUkdSQ5Lsn3IKBRNYmLdJ26JjtSa03nPKsybvSMiGIho9WS6ESBw3+XaYF91TqksTyr/gTeoA==}
+  /@sveltejs/kit/1.0.0-next.316_svelte@3.46.6:
+    resolution: {integrity: sha512-oLjWOWzjriJD2t210r7ALuH/8ZADrJGsOODzRCRSJvRBCt0Q7VKVLqwKbM/RlZzD1k8Af2uRodQT11kP98hAIA==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1839,7 +1839,7 @@ packages:
       - supports-color
     dev: true
 
-  /@testing-library/cypress/8.0.2_cypress@9.5.3:
+  /@testing-library/cypress/8.0.2_cypress@9.5.4:
     resolution: {integrity: sha512-KVdm7n37sg/A4e3wKMD4zUl0NpzzVhx06V9Tf0hZHZ7nrZ4yFva6Zwg2EFF1VzHkEfN/ahUzRtT1qiW+vuWnJw==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -1847,7 +1847,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.2
       '@testing-library/dom': 8.13.0
-      cypress: 9.5.3
+      cypress: 9.5.4
     dev: true
 
   /@testing-library/dom/7.31.2:
@@ -3063,8 +3063,8 @@ packages:
       cssom: 0.3.8
     dev: true
 
-  /cypress/9.5.3:
-    resolution: {integrity: sha512-ItelIVmqMTnKYbo1JrErhsGgQGjWOxCpHT1TfMvwnIXKXN/OSlPjEK7rbCLYDZhejQL99PmUqul7XORI24Ik0A==}
+  /cypress/9.5.4:
+    resolution: {integrity: sha512-6AyJAD8phe7IMvOL4oBsI9puRNOWxZjl8z1lgixJMcgJ85JJmyKeP6uqNA0dI1z14lmJ7Qklf2MOgP/xdAqJ/Q==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
