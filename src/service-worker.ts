@@ -3,6 +3,7 @@
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
 import { handleRequestsWith } from 'worker-request-response';
+import { createPartialResponse } from 'workbox-range-requests';
 import type {
   CheckStatusRequest,
   QueryDownloadsRequest,
@@ -47,6 +48,9 @@ async function fetchAndCache(request: Request) {
   if (isAudio) {
     const cached = await cache.match(request.url);
     if (cached) {
+      if (request.headers.has('Range')) {
+        return createPartialResponse(request, cached);
+      }
       return cached;
     }
   }
@@ -54,7 +58,9 @@ async function fetchAndCache(request: Request) {
 
   try {
     const response = await fetch(request);
-    if (!isAudio || shouldCache) {
+    // Don't cache partial responses
+    const isFull = !response.headers.has('content-range');
+    if ((!isAudio && isFull) || shouldCache) {
       const url = new URL(request.url);
       url.searchParams.delete('download');
       cache.put(url.toString(), response.clone());
