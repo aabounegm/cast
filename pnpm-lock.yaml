@@ -62,6 +62,7 @@ specifiers:
   unplugin-icons: ^0.13.4
   vite-imagetools: ^4.0.3
   web-streams-polyfill: ^3.2.0
+  workbox-range-requests: ^6.5.3
   worker-request-response: ^1.0.3
 
 dependencies:
@@ -129,6 +130,7 @@ devDependencies:
   unplugin-icons: 0.13.4
   vite-imagetools: 4.0.3
   web-streams-polyfill: 3.2.0
+  workbox-range-requests: 6.5.3
 
 packages:
 
@@ -7404,6 +7406,16 @@ packages:
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /workbox-core/6.5.3:
+    resolution: {integrity: sha512-Bb9ey5n/M9x+l3fBTlLpHt9ASTzgSGj6vxni7pY72ilB/Pb3XtN+cZ9yueboVhD5+9cNQrC9n/E1fSrqWsUz7Q==}
+    dev: true
+
+  /workbox-range-requests/6.5.3:
+    resolution: {integrity: sha512-pGCP80Bpn/0Q0MQsfETSfmtXsQcu3M2QCJwSFuJ6cDp8s2XmbUXkzbuQhCUzKR86ZH2Vex/VUjb2UaZBGamijA==}
+    dependencies:
+      workbox-core: 6.5.3
     dev: true
 
   /worker-request-response/1.0.3:
