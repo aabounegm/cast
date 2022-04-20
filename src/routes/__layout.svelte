@@ -5,7 +5,15 @@
   import { BottomBar } from '$lib/widgets/bottom-bar';
   import { NowPlaying, nowPlayingActive } from '$lib/widgets/now-playing';
   import { trackAuthStatus, signInSnackbar } from '$lib/features/authenticate';
-  import { src, duration, currentTime, paused, playbackRate, buffered } from '$lib/entities/audio';
+  import {
+    src,
+    duration,
+    currentTime,
+    paused,
+    playbackRate,
+    buffered,
+    reportError,
+  } from '$lib/entities/audio';
   import { SnackbarQueue } from '$lib/shared/ui/snackbar';
   import '$lib/app/global-styles.css';
 
@@ -23,6 +31,7 @@
   bind:paused={$paused}
   bind:playbackRate={$playbackRate}
   bind:buffered={$bufferedNative}
+  on:error={(e) => reportError(e.currentTarget)}
 />
 
 <main class="flex-1 relative margin-auto min-h-full w-full bg-slate-800 text-slate-100">

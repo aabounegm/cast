@@ -1,3 +1,4 @@
+import { snackbar } from '$lib/shared/ui/snackbar';
 import { get, writable } from 'svelte/store';
 
 // Because apparently Svelte thinks it knows better how the Web APIs should be.
@@ -41,4 +42,24 @@ export const move = (deltaInSeconds: number) =>
 function clampTime(time: number) {
   const d = get(duration);
   return Math.max(0, Math.min(time, isNaN(d) ? 0 : d));
+}
+
+export function reportError(el: HTMLElement) {
+  const audioEl = el as HTMLAudioElement;
+
+  const err = audioEl.error;
+
+  if (err == null) return;
+
+  if (get(src) === '') return;
+
+  const errMsgs = {
+    [err.MEDIA_ERR_ABORTED]: 'Episode playback aborted.',
+    [err.MEDIA_ERR_DECODE]: 'An error occured while playing the episode. Try to refresh the page.',
+    [err.MEDIA_ERR_NETWORK]:
+      'A network error has occured. Please check your internet connection and try again.',
+    [err.MEDIA_ERR_SRC_NOT_SUPPORTED]: 'Your browser does not support the audio format.',
+  };
+
+  snackbar({ text: errMsgs[err.code] });
 }
