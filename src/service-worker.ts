@@ -3,6 +3,7 @@
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
 import { handleRequestsWith } from 'worker-request-response';
+import { createPartialResponse } from 'workbox-range-requests';
 import type {
   CheckStatusRequest,
   QueryDownloadsRequest,
@@ -45,8 +46,11 @@ async function fetchAndCache(request: Request) {
   const cache = await caches.open(`offline-${version}`);
   const isAudio = request.url.endsWith('.mp3');
   if (isAudio) {
-    const cached = await cache.match(request);
+    const cached = await cache.match(request.url);
     if (cached) {
+      if (request.headers.has('Range')) {
+        return createPartialResponse(request, cached);
+      }
       return cached;
     }
   }
@@ -54,8 +58,12 @@ async function fetchAndCache(request: Request) {
 
   try {
     const response = await fetch(request);
-    if (!isAudio || shouldCache) {
-      cache.put(request, response.clone());
+    // Don't cache partial responses
+    const isFull = !response.headers.has('content-range');
+    if ((!isAudio && isFull) || shouldCache) {
+      const url = new URL(request.url);
+      url.searchParams.delete('download');
+      cache.put(url.toString(), response.clone());
     }
     return response;
   } catch (err) {
@@ -67,7 +75,7 @@ async function fetchAndCache(request: Request) {
 }
 
 worker.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
+  if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 

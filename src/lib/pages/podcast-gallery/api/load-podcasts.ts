@@ -5,7 +5,8 @@ export const loadPodcasts: Load = async () => {
   try {
     podcasts.set(await podcastList());
     return {};
-  } catch {
+  } catch (e) {
+    console.error(e);
     return {
       status: 500,
       error:

@@ -41,8 +41,8 @@
   <DownloadDone />
 {:else if $progress === null}
   <DownloadLink on:click={startDownloads} {downloadAll} />
-{:else if $progress < 100}
-  <DownloadProgress percentage={$progress} />
-{:else}
+{:else if $progress === 100}
   <DownloadDone />
+{:else}
+  <DownloadProgress percentage={$progress} />
 {/if}

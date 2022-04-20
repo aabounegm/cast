@@ -1,33 +1,33 @@
 /* eslint-disable testing-library/await-async-query, testing-library/prefer-screen-queries */
-import supabaseHostname from '../fixtures/supabase-hostname.json';
-import samplePodcastJson from '../fixtures/sample-podcasts.json';
-import type { Podcast } from '../../src/lib/shared/api/types';
+import type { SBPodcast } from '$lib/shared/api';
 
-const samplePodcast = samplePodcastJson as Podcast;
+it('likes an episode then finds it in the library', () => {
+  cy.createSupabaseClient().then(async (supabase) => {
+    const { data: podcast } = await supabase
+      .from<SBPodcast>('podcasts')
+      .select('id, episodes (title)')
+      .limit(1)
+      .single();
+    expect(podcast).to.be.not.null;
+    if (podcast === null) return;
+    const titles = podcast.episodes.map(({ title }) => title);
+    cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
-const podcastID = 1;
-const titles = samplePodcast.episodes.map(({ title }) => title);
-
-it.skip('likes an episode then finds it in the library', () => {
-  cy.intercept({ hostname: supabaseHostname, path: '/rest/v1/podcasts*' }, samplePodcast);
-  cy.visitAndWaitForHydration(`/podcasts/${podcastID}`);
-
-  // Like all the episodes
-  cy.findAllByTestId('episode-card').each((card, index) => {
-    const episode = samplePodcast.episodes[index];
-
-    cy.wrap(card).within(() => {
-      cy.findByText(episode.title).should('exist');
-      cy.findByRole('button', {
-        name: 'Like this episode',
-      }).click();
+    // Like all the episodes
+    cy.findAllByTestId('episode-card').each((card, index) => {
+      cy.wrap(card).within(() => {
+        cy.findByText(titles[index]).should('exist');
+        cy.findByRole('button', {
+          name: 'Like this episode',
+        }).click();
+      });
     });
-  });
 
-  cy.visitAndWaitForHydration('/library');
+    cy.visitAndWaitForHydration('/library');
 
-  // Expect all episode titles to be in the library
-  titles.forEach((title) => {
-    cy.findByLabelText(/favorites/i).contains(title);
+    // Expect all episode titles to be in the library
+    titles.forEach((title) => {
+      cy.findByLabelText(/favorites/i).contains(title);
+    });
   });
 });
