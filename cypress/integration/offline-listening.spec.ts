@@ -59,7 +59,7 @@ it.skip('can play a downloaded episode while offline', () => {
       cy.findByText('Download', { trim: true }).click();
 
       // wait until it finishes downloading
-      cy.findByText('Available offline', { exact: false, timeout: 8000 }).should('exist');
+      cy.findByText('Available offline', { exact: false, timeout: 20000 }).should('exist');
     });
   });
 
