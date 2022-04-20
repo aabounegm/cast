@@ -40,6 +40,12 @@ const goOnline = () => {
 beforeEach(goOnline);
 afterEach(goOnline);
 
+// This test is skipped because there is a bug in Cypress that prevents goOnline and
+//  goOffline from working properly with the Chrome driver.
+//  Check https://github.com/cypress-io/cypress/issues/235#issuecomment-1009912083 for more info.
+// Also, for some reason, the responses do not contain the `Content-Length` header, causing
+//  it to seem like the download is completed immediately.
+// Lastly, `expectPlayingAudio` is not working properly.
 it.skip('can play a downloaded episode while offline', () => {
   // Find an existing podcast
   cy.createSupabaseClient().then(async (supabase) => {
