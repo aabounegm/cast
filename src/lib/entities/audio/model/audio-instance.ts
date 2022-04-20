@@ -45,6 +45,12 @@ function clampTime(time: number) {
 }
 
 export function reportError(el: HTMLElement) {
+  // shameful workaround
+  if (!window.navigator.onLine) {
+    snackbar({ text: 'You are offline. Please connect to the internet and try again.' });
+    return;
+  }
+
   const audioEl = el as HTMLAudioElement;
 
   const err = audioEl.error;
