@@ -44,6 +44,7 @@
   ],
   "type": "module",
   "devDependencies": {
+    "@applitools/eyes-cypress": "^3.25.5",
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
