@@ -51,15 +51,15 @@ export function reportError(el: HTMLElement) {
   const err = audioEl.error;
 
   if (err == null) return;
-  
+
   if (get(src) === '') return;
-  
+
   // shameful workaround
   if (!window.navigator.onLine) {
     snackbar({ text: 'You are offline. Please connect to the internet and try again.' });
     return;
   }
-  
+
   const errMsgs = {
     [err.MEDIA_ERR_ABORTED]: 'Episode playback aborted.',
     [err.MEDIA_ERR_DECODE]: 'An error occured while playing the episode. Try to refresh the page.',
