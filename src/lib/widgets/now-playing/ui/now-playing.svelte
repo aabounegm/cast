@@ -37,6 +37,7 @@
 {#if $currentlyPlayingEpisode !== null}
   <div
     class="bg-black bg-opacity-20 flex flex-col justify-end fixed bottom-0 left-0 h-screen"
+    data-testid="now-playing"
     transition:fade
   >
     <div
