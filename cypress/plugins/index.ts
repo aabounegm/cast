@@ -12,3 +12,8 @@ const config: Cypress.PluginConfig = (on, config) => {
 };
 
 export default config;
+
+module.exports = config;
+// @ts-expect-error Because it doesn't support ESM syntax for some reason
+import applitools = require('@applitools/eyes-cypress');
+applitools(module);

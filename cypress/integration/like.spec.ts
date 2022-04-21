@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/await-async-query, testing-library/prefer-screen-queries */
 import type { SBPodcast } from '$lib/shared/api';
 
 it('likes an episode then finds it in the library', () => {

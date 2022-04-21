@@ -1,4 +1,5 @@
 import type { Load } from '@sveltejs/kit';
+import { dev } from '$app/env';
 import { podcastList, podcasts } from '$lib/entities/podcast';
 
 export const loadPodcasts: Load = async () => {
@@ -6,7 +7,9 @@ export const loadPodcasts: Load = async () => {
     podcasts.set(await podcastList());
     return {};
   } catch (e) {
-    console.error(e);
+    if (dev) {
+      console.error(e);
+    }
     return {
       status: 500,
       error:

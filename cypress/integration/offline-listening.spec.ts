@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/await-async-query, testing-library/prefer-screen-queries */
 import type { SBPodcast } from '$lib/shared/api';
 
 // Inspired by https://www.cypress.io/blog/2020/11/12/testing-application-in-offline-network-mode/
