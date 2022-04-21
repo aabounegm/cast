@@ -14,6 +14,9 @@ inputs:
   testUserPassword:
     description: 'The password of the Supabase user created for E2E tests'
     required: true
+  applitoolsApiKey:
+    description: 'The API key for Applitools to upload reports'
+    required: true
 
 runs:
   using: 'composite'
@@ -56,6 +59,7 @@ runs:
         VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
         VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}
         TEST_USER_PASSWORD: ${{ inputs.testUserPassword }}
+        APPLITOOLS_API_KEY: ${{ inputs.applitoolsApiKey }}
       with:
         build: pnpm run build
         start: pnpm run preview

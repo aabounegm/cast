@@ -18,3 +18,4 @@ jobs:
           supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
           codecovToken: ${{ secrets.CODECOV_TOKEN }}
           testUserPassword: ${{ secrets.TEST_USER_PASSWORD }}
+          applitoolsApiKey: ${{ secrets.APPLITOOLS_API_KEY }}
