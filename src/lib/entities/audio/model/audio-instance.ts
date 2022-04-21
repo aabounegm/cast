@@ -45,20 +45,21 @@ function clampTime(time: number) {
 }
 
 export function reportError(el: HTMLElement) {
-  // shameful workaround
-  if (!window.navigator.onLine) {
-    snackbar({ text: 'You are offline. Please connect to the internet and try again.' });
-    return;
-  }
-
+  // this is necessary as the audio element's error callback accepts 'EventTarget & HTMLElement'
   const audioEl = el as HTMLAudioElement;
 
   const err = audioEl.error;
 
   if (err == null) return;
-
+  
   if (get(src) === '') return;
-
+  
+  // shameful workaround
+  if (!window.navigator.onLine) {
+    snackbar({ text: 'You are offline. Please connect to the internet and try again.' });
+    return;
+  }
+  
   const errMsgs = {
     [err.MEDIA_ERR_ABORTED]: 'Episode playback aborted.',
     [err.MEDIA_ERR_DECODE]: 'An error occured while playing the episode. Try to refresh the page.',
