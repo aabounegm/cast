@@ -12,7 +12,11 @@
 </script>
 
 {#if podcast !== undefined}
-  <div class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800" on:click>
+  <div
+    class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800"
+    data-testid="mini-player"
+    on:click
+  >
     <Image class="w-10 h-10 rounded overflow-hidden" src={podcast.coverUrl} alt="" />
     <div class="flex justify-between px-3 gap-2">
       <IconButton

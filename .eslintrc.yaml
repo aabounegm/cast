@@ -31,6 +31,11 @@ overrides:
   - files:
       - '*.svelte'
     processor: svelte3/svelte3
+  - files:
+      - 'cypress/integration/**/*.ts'
+    rules:
+      'testing-library/await-async-query': off
+      'testing-library/prefer-screen-queries': off
 
 settings:
   svelte3/typescript: true
