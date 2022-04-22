@@ -10,4 +10,5 @@ export {
   play,
   seek,
   type SvelteTimeRanges,
+  reportError,
 } from './model/audio-instance';

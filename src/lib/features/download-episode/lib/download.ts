@@ -23,6 +23,7 @@ async function fetchAndWatchProgress(url: string, store: Writable<number>) {
   while (!done) {
     ({ done, value } = await reader.read());
     receivedLength += value?.length ?? 0;
-    store.set(Math.floor((receivedLength / contentLength) * 100));
+    if (contentLength) store.set(Math.floor((receivedLength / contentLength) * 100));
   }
+  store.set(100);
 }

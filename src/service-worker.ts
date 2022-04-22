@@ -3,6 +3,12 @@
 // Courtesy of https://dev.to/100lvlmaster/create-a-pwa-with-sveltekit-svelte-a36
 import { build, files, version } from '$service-worker';
 import { handleRequestsWith } from 'worker-request-response';
+import { createPartialResponse } from 'workbox-range-requests';
+import type {
+  CheckStatusRequest,
+  QueryDownloadsRequest,
+  ServiceWorkerRequest,
+} from '$lib/shared/lib';
 
 const worker = self as unknown as ServiceWorkerGlobalScope;
 const cacheName = `cache-${version}`;
@@ -40,8 +46,11 @@ async function fetchAndCache(request: Request) {
   const cache = await caches.open(`offline-${version}`);
   const isAudio = request.url.endsWith('.mp3');
   if (isAudio) {
-    const cached = await cache.match(request);
+    const cached = await cache.match(request.url);
     if (cached) {
+      if (request.headers.has('Range')) {
+        return createPartialResponse(request, cached);
+      }
       return cached;
     }
   }
@@ -49,8 +58,12 @@ async function fetchAndCache(request: Request) {
 
   try {
     const response = await fetch(request);
-    if (!isAudio || shouldCache) {
-      cache.put(request, response.clone());
+    // Don't cache partial responses
+    const isFull = !response.headers.has('content-range');
+    if ((!isAudio && isFull) || shouldCache) {
+      const url = new URL(request.url);
+      url.searchParams.delete('download');
+      cache.put(url.toString(), response.clone());
     }
     return response;
   } catch (err) {
@@ -62,7 +75,7 @@ async function fetchAndCache(request: Request) {
 }
 
 worker.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET' || event.request.headers.has('range')) return;
+  if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 
@@ -87,10 +100,27 @@ worker.addEventListener('fetch', (event) => {
   }
 });
 
-async function isFilenameInCache(event: MessageEvent<string>): Promise<boolean> {
+async function isFilenameInCache(event: MessageEvent<CheckStatusRequest>): Promise<boolean> {
   const cache = await caches.open(`offline-${version}`);
   const cacheKeys = await cache.keys();
-  return cacheKeys.some((request) => request.url.startsWith(event.data));
+  return cacheKeys.some((request) => request.url.startsWith(event.data.payload));
 }
 
-self.addEventListener('message', handleRequestsWith(isFilenameInCache));
+async function getCachedEpisodes(_event: MessageEvent<QueryDownloadsRequest>): Promise<string[]> {
+  const cache = await caches.open(`offline-${version}`);
+  const cacheKeys = await cache.keys();
+  const urls = cacheKeys.map((request) => request.url);
+  return urls.filter((url) => new URL(url).pathname.endsWith('.mp3'));
+}
+
+self.addEventListener('message', (e: MessageEvent<{ payload: ServiceWorkerRequest }>) => {
+  // TODO: figure out how to type this properly to use an object mapping instead
+  switch (e.data.payload.type) {
+    case 'check-download-status':
+      return handleRequestsWith(isFilenameInCache)(e);
+    case 'query-downloaded-episodes':
+      return handleRequestsWith(getCachedEpisodes)(e);
+    default:
+      console.error('Unrecognized message:', e.data);
+  }
+});

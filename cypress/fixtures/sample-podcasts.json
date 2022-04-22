@@ -1,17 +1,24 @@
 {
   "id": 1,
-  "coverUrl": "https://influencermarketing.ai/wp-content/uploads/2020/05/Podcast-blog-6.jpg",
+  "coverArt": {
+    "name": "caucastalk.jpg"
+  },
   "title": "Bi Co Bo Co",
   "author": "Cciqhaqxa",
   "episodes": [
     {
       "id": 1,
-      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "audio": {
+        "name": "CaucasTalk_Episode114.mp3"
+      },
       "title": "Ahulgox",
       "duration": 124
     },
     {
       "id": 2,
+      "audio": {
+        "name": "CaucasTalk_Episode113-92.mp3"
+      },
       "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
       "title": "Argwan",
       "duration": 42
