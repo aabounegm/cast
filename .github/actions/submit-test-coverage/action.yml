@@ -1,0 +1,16 @@
+name: Test coverage upload
+description: Uploads test coverage to Codecov
+
+inputs:
+  codecovToken:
+    description: 'Codecov access key'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Upload coverage report to Codecov
+      uses: codecov/codecov-action@53cfbc752e9c24b67aa0ada6f90cd0ea22c5f6d6
+      with:
+        token: ${{ inputs.codecovToken }}
+        fail_ci_if_error: true

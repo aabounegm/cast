@@ -1,0 +1,9 @@
+name: Static code analysis
+description: Performs linting with ESLint and svelte-check, checks code style with Prettier. Requires Node, pnpm and installed dependencies
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Lint the code and check code style 🧹
+      shell: bash
+      run: pnpm run lint
