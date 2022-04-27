@@ -22,12 +22,12 @@ runs:
   using: 'composite'
   steps:
     - name: Use pnpm
-      uses: pnpm/action-setup@v2.0.1
+      uses: pnpm/action-setup@10b4b0b462cfa1a30381c9d7c242194165a466ab
       with:
         version: 6.28.0
 
     - name: Cache 📦
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '16'
         cache: 'pnpm'
@@ -48,13 +48,13 @@ runs:
         VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}
 
     - name: Upload coverage report to Codecov
-      uses: codecov/codecov-action@v2.1.0
+      uses: codecov/codecov-action@53cfbc752e9c24b67aa0ada6f90cd0ea22c5f6d6
       with:
         token: ${{ inputs.codecovToken }}
         fail_ci_if_error: true
 
     - name: Run Cypress E2E tests 🧪
-      uses: cypress-io/github-action@v2
+      uses: cypress-io/github-action@04ea5b90780c300adb0dc8cb01aff983956d7b9c
       env:
         VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
         VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}

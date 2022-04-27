@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
 
       - name: Inject slug/short GitHub variables into envs
-        uses: rlespinasse/github-slug-action@v4.x
+        uses: rlespinasse/github-slug-action@33cd7a701db9c2baf4ad705d930ade51a9f25c14
         with:
           slug-maxlength: 28
 
@@ -21,7 +21,7 @@ jobs:
         run: sleep 60
 
       - name: Performance testing with Lighthouse 🧪
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@3746605457acc063b18380e2deb9017c8c4bdf8a
         with:
           urls: 'https://${{ env.GITHUB_HEAD_REF_SLUG }}.cast-iu.pages.dev/'
           configPath: './lighthouserc.json'

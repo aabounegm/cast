@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
 
       - name: Wait for CloudFlare to build the app
         shell: bash
         run: sleep 60
 
       - name: Performance testing with Lighthouse 🧪
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@3746605457acc063b18380e2deb9017c8c4bdf8a
         with:
           urls: 'https://cast-iu.pages.dev/'
           configPath: './lighthouserc.json'

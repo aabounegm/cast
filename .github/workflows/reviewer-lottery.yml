@@ -8,7 +8,7 @@ jobs:
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'pair-programmed') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: uesteibar/reviewer-lottery@v1
+      - uses: actions/checkout@v3
+      - uses: uesteibar/reviewer-lottery@71ad669610706ce2b1f22f9615a810d47ce53078
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
