@@ -14,7 +14,7 @@ jobs:
       - name: Use pnpm 📦
         uses: pnpm/action-setup@10b4b0b462cfa1a30381c9d7c242194165a466ab
         with:
-          version: 6.28.0
+          version: 6.32.10
 
       - name: Set up Node and cache dependencies 📦
         uses: actions/setup-node@v3
