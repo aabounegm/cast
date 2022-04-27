@@ -1,8 +1,8 @@
-name: Run tests on Pull Requests
+name: QC on the main branch
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
 
 jobs:
   build-and-test:

@@ -1,4 +1,4 @@
-name: 'Reviewer lottery'
+name: Reviewer lottery
 on:
   pull_request:
     types: [opened, unlabeled, ready_for_review]
