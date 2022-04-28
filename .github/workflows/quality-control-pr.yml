@@ -5,7 +5,8 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build-and-test:
+  set-up-env:
+    name: Set up environment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -25,12 +26,24 @@ jobs:
       - name: Install dependencies 🔧
         run: pnpm install
 
+  unit-test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    needs:
+      - set-up-env
+    steps:
       - name: Run unit tests 🧪
         uses: ./.github/actions/unit-tests
         with:
           supabaseUrl: ${{ secrets.VITE_SUPABASE_APP_URL }}
           supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
 
+  e2e-test:
+    name: Run E2E tests
+    runs-on: ubuntu-latest
+    needs:
+      - set-up-env
+    steps:
       - name: Run E2E tests 🧪
         uses: ./.github/actions/e2e-tests
         with:
@@ -39,9 +52,22 @@ jobs:
           testUserPassword: ${{ secrets.TEST_USER_PASSWORD }}
           applitoolsApiKey: ${{ secrets.APPLITOOLS_API_KEY }}
 
+  static-analysis:
+    name: Run static code analysis
+    runs-on: ubuntu-latest
+    needs:
+      - set-up-env
+    steps:
       - name: Run static code analysis 🧪
         uses: ./.github/actions/static-analysis
 
+  submit-coverage:
+    name: Upload test coverage
+    runs-on: ubuntu-latest
+    needs:
+      - set-up-env
+      - unit-test
+    steps:
       - name: Submit test coverage
         uses: ./.github/actions/submit-test-coverage
         with:
