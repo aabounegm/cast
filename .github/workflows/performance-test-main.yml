@@ -1,4 +1,4 @@
-name: Run performance tests on push to main branch
+name: Performance tests on the main branch
 
 on:
   push:
@@ -12,11 +12,11 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Wait for CloudFlare to build the app
+      - name: Wait for Cloudflare to build the app
         shell: bash
-        run: sleep 60
+        run: sleep 100
 
-      - name: Performance testing with Lighthouse 🧪
+      - name: Test performance with Lighthouse 🧪
         uses: treosh/lighthouse-ci-action@3746605457acc063b18380e2deb9017c8c4bdf8a
         with:
           urls: 'https://cast-iu.pages.dev/'

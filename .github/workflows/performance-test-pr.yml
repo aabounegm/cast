@@ -1,4 +1,4 @@
-name: Run performance tests on Pull Requests
+name: Performance tests on pull requests
 
 on:
   pull_request:
@@ -16,11 +16,11 @@ jobs:
         with:
           slug-maxlength: 28
 
-      - name: Wait for CloudFlare to build the app
+      - name: Wait for Cloudflare to build the app
         shell: bash
-        run: sleep 60
+        run: sleep 100
 
-      - name: Performance testing with Lighthouse 🧪
+      - name: Test performance with Lighthouse 🧪
         uses: treosh/lighthouse-ci-action@3746605457acc063b18380e2deb9017c8c4bdf8a
         with:
           urls: 'https://${{ env.GITHUB_HEAD_REF_SLUG }}.cast-iu.pages.dev/'
