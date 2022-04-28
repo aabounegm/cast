@@ -9,6 +9,9 @@ jobs:
     name: Run unit tests
     runs-on: ubuntu-latest
     steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
@@ -41,6 +44,9 @@ jobs:
     name: Run E2E tests
     runs-on: ubuntu-latest
     steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
@@ -70,6 +76,9 @@ jobs:
     name: Run static code analysis
     runs-on: ubuntu-latest
     steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
