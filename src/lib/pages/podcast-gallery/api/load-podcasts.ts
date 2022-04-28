@@ -1,10 +1,21 @@
 import type { Load } from '@sveltejs/kit';
 import { dev } from '$app/env';
-import { podcastList, podcasts } from '$lib/entities/podcast';
 
-export const loadPodcasts: Load = async () => {
+import { fetchTrending } from '$lib/features/trending-podcasts';
+import { podcastList, podcasts as allPodcastStore, trendingPodcasts } from '$lib/entities/podcast';
+import { notNull } from '$lib/shared/api';
+
+export const loadPodcastsAndTrending: Load = async () => {
   try {
-    podcasts.set(await podcastList());
+    const [podcasts, trendingIDs] = await Promise.all([podcastList(), fetchTrending()]);
+
+    allPodcastStore.set(podcasts);
+    trendingPodcasts.set(
+      trendingIDs
+        .map((thisID) => podcasts.find((podcast) => podcast.id === thisID) ?? null)
+        .filter(notNull)
+    );
+
     return {};
   } catch (e) {
     if (dev) {
