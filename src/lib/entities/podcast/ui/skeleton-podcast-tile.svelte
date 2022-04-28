@@ -29,7 +29,7 @@
   />
   <span class="sr-only">Podcast is loading</span>
   <div class="author bg-slate-400 rounded h-4 w-16" class:mt-1={large} />
-  <div class="title bg-slate-400 rounded h-5 w-27" class:mt-1={large} />
+  <div class="title bg-slate-400 rounded h-4 w-27 mt-1" />
 </div>
 
 <style>
