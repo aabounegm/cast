@@ -42,6 +42,7 @@ const config: Config.InitialOptions = {
     '<rootDir>/src/lib/shared/lib/jest-hacks/fetch-mock.ts',
   ],
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: { url: 'https://localhost/' },
 };
 
 export default config;
