@@ -12,7 +12,9 @@
     <PodcastShelf title="Recently listened" podcasts={listeningHistory} />
   {/if}
 
-  <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} />
+  {#if $trendingPodcasts.length > 0}
+    <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} />
+  {/if}
 
   <PodcastList title="All podcasts" podcasts={$podcasts} />
 </div>
