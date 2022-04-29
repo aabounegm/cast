@@ -23,6 +23,10 @@ export const cookieName = 'listening-history';
 export const listeningHistory = persistentWritable<number[]>([], {
   storage: {
     get() {
+      if (typeof document === 'undefined') {
+        return null;
+      }
+
       const cookieValue = Cookies.get(cookieName);
       if (cookieValue === undefined) {
         return null;
@@ -35,6 +39,10 @@ export const listeningHistory = persistentWritable<number[]>([], {
       }
     },
     set(ids) {
+      if (typeof document === 'undefined') {
+        throw new Error('Cannot set cookies in a non-browser context');
+      }
+
       Cookies.set(cookieName, JSON.stringify(ids), {
         expires: 99999,
         secure: true,
@@ -42,6 +50,10 @@ export const listeningHistory = persistentWritable<number[]>([], {
       });
     },
     remove() {
+      if (typeof document === 'undefined') {
+        throw new Error('Cannot remove cookies in a non-browser context');
+      }
+
       Cookies.remove(cookieName);
     },
   },
