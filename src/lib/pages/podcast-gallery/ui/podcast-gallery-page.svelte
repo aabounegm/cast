@@ -1,18 +1,16 @@
 <script lang="ts">
-  import { PodcastShelf, PodcastList, SkeletonPodcastShelf } from '$lib/widgets/podcasts';
+  import { PodcastShelf, PodcastList } from '$lib/widgets/podcasts';
   import { podcasts, trendingPodcasts } from '$lib/entities/podcast';
 
   import { loadListeningHistory } from '../model/load-listening-history';
 
-  const listeningHistoryLoaded = loadListeningHistory();
+  const listeningHistory = loadListeningHistory();
 </script>
 
 <div class="bg-slate-800">
-  {#await listeningHistoryLoaded}
-    <SkeletonPodcastShelf title="Recently listened" />
-  {:then recentlyListenedPodcasts}
-    <PodcastShelf title="Recently listened" podcasts={recentlyListenedPodcasts} />
-  {/await}
+  {#if listeningHistory.length > 0}
+    <PodcastShelf title="Recently listened" podcasts={listeningHistory} />
+  {/if}
 
   <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} />
 
