@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import { persistentWritable } from 'svelte-persistent-writable';
 
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
@@ -7,6 +6,7 @@ import type { Episode } from '$lib/shared/api';
 
 import { fetchHistory } from '../api/fetch-history';
 import { addToCloudListeningHistory } from '../api/history-table';
+import { cookieStorageAdapter } from './cookie-storage-adapter';
 
 user.subscribe(async ($user) => {
   if ($user) {
@@ -15,48 +15,9 @@ user.subscribe(async ($user) => {
   }
 });
 
-export const cookieName = 'listening-history';
-
-/**
- * The storage wih array of podcast ids, persists in localStorage
- */
+/** The storage for an array of podcast IDs, persisted in cookies. */
 export const listeningHistory = persistentWritable<number[]>([], {
-  storage: {
-    get() {
-      if (typeof document === 'undefined') {
-        return null;
-      }
-
-      const cookieValue = Cookies.get(cookieName);
-      if (cookieValue === undefined) {
-        return null;
-      } else {
-        try {
-          return { value: JSON.parse(cookieValue) };
-        } catch {
-          return { value: [] };
-        }
-      }
-    },
-    set(ids) {
-      if (typeof document === 'undefined') {
-        throw new Error('Cannot set cookies in a non-browser context');
-      }
-
-      Cookies.set(cookieName, JSON.stringify(ids), {
-        expires: 99999,
-        secure: true,
-        sameSite: 'Strict',
-      });
-    },
-    remove() {
-      if (typeof document === 'undefined') {
-        throw new Error('Cannot remove cookies in a non-browser context');
-      }
-
-      Cookies.remove(cookieName);
-    },
-  },
+  storage: cookieStorageAdapter,
 });
 
 /**

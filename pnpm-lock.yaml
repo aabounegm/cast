@@ -16,6 +16,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.3
   '@testing-library/svelte': ^3.1.0
   '@testing-library/user-event': ^14.0.4
+  '@types/cookie': ^0.5.1
   '@types/dompurify': ^2.3.3
   '@types/js-cookie': ^3.0.2
   '@types/lodash-es': ^4.17.6
@@ -30,6 +31,7 @@ specifiers:
   babel-preset-vite: ^1.0.4
   blns: ^2.0.4
   clsx: ^1.1.1
+  cookie: ^0.5.0
   cypress: ^9.5.4
   dompurify: ^2.3.6
   dotenv: ^16.0.0
@@ -73,6 +75,7 @@ dependencies:
   '@fontsource/raleway': 4.5.5
   '@supabase/supabase-js': 1.33.3
   clsx: 1.1.1
+  cookie: 0.5.0
   dompurify: 2.3.6
   js-cookie: 3.0.1
   marked: 4.0.12
@@ -92,6 +95,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/svelte': 3.1.0_svelte@3.46.6
   '@testing-library/user-event': 14.0.4_@testing-library+dom@8.13.0
+  '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.3
   '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
@@ -2246,6 +2250,10 @@ packages:
       '@types/responselike': 1.0.0
     dev: true
 
+  /@types/cookie/0.5.1:
+    resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
+    dev: true
+
   /@types/dompurify/2.3.3:
     resolution: {integrity: sha512-nnVQSgRVuZ/843oAfhA25eRSNzUFcBPk/LOiw5gm8mD9/X7CNcbRkQu/OsjCewO8+VIYfPxUnXvPEVGenw14+w==}
     dependencies:
@@ -3432,6 +3440,11 @@ packages:
     resolution: {integrity: sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==}
     engines: {node: '>= 0.6'}
     dev: true
+
+  /cookie/0.5.0:
+    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+    engines: {node: '>= 0.6'}
+    dev: false
 
   /core-js-compat/3.21.1:
     resolution: {integrity: sha512-gbgX5AUvMb8gwxC7FLVWYT7Kkgu/y7+h/h1X43yJkNqhlK2fuYyQimqvKGNZFAY6CKii/GFKJ2cp/1/42TN36g==}
