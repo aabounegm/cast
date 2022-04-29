@@ -20,12 +20,3 @@ it('adds an episode to the history', () => {
   expect(get(listeningHistory)).toEqual(expectedHistory);
   listeningHistory.set([]);
 });
-
-it('saves the value in the store correctly', () => {
-  expect(get(listeningHistory)).toEqual([]);
-  const sampleIDs = [1, 2, 3, 4, 5, 6];
-  listeningHistory.set(sampleIDs);
-  expect(get(listeningHistory)).toEqual(sampleIDs);
-  listeningHistory.set([]);
-  expect(get(listeningHistory)).toEqual([]);
-});
