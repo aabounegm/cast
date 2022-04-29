@@ -57,6 +57,7 @@
     "@testing-library/svelte": "^3.1.0",
     "@testing-library/user-event": "^14.0.4",
     "@types/dompurify": "^2.3.3",
+    "@types/js-cookie": "^3.0.2",
     "@types/lodash-es": "^4.17.6",
     "@types/marked": "^4.0.3",
     "@types/node": "^17.0.23",
@@ -107,6 +108,7 @@
     "@supabase/supabase-js": "^1.33.2",
     "clsx": "^1.1.1",
     "dompurify": "^2.3.6",
+    "js-cookie": "^3.0.1",
     "marked": "^4.0.12",
     "svelte-persistent-writable": "^1.1.6",
     "worker-request-response": "^1.0.3"

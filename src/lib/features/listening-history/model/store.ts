@@ -1,9 +1,12 @@
+import Cookies from 'js-cookie';
+import { persistentWritable } from 'svelte-persistent-writable';
+
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { user } from '$lib/entities/user';
-import { localStorageAdapter, persistentWritable } from 'svelte-persistent-writable';
+import type { Episode } from '$lib/shared/api';
+
 import { fetchHistory } from '../api/fetch-history';
 import { addToCloudListeningHistory } from '../api/history-table';
-import type { Episode } from '$lib/shared/api';
 
 user.subscribe(async ($user) => {
   if ($user) {
@@ -12,11 +15,36 @@ user.subscribe(async ($user) => {
   }
 });
 
+export const cookieName = 'listening-history';
+
 /**
  * The storage wih array of podcast ids, persists in localStorage
  */
 export const listeningHistory = persistentWritable<number[]>([], {
-  storage: localStorageAdapter('listening-history'),
+  storage: {
+    get() {
+      const cookieValue = Cookies.get(cookieName);
+      if (cookieValue === undefined) {
+        return null;
+      } else {
+        try {
+          return { value: JSON.parse(cookieValue) };
+        } catch {
+          return { value: [] };
+        }
+      }
+    },
+    set(ids) {
+      Cookies.set(cookieName, JSON.stringify(ids), {
+        expires: 99999,
+        secure: true,
+        sameSite: 'Strict',
+      });
+    },
+    remove() {
+      Cookies.remove(cookieName);
+    },
+  },
 });
 
 /**

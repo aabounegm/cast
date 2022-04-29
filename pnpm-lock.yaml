@@ -17,6 +17,7 @@ specifiers:
   '@testing-library/svelte': ^3.1.0
   '@testing-library/user-event': ^14.0.4
   '@types/dompurify': ^2.3.3
+  '@types/js-cookie': ^3.0.2
   '@types/lodash-es': ^4.17.6
   '@types/marked': ^4.0.3
   '@types/node': ^17.0.23
@@ -43,6 +44,7 @@ specifiers:
   jest: ^27.5.1
   jest-extended: ^2.0.0
   jest-mock-fetch: ^2.0.5
+  js-cookie: ^3.0.1
   lint-staged: ^12.3.7
   lodash-es: ^4.17.21
   marked: ^4.0.12
@@ -72,6 +74,7 @@ dependencies:
   '@supabase/supabase-js': 1.33.3
   clsx: 1.1.1
   dompurify: 2.3.6
+  js-cookie: 3.0.1
   marked: 4.0.12
   svelte-persistent-writable: 1.1.6_svelte@3.46.6
   worker-request-response: 1.0.3
@@ -83,13 +86,14 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.9
   '@iconify-json/ic': 1.1.2
   '@sveltejs/adapter-cloudflare': 1.0.0-next.17
-  '@sveltejs/kit': 1.0.0-next.317_svelte@3.46.6
+  '@sveltejs/kit': 1.0.0-next.324_svelte@3.46.6
   '@testing-library/cypress': 8.0.2_cypress@9.5.4
   '@testing-library/dom': 8.13.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/svelte': 3.1.0_svelte@3.46.6
   '@testing-library/user-event': 14.0.4_@testing-library+dom@8.13.0
   '@types/dompurify': 2.3.3
+  '@types/js-cookie': 3.0.2
   '@types/lodash-es': 4.17.6
   '@types/marked': 4.0.3
   '@types/node': 17.0.23
@@ -2052,14 +2056,15 @@ packages:
       worktop: 0.8.0-next.12
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.317_svelte@3.46.6:
-    resolution: {integrity: sha512-04WqvYXfz4THy3HghkXYWNrbG6bMLaQTaTfGNMoGpoSUaboJ1enikReeD+9bt4AzxqWkLav+C6Q3NgwJXwYAiw==}
+  /@sveltejs/kit/1.0.0-next.324_svelte@3.46.6:
+    resolution: {integrity: sha512-/CGW9rQpHQLBb2EcMw08yelD/C9hTsypymctUWdhryMTI8n1VWb0gkUcSHsz8n8oAAbKLXqwyHqeLATfcIMg2w==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
       svelte: ^3.44.0
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.37_svelte@3.46.6+vite@2.9.1
+      chokidar: 3.5.3
       sade: 1.8.1
       svelte: 3.46.6
       vite: 2.9.1
@@ -2278,6 +2283,10 @@ packages:
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
+    dev: true
+
+  /@types/js-cookie/3.0.2:
+    resolution: {integrity: sha512-6+0ekgfusHftJNYpihfkMu8BWdeHs9EOJuGcSofErjstGPfPGEu9yTu4t460lTzzAMl2cM5zngQJqPMHbbnvYA==}
     dev: true
 
   /@types/json-buffer/3.0.0:
@@ -5840,6 +5849,11 @@ packages:
       - ts-node
       - utf-8-validate
     dev: true
+
+  /js-cookie/3.0.1:
+    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

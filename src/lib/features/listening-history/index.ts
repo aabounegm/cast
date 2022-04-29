@@ -1,1 +1,1 @@
-export { addToListeningHistory, listeningHistory } from './model/store';
+export { addToListeningHistory, listeningHistory, cookieName } from './model/store';
