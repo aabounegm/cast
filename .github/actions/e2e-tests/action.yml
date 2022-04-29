@@ -1,0 +1,33 @@
+name: End-to-end tests
+description: Runs E2E tests with Cypress. Requires Node, pnpm and installed dependencies
+
+inputs:
+  supabaseUrl:
+    description: 'Supabase base URL'
+    required: true
+  supabaseKey:
+    description: 'Supabase access key'
+    required: true
+  testUserPassword:
+    description: 'The password of the Supabase user created for E2E tests'
+    required: true
+  applitoolsApiKey:
+    description: 'The API key for Applitools to upload reports'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Cypress E2E tests 🧪
+      uses: cypress-io/github-action@04ea5b90780c300adb0dc8cb01aff983956d7b9c
+      env:
+        VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}
+        TEST_USER_PASSWORD: ${{ inputs.testUserPassword }}
+        APPLITOOLS_API_KEY: ${{ inputs.applitoolsApiKey }}
+      with:
+        build: pnpm run build
+        start: pnpm run preview
+        wait-on: 'http://localhost:3000'
+        install: false
+        cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}

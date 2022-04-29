@@ -1,0 +1,20 @@
+name: Unit tests
+description: Runs unit tests with Jest and collects test coverage. Requires Node, pnpm and installed dependencies
+
+inputs:
+  supabaseUrl:
+    description: 'Supabase base URL'
+    required: true
+  supabaseKey:
+    description: 'Supabase access key'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run unit tests 🧪
+      shell: bash
+      run: pnpm run test:unit -- --ci --coverage
+      env:
+        VITE_SUPABASE_APP_URL: ${{ inputs.supabaseUrl }}
+        VITE_SUPABASE_PUBLIC_ANON_KEY: ${{ inputs.supabaseKey }}

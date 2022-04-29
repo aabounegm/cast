@@ -1,0 +1,100 @@
+name: QC on the main branch
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  unit-test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Use pnpm 📦
+        uses: pnpm/action-setup@10b4b0b462cfa1a30381c9d7c242194165a466ab
+        with:
+          version: 6.32.10
+
+      - name: Set up Node and cache dependencies 📦
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Run unit tests 🧪
+        uses: ./.github/actions/unit-tests
+        with:
+          supabaseUrl: ${{ secrets.VITE_SUPABASE_APP_URL }}
+          supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
+
+      - name: Submit test coverage
+        uses: ./.github/actions/submit-test-coverage
+        with:
+          codecovToken: ${{ secrets.CODECOV_TOKEN }}
+
+  e2e-test:
+    name: Run E2E tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Use pnpm 📦
+        uses: pnpm/action-setup@10b4b0b462cfa1a30381c9d7c242194165a466ab
+        with:
+          version: 6.32.10
+
+      - name: Set up Node and cache dependencies 📦
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Run E2E tests 🧪
+        uses: ./.github/actions/e2e-tests
+        with:
+          supabaseUrl: ${{ secrets.VITE_SUPABASE_APP_URL }}
+          supabaseKey: ${{ secrets.VITE_SUPABASE_PUBLIC_ANON_KEY }}
+          testUserPassword: ${{ secrets.TEST_USER_PASSWORD }}
+          applitoolsApiKey: ${{ secrets.APPLITOOLS_API_KEY }}
+
+  static-analysis:
+    name: Run static code analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@c4f2b3bfa1326901663070b5bd764e3923b683d8
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Use pnpm 📦
+        uses: pnpm/action-setup@10b4b0b462cfa1a30381c9d7c242194165a466ab
+        with:
+          version: 6.32.10
+
+      - name: Set up Node and cache dependencies 📦
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Run static code analysis 🧪
+        uses: ./.github/actions/static-analysis
