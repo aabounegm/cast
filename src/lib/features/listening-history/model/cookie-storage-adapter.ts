@@ -3,6 +3,11 @@ import { browser } from '$app/env';
 
 export const cookieName = 'listening-history';
 
+/**
+ * The adapter to store data in cookies on the client.
+ *
+ * On the server side, the operations are no-ops.
+ */
 export const cookieStorageAdapter = {
   get(): { value: number[] } | null {
     if (!browser) {
