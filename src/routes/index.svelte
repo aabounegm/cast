@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
-  import { PodcastGalleryPage, loadPodcasts } from '$lib/pages/podcast-gallery';
+  import { PodcastGalleryPage, loadPodcastsAndTrending } from '$lib/pages/podcast-gallery';
 
-  export const load = loadPodcasts;
+  export const load = loadPodcastsAndTrending;
 </script>
 
 <svelte:head>

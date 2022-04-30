@@ -2,6 +2,8 @@ import { addToListeningHistory, listeningHistory } from '../store';
 import { get } from 'svelte/store';
 import type { Episode } from '$lib/shared/api';
 
+jest.mock('$app/env', () => ({ browser: true }), { virtual: true });
+
 const exampleEpisode: Episode = {
   id: 1,
   episodeNumber: 1,
@@ -16,4 +18,5 @@ const expectedHistory: number[] = [exampleEpisode.id];
 it('adds an episode to the history', () => {
   addToListeningHistory(exampleEpisode);
   expect(get(listeningHistory)).toEqual(expectedHistory);
+  listeningHistory.set([]);
 });

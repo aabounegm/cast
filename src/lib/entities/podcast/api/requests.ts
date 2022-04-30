@@ -5,7 +5,7 @@ import {
   supabaseClient,
   notNull,
 } from '$lib/shared/api';
-import { getPodcastByID } from '../model/store';
+import { getPodcastByID } from '../model/podcast-store';
 
 const allFieldsWithEpisodes = `
   id,
