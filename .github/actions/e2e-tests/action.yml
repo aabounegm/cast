@@ -30,4 +30,15 @@ runs:
         start: pnpm run preview
         wait-on: 'http://localhost:3000'
         install: false
-        cache-key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: cypress-videos
+        path: cypress/videos
