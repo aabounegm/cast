@@ -2,7 +2,7 @@
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-light.svg#gh-light-mode-only" />
 <img alt="Cast, a podcast listening progressive web app" src="./.github/assets/banner-dark.svg#gh-dark-mode-only" />
 
-[![Run tests on `main` push](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/unit-test-main.yml)
+[![QC on the main branch](https://github.com/aabounegm/cast/actions/workflows/quality-control-main.yml/badge.svg)](https://github.com/aabounegm/cast/actions/workflows/quality-control-main.yml)
 [![Uptime Robot ratio (7 days)](https://img.shields.io/uptimerobot/ratio/7/m790750732-019a64d92e80fde508817b7c)](https://stats.uptimerobot.com/NnXDYFZ5zq)
 [![codecov](https://codecov.io/gh/aabounegm/cast/branch/main/graph/badge.svg?token=W8C03FREO5)](https://codecov.io/gh/aabounegm/cast)
 
@@ -69,14 +69,7 @@ pnpm dev
     <td><img alt="GitHub user illright" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/15035286?s=64&mask=circle&mbg=transparent&output=png" /></td>
     <td><img alt="GitHub user khaledismaeel" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/62155849?s=64&mask=circle&mbg=transparent&output=png" /></td>
     <td><img alt="GitHub user VanishMax" src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/29180358?s=64&mask=circle&mbg=transparent&output=png" /></td>
-  </tr><!--
-  <tr>
-    <td>CI / CD</td>
-    <td>Podcast player</td>
-    <td>Design</td>
-    <td>Backend</td>
-    <td>Podcast player</td>
-  </tr>--></tbody>
+  </tr></tbody>
 </table>
 
 ## License
