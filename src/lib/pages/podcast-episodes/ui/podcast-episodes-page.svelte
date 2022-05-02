@@ -25,9 +25,9 @@
     </svelte:fragment>
   </PodcastDisplay>
 
-  <div class="flex flex-col gap-3">
+  <section role="feed" class="flex flex-col gap-3">
     {#each podcast.episodes as episode}
-      <EpisodeCard {episode} />
+      <EpisodeCard {episode} aria-setsize={podcast.episodes.length} />
     {/each}
-  </div>
+  </section>
 </main>

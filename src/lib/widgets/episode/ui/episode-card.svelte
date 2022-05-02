@@ -15,7 +15,7 @@
   };
 </script>
 
-<EpisodeCardShell {episode}>
+<EpisodeCardShell {episode} {...$$restProps}>
   <svelte:fragment slot="play">
     <PlaybackButton
       playing={!$paused && $currentlyPlayingEpisode === episode}
