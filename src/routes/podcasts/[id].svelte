@@ -12,4 +12,8 @@
   addPodcastToStore(podcast);
 </script>
 
+<svelte:head>
+  <title>{podcast.title} | Cast</title>
+</svelte:head>
+
 <PodcastEpisodesPage {podcast} />
