@@ -11,28 +11,32 @@ export const playbackRate = writable(1);
 export const paused = writable(true);
 export const buffered = writable<SvelteTimeRanges>([]);
 
-export const play = (_src?: string) => {
-  if (_src) {
-    // Setting duration to 0 and subscribing to it helps with catching
-    // the moment when the the URL takes effect
-    // thus "populatnig" the writables with data.
-    // And upon that moment, when the data is loaded
-    // and the player is ready, it calls play.
-    pause();
-    duration.set(0);
-    const unsub = duration.subscribe((v) => {
-      if (v) {
-        paused.set(false);
-        unsub();
-      }
-    });
-    src.set(_src);
-  } else {
-    paused.set(false);
-  }
-};
+export const play = () => paused.set(false);
 
 export const pause = () => paused.set(true);
+
+/**
+ * Play after the new data has loaded.
+ *
+ * This is a workaround that relies on the fact that the duration
+ * is manually reset to NaN every time the `src` changes.
+ * If it is not reset, we assume that there is nothing new to load.
+ *
+ * The workaround is to wait until the `duration` store is populated
+ * with the actual duration of the new audio and then start playing.
+ */
+export const playAfterLoading = () => {
+  if (!isNaN(get(duration))) {
+    play();
+  } else {
+    const unsubscribe = duration.subscribe(($duration) => {
+      if (!isNaN($duration)) {
+        unsubscribe();
+        play();
+      }
+    });
+  }
+};
 
 export const seek = (timeInSeconds: number) => currentTime.set(clampTime(timeInSeconds));
 
