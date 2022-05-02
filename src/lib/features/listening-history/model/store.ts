@@ -1,8 +1,12 @@
+import { get } from 'svelte/store';
 import { persistentWritable } from 'svelte-persistent-writable';
+import { dev } from '$app/env';
+import type { PostgrestResponse } from '@supabase/supabase-js';
 
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { user } from '$lib/entities/user';
 import type { Episode } from '$lib/shared/api';
+import { snackbar } from '$lib/shared/ui/snackbar';
 
 import { fetchHistory } from '../api/fetch-history';
 import { addToCloudListeningHistory } from '../api/history-table';
@@ -31,12 +35,23 @@ const addToLocalListeningHistory = (podcastId: number) => {
 };
 
 export const addToListeningHistory = async (episode: Episode) => {
-  const id = episode.podcastID;
-  addToLocalListeningHistory(id);
-  try {
-    addToCloudListeningHistory(id);
-  } catch (e) {
-    alert((e as Error).message);
+  addToLocalListeningHistory(episode.podcastID);
+  if (get(user) !== null && window.navigator.onLine) {
+    try {
+      addToCloudListeningHistory(episode.podcastID);
+    } catch (error) {
+      if (dev) {
+        console.error(error);
+      }
+
+      if ((error as PostgrestResponse<unknown>).status >= 500) {
+        snackbar({ text: 'Failed to synchronize history due to a problem on our side. Sorry!' });
+      } else {
+        snackbar({
+          text: 'Either you are trying to do something shifty or your sign-in broke. Try sigining out and then in again.',
+        });
+      }
+    }
   }
 };
 
