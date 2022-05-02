@@ -8,7 +8,8 @@ describe('Audio playback API', () => {
   const defaultSrc = 'http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg';
   const defaultDuration = 6.452245;
   const playDefault = () => {
-    play(defaultSrc);
+    src.set(defaultSrc);
+    play();
     duration.set(defaultDuration);
   };
 
