@@ -1,6 +1,5 @@
 <script>
-  import { paused, move } from '$lib/entities/audio';
-  import { toggleGlobalPlayback } from '../model/toggle-global-playback';
+  import { paused, move, play, pause } from '$lib/entities/audio';
   import { IconButton } from '$lib/shared/ui/';
   import PlaybackButton from './playback-button.svelte';
   import IconReplay10 from '~icons/ic/round-replay-10';
@@ -18,7 +17,7 @@
       move(-10);
     }}
   />
-  <PlaybackButton prominent playing={!$paused} on:click={() => toggleGlobalPlayback()} />
+  <PlaybackButton prominent playing={!$paused} on:play={play} on:pause={pause} />
   <IconButton
     name="Skip forward 30 seconds"
     icon={IconForward30}
