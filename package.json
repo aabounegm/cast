@@ -113,6 +113,7 @@
     "js-cookie": "^3.0.1",
     "marked": "^4.0.12",
     "svelte-persistent-writable": "^1.1.6",
+    "uid": "^2.0.0",
     "worker-request-response": "^1.0.3"
   }
 }

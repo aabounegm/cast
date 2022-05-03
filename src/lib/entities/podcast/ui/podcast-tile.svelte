@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { uid } from 'uid';
   import cx from 'clsx';
   import { Image } from '$lib/shared/ui';
   import type { Podcast } from '$lib/shared/api';
@@ -11,6 +12,8 @@
 
   let loading = 'lazy';
   let aEl: HTMLAnchorElement;
+
+  const id = uid();
 
   onMount(() => {
     if (typeof IntersectionObserver === 'undefined') return;
@@ -40,8 +43,8 @@
   href="/podcasts/{podcast.id}"
   bind:this={aEl}
   role="article"
-  aria-labelledby="podcast-{podcast.id}-title"
-  aria-describedby="podcast-{podcast.id}-author"
+  aria-labelledby="podcast-{podcast.id}-title-{id}"
+  aria-describedby="podcast-{podcast.id}-author-{id}"
   {...$$restProps}
 >
   <Image
@@ -59,12 +62,12 @@
   <span
     class="author font-lato text-xs"
     class:mt-1={large}
-    id="podcast-{podcast.id}-author"
+    id="podcast-{podcast.id}-author-{id}"
     aria-label="Author: {podcast.author}"
   >
     {podcast.author}
   </span>
-  <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title">
+  <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title-{id}">
     {podcast.title}
   </span>
 </a>
