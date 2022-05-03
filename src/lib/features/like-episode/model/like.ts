@@ -1,5 +1,5 @@
 import type { Episode } from '$lib/shared/api';
-import { persistentWritable, sessionStorageAdapter } from 'svelte-persistent-writable';
+import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
 import { supabaseClient } from '$lib/shared/api';
 import { snackbar } from '$lib/shared/ui/snackbar';
 import { get } from 'svelte/store';
@@ -25,7 +25,7 @@ export const likesStore = persistentWritable<number[]>([], {
 });
 
 const hasReceivedSignInSnackbarStore = persistentWritable(false, {
-  storage: sessionStorageAdapter('hasReceivedSignInSnackbar'),
+  storage: localStorageAdapter('hasReceivedSignInSnackbar'),
 });
 
 /**
