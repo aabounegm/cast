@@ -9,12 +9,12 @@
 
 <div class="bg-slate-800">
   {#if listeningHistory.length > 0}
-    <PodcastShelf title="Recently listened" podcasts={listeningHistory} />
+    <PodcastShelf title="Recently listened" podcasts={listeningHistory} id="recently-listened" />
   {/if}
 
   {#if $trendingPodcasts.length > 0}
-    <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} />
+    <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} id="trending-now" />
   {/if}
 
-  <PodcastList title="All podcasts" podcasts={$podcasts} />
+  <PodcastList title="All podcasts" podcasts={$podcasts} id="all-podcasts" />
 </div>
