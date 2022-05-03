@@ -29,47 +29,51 @@
 </script>
 
 <a
-  class={cx(
-    'grid',
-    'gap-x-4',
-    'rounded-2xl',
-    'items-center',
-    'text-slate-100',
-    'hover:bg-slate-700',
-    'p-2',
-    _class,
-    large && 'large pb-3'
-  )}
   href="/podcasts/{podcast.id}"
   bind:this={aEl}
-  role="article"
   aria-labelledby="podcast-{podcast.id}-title-{id}"
   aria-describedby="podcast-{podcast.id}-author-{id}"
-  {...$$restProps}
 >
-  <Image
+  <article
     class={cx(
-      'rounded-lg',
-      'aspect-square',
-      'overflow-hidden',
-      large ? 'w-27 h-27' : 'w-8 h-8',
-      !large && 'row-span-2'
+      'grid',
+      'gap-x-4',
+      'rounded-2xl',
+      'items-center',
+      'text-slate-100',
+      'hover:bg-slate-700',
+      'p-2',
+      _class,
+      large && 'large pb-3'
     )}
-    src={podcast.coverUrl}
-    alt=""
-    {loading}
-  />
-  <span
-    class="author font-lato text-xs"
-    class:mt-1={large}
-    id="podcast-{podcast.id}-author-{id}"
-    aria-label="Author: {podcast.author}"
+    aria-labelledby="podcast-{podcast.id}-title-{id}"
+    aria-describedby="podcast-{podcast.id}-author-{id}"
+    {...$$restProps}
   >
-    {podcast.author}
-  </span>
-  <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title-{id}">
-    {podcast.title}
-  </span>
+    <Image
+      class={cx(
+        'rounded-lg',
+        'aspect-square',
+        'overflow-hidden',
+        large ? 'w-27 h-27' : 'w-8 h-8',
+        !large && 'row-span-2'
+      )}
+      src={podcast.coverUrl}
+      alt=""
+      {loading}
+    />
+    <span
+      class="author font-lato text-xs"
+      class:mt-1={large}
+      id="podcast-{podcast.id}-author-{id}"
+      aria-label="Author: {podcast.author}"
+    >
+      {podcast.author}
+    </span>
+    <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title-{id}">
+      {podcast.title}
+    </span>
+  </article>
 </a>
 
 <style>
