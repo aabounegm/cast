@@ -38,7 +38,7 @@ export const addToListeningHistory = async (episode: Episode) => {
   addToLocalListeningHistory(episode.podcastID);
   if (get(user) !== null && window.navigator.onLine) {
     try {
-      addToCloudListeningHistory(episode.podcastID);
+      await addToCloudListeningHistory(episode.podcastID);
     } catch (error) {
       if (dev) {
         console.error(error);
@@ -48,7 +48,7 @@ export const addToListeningHistory = async (episode: Episode) => {
         snackbar({ text: 'Failed to synchronize history due to a problem on our side. Sorry!' });
       } else {
         snackbar({
-          text: 'Either you are trying to do something shifty or your sign-in broke. Try sigining out and then in again.',
+          text: 'Either you are trying to do something shifty or your sign-in broke. Try signing out and then in again.',
         });
       }
     }
