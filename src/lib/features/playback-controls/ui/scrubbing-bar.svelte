@@ -36,8 +36,8 @@
     style:--buffered-regions={renderTimeRanges(buffered ?? [], duration, '#CBD5E1')}
   />
   <div class="flex justify-between px-2 mt-2">
-    <span>{isNaN(position) ? 'N/A' : formatDuration(position)}</span>
-    <span>-{isNaN(remaining) ? 'N/A' : formatDuration(remaining)}</span>
+    <span>{Number.isNaN(position) ? 'N/A' : formatDuration(position)}</span>
+    <span>-{Number.isNaN(remaining) ? 'N/A' : formatDuration(remaining)}</span>
   </div>
 </div>
 

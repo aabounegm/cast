@@ -4,7 +4,7 @@ import { podcastGet } from '$lib/entities/podcast';
 export const loadPodcastFromURL: Load = async ({ params }) => {
   try {
     const integerID = parseInt(params.id, 10);
-    if (isNaN(integerID)) {
+    if (Number.isNaN(integerID)) {
       throw integerID;
     }
 

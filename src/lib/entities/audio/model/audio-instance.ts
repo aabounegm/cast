@@ -26,11 +26,11 @@ export const pause = () => paused.set(true);
  * with the actual duration of the new audio and then start playing.
  */
 export const playAfterLoading = () => {
-  if (!isNaN(get(duration))) {
+  if (!Number.isNaN(get(duration))) {
     play();
   } else {
     const unsubscribe = duration.subscribe(($duration) => {
-      if (!isNaN($duration)) {
+      if (!Number.isNaN($duration)) {
         unsubscribe();
         play();
       }
@@ -45,7 +45,7 @@ export const move = (deltaInSeconds: number) =>
 
 function clampTime(time: number) {
   const d = get(duration);
-  return Math.max(0, Math.min(time, isNaN(d) ? 0 : d));
+  return Math.max(0, Math.min(time, Number.isNaN(d) ? 0 : d));
 }
 
 export function reportError(el: HTMLElement) {
