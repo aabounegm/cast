@@ -39,6 +39,10 @@
   )}
   href="/podcasts/{podcast.id}"
   bind:this={aEl}
+  role="article"
+  aria-labelledby="podcast-{podcast.id}-title"
+  aria-describedby="podcast-{podcast.id}-author"
+  {...$$restProps}
 >
   <Image
     class={cx(
@@ -52,10 +56,15 @@
     alt=""
     {loading}
   />
-  <span class="author font-lato text-xs" class:mt-1={large}>
+  <span
+    class="author font-lato text-xs"
+    class:mt-1={large}
+    id="podcast-{podcast.id}-author"
+    aria-label="Author: {podcast.author}"
+  >
     {podcast.author}
   </span>
-  <span class="title font-lato font-semibold text-sm">
+  <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title">
     {podcast.title}
   </span>
 </a>
