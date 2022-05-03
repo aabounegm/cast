@@ -1,7 +1,7 @@
 import cookie from 'cookie';
 
 import { listeningHistory } from './store';
-import { cookieName } from './cookie-storage-adapter';
+import { cookieName } from './cookie-name';
 
 /**
  * Read the listening history from a cookie and write it to the store

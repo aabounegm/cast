@@ -1,8 +1,11 @@
 import Cookies from 'js-cookie';
-import { cookieStorageAdapter } from '../cookie-storage-adapter';
+import { CookieStorageAdapter } from '../cookie-storage-adapter';
 
 jest.mock('$app/env', () => ({ browser: false }), { virtual: true });
 jest.mock('js-cookie');
+
+const cookieName = 'sample-cookie';
+const cookieStorageAdapter = new CookieStorageAdapter(cookieName);
 
 it('does not access cookies in a server context', () => {
   cookieStorageAdapter.set([]);
