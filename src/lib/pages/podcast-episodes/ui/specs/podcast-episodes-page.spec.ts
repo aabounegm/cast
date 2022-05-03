@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/svelte';
 import type { Podcast } from '$lib/shared/api';
 import { PodcastEpisodesPage } from '../..';
 
+jest.mock('$app/env', () => ({ browser: true }), { virtual: true });
+
 const samplePodcast: Podcast = {
   id: 1,
   title: 'sample',
