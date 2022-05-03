@@ -16,5 +16,5 @@
     <PodcastShelf title="Trending now" podcasts={$trendingPodcasts} />
   {/if}
 
-  <PodcastList title="All podcasts" podcasts={$podcasts} />
+  <PodcastList title="All podcasts" podcasts={$podcasts} id="all-podcasts" />
 </div>
