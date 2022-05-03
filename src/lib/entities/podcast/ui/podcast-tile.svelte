@@ -28,13 +28,16 @@
   });
 </script>
 
-<a
-  href="/podcasts/{podcast.id}"
-  bind:this={aEl}
+<article
   aria-labelledby="podcast-{podcast.id}-title-{id}"
   aria-describedby="podcast-{podcast.id}-author-{id}"
+  {...$$restProps}
 >
-  <article
+  <a
+    href="/podcasts/{podcast.id}"
+    bind:this={aEl}
+    aria-labelledby="podcast-{podcast.id}-title-{id}"
+    aria-describedby="podcast-{podcast.id}-author-{id}"
     class={cx(
       'grid',
       'gap-x-4',
@@ -46,9 +49,6 @@
       _class,
       large && 'large pb-3'
     )}
-    aria-labelledby="podcast-{podcast.id}-title-{id}"
-    aria-describedby="podcast-{podcast.id}-author-{id}"
-    {...$$restProps}
   >
     <Image
       class={cx(
@@ -73,8 +73,8 @@
     <span class="title font-lato font-semibold text-sm" id="podcast-{podcast.id}-title-{id}">
       {podcast.title}
     </span>
-  </article>
-</a>
+  </a>
+</article>
 
 <style>
   a {
