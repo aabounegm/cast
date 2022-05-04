@@ -1,17 +1,16 @@
 <script lang="ts">
-  import type { Episode } from '$lib/shared/api';
   import { PlaybackButton } from '$lib/features/playback-controls';
   import { LikeButton } from '$lib/features/like-episode';
   import { DownloadLinkWithProgress } from '$lib/features/download-episode';
   import { EpisodeCardShell, currentlyPlayingEpisode } from '$lib/entities/episode';
-  import { paused } from '$lib/entities/audio';
-  import { toggleGlobalPlayback } from '$lib/features/playback-controls';
+  import { paused, playAfterLoading, pause } from '$lib/entities/audio';
+  import type { Episode } from '$lib/shared/api';
 
   export let episode: Episode;
 
-  const togglePlaying = () => {
-    toggleGlobalPlayback(episode.audioUrl);
+  const replaceAudioAndPlay = () => {
     currentlyPlayingEpisode.set(episode);
+    playAfterLoading();
   };
 </script>
 
@@ -19,7 +18,8 @@
   <svelte:fragment slot="play">
     <PlaybackButton
       playing={!$paused && $currentlyPlayingEpisode === episode}
-      on:click={togglePlaying}
+      on:play={replaceAudioAndPlay}
+      on:pause={pause}
     />
   </svelte:fragment>
 

@@ -8,6 +8,7 @@ export {
   move,
   pause,
   play,
+  playAfterLoading,
   seek,
   type SvelteTimeRanges,
   reportError,

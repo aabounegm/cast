@@ -1,11 +1,11 @@
 <script lang="ts">
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
-  import { PlaybackButton, toggleGlobalPlayback } from '$lib/features/playback-controls';
-  import { IconButton, Image } from '$lib/shared/ui';
-  import { move, paused } from '$lib/entities/audio';
+  import { PlaybackButton } from '$lib/features/playback-controls';
+  import { move, paused, play, pause } from '$lib/entities/audio';
   import { currentlyPlayingEpisode } from '$lib/entities/episode';
   import { getPodcastByID } from '$lib/entities/podcast';
+  import { IconButton, Image } from '$lib/shared/ui';
 
   $: episode = $currentlyPlayingEpisode!;
   $: podcast = getPodcastByID(episode.podcastID)!;
@@ -29,13 +29,7 @@
           move(-10);
         }}
       />
-      <PlaybackButton
-        playing={!$paused}
-        on:click={(e) => {
-          e.stopPropagation();
-          toggleGlobalPlayback();
-        }}
-      />
+      <PlaybackButton playing={!$paused} on:play={play} on:pause={pause} />
       <IconButton
         name="Skip forward 30 seconds"
         icon={IconForward30}
