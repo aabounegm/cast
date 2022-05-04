@@ -1,40 +1,31 @@
 import type { Episode } from '$lib/shared/api';
-import {
-  persistentWritable,
-  localStorageAdapter,
-  sessionStorageAdapter,
-} from 'svelte-persistent-writable';
+import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
 import { supabaseClient } from '$lib/shared/api';
 import { snackbar } from '$lib/shared/ui/snackbar';
 import { get } from 'svelte/store';
 import { user } from '$lib/entities/user';
+import { CookieStorageAdapter } from '$lib/shared/lib';
+
 import { fetchLikes } from '../api/fetch-likes';
 import { addCloudLike, deleteCloudLike } from '../api/favourites-table';
+import { cookieName } from './cookie-name';
 
 user.subscribe(async ($user) => {
   if ($user) {
     const ids = await fetchLikes();
-    likesStore.set(new Set(ids ?? []));
+    likesStore.set(ids ?? []);
   }
 });
 
 /**
  * The store containing set of episodes liked by the current user.
  */
-export const likesStore = persistentWritable(new Set<number>(), {
-  storage: localStorageAdapter('likes', {
-    serialize(likes: Set<number>) {
-      return JSON.stringify([...likes]);
-    },
-    deserialize(serialized: string) {
-      const ids: number[] = JSON.parse(serialized);
-      return new Set(ids);
-    },
-  }),
+export const likesStore = persistentWritable<number[]>([], {
+  storage: new CookieStorageAdapter(cookieName),
 });
 
 const hasReceivedSignInSnackbarStore = persistentWritable(false, {
-  storage: sessionStorageAdapter('hasReceivedSignInSnackbar'),
+  storage: localStorageAdapter('hasReceivedSignInSnackbar'),
 });
 
 /**
@@ -60,11 +51,11 @@ export function toggleLike(like: Episode) {
   }
   const { id } = like;
   likesStore.update((likes) => {
-    if (likes.has(id)) {
-      likes.delete(id);
+    if (likes.includes(id)) {
+      likes = likes.filter((thisID) => thisID !== id);
       deleteCloudLike(id).catch((e) => alert(e.message));
     } else {
-      likes.add(id);
+      likes.unshift(id);
       addCloudLike(id).catch((e) => alert(e.message));
     }
     return likes;

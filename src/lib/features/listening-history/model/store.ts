@@ -5,12 +5,13 @@ import type { PostgrestResponse } from '@supabase/supabase-js';
 
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { user } from '$lib/entities/user';
+import { CookieStorageAdapter } from '$lib/shared/lib';
 import type { Episode } from '$lib/shared/api';
 import { snackbar } from '$lib/shared/ui/snackbar';
 
 import { fetchHistory } from '../api/fetch-history';
 import { addToCloudListeningHistory } from '../api/history-table';
-import { cookieStorageAdapter } from './cookie-storage-adapter';
+import { cookieName } from './cookie-name';
 
 user.subscribe(async ($user) => {
   if ($user) {
@@ -21,7 +22,7 @@ user.subscribe(async ($user) => {
 
 /** The storage for an array of podcast IDs, persisted in cookies. */
 export const listeningHistory = persistentWritable<number[]>([], {
-  storage: cookieStorageAdapter,
+  storage: new CookieStorageAdapter(cookieName),
 });
 
 /**

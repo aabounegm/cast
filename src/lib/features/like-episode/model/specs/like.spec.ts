@@ -2,6 +2,8 @@ import { likesStore, toggleLike } from '../like';
 import { get } from 'svelte/store';
 import type { Episode } from '$lib/shared/api';
 
+jest.mock('$app/env', () => ({ browser: true }), { virtual: true });
+
 const exampleEpisode: Episode = {
   id: 1,
   episodeNumber: 1,
@@ -11,7 +13,7 @@ const exampleEpisode: Episode = {
   duration: 5,
 };
 
-const expectedLikes: Set<number> = new Set([exampleEpisode.id]);
+const expectedLikes = [exampleEpisode.id];
 
 it('toggles the like', () => {
   toggleLike(exampleEpisode);

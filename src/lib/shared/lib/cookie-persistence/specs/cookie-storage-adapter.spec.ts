@@ -1,9 +1,12 @@
 import Cookies from 'js-cookie';
-import { cookieName, cookieStorageAdapter } from '../cookie-storage-adapter';
+import { CookieStorageAdapter } from '../cookie-storage-adapter';
 
 jest.mock('$app/env', () => ({ browser: true }), { virtual: true });
 
 const sampleIDs = [1, 2, 3, 4, 5, 6];
+
+const cookieName = 'sample-cookie';
+const cookieStorageAdapter = new CookieStorageAdapter(cookieName);
 
 afterEach(() => {
   Cookies.remove(cookieName);

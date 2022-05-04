@@ -1,4 +1,4 @@
-import { cookieName } from '../cookie-storage-adapter';
+import { cookieName } from '../cookie-name';
 import { populateListeningHistory } from '../populate-listening-history';
 import { listeningHistory } from '../store';
 

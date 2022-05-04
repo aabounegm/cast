@@ -1,6 +1,6 @@
 import cookie from 'cookie';
 
-import { listeningHistory } from './store';
+import { likesStore } from './like';
 import { cookieName } from './cookie-name';
 
 /**
@@ -9,10 +9,10 @@ import { cookieName } from './cookie-name';
  *
  * This does not affect the `listeningHistory` store on the client.
  */
-export function populateListeningHistory(request: Request) {
+export function populateLikes(request: Request) {
   const cookies = request.headers.has('Cookie')
     ? cookie.parse(request.headers.get('Cookie') as string)
     : {};
 
-  listeningHistory.set(cookieName in cookies ? JSON.parse(cookies[cookieName]) : []);
+  likesStore.set(cookieName in cookies ? JSON.parse(cookies[cookieName]) : []);
 }

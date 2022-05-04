@@ -11,7 +11,7 @@
   export { _class as class };
   export let iconClass = 'w-4 h-4';
 
-  $: liked = $likesStore.has(episode.id);
+  $: liked = $likesStore.includes(episode.id);
 </script>
 
 <IconButton
