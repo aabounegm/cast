@@ -7,7 +7,7 @@
   import { getEpisode } from '$lib/entities/episode';
   import { getDownloadedEpisodes } from '$lib/features/download-episode';
 
-  const liked = [...$likesStore];
+  $: liked = [...$likesStore];
 </script>
 
 <!-- Sign in card -->
