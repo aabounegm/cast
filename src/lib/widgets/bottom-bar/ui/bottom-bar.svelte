@@ -29,7 +29,7 @@
 >
   <BottomBarNavItem name="Gallery" icon={IconVideoLibrary} href="/" showLabel={!hasAudio} />
   {#if hasAudio}
-    <MiniPlayer on:click={() => dispatch('miniplayer-click')} />
+    <MiniPlayer on:expand={() => dispatch('miniplayer-click')} />
   {/if}
   <BottomBarNavItem
     name="Your Library"

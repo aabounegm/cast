@@ -47,7 +47,9 @@ describe('Applitools', () => {
       });
 
       cy.findAllByRole('button', { name: 'Play' }).first().click();
-      cy.findByTestId('mini-player').should('be.visible').click('left');
+      cy.findByRole('article', { name: /Now Playing/ })
+        .should('be.visible')
+        .click('left');
 
       cy.findByTestId('now-playing').should('be.visible');
       cy.eyesCheckWindow({
