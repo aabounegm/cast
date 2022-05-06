@@ -6,7 +6,7 @@ const expectPlayingAudio = () => {
         audible = true;
       }
     });
-    expect(audible).to.eq(true);
+    expect(audible).to.be.true;
   });
 };
 
