@@ -51,11 +51,11 @@ describe('Applitools', () => {
         .should('be.visible')
         .click('left');
 
-      cy.findByTestId('now-playing').should('be.visible');
+      cy.findByRole('region', { name: podcast.episodes[0].title }).should('be.visible');
       cy.eyesCheckWindow({
         tag: 'Now playing widget',
         target: 'region',
-        selector: 'div[data-testid="now-playing"]',
+        selector: 'section[aria-labelledby="now-playing-episode-title"]',
       });
     });
 
