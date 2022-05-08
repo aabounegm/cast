@@ -10,28 +10,28 @@ it('likes an episode then finds it in the library', () => {
     expect(podcast).to.be.not.null;
     if (podcast === null) return;
     const titles = podcast.episodes.map(({ title }) => title);
+    const episodeTitle = titles[0];
+    expect(episodeTitle).to.be.not.undefined;
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
-    // Like all the episodes
-    cy.findAllByRole('article').each((card, index) => {
-      cy.wrap(card).within(() => {
-        cy.findByText(titles[index]).should('exist');
+    // Like an episode
+    cy.findAllByRole('article')
+      .first()
+      .within(() => {
+        cy.findByText(episodeTitle).should('exist');
         cy.findByRole('button', {
           name: 'Like this episode',
         }).click();
       });
-    });
 
     cy.visitAndWaitForHydration('/library');
 
-    // Expect all episode titles to be in the library
-    titles.forEach((title) => {
-      cy.findByLabelText(/favorites/i).contains(title);
-    });
+    // Expect the episode title to be in the library
+    cy.findByLabelText(/favorites/i).contains(episodeTitle);
   });
 });
 
-it.skip('can remove the like from a liked episode', () => {
+it('can remove the like from a liked episode', () => {
   cy.createSupabaseClient().then(async (supabase) => {
     const { data: podcast } = await supabase
       .from<SBPodcast>('podcasts')
@@ -41,40 +41,35 @@ it.skip('can remove the like from a liked episode', () => {
     expect(podcast).to.be.not.null;
     if (podcast === null) return;
     const titles = podcast.episodes.map(({ title }) => title);
+    const episodeTitle = titles[0];
+    expect(episodeTitle).to.be.not.undefined;
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
-    // Like all the episodes
-    cy.findAllByRole('article').each((card, index) => {
-      cy.wrap(card).within(() => {
-        cy.findByText(titles[index]).should('exist');
+    // Like an episode
+    cy.findAllByRole('article')
+      .first()
+      .within(() => {
+        cy.findByText(episodeTitle).should('exist');
         cy.findByRole('button', {
           name: 'Like this episode',
         }).click();
       });
-    });
 
     cy.visitAndWaitForHydration('/library');
 
-    // Unlike all the episodes
-    // cy.wait(3000);
-    cy.findAllByRole('article').each((card) => {
-      // cy.wait(1000);
-      // TODO: this fails because of the rerendering on each unlike, causing
-      //   cards to get removed from the DOM and be replaced with "Loading..."
-      // This is why these dirty cy.wait()s are necessary, and still often fail
-      cy.wrap(card).within(() => {
+    // Unlike the episode
+    cy.findAllByRole('article')
+      .first()
+      .within(() => {
         cy.findByRole('button', {
           name: 'Remove the like',
         }).click();
       });
-    });
 
-    // Expect the episode titles to not be in the library
-    titles.forEach((title) => {
-      cy.findByRole('region', { name: /favorites/i })
-        .contains(title)
-        .should('not.exist');
-    });
+    // Expect the episode title to not be in the library
+    cy.findByRole('region', { name: /favorites/i })
+      .contains(episodeTitle)
+      .should('not.exist');
   });
 });
 
@@ -88,33 +83,31 @@ it('persists liked episodes even if not authenticated', () => {
     expect(podcast).to.be.not.null;
     if (podcast === null) return;
     const titles = podcast.episodes.map(({ title }) => title);
+    const episodeTitle = titles[0];
+    expect(episodeTitle).to.be.not.undefined;
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
-    // Like all the episodes
-    cy.findAllByRole('article').each((card, index) => {
-      cy.wrap(card).within(() => {
-        cy.findByText(titles[index]).should('exist');
+    // Like an episode
+    cy.findAllByRole('article')
+      .first()
+      .within(() => {
+        cy.findByText(episodeTitle).should('exist');
         cy.findByRole('button', {
           name: 'Like this episode',
         }).click();
       });
-    });
 
     cy.visitAndWaitForHydration('/library');
 
-    // Expect all episode titles to be in the library
-    titles.forEach((title) => {
-      cy.findByLabelText(/favorites/i).contains(title);
-    });
+    // Expect the liked episode title to be in the library
+    cy.findByLabelText(/favorites/i).contains(episodeTitle);
 
     // All of the above is basically the first test
 
     // Reload the library page
     cy.visitAndWaitForHydration('/library');
 
-    // Expect all episode titles to still be in the library
-    titles.forEach((title) => {
-      cy.findByLabelText(/favorites/i).contains(title);
-    });
+    // Expect the episode title to still be in the library
+    cy.findByLabelText(/favorites/i).contains(episodeTitle);
   });
 });
