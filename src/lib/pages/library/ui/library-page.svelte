@@ -6,8 +6,6 @@
   import { SignInButton, SignOutButton } from '$lib/features/authenticate';
   import { getEpisode } from '$lib/entities/episode';
   import { getDownloadedEpisodes } from '$lib/features/download-episode';
-
-  $: liked = [...$likesStore];
 </script>
 
 <!-- Sign in card -->
@@ -24,7 +22,7 @@
 <section class="flex flex-col p-4 gap-4 items-stretch" aria-labelledby="favorites-header">
   <H1 id="favorites-header">Favorites</H1>
 
-  {#each liked as id (id)}
+  {#each $likesStore as id (id)}
     {#await getEpisode(id)}
       <p>Loading...</p>
     {:then episode}
