@@ -13,7 +13,7 @@ it('likes an episode then finds it in the library', () => {
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
     // Like all the episodes
-    cy.findAllByTestId('episode-card').each((card, index) => {
+    cy.findAllByRole('article').each((card, index) => {
       cy.wrap(card).within(() => {
         cy.findByText(titles[index]).should('exist');
         cy.findByRole('button', {
@@ -44,7 +44,7 @@ it.skip('can remove the like from a liked episode', () => {
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
     // Like all the episodes
-    cy.findAllByTestId('episode-card').each((card, index) => {
+    cy.findAllByRole('article').each((card, index) => {
       cy.wrap(card).within(() => {
         cy.findByText(titles[index]).should('exist');
         cy.findByRole('button', {
@@ -57,7 +57,7 @@ it.skip('can remove the like from a liked episode', () => {
 
     // Unlike all the episodes
     // cy.wait(3000);
-    cy.findAllByTestId('episode-card').each((card) => {
+    cy.findAllByRole('article').each((card) => {
       // cy.wait(1000);
       // TODO: this fails because of the rerendering on each unlike, causing
       //   cards to get removed from the DOM and be replaced with "Loading..."
@@ -71,7 +71,7 @@ it.skip('can remove the like from a liked episode', () => {
 
     // Expect the episode titles to not be in the library
     titles.forEach((title) => {
-      cy.findByLabelText(/favorites/i)
+      cy.findByRole('region', { name: /favorites/i })
         .contains(title)
         .should('not.exist');
     });
@@ -91,7 +91,7 @@ it('persists liked episodes even if not authenticated', () => {
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
     // Like all the episodes
-    cy.findAllByTestId('episode-card').each((card, index) => {
+    cy.findAllByRole('article').each((card, index) => {
       cy.wrap(card).within(() => {
         cy.findByText(titles[index]).should('exist');
         cy.findByRole('button', {

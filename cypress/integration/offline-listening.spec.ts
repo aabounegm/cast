@@ -59,7 +59,7 @@ it.skip('can play a downloaded episode while offline', () => {
   });
 
   // Download all the episodes
-  cy.findAllByTestId('episode-card').each((card) => {
+  cy.findAllByRole('article').each((card) => {
     cy.wrap(card).within(() => {
       cy.findByText('Download', { trim: true }).click();
 
@@ -71,7 +71,7 @@ it.skip('can play a downloaded episode while offline', () => {
   goOffline();
 
   // Play the episodes
-  cy.findAllByTestId('episode-card').each((card) => {
+  cy.findAllByRole('article').each((card) => {
     cy.wrap(card).within(() => {
       cy.findByRole('button', { name: 'Play' }).click();
 

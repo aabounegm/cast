@@ -13,7 +13,6 @@
     episode.favorite && 'border-b-4 border-pink-500 box-border'
   )}
   aria-labelledby={uid}
-  data-testid="episode-card"
   {...$$restProps}
 >
   <div class="flex items-center pb-1">
