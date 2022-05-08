@@ -24,14 +24,12 @@ it('persists liked episodes even if not authenticated', () => {
     cy.visitAndWaitForHydration('/library');
 
     // Expect the liked episode title to be in the library
-    cy.findByLabelText(/favorites/i).contains(episodeTitle);
+    cy.findByLabelText(/favorites/i).within(() => {
+      cy.findByRole('article', { name: episodeTitle });
+    });
 
     // All of the above is basically "likes get listed in the library" test
 
-    // Reload the library page
-    cy.visitAndWaitForHydration('/library');
 
-    // Expect the episode title to still be in the library
-    cy.findByLabelText(/favorites/i).contains(episodeTitle);
   });
 });

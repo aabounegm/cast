@@ -24,6 +24,8 @@ it('likes an episode then finds it in the library', () => {
     cy.visitAndWaitForHydration('/library');
 
     // Expect the episode title to be in the library
-    cy.findByLabelText(/favorites/i).contains(episodeTitle);
+    cy.findByLabelText(/favorites/i).within(() => {
+      cy.findByRole('article', { name: episodeTitle });
+    });
   });
 });
