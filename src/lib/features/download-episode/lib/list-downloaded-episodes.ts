@@ -1,6 +1,5 @@
 import { sendRequest } from 'worker-request-response';
-import { get } from 'svelte/store';
-import { podcasts } from '$lib/entities/podcast';
+import { podcastList } from '$lib/entities/podcast';
 import type { Episode } from '$lib/shared/api';
 import type { QueryDownloadsRequest, Result } from '$lib/shared/lib/service-worker/message';
 
@@ -24,6 +23,7 @@ async function listDownloadedEpisodeUrls(): Promise<string[]> {
 
 export async function getDownloadedEpisodes(): Promise<Episode[]> {
   const offlineUrls = await listDownloadedEpisodeUrls();
-  const episodes = get(podcasts).flatMap((podcast) => podcast.episodes);
+  const podcasts = await podcastList();
+  const episodes = podcasts.flatMap((podcast) => podcast.episodes);
   return episodes.filter((episode) => offlineUrls.includes(episode.audioUrl));
 }
