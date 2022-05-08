@@ -24,7 +24,7 @@ it('likes an episode then finds it in the library, persisting after reload', () 
     cy.visitAndWaitForHydration('/library');
 
     // Expect the episode title to be in the library
-    cy.findByLabelText(/favorites/i).within(() => {
+    cy.findByRole('region', { name: /favorites/i }).within(() => {
       cy.findByRole('article', { name: episodeTitle });
     });
 
@@ -32,7 +32,7 @@ it('likes an episode then finds it in the library, persisting after reload', () 
     cy.visitAndWaitForHydration('/library');
 
     // Expect the episode title to still be in the library
-    cy.findByLabelText(/favorites/i).within(() => {
+    cy.findByRole('region', { name: /favorites/i }).within(() => {
       cy.findByRole('article', { name: episodeTitle });
     });
   });
