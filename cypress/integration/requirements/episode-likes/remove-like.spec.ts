@@ -15,24 +15,20 @@ it('can remove the like from a liked episode', () => {
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
     // Like an episode
-    cy.findAllByRole('article')
-      .first()
-      .within(() => {
-        cy.findByRole('button', {
-          name: 'Like this episode',
-        }).click();
-      });
+    cy.findByRole('article', { name: episodeTitle }).within(() => {
+      cy.findByRole('button', {
+        name: 'Like this episode',
+      }).click();
+    });
 
     cy.visitAndWaitForHydration('/library');
 
     // Unlike the episode
-    cy.findAllByRole('article')
-      .first()
-      .within(() => {
-        cy.findByRole('button', {
-          name: 'Remove the like',
-        }).click();
-      });
+    cy.findByRole('article', { name: episodeTitle }).within(() => {
+      cy.findByRole('button', {
+        name: 'Remove the like',
+      }).click();
+    });
 
     // Expect the episode title to not be in the library
     cy.findByRole('region', { name: /favorites/i })

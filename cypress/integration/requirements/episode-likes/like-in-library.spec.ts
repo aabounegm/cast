@@ -15,14 +15,11 @@ it('likes an episode then finds it in the library', () => {
     cy.visitAndWaitForHydration(`/podcasts/${podcast.id}`);
 
     // Like an episode
-    cy.findAllByRole('article')
-      .first()
-      .within(() => {
-        cy.findByText(episodeTitle).should('exist');
-        cy.findByRole('button', {
-          name: 'Like this episode',
-        }).click();
-      });
+    cy.findByRole('article', { name: episodeTitle }).within(() => {
+      cy.findByRole('button', {
+        name: 'Like this episode',
+      }).click();
+    });
 
     cy.visitAndWaitForHydration('/library');
 
