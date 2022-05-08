@@ -49,7 +49,6 @@ it('can remove the like from a liked episode', () => {
     cy.findAllByRole('article')
       .first()
       .within(() => {
-        cy.findByText(episodeTitle).should('exist');
         cy.findByRole('button', {
           name: 'Like this episode',
         }).click();
