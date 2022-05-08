@@ -4,6 +4,7 @@ import { user } from '$lib/entities/user';
 import { supabaseClient } from '$lib/shared/api';
 import { trackAuthStatus } from '../..';
 
+jest.mock('$app/env', () => ({ browser: false }), { virtual: true });
 jest.mock('$lib/shared/api', () => ({
   ...jest.requireActual('$lib/shared/api'),
   supabaseClient: {
@@ -19,6 +20,7 @@ jest.mock('$lib/shared/api', () => ({
 jest.mock('$lib/entities/user', () => ({
   user: {
     set: jest.fn().mockName('user.set() from $lib/entities/user'),
+    subscribe: jest.fn().mockName('user.subscribe() from $lib/entities/user'),
   },
 }));
 
