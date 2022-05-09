@@ -14,11 +14,17 @@
     alt=""
   />
 
-  <div class="flex pt-6 font-raleway text-lg text-center leading-6 font-extrabold text-slate-100">
+  <h1
+    class="flex pt-6 font-raleway text-lg text-center leading-6 font-extrabold text-slate-100"
+    id="now-playing-episode-title"
+  >
     {episode.title}
-  </div>
+  </h1>
 
-  <div class="pt-2 font-lato text-xs text-center leading-4 text-slate-100 ">
+  <div
+    class="pt-2 font-lato text-xs text-center leading-4 text-slate-100"
+    id="now-playing-episode-author"
+  >
     {podcast.author} &mdash; {podcast.title}
   </div>
 {/if}

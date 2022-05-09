@@ -1,4 +1,11 @@
+<script context="module" lang="ts">
+  export interface MiniPlayerEvents {
+    expand: void;
+  }
+</script>
+
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import IconReplay10 from '~icons/ic/round-replay-10';
   import IconForward30 from '~icons/ic/round-forward-30';
   import { PlaybackButton } from '$lib/features/playback-controls';
@@ -9,13 +16,35 @@
 
   $: episode = $currentlyPlayingEpisode!;
   $: podcast = getPodcastByID(episode.podcastID)!;
+
+  function attachKeyboardListener(event: FocusEvent) {
+    (event.target as HTMLElement | null)?.addEventListener('keydown', expandOnKeyboardActivation);
+  }
+
+  function removeKeyboardListener(event: FocusEvent) {
+    (event.target as HTMLElement | null)?.removeEventListener(
+      'keydown',
+      expandOnKeyboardActivation
+    );
+  }
+
+  function expandOnKeyboardActivation(event: KeyboardEvent) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      dispatch('expand');
+    }
+  }
+
+  const dispatch = createEventDispatcher<MiniPlayerEvents>();
 </script>
 
 {#if podcast !== undefined}
-  <div
+  <article
     class="flex items-center p-1 gap-2 cursor-pointer rounded-lg bg-slate-800"
-    data-testid="mini-player"
-    on:click
+    aria-label="Now Playing: {episode.title}"
+    tabindex="0"
+    on:focus={attachKeyboardListener}
+    on:blur={removeKeyboardListener}
+    on:click={() => dispatch('expand')}
   >
     <Image class="w-10 h-10 rounded overflow-hidden" src={podcast.coverUrl} alt="" />
     <div class="flex justify-between px-3 gap-2">
@@ -41,5 +70,5 @@
         }}
       />
     </div>
-  </div>
+  </article>
 {/if}

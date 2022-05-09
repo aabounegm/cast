@@ -26,9 +26,17 @@ export const pause = () => paused.set(true);
  * with the actual duration of the new audio and then start playing.
  */
 export const playAfterLoading = () => {
+  // We need this check because the subscriber callback is called
+  //   immediately and synchronously upon subscribing, which leads
+  //   to the `unsubscribe` variable being called before it actually
+  //   gets assigned its value.
+  // This happens when this function is called to resume the playback
+  //   of an already loaded episode. In that case, `duration` is not
+  //   reset to NaN.
   if (!Number.isNaN(get(duration))) {
     play();
   } else {
+    pause();
     const unsubscribe = duration.subscribe(($duration) => {
       if (!Number.isNaN($duration)) {
         unsubscribe();

@@ -35,9 +35,10 @@
 </script>
 
 {#if $currentlyPlayingEpisode !== null}
-  <div
+  <section
     class="bg-black bg-opacity-20 flex flex-col justify-end fixed bottom-0 left-0 h-screen"
-    data-testid="now-playing"
+    aria-labelledby="now-playing-episode-title"
+    aria-describedby="now-playing-episode-author"
     transition:fade
   >
     <div
@@ -102,7 +103,7 @@
         />
       </div>
     </div>
-  </div>
+  </section>
 {/if}
 
 <style>
