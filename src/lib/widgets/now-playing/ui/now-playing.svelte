@@ -9,8 +9,6 @@
     currentTime,
     duration,
     buffered,
-    pause,
-    play,
     playbackRate as speed,
   } from '$lib/entities/audio';
   import { currentlyPlayingEpisode } from '$lib/entities/episode';
