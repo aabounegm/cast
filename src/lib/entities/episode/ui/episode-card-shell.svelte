@@ -4,13 +4,14 @@
   import type { Episode } from '$lib/shared/api';
 
   export let episode: Episode;
+  export let favorite: boolean;
   $: uid = `episode-title-${episode.id}`;
 </script>
 
 <article
   class={clsx(
     'flex flex-col rounded-xl bg-background-slightly-higher text-white py-3 px-4',
-    episode.favorite && 'border-b-4 border-pink-500 box-border'
+    favorite && 'border-b-4 border-pink-500 box-border'
   )}
   aria-labelledby={uid}
   data-testid="episode-card"

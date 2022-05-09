@@ -1,6 +1,6 @@
 <script lang="ts">
   import { PlaybackButton } from '$lib/features/playback-controls';
-  import { LikeButton } from '$lib/features/like-episode';
+  import { LikeButton, likesStore as likes } from '$lib/features/like-episode';
   import { DownloadLinkWithProgress } from '$lib/features/download-episode';
   import { EpisodeCardShell, currentlyPlayingEpisode } from '$lib/entities/episode';
   import { paused, playAfterLoading, pause } from '$lib/entities/audio';
@@ -14,7 +14,7 @@
   };
 </script>
 
-<EpisodeCardShell {episode} {...$$restProps}>
+<EpisodeCardShell {episode} favorite={$likes.includes(episode.id)} {...$$restProps}>
   <svelte:fragment slot="play">
     <PlaybackButton
       playing={!$paused && $currentlyPlayingEpisode === episode}
