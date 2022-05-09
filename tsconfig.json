@@ -2,7 +2,8 @@
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "downlevelIteration": true
   },
   "exclude": ["src/lib/shared/lib/jest-hacks/clsx.jest.js"],
   "ts-node": {
