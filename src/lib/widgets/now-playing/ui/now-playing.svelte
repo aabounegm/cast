@@ -75,11 +75,7 @@
         duration={$duration}
         position={$currentTime}
         buffered={$buffered}
-        on:scrub={(e) => {
-          if (e.detail.dragging) pause();
-          else play();
-          seek(e.detail.position);
-        }}
+        on:scrub={(e) => seek(e.detail)}
       />
       <div class="w-full mt-4 flex items-center justify-between">
         <button
