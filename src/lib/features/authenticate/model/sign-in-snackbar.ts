@@ -10,7 +10,8 @@ export function signInSnackbar() {
       snackbar({
         text: `Successfully signed in as @${session.user.user_metadata.user_name}.\nYour likes will now be synced`,
       });
-      data?.unsubscribe();
+      // dirty hack for creating a unit test
+      setTimeout(() => data?.unsubscribe(), 0);
     });
     url.searchParams.delete('snackbar');
     window.history.replaceState(null, '', url.toString());
