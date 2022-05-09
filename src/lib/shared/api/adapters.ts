@@ -58,8 +58,6 @@ export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
     duration: episode.duration,
     audioUrl: audioUrlData.publicURL,
     episodeNumber: episode.episode_number,
-    // TODO: implement favorites
-    favorite: false,
   };
 };
 

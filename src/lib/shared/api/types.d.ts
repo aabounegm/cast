@@ -5,7 +5,6 @@ export interface Episode {
   duration: number;
   audioUrl: string;
   episodeNumber: number;
-  favorite?: boolean;
 }
 
 export interface Podcast {
