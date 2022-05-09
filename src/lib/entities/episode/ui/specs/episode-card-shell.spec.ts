@@ -1,7 +1,5 @@
-import svelte from 'svelte-inline-compile';
 import { render, screen } from '@testing-library/svelte';
 
-import { useLocalVars } from '$lib/shared/lib/jest-hacks';
 import type { Episode } from '$lib/shared/api';
 import { EpisodeCardShell } from '../..';
 
@@ -13,19 +11,15 @@ const sampleEpisode: Episode = {
   audioUrl: 'sample URL',
   duration: 3600,
 };
-const episodeCardWithContent = useLocalVars(svelte`<EpisodeCardShell episode={sampleEpisode} />`, [
-  EpisodeCardShell,
-  sampleEpisode,
-]);
 
-it('displays the title of the episode', () => {
-  render(episodeCardWithContent);
+it("displays the title of the episode as the card's accessible name", () => {
+  render(EpisodeCardShell, { episode: sampleEpisode });
 
-  expect(screen.getByText(sampleEpisode.title)).toBeInTheDocument();
+  screen.getByRole('article', { name: sampleEpisode.title });
 });
 
 it('displays the duration of the episode', () => {
-  render(episodeCardWithContent);
+  render(EpisodeCardShell, { episode: sampleEpisode });
 
-  expect(screen.getByText('1:00:00', { exact: false })).toBeInTheDocument();
+  screen.getByText('1:00:00', { exact: false });
 });
