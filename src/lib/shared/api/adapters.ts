@@ -33,6 +33,7 @@ export interface SBFavourite {
   id: number;
   episode_id: SBEpisode['id'];
   user_id: string;
+  created_at: string;
 }
 
 export interface SBHistoryEntry {

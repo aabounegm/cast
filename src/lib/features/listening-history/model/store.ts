@@ -6,17 +6,19 @@ import type { PostgrestResponse } from '@supabase/supabase-js';
 import { currentlyPlayingEpisode } from '$lib/entities/episode';
 import { user } from '$lib/entities/user';
 import { CookieStorageAdapter } from '$lib/shared/lib';
-import type { Episode } from '$lib/shared/api';
+import { supabaseClient, type Episode } from '$lib/shared/api';
 import { snackbar } from '$lib/shared/ui/snackbar';
 
 import { fetchHistory } from '../api/fetch-history';
 import { addToCloudListeningHistory } from '../api/history-table';
 import { cookieName } from './cookie-name';
 
-user.subscribe(async ($user) => {
-  if ($user) {
+supabaseClient.auth.onAuthStateChange(async (event, session) => {
+  if (session?.user) {
     const ids = await fetchHistory();
     listeningHistory.set(ids ?? []);
+  } else if (event === 'SIGNED_OUT') {
+    listeningHistory.set([]);
   }
 });
 

@@ -1,5 +1,5 @@
 import { supabaseClient } from '$lib/shared/api';
 
-export function signOut() {
-  supabaseClient.auth.signOut();
+export async function signOut() {
+  await supabaseClient.auth.signOut();
 }

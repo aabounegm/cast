@@ -1,19 +1,19 @@
-import type { Episode } from '$lib/shared/api';
+import { type Episode, supabaseClient } from '$lib/shared/api';
 import { persistentWritable, localStorageAdapter } from 'svelte-persistent-writable';
-import { supabaseClient } from '$lib/shared/api';
 import { snackbar } from '$lib/shared/ui/snackbar';
 import { get } from 'svelte/store';
-import { user } from '$lib/entities/user';
 import { CookieStorageAdapter } from '$lib/shared/lib';
 
 import { fetchLikes } from '../api/fetch-likes';
 import { addCloudLike, deleteCloudLike } from '../api/favourites-table';
 import { cookieName } from './cookie-name';
 
-user.subscribe(async ($user) => {
-  if ($user) {
+supabaseClient.auth.onAuthStateChange(async (event, session) => {
+  if (session?.user) {
     const ids = await fetchLikes();
     likesStore.set(ids ?? []);
+  } else if (event === 'SIGNED_OUT') {
+    likesStore.set([]);
   }
 });
 
