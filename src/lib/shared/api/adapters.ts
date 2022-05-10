@@ -39,6 +39,7 @@ export interface SBHistoryEntry {
   id: number;
   podcast_id: SBPodcast['id'];
   user_id: string;
+  created_at: string;
 }
 
 export const transformEpisodeRequest = (episode: SBEpisode): Episode | null => {
