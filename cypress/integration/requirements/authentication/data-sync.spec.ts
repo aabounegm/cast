@@ -50,37 +50,43 @@ it('synchronizes listening history with the account on Supabase', () => {
   });
 });
 
-it('synchronizes likes with the account on Supabase', () => {
-  let samplePodcast!: SBPodcast;
+it(
+  'synchronizes likes with the account on Supabase',
+  {
+    retries: 2,
+  },
+  () => {
+    let samplePodcast!: SBPodcast;
 
-  cy.login().then(async ([_auth, supabase]) => {
-    const response = await supabase
-      .from<SBPodcast>('podcasts')
-      .select('*, episodes (*)')
-      .limit(1)
-      .single();
-    expect(response.data).to.be.not.null;
-    samplePodcast = response.data as SBPodcast;
-    expect(samplePodcast.episodes.length).to.be.greaterThan(0);
+    cy.login().then(async ([_auth, supabase]) => {
+      const response = await supabase
+        .from<SBPodcast>('podcasts')
+        .select('*, episodes (*)')
+        .limit(1)
+        .single();
+      expect(response.data).to.be.not.null;
+      samplePodcast = response.data as SBPodcast;
+      expect(samplePodcast.episodes.length).to.be.greaterThan(0);
 
-    cy.visitAndWaitForHydration(`/podcasts/${samplePodcast.id}`);
-    cy.findByRole('article', { name: samplePodcast.episodes[0].title }).within(() => {
-      cy.findByRole('button', { name: 'Like this episode' }).click();
+      cy.visitAndWaitForHydration(`/podcasts/${samplePodcast.id}`);
+      cy.findByRole('article', { name: samplePodcast.episodes[0].title }).within(() => {
+        cy.findByRole('button', { name: 'Like this episode' }).click();
+      });
+
+      cy.visitAndWaitForHydration('/library');
+
+      cy.findByRole('region', { name: 'Favorites' }).within(() => {
+        cy.findByRole('article', { name: samplePodcast.episodes[0].title });
+      });
     });
 
-    cy.visitAndWaitForHydration('/library');
+    cy.clearCookies();
 
-    cy.findByRole('region', { name: 'Favorites' }).within(() => {
-      cy.findByRole('article', { name: samplePodcast.episodes[0].title });
+    cy.login().then(async ([_auth, _supabase]) => {
+      cy.visitAndWaitForHydration('/library');
+      cy.findByRole('region', { name: 'Favorites' }).within(() => {
+        cy.findByRole('article', { name: samplePodcast.episodes[0].title });
+      });
     });
-  });
-
-  cy.clearCookies();
-
-  cy.login().then(async ([_auth, _supabase]) => {
-    cy.visitAndWaitForHydration('/library');
-    cy.findByRole('region', { name: 'Favorites' }).within(() => {
-      cy.findByRole('article', { name: samplePodcast.episodes[0].title });
-    });
-  });
-});
+  }
+);
