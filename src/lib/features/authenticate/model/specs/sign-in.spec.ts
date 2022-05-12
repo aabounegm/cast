@@ -1,6 +1,7 @@
 import { supabaseClient } from '$lib/shared/api';
 import { signIn } from '../..';
 
+jest.mock('$app/env', () => ({ browser: false }), { virtual: true });
 jest.mock('$lib/shared/api', () => ({
   ...jest.requireActual('$lib/shared/api'),
   supabaseClient: {
