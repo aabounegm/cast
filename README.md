@@ -31,7 +31,7 @@
 
 The quality of this application and its codebase is secured with these awesome tools:
 
-- [x] [Feature Sliced Design](https://feature-sliced.design) dictates code structure
+- [x] [Feature-Sliced Design](https://feature-sliced.design) dictates code structure
 - [x] [ESLint](https://eslint.org) and [Prettier](https://prettier.io) enforce code style and help catch bugs early on
 - [x] [TypeScript](https://www.typescriptlang.org/) provides strict type safety
 - [x] [Husky](https://typicode.github.io/husky) installs Git hooks to run static checkers before each commit
