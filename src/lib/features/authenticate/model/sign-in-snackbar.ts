@@ -1,5 +1,8 @@
 import { snackbar } from '$lib/shared/ui/snackbar';
 import { supabaseClient } from '$lib/shared/api';
+import { likesStore, addCloudLike } from '$lib/features/like-episode';
+import { listeningHistory, addToCloudListeningHistory } from '$lib/features/listening-history';
+import { get } from 'svelte/store';
 
 export function signInSnackbar() {
   const url = new URL(window.location.href);
@@ -15,5 +18,7 @@ export function signInSnackbar() {
     });
     url.searchParams.delete('snackbar');
     window.history.replaceState(null, '', url.toString());
+    get(likesStore).forEach(addCloudLike);
+    get(listeningHistory).forEach(addToCloudListeningHistory);
   }
 }
